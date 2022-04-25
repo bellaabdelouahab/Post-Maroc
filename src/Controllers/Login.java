@@ -8,7 +8,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import Main.DataBaseConnection;
-import Main.UserAccount;
 
 public class Login{
     public DataBaseConnection connection;

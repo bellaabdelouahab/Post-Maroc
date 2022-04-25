@@ -25,8 +25,8 @@ public class Profile implements Initializable {
     private GridPane PasswordForm;
     Image Image1;
     public DataBaseConnection connection;
-    private String adr = "", natio = "", phone = "", cin = "", age = "", password = "";
-    private int result = 0;
+    // private String adr = "", natio = "", phone = "", cin = "", age = "", password = "";
+    // private int result = 0;
 
     public String compte;
     BufferedImage ImagebBufferedImage;

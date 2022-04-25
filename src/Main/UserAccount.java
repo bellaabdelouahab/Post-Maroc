@@ -1,6 +1,5 @@
 package Main;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -69,7 +68,10 @@ public class UserAccount {
         return id;
     }
     public String jobtitle() {
-        return "";
+        return jobtitle;
+    }
+    public String getgender() {
+        return gender;
     }
     
 }

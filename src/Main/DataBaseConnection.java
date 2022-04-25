@@ -62,17 +62,16 @@ public class DataBaseConnection {
     }
     public void AddMail(Float Weight , String id_client, String phonenbr_,String address_, LocalDate collect_date_){
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-YYYY");
-            String qry1 = "(SELECT COUNT(*) FROM POSTMAIL))";
+            String qry1 = "SELECT COUNT(*) FROM POSTMAIL";
+            System.out.println("sddsds");
             result = statement.executeQuery(qry1);
-            String mail_id = null;
+            int mail_id = 0;
             while (result.next()) {
-                mail_id = result.getString(1);
+                mail_id = result.getInt(1);
             }
-            System.out.println(String.format("%.2f", mail_id));
-            String Sql = "INSERT INTO POSTMAIL VALUES(concat(concat('RR',(SELECT COUNT(*) FROM POSTMAIL)),'MA'),'"+Weight+"' , '"+address_+"' ,TO_DATE('"+collect_date_.format(formatter)+"', 'dd-mm-yyyy') , '"+id_client+"' , '"+phonenbr_+"')"; 
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-YYYY");
+            String Sql = "INSERT INTO POSTMAIL VALUES('"+"RR"+String.format("%09d", mail_id)+"MA"+"','"+Weight+"' , '"+address_+"' ,TO_DATE('"+collect_date_.format(formatter)+"', 'dd-mm-yyyy') , '"+id_client+"' , '"+phonenbr_+"')"; 
             statement.executeUpdate(Sql);
-            System.out.println("Mail Added");
         } catch (Exception e) {
             System.out.println("No" + e);
         }

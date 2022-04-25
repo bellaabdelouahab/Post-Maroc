@@ -2,18 +2,13 @@ package Controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import Main.DataBaseConnection;
-
-import java.net.URL;
-import java.sql.ResultSet;
-import java.util.ResourceBundle;
+import Main.UserAccount;
 
 public class Login{
     public DataBaseConnection connection;
@@ -29,20 +24,14 @@ public class Login{
     private Button close_btn;
     @FXML
     private void StartConnection() {
-        String x="";
         try {
-            ResultSet rs = connection.Login_employ(username_text.getText().toLowerCase());
-            
-            while (rs.next()) {
-                x = rs.getString(2).toLowerCase();
-            }
-            if (x.equals(password_text.getText())) {
-                System.out.println("voila");
+            if (connection.Login_user(username_text,password_text)) {
                 FXMLLoader loder = new FXMLLoader(getClass().getResource("../Resources/VIEW/um.fxml"));
                 Pane root = loder.load();
                 create_mail controller = loder.getController();
                 // controller.ParentPane=ParentPane;
                 controller.connection=connection;
+                controller.fillinfo();
                 // FadeOutLeft FideOut =new FadeOutLeft(ChiledStage);
                 // FideOut.play();
                 WindowRoot.getChildren().clear();
@@ -56,6 +45,9 @@ public class Login{
                 // ParentPane.getChildren().add(root);
                 // new FadeInRightBig(root).play();
             }
+            else{
+                System.out.println("💔 error");
+            }
         }
         catch (Exception e) {
         System.out.println("ERREUR :( \n" + e);
@@ -68,6 +60,6 @@ public class Login{
     }
 
     public void initializ() {
-        StartConnection();
+        // StartConnection();
     }
 }

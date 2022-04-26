@@ -75,15 +75,15 @@
                   <DatePicker fx:id="collect_date" prefHeight="38.0" prefWidth="233.0" promptText="Enter A Date" style="-fx-background-color: #33333300; -fx-text-fill: #fff;" />
                </children>
             </HBox>
+            <HBox layoutX="11.0" layoutY="315.0" prefHeight="33.0" prefWidth="397.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="117.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Phone number" />
+                  <TextField fx:id="phonenbr" alignment="CENTER" prefHeight="33.0" prefWidth="285.0" promptText="Enter Phone Number" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
+               </children>
+            </HBox>
          </children>
       </Pane>
       <Button fx:id="close_btn" layoutX="760.0" layoutY="8.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-radius: 25; -fx-background-color: white;" text="X" />
-      <HBox layoutX="11.0" layoutY="367.0" prefHeight="33.0" prefWidth="397.0">
-         <children>
-            <Label alignment="CENTER" prefHeight="38.0" prefWidth="117.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Phone number" />
-            <TextField fx:id="phonenbr" alignment="CENTER" prefHeight="33.0" prefWidth="285.0" promptText="Enter Phone Number" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
-         </children>
-      </HBox>
       <FontAwesomeIconView fontSmoothingType="LCD" glyphName="HOME" layoutX="52.0" layoutY="32.0" size="30" tabSize="5" text="" textAlignment="JUSTIFY" wrappingWidth="28.91666603088379" />
       <Button fx:id="close_btn1" layoutX="719.0" layoutY="8.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="30.0" style="-fx-background-radius: 25; -fx-background-color: white;" text="--" />
       <GNAvatarView layoutX="8.0" layoutY="8.0" prefHeight="30.0" prefWidth="30.0" stroke="#ffffff18" type="CIRCLE">

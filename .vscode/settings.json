@@ -25,7 +25,20 @@
             "Reference Library/ucp.jar",
             "Reference Library/xdb6.jar",
             "Reference Library/javax.mail.jar",
-            "c:\\Users\\Abdelouahab\\Downloads\\jfoenix-9.0.10.jar"
+            "c:\\Users\\Abdelouahab\\Downloads\\jfoenix-9.0.10.jar",
+            "c:\\Program Files\\javafx-sdk-17.0.0.1\\Reference Library\\activation-1.1.1.jar",
+            "c:\\Program Files\\javafx-sdk-17.0.0.1\\Reference Library\\AnimateFX-1.2.1.jar",
+            "c:\\Program Files\\javafx-sdk-17.0.0.1\\Reference Library\\controlsfx-11.1.0.jar",
+            "c:\\Program Files\\javafx-sdk-17.0.0.1\\Reference Library\\fontawesomefx-commons-9.1.2.jar",
+            "c:\\Program Files\\javafx-sdk-17.0.0.1\\Reference Library\\fontawesomefx-fontawesome-4.7.0-9.1.2.jar",
+            "c:\\Program Files\\javafx-sdk-17.0.0.1\\Reference Library\\GNAvatarView-1.0.5.jar",
+            "c:\\Program Files\\javafx-sdk-17.0.0.1\\Reference Library\\javax.mail.jar",
+            "c:\\Program Files\\javafx-sdk-17.0.0.1\\Reference Library\\ojdbc6.jar",
+            "c:\\Program Files\\javafx-sdk-17.0.0.1\\Reference Library\\ojdbc7.jar",
+            "c:\\Program Files\\javafx-sdk-17.0.0.1\\Reference Library\\ons.jar",
+            "c:\\Program Files\\javafx-sdk-17.0.0.1\\Reference Library\\simplefan.jar",
+            "c:\\Program Files\\javafx-sdk-17.0.0.1\\Reference Library\\ucp.jar",
+            "c:\\Program Files\\javafx-sdk-17.0.0.1\\Reference Library\\xdb6.jar"
         ],
         "exclude": [
             "lib/ojdbc6.jar"

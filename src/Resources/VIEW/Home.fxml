@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import io.github.gleidson28.GNAvatarView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #444444; -fx-background-radius: 25;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.home">
+   <children>
+      <Button fx:id="close_btn" layoutX="760.0" layoutY="8.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-radius: 25; -fx-background-color: white;" text="X" />
+      <FontAwesomeIconView fontSmoothingType="LCD" glyphName="HOME" layoutX="52.0" layoutY="32.0" size="30" tabSize="5" text="" textAlignment="JUSTIFY" wrappingWidth="28.91666603088379" />
+      <Button fx:id="close_btn1" layoutX="719.0" layoutY="8.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="30.0" style="-fx-background-radius: 25; -fx-background-color: white;" text="--" />
+      <GNAvatarView layoutX="8.0" layoutY="8.0" prefHeight="30.0" prefWidth="30.0" stroke="#ffffff18" type="CIRCLE">
+         <image>
+            <Image url="@../IMAGES/user.png" />
+         </image>
+      </GNAvatarView>
+      <Button layoutX="200.0" layoutY="200.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-radius: 80;" text="Add Mail" />
+      <Button layoutX="500.0" layoutY="200.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-radius: 100;" text="View Mail" />
+   </children>
+</Pane>

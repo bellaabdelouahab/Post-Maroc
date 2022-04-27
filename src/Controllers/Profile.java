@@ -42,7 +42,6 @@ public class Profile implements Initializable {
             controller.connection=connection;
             App.changeStage(root);
         } catch (IOException E) {
-            // TODO Auto-generated catch block
             E.printStackTrace();
         }
     }

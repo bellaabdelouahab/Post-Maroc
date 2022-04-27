@@ -7,10 +7,6 @@ import Main.App;
 import Main.DataBaseConnection;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 public class home {
@@ -33,7 +29,6 @@ public class home {
                 try {
                     controller.SetData();
                 } catch (SQLException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
                 App.changeStage(root);
@@ -47,7 +42,6 @@ public class home {
             controller.connection=connection;
             App.changeStage(root);
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

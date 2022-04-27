@@ -8,10 +8,12 @@ import java.util.ResourceBundle;
 import io.github.gleidson28.GNAvatarView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import Main.App;
 import Main.DataBaseConnection;
 
 public class Profile implements Initializable {
@@ -33,6 +35,16 @@ public class Profile implements Initializable {
     public GNAvatarView HomeProfilePicture;
 
     public void Goback(ActionEvent e) throws IOException {
+        try {
+            FXMLLoader loder = new FXMLLoader(getClass().getResource("../Resources/VIEW/Home.fxml"));
+            Pane root = loder.load();
+            home controller = loder.getController();
+            controller.connection=connection;
+            App.changeStage(root);
+        } catch (IOException E) {
+            // TODO Auto-generated catch block
+            E.printStackTrace();
+        }
     }
 
     public void FileChooser() {

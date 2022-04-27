@@ -7,8 +7,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
+import java.util.regex.Pattern;
 import javafx.scene.control.TextField;
+
+// import BCrypt spring library
+
 public class DataBaseConnection {
     // sql server connection
     private String db = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -29,20 +32,31 @@ public class DataBaseConnection {
         }
     }
 
-    public boolean Login_user(TextField username_text, TextField password_text) {
+    public boolean Login_user(TextField email_Field, TextField password_text) {
+        String email = "";
+        // email validation
+        if (validateEmail(email = email_Field.getText())) {
+            email = email_Field.getText();
+        } else {
+            System.out.println("🔴 Email is not valid");
+            return false;
+        }
         try {
-            String rs = "select * from postaccount where lower(username)='" + username_text.getText().toLowerCase() + "'";
+            String rs = "select * from postaccount where lower(EMAIL)='" + email.toLowerCase() + "'";
             result = statement.executeQuery(rs);
             while (result.next()) {
-                if(result.getString(2).toLowerCase().equals(password_text.getText())){
-                user_account = new UserAccount(username_text.getText().toLowerCase(), password_text.getText().toLowerCase(),
-                                               result.getString(3));
-                user_account.setacountdetails(statement);
-                System.out.println("Login Successful");
-                return true;
-                }
-                else{
-                return false;
+                // check password using bcrypt
+                if (BcryptTool.checkPassword(password_text.getText(), result.getString("password"))) {
+                    user_account = new UserAccount(
+                        result.getString("EMAIL"),
+                        result.getString("password"),
+                        result.getString("id_user")
+                    );
+                    user_account.setacountdetails(statement);
+                    return true;
+                } else {
+                    System.out.println("🔴 Password is not valid");
+                    return false;
                 }
             }
         }
@@ -51,6 +65,19 @@ public class DataBaseConnection {
         }
         return false;
     }
+
+    public boolean validateEmail(String email) {
+        if (email == null || email.isEmpty()) {
+            return false;
+        }
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." +"[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        Pattern pattern = Pattern.compile(emailRegex);
+        if (pattern.matcher(email).matches()) {
+            return true;
+        } 
+        return false;
+    }
+
     // Disconnect from the Data Base
     public void Disconnect() {
         try {
@@ -79,5 +106,12 @@ public class DataBaseConnection {
     // get user classe
     public UserAccount getuserclass() {
         return user_account;
+    }
+
+    public ResultSet GetEmails() throws SQLException {
+        
+        String rs = "select * from postmail where lower(client_id)='" + user_account.getid() + "'";
+        result = statement.executeQuery(rs);
+        return result;
     }
 }

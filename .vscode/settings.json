@@ -38,7 +38,25 @@
             "c:\\Program Files\\javafx-sdk-17.0.0.1\\Reference Library\\ons.jar",
             "c:\\Program Files\\javafx-sdk-17.0.0.1\\Reference Library\\simplefan.jar",
             "c:\\Program Files\\javafx-sdk-17.0.0.1\\Reference Library\\ucp.jar",
-            "c:\\Program Files\\javafx-sdk-17.0.0.1\\Reference Library\\xdb6.jar"
+            "c:\\Program Files\\javafx-sdk-17.0.0.1\\Reference Library\\xdb6.jar",
+            "c:\\Program Files\\javafx-sdk-17.0.0.1\\lib\\activation-1.1.1.jar",
+            "c:\\Program Files\\javafx-sdk-17.0.0.1\\lib\\AnimateFX-1.2.1.jar",
+            "c:\\Program Files\\javafx-sdk-17.0.0.1\\lib\\controlsfx-11.1.0.jar",
+            "c:\\Program Files\\javafx-sdk-17.0.0.1\\lib\\fontawesomefx-commons-9.1.2.jar",
+            "c:\\Program Files\\javafx-sdk-17.0.0.1\\lib\\fontawesomefx-fontawesome-4.7.0-9.1.2.jar",
+            "c:\\Program Files\\javafx-sdk-17.0.0.1\\lib\\GNAvatarView-1.0.5.jar",
+            "c:\\Program Files\\javafx-sdk-17.0.0.1\\lib\\javafx.base.jar",
+            "c:\\Program Files\\javafx-sdk-17.0.0.1\\lib\\javafx.controls.jar",
+            "c:\\Program Files\\javafx-sdk-17.0.0.1\\lib\\javafx.fxml.jar",
+            "c:\\Program Files\\javafx-sdk-17.0.0.1\\lib\\javafx.graphics.jar",
+            "c:\\Program Files\\javafx-sdk-17.0.0.1\\lib\\javafx.media.jar",
+            "c:\\Program Files\\javafx-sdk-17.0.0.1\\lib\\javafx.swing.jar",
+            "c:\\Program Files\\javafx-sdk-17.0.0.1\\lib\\javafx.web.jar",
+            "c:\\Program Files\\javafx-sdk-17.0.0.1\\lib\\javafx-swt.jar",
+            "c:\\Program Files\\javafx-sdk-17.0.0.1\\lib\\javax.mail.jar",
+            "c:\\Program Files\\javafx-sdk-17.0.0.1\\lib\\mongo-java-driver-3.12.9.jar",
+            "c:\\Program Files\\javafx-sdk-17.0.0.1\\lib\\ojdbc7.jar",
+            "c:\\Program Files\\javafx-sdk-17.0.0.1\\Reference Library\\spring-security-crypto-5.6.3.jar"
         ],
         "exclude": [
             "lib/ojdbc6.jar"

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXCheckBox?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -14,15 +15,15 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.ToggleSwitch?>
 <?import org.controlsfx.control.textfield.CustomPasswordField?>
 
 <AnchorPane fx:id="WindowRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #00000000; -fx-background-radius: 25; -fx-border-radius: 25;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Login">
    <children>
-      <Pane layoutX="49.0" layoutY="49.0" prefHeight="500.0" prefWidth="800.0" style="-fx-background-radius: 25; -fx-background-color: #efefff;" styleClass="hed">
+      <Pane fx:id="subStage" layoutX="49.0" layoutY="49.0" prefHeight="500.0" prefWidth="800.0" style="-fx-background-radius: 25; -fx-background-color: #efefff;" styleClass="hed">
          <children>
-            <Button fx:id="close_btn" layoutX="750.0" layoutY="18.0" mnemonicParsing="false" onAction="#CloseWindow" prefHeight="30.0" prefWidth="30.0" style="-fx-background-radius: 25; -fx-background-color: white;" text="X" />
-            <TextField fx:id="username_text" layoutX="428.0" layoutY="152.0" prefHeight="32.0" prefWidth="228.0" promptText="Username" style="-fx-background-radius: 10;" text="123" />
-            <CustomPasswordField fx:id="password_text" layoutX="428.0" layoutY="204.0" prefHeight="32.0" prefWidth="228.0" promptText="Password" style="-fx-background-radius: 10;" text="123" />
+            <TextField fx:id="email_field" layoutX="428.0" layoutY="152.0" prefHeight="32.0" prefWidth="228.0" promptText="Email" style="-fx-background-radius: 10;" text="Abdo@gmail.com" />
+            <CustomPasswordField fx:id="password_text" layoutX="428.0" layoutY="204.0" prefHeight="32.0" prefWidth="228.0" promptText="Password" style="-fx-background-radius: 10;" text="123456" />
             <Button cache="true" layoutX="460.0" layoutY="337.0" mnemonicParsing="false" onAction="#StartConnection" prefHeight="41.0" prefWidth="171.0" style="-fx-background-radius: 25; -fx-background-color: red;" text="Log In ">
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
@@ -39,7 +40,7 @@
                         </Stop>
                         <Stop offset="1.0">
                            <color>
-                              <Color red="0.8399999737739563" green="0.34439998865127563" blue="0.34439998865127563" />
+                              <Color red="0.8815789222717285" green="0.30610379576683044" blue="0.30610379576683044" />
                            </color>
                         </Stop>
                      </stops>
@@ -68,11 +69,21 @@
                   </RadialGradient>
                </textFill>
             </Label>
-            <ImageView fitHeight="285.0" fitWidth="335.0" layoutX="5.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="259.0" fitWidth="450.0" layoutX="-88.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../Users/Abdelouahab/Downloads/Annotation%202022-04-21%20124430.jpg" />
+                  <Image url="@../IMAGES/Barid.png" />
                </image>
             </ImageView>
+            <Button layoutX="758.0" layoutY="1.0" mnemonicParsing="false" onAction="#CloseWindow" prefHeight="23.0" prefWidth="40.0" style="-fx-background-radius: 50; -fx-background-color: #00000000;" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="#fffbfb" glyphName="CLOSE" selectionFill="#e83f3f" selectionStart="1" size="30" stroke="#f89d9d" tabSize="6" wrappingWidth="23.571428298950195" />
+               </graphic>
+            </Button>
+            <ToggleSwitch fx:id="toggleSwitch" layoutX="736.0" layoutY="471.0" onMouseClicked="#ChangeTheme">
+               <font>
+                  <Font name="Dubai Regular" size="13.0" />
+               </font>
+            </ToggleSwitch>
          </children>
       </Pane>
    </children>

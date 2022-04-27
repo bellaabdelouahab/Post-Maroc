@@ -8,15 +8,23 @@
 
 <Pane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #444444; -fx-background-radius: 25;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.home">
    <children>
-      <Button fx:id="close_btn" layoutX="760.0" layoutY="8.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-radius: 25; -fx-background-color: white;" text="X" />
-      <FontAwesomeIconView fontSmoothingType="LCD" glyphName="HOME" layoutX="52.0" layoutY="32.0" size="30" tabSize="5" text="" textAlignment="JUSTIFY" wrappingWidth="28.91666603088379" />
-      <Button fx:id="close_btn1" layoutX="719.0" layoutY="8.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="30.0" style="-fx-background-radius: 25; -fx-background-color: white;" text="--" />
-      <GNAvatarView layoutX="8.0" layoutY="8.0" prefHeight="30.0" prefWidth="30.0" stroke="#ffffff18" type="CIRCLE">
+      <GNAvatarView layoutX="8.0" layoutY="8.0" onMouseClicked="#showProfile" prefHeight="30.0" prefWidth="30.0" stroke="#ffffff18" type="CIRCLE">
          <image>
             <Image url="@../IMAGES/user.png" />
          </image>
       </GNAvatarView>
-      <Button layoutX="200.0" layoutY="200.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-radius: 80;" text="Add Mail" />
-      <Button layoutX="500.0" layoutY="200.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-radius: 100;" text="View Mail" />
+      <Button layoutX="200.0" layoutY="200.0" mnemonicParsing="false" onAction="#SwitchToAddMailForm" prefHeight="100.0" prefWidth="100.0" style="-fx-background-radius: 80;" text="Add Mail" />
+      <Button layoutX="500.0" layoutY="200.0" mnemonicParsing="false" onAction="#SwitchMailLog" prefHeight="100.0" prefWidth="100.0" style="-fx-background-radius: 100;" text="View Mail" />
+      <Button layoutX="715.0" layoutY="2.0" mnemonicParsing="false" onAction="#MinimizeWindow" prefHeight="23.0" prefWidth="40.0" style="-fx-background-radius: 50; -fx-background-color: #00000000;">
+         <graphic>
+            <FontAwesomeIconView glyphName="MINUS" selectionStart="1" size="30" tabSize="6" wrappingWidth="23.571428298950195" />
+         </graphic>
+      </Button>
+      <Button layoutX="758.0" layoutY="1.0" mnemonicParsing="false" onAction="#CloseWindow" prefHeight="23.0" prefWidth="40.0" style="-fx-background-radius: 50; -fx-background-color: #00000000;">
+         <graphic>
+            <FontAwesomeIconView glyphName="CLOSE" selectionStart="1" size="30" tabSize="6" wrappingWidth="23.571428298950195" />
+         </graphic>
+      </Button>
+      <Button layoutX="667.0" layoutY="1.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" style="-fx-background-radius: 50; -fx-background-color: #00000000;" />
    </children>
 </Pane>

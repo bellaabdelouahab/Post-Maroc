@@ -2,11 +2,14 @@ package Controllers;
 
 import java.time.LocalDate;
 
+import Main.App;
 import Main.DataBaseConnection;
 import Main.UserAccount;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 
 public class create_mail {
     public DataBaseConnection connection;
@@ -34,5 +37,26 @@ public class create_mail {
         cin.setText(user_account.getid());
         address.setText(user_account.getaddress());
         phonenbr.setText(user_account.getphone());
+    }
+    @FXML
+    private void switchToHomePage(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../Resources/VIEW/Home.fxml"));
+            Pane root = loader.load();
+            home controller = loader.getController();
+            controller.connection=connection;
+            // get window parentstage
+            App.changeStage(root);
+        }
+        catch (Exception e) {
+            System.out.println("ERREUR :( \n" + e);
+        }
+    }
+    public void CloseWindow() {
+        connection.Disconnect();
+        App.getpStage().close();
+    }
+    public void MinimizeWindow() {
+        App.getpStage().setIconified(true);
     }
 }

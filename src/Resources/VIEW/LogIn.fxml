@@ -18,42 +18,20 @@
 <?import org.controlsfx.control.ToggleSwitch?>
 <?import org.controlsfx.control.textfield.CustomPasswordField?>
 
+
 <AnchorPane fx:id="WindowRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #00000000; -fx-background-radius: 25; -fx-border-radius: 25;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Login">
    <children>
-      <Pane fx:id="subStage" layoutX="49.0" layoutY="49.0" prefHeight="500.0" prefWidth="800.0" style="-fx-background-radius: 25; -fx-background-color: #efefff;" styleClass="hed">
+      <Pane fx:id="subStage" layoutX="47.0" layoutY="49.0" prefHeight="500.0" prefWidth="800.0" style="-fx-background-radius: 25; -fx-background-color: #444444;" styleClass="hed">
          <children>
             <TextField fx:id="email_field" layoutX="428.0" layoutY="152.0" prefHeight="32.0" prefWidth="228.0" promptText="Email" style="-fx-background-radius: 10;" text="Abdo@gmail.com" />
             <CustomPasswordField fx:id="password_text" layoutX="428.0" layoutY="204.0" prefHeight="32.0" prefWidth="228.0" promptText="Password" style="-fx-background-radius: 10;" text="123456" />
-            <Button cache="true" layoutX="460.0" layoutY="337.0" mnemonicParsing="false" onAction="#StartConnection" prefHeight="41.0" prefWidth="171.0" style="-fx-background-radius: 25; -fx-background-color: red;" text="Log In ">
-               <cursor>
-                  <Cursor fx:constant="DEFAULT" />
-               </cursor>
-            </Button>
-            <Circle layoutX="-35.0" layoutY="260.0" radius="408.0" stroke="#d6585800" strokeLineCap="BUTT" strokeType="INSIDE">
-               <fill>
-                  <RadialGradient centerX="0.08287292817679558" centerY="0.8175355450236967" focusAngle="3.37" radius="1.0">
-                     <stops>
-                        <Stop>
-                           <color>
-                              <Color red="0.9868420958518982" green="0.23848684132099152" blue="0.15533626079559326" />
-                           </color>
-                        </Stop>
-                        <Stop offset="1.0">
-                           <color>
-                              <Color red="0.8815789222717285" green="0.30610379576683044" blue="0.30610379576683044" />
-                           </color>
-                        </Stop>
-                     </stops>
-                  </RadialGradient>
-               </fill>
-            </Circle>
-            <JFXCheckBox layoutX="432.0" layoutY="253.0" text="Remember me" />
+            <JFXCheckBox layoutX="432.0" layoutY="253.0" text="Remember me" textFill="#e4dddd" />
             <Label layoutX="433.0" layoutY="58.0" prefHeight="41.0" prefWidth="68.0" text="Login">
                <font>
                   <Font name="Bodoni MT" size="26.0" />
                </font>
                <textFill>
-                  <RadialGradient centerX="0.5138121546961326" centerY="0.4834123222748815" focusDistance="-0.48275862068965525" radius="1.0">
+                  <RadialGradient centerX="0.5138121546961326" centerY="0.6161137440758294" focusDistance="-0.48275862068965525" radius="0.5172413793103448">
                      <stops>
                         <Stop>
                            <color>
@@ -62,28 +40,59 @@
                         </Stop>
                         <Stop offset="1.0">
                            <color>
-                              <Color red="1.0" green="1.0" blue="1.0" />
+                              <Color red="0.9300000071525574" green="0.8906742930412292" blue="0.241799995303154" />
                            </color>
                         </Stop>
                      </stops>
                   </RadialGradient>
                </textFill>
             </Label>
-            <ImageView fitHeight="259.0" fitWidth="450.0" layoutX="-88.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../IMAGES/Barid.png" />
-               </image>
-            </ImageView>
             <Button layoutX="758.0" layoutY="1.0" mnemonicParsing="false" onAction="#CloseWindow" prefHeight="23.0" prefWidth="40.0" style="-fx-background-radius: 50; -fx-background-color: #00000000;" textFill="WHITE">
                <graphic>
                   <FontAwesomeIconView fill="#fffbfb" glyphName="CLOSE" selectionFill="#e83f3f" selectionStart="1" size="30" stroke="#f89d9d" tabSize="6" wrappingWidth="23.571428298950195" />
                </graphic>
             </Button>
-            <ToggleSwitch fx:id="toggleSwitch" layoutX="736.0" layoutY="471.0" onMouseClicked="#ChangeTheme">
+            <ToggleSwitch fx:id="toggleSwitch" layoutX="703.0" layoutY="10.0" onMouseClicked="#ChangeTheme" selected="true">
                <font>
                   <Font name="Dubai Regular" size="13.0" />
                </font>
             </ToggleSwitch>
+            <Pane layoutX="428.0" layoutY="293.0" prefHeight="32.0" prefWidth="228.0" />
+            <Button fx:id="Loging_btn" cache="true" layoutX="483.0" layoutY="305.0" mnemonicParsing="false" onAction="#StartConnection" prefHeight="41.0" prefWidth="118.0" style="-fx-background-radius: 25; -fx-background-color: linear-gradient(from 84.3602% 74.8815% to 73.4597% 100.0%, reflect, #f8f122 0.0%, #f7d023 100.0%);" text="Log In " textFill="#3ea8ee">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+               <font>
+                  <Font name="Calibri" size="21.0" />
+               </font>
+            </Button>
+            <AnchorPane fx:id="rightpane" layoutX="-447.0" layoutY="-159.0">
+               <children>
+                  <Circle layoutX="408.0" layoutY="408.0" radius="408.0" stroke="#d6585800" strokeLineCap="BUTT" strokeType="INSIDE">
+                     <fill>
+                        <RadialGradient centerX="0.707182320441989" centerY="0.490521327014218" focusAngle="3.37" radius="0.26436781609195403">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.9868420958518982" green="0.23848684132099152" blue="0.15533626079559326" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.9078947305679321" green="0.8636208772659302" blue="0.2437865436077118" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </RadialGradient>
+                     </fill>
+                  </Circle>
+                  <ImageView fitHeight="259.0" fitWidth="450.0" layoutX="347.0" layoutY="290.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../IMAGES/Barid.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
          </children>
       </Pane>
    </children>

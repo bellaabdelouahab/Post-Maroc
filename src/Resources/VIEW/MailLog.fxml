@@ -20,13 +20,7 @@
             <TableColumn fx:id="STATE" minWidth="0.0" prefWidth="138.6666259765625" text="STATE" />
          </columns>
       </TableView>
-      <Pane layoutY="44.0" prefHeight="65.0" prefWidth="191.0">
-         <children>
-            <FontAwesomeIconView fill="RED" glyphName="USER" layoutX="17.0" layoutY="44.0" size="2.8em" wrappingWidth="39.0" />
-            <FontAwesomeIconView fill="#06ee02" glyphName="PLUS" layoutX="81.0" layoutY="44.0" size="2.8em" wrappingWidth="39.0" />
-            <FontAwesomeIconView fill="#ffea00" glyphName="EDIT" layoutX="141.0" layoutY="44.0" size="2.8em" wrappingWidth="39.0" />
-         </children>
-      </Pane>
+      <Pane layoutX="14.0" layoutY="429.0" prefHeight="65.0" prefWidth="191.0" />
       <GNAvatarView layoutX="7.0" layoutY="6.0" prefHeight="30.0" prefWidth="30.0" stroke="#ffffff18" type="CIRCLE">
          <image>
             <Image url="@../IMAGES/user.png" />
@@ -47,5 +41,6 @@
             <FontAwesomeIconView glyphName="HOME" onMouseClicked="#switchToHomePage" selectionStart="1" size="30" tabSize="6" wrappingWidth="23.571428298950195" />
          </graphic>
       </Button>
+      <FontAwesomeIconView fill="#ffea00" glyphName="EDIT" layoutX="400.0" layoutY="490.0" size="2.8em" wrappingWidth="39.0" />
    </children>
 </Pane>

@@ -1,5 +1,9 @@
 package Controllers;
 
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -7,7 +11,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
+import java.io.IOException;
+
+import org.controlsfx.control.MaskerPane;
 import org.controlsfx.control.ToggleSwitch;
 
 import Main.App;
@@ -23,45 +31,63 @@ public class Login{
     @FXML
     private TextField password_text;
     @FXML
-    private Button close_btn;
+    private Button Loging_btn;
     @FXML
     private ToggleSwitch toggleSwitch;
     @FXML
     private Pane subStage;
+    @FXML
+    private AnchorPane rightpane;
     public Stage presentStage;
     @FXML
     private void StartConnection() {
-        try {
-            if (connection.Login_user(email_field,password_text)) {
-                FXMLLoader loder = new FXMLLoader(getClass().getResource("../Resources/VIEW/Home.fxml"));
-                Pane root = loder.load();
-                home controller = loder.getController();
-                // controller.ParentPane=ParentPane;
-                controller.connection=connection;
-                // FadeOutLeft FideOut =new FadeOutLeft(ChiledStage);
-                // FideOut.play();
-                App.changeStage(root);
-                Stage stage = App.getpStage();
-                stage.setWidth(800);
-                stage.setHeight(500);
-                stage.setX(stage.getX()+49);
-                stage.setY(stage.getY()+49);
-                // WindowRoot.getChildren().clear();
-                // WindowRoot.getChildren().add(root);
-                // FideOut.setOnFinished(e->{
+            MaskerPane login_animation = new MaskerPane();
+            login_animation.setText("Connecting");
+            login_animation.setProgress(-1);
+            login_animation.setLayoutX(306);
+            login_animation.setLayoutY(159);
+            subStage.getChildren().add(login_animation);
+            Timeline timeline1 = new Timeline();
+            KeyValue kvs = new KeyValue(login_animation.progressProperty(),-1, Interpolator.EASE_IN);
+            KeyFrame kfs = new KeyFrame(Duration.seconds(1), kvs);
+            timeline1.getKeyFrames().add(kfs);
+            timeline1.play();
+            timeline1.setOnFinished(ep->{
+                if (connection.Login_user(email_field,password_text)) {
+                    FXMLLoader loder = new FXMLLoader(getClass().getResource("../Resources/VIEW/Home.fxml"));
+                    Pane root;
+                    try {
+                        
+                        root = loder.load();
+                        Timeline timeline = new Timeline();
+                        KeyValue kv1 = new KeyValue(rightpane.translateXProperty(),-(900), Interpolator.EASE_IN);
+                        KeyFrame kf1 = new KeyFrame(Duration.seconds(1), kv1);
+                        timeline.getKeyFrames().add(kf1);
+                        timeline.setOnFinished(t -> {
+                            subStage.getChildren().remove(rightpane);
+                            subStage.getChildren().remove(login_animation);
+                            home controller = loder.getController();
+                            controller.connection=connection;
+                            
+                            App.changeStage(root);
+                            Stage stage = App.getpStage();
+                            stage.setWidth(800);
+                            stage.setHeight(500);
+                            stage.setX(stage.getX()+49);
+                            stage.setY(stage.getY()+49);
+                        });
+                        timeline.play();
+                        
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     
-                //     ParentPane.getChildren().remove(ChiledStage);
-                // });
-                // ParentPane.getChildren().add(root);
-                // new FadeInRightBig(root).play();
-            }
-            else{
-                System.out.println("💔 error");
-            }
-        }
-        catch (Exception e) {
-        System.out.println("ERREUR :( \n" + e);
-        }
+                }
+                else{
+                    subStage.getChildren().remove(login_animation);
+                    System.out.println("💔 error");
+                }
+            });
     }
 
     public void CloseWindow() {

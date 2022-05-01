@@ -23,10 +23,29 @@ public class create_mail {
         String cin_ = cin.getText();
         String phonenbr_ = phonenbr.getText();
         String address_ = address.getText();
-        Float weight_ = Float.parseFloat(weight.getText());
+        Float weight_ = 0f;
+        try{
+        weight_ = weight.getText().isEmpty() ? 0 : Float.parseFloat(weight.getText());
+        }catch(Exception e){
+            App.showAlert("Error",  "Please enter a valid weight");
+            return;
+        }
         LocalDate collect_date_ = collect_date.getValue();
+        
+        if(!(cin_.length() == 8 || cin_.length() == 7)){
+            App.showAlert("Error",  "Please enter a valid CIN - 7 or 8 digits got :"+cin_.length());
+            return;
+        }
+        // check cin with regex /^[A-Za-z]{2}/
+        if(!cin_.matches("[A-Za-z]{2}[0-9]{6}") && !cin_.matches("[A-Za-z]{1}[0-9]{7}")){
+            App.showAlert("Error",  "Please enter a valid CIN");
+            return;
+        }
+
+        
         // add details 
         connection.AddMail( weight_,cin_,phonenbr_, address_,collect_date_ );
+        
     }
     // fill info details
     public void fillinfo() {

@@ -38,7 +38,7 @@ public class DataBaseConnection {
         if (validateEmail(email = email_Field.getText())) {
             email = email_Field.getText();
         } else {
-            System.out.println("🔴 Email is not valid");
+            App.showAlert("Error", "Please enter a valid email");
             return false;
         }
         try {
@@ -55,7 +55,7 @@ public class DataBaseConnection {
                     user_account.setacountdetails(statement);
                     return true;
                 } else {
-                    System.out.println("🔴 Password is not valid");
+                    App.showAlert("Error",  "Please enter a valid password");
                     return false;
                 }
             }
@@ -97,10 +97,18 @@ public class DataBaseConnection {
                 mail_id = result.getInt(1);
             }
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-YYYY");
-            String Sql = "INSERT INTO POSTMAIL VALUES('"+"RR"+String.format("%09d", mail_id)+"MA"+"','"+Weight+"' , '"+address_+"' ,TO_DATE('"+collect_date_.format(formatter)+"', 'dd-mm-yyyy') , '"+id_client+"' , '"+phonenbr_+"')"; 
+            String Sql = "INSERT INTO POSTMAIL (ID, WEIGHT, ADDRESS, COLLECT_DATE, CLIENT_ID, BACKUPPHONENBR, PRICE)"+
+                          "VALUES('"+"RR"+
+                          String.format("%09d", mail_id)+
+                          "MA"+"','"+Weight+"' , '"+address_+
+                          "' ,TO_DATE('"+collect_date_.format(formatter)+"', 'dd-mm-yyyy') , '"+
+                          id_client+"' , '"+phonenbr_+"','"+Weight*0.85+"')"; 
             statement.executeUpdate(Sql);
+            App.showAlert("info",  "Mail added successfully \n Your Courier id is : "+"RR"+String.format("%09d", mail_id)+"MA");
+            pdfGenerator.SavePdfForm("RR"+String.format("%09d", mail_id)+"MA");
         } catch (Exception e) {
             System.out.println("No" + e);
+            App.showAlert("info", "Mail not added");
         }
     }
     // get user classe

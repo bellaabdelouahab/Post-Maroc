@@ -72,7 +72,7 @@
             <HBox layoutX="413.0" layoutY="107.0" prefHeight="54.0" prefWidth="411.0">
                <children>
                   <Label fx:id="outdate" alignment="CENTER" prefHeight="38.0" prefWidth="128.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Collect Date" />
-                  <DatePicker fx:id="collect_date" prefHeight="38.0" prefWidth="233.0" promptText="Enter A Date" style="-fx-background-color: #33333300; -fx-text-fill: #fff;" />
+                  <DatePicker fx:id="collect_date" prefHeight="38.0" prefWidth="233.0" promptText="Enter A Date" showWeekNumbers="true" style="-fx-background-color: #33333300; -fx-text-fill: #fff;" />
                </children>
             </HBox>
             <HBox layoutX="11.0" layoutY="315.0" prefHeight="33.0" prefWidth="397.0">

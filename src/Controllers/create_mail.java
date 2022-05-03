@@ -1,12 +1,14 @@
 package Controllers;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import Main.App;
 import Main.DataBaseConnection;
 import Main.UserAccount;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
@@ -26,19 +28,35 @@ public class create_mail {
         Float weight_ = 0f;
         try{
         weight_ = weight.getText().isEmpty() ? 0 : Float.parseFloat(weight.getText());
-        }catch(Exception e){
-            App.showAlert("Error",  "Please enter a valid weight");
+        }catch(Exception E){
+            Button btn = new Button("OK");
+            // close notification window
+            btn.setOnAction(e -> App.closeNotification());
+            ArrayList<Button> btns = new ArrayList<Button>();
+            btns.add(btn);
+            btns.add(btn);
+            App.ShowNotificationWindow("Error",  "Please enter a valid weight",btns);
             return;
         }
         LocalDate collect_date_ = collect_date.getValue();
         
         if(!(cin_.length() == 8 || cin_.length() == 7)){
-            App.showAlert("Error",  "Please enter a valid CIN - 7 or 8 digits got :"+cin_.length());
+            Button btn = new Button("OK");
+            // close notification window
+            btn.setOnAction(e -> App.closeNotification());
+            ArrayList<Button> btns = new ArrayList<Button>();
+            btns.add(btn);
+            App.ShowNotificationWindow("Error",  "Please enter a valid CIN - 7 or 8 digits got :"+cin_.length(),btns);
             return;
         }
         // check cin with regex /^[A-Za-z]{2}/
         if(!cin_.matches("[A-Za-z]{2}[0-9]{6}") && !cin_.matches("[A-Za-z]{1}[0-9]{7}")){
-            App.showAlert("Error",  "Please enter a valid CIN");
+            Button btn = new Button("OK");
+            // close notification window
+            btn.setOnAction(e -> App.closeNotification());
+            ArrayList<Button> btns = new ArrayList<Button>();
+            btns.add(btn);
+            App.ShowNotificationWindow("Error",  "Please enter a valid CIN",btns);
             return;
         }
 

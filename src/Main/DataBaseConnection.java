@@ -7,7 +7,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.regex.Pattern;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 // import BCrypt spring library
@@ -21,7 +27,7 @@ public class DataBaseConnection {
     Statement statement;
     ResultSet result;
     UserAccount user_account;
-
+    private int mail_id;
     DataBaseConnection() {
         try {
             connection = DriverManager.getConnection(db, username, password);
@@ -38,7 +44,12 @@ public class DataBaseConnection {
         if (validateEmail(email = email_Field.getText())) {
             email = email_Field.getText();
         } else {
-            App.showAlert("Error", "Please enter a valid email");
+            Button btn = new Button("OK");
+            // close notification window
+            btn.setOnAction(e -> App.closeNotification());
+            ArrayList<Button> btns = new ArrayList<Button>();
+            btns.add(btn);
+            App.ShowNotificationWindow("Error", "Please enter a valid email",btns);
             return false;
         }
         try {
@@ -55,7 +66,11 @@ public class DataBaseConnection {
                     user_account.setacountdetails(statement);
                     return true;
                 } else {
-                    App.showAlert("Error",  "Please enter a valid password");
+                    Button btn = new Button("OK");
+                    // close notification window
+                    btn.setOnAction(e -> App.closeNotification());
+                    ArrayList<Button> btns = new ArrayList<Button>();
+                    App.ShowNotificationWindow("Error",  "Please enter a valid password",btns);
                     return false;
                 }
             }
@@ -92,7 +107,6 @@ public class DataBaseConnection {
             String qry1 = "SELECT COUNT(*) FROM POSTMAIL";
             System.out.println("sddsds");
             result = statement.executeQuery(qry1);
-            int mail_id = 0;
             while (result.next()) {
                 mail_id = result.getInt(1);
             }
@@ -104,11 +118,54 @@ public class DataBaseConnection {
                           "' ,TO_DATE('"+collect_date_.format(formatter)+"', 'dd-mm-yyyy') , '"+
                           id_client+"' , '"+phonenbr_+"','"+Weight*0.85+"')"; 
             statement.executeUpdate(Sql);
-            App.showAlert("info",  "Mail added successfully \n Your Courier id is : "+"RR"+String.format("%09d", mail_id)+"MA");
+            Button btn = new Button("OK");
+            // close notification window
+            btn.setOnAction(e -> App.closeNotification());
+            Button btn2 = new Button("Save a copy");
+            // run pdfgenerator on action
+            btn2.setOnAction(e -> {
+                    try {
+                        pdfGenerator.SavePdfForm(
+                            "RR"+String.format("%09d", mail_id)+"MA"
+                        );
+                    } catch (FileNotFoundException e1) {
+                        Button btn1 = new Button("OK");
+                        // close notification window
+                        btn.setOnAction(E -> App.closeNotification());
+                        ArrayList<Button> btns = new ArrayList<Button>();
+                        btns.add(btn1);
+                        App.ShowNotificationWindow("Error",  "File not Found",btns);
+                        return ;
+                    } catch (IOException e1) {
+                        Button btn1 = new Button("OK");
+                        // close notification window
+                        btn.setOnAction(E -> App.closeNotification());
+                        ArrayList<Button> btns = new ArrayList<Button>();
+                        btns.add(btn1);
+                        App.ShowNotificationWindow("Error",  "File not Supported",btns);
+                        return;
+                    } catch (Exception e1) {
+                        Button btn1 = new Button("OK");
+                        // close notification window
+                        btn.setOnAction(E -> App.closeNotification());
+                        ArrayList<Button> btns = new ArrayList<Button>();
+                        btns.add(btn1);
+                        App.ShowNotificationWindow("Error",  "Failed to get sources. Try again on courier log page",btns);
+                        return ;
+                    }
+            });
+            ArrayList<Button> btns = new ArrayList<Button>();
+            btns.add(btn);
+            App.ShowNotificationWindow("info",  "Mail added successfully \n Your Courier id is : "+"RR"+String.format("%09d", mail_id)+"MA",btns);
             pdfGenerator.SavePdfForm("RR"+String.format("%09d", mail_id)+"MA");
         } catch (Exception e) {
             System.out.println("No" + e);
-            App.showAlert("info", "Mail not added");
+            Button btn = new Button("OK");
+            // close notification window
+            btn.setOnAction(E -> App.closeNotification());
+            ArrayList<Button> btns = new ArrayList<Button>();
+            btns.add(btn);
+            App.ShowNotificationWindow("info", "Mail not added double check your information",btns);
         }
     }
     // get user classe

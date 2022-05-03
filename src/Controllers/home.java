@@ -3,19 +3,16 @@ package Controllers;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import com.itextpdf.text.DocumentException;
-
 import Main.App;
 import Main.DataBaseConnection;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
-import Main.pdfGenerator;
 public class home {
     public DataBaseConnection connection;
     
     @FXML
-    private void SwitchToAddMailForm() throws IOException, DocumentException{
+    private void SwitchToAddMailForm() throws IOException{
         FXMLLoader loder = new FXMLLoader(getClass().getResource("../Resources/VIEW/um.fxml"));
                 Pane root = loder.load();
                 create_mail controller = loder.getController();

@@ -24,8 +24,15 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-
-
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.BaseFont;
+import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfReader;
+import com.itextpdf.text.pdf.PdfStamper;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileNotFoundException;
+import javafx.stage.FileChooser;
 
 
 // Main Class
@@ -37,9 +44,8 @@ public class App extends Application {
         
         connection = new DataBaseConnection();
         // System.out.println(BcryptTool.hashPassword("123456"));
-        // create a pdf file reader
         
-        pdfGenerator.SavePdfForm("Courier_id");
+        
         launch(args);
     }
     
@@ -60,9 +66,6 @@ public class App extends Application {
         Login controller = loader.getController();
         controller.connection = connection;
         controller.initializ();
-        // JFXDatePicker dp = new JFXDatePicker();
-        // root.getChildren().clear();
-        // root.getChildren().add(dp);
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
         primaryStage.initStyle(StageStyle.TRANSPARENT);
@@ -73,7 +76,6 @@ public class App extends Application {
         new FadeIn(root).play();
         primaryStage.setResizable(false);
         setpStage(primaryStage);
-        
         // System.exit(0);
     }
     public static void changeStage(Pane root){
@@ -132,4 +134,38 @@ public class App extends Application {
         Pane x_ = (Pane) anchor_pane.getChildren().get(0);
         x_.getChildren().remove(CurrentNotification);
     }
+
+    private static void saveform(String Courier_id) throws IOException, DocumentException, FileNotFoundException {
+        PdfReader reader = new PdfReader("src/Resources/PDF/Courier_form.pdf");
+        // ask user for path 
+        FileChooser fileChooser = new FileChooser();    
+        fileChooser.setTitle("Save File");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("PDF", "*.pdf"));
+        File file = fileChooser.showSaveDialog(App.getpStage());
+        // create a pdf stamper
+        PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(file));
+        // create a pdf form
+        // PdfFormField form = PdfFormField.createEmpty(stamper.getWriter());
+        PdfContentByte pageContentByte =  stamper.getOverContent(1);
+
+        //Create BaseFont instance.
+        BaseFont baseFont = BaseFont.createFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
+        // add image
+        // pageContentByte.addImage(Image.getInstance("src/Resources/Images/alert.png"));
+        pageContentByte.beginText();
+        //Set text font and size.
+        pageContentByte.setFontAndSize(baseFont, 14);
+        pageContentByte.setTextMatrix(260,640);
+        System.out.println("stamper");
+        //Write text
+        pageContentByte.showText(Courier_id);
+        pageContentByte.endText();
+        // close the pdf
+        stamper.close();
+        reader.close();
+    }
+
+
 }
+
+

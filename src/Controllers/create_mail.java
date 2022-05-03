@@ -1,19 +1,22 @@
 package Controllers;
 
+import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import Main.App;
 import Main.DataBaseConnection;
 import Main.UserAccount;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
-public class create_mail {
+public class create_mail implements Initializable{
     public DataBaseConnection connection;
     @FXML
     private TextField cin, first_name, last_name, natio, phonenbr,address,weight;
@@ -95,5 +98,11 @@ public class create_mail {
     }
     public void MinimizeWindow() {
         App.getpStage().setIconified(true);
+    }
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        LocalDate DateIn = LocalDate.now();
+        collect_date.setValue(DateIn);
+        
     }
 }

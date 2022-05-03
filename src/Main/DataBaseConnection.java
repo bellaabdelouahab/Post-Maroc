@@ -105,11 +105,12 @@ public class DataBaseConnection {
     public void AddMail(Float Weight , String id_client, String phonenbr_,String address_, LocalDate collect_date_){
         try {
             String qry1 = "SELECT COUNT(*) FROM POSTMAIL";
-            System.out.println("sddsds");
+            
             result = statement.executeQuery(qry1);
             while (result.next()) {
                 mail_id = result.getInt(1);
             }
+            System.out.println("RR"+String.format("%09d", mail_id)+"MA"+"<->"+id_client);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-YYYY");
             String Sql = "INSERT INTO POSTMAIL (ID, WEIGHT, ADDRESS, COLLECT_DATE, CLIENT_ID, BACKUPPHONENBR, PRICE)"+
                           "VALUES('"+"RR"+
@@ -155,9 +156,9 @@ public class DataBaseConnection {
                     }
             });
             ArrayList<Button> btns = new ArrayList<Button>();
+            btns.add(btn2);
             btns.add(btn);
-            App.ShowNotificationWindow("info",  "Mail added successfully \n Your Courier id is : "+"RR"+String.format("%09d", mail_id)+"MA",btns);
-            pdfGenerator.SavePdfForm("RR"+String.format("%09d", mail_id)+"MA");
+            App.ShowNotificationWindow("info",  "Courier added successfully \n Your Courier id is : "+"RR"+String.format("%09d", mail_id)+"MA",btns);
         } catch (Exception e) {
             System.out.println("No" + e);
             Button btn = new Button("OK");

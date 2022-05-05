@@ -12,5 +12,8 @@ public class BcryptTool {
     public static boolean checkPassword(String password_text, String hashed) {
         return BCrypt.checkpw(password_text, hashed);
     }
+    public static String generateRandomId() {
+        return BCrypt.hashpw(String.valueOf(Math.random()), BCrypt.gensalt()).substring(0, 10);
+    }
     
 }

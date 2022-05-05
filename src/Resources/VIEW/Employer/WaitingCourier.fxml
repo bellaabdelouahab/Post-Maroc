@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import io.github.gleidson28.GNAvatarView?>
+<?import java.lang.String?>
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DisplacementMap?>
+<?import javafx.scene.effect.FloatMap?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.CubicCurve?>
+
+<Pane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #444444; -fx-background-radius: 25;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Employer.WaitingCourier">
+   <children>
+      <Pane layoutX="157.0">
+         <children>
+            <ImageView fitHeight="69.0" fitWidth="489.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../IMAGES/04_auto_x2%20(1).jpg" />
+               </image>
+            </ImageView>
+            <CubicCurve controlX1="38.25" controlX2="-5.25" controlY1="-29.25" controlY2="35.96296310424805" endX="136.25" endY="28.462963104248047" fill="#ededed00" layoutX="104.0" layoutY="23.0" startX="-159.9166259765625" startY="-29.25" stroke="#444444" strokeDashOffset="25.0" strokeLineJoin="BEVEL" strokeMiterLimit="25.0" strokeWidth="6.0" />
+            <CubicCurve controlX1="38.25" controlX2="-5.25" controlY1="-29.25" controlY2="35.96296310424805" endX="136.25" endY="28.462963104248047" fill="#ededed00" layoutX="404.0" layoutY="23.0" rotate="180.0" startX="-159.9166259765625" startY="-29.25" stroke="#444444" strokeDashOffset="25.0" strokeLineJoin="BEVEL" strokeMiterLimit="25.0" strokeWidth="6.0">
+               <rotationAxis>
+                  <Point3D y="1.0" />
+               </rotationAxis>
+            </CubicCurve>
+            <ImageView blendMode="SRC_ATOP" fitHeight="53.0" fitWidth="108.0" layoutX="190.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../IMAGES/Barid.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="ChildPaneXS" layoutY="55.0" prefHeight="390.0" prefWidth="800.0" style="-fx-background-color: #11111199;">
+         <effect>
+            <DisplacementMap>
+               <mapData>
+                  <FloatMap />
+               </mapData>
+            </DisplacementMap>
+         </effect>
+         <children>
+            <ScrollPane hbarPolicy="NEVER" prefHeight="390.0" prefWidth="800.0" stylesheets="@../../CSS/Employer.css" vbarPolicy="ALWAYS">
+               <styleClass>
+                  <String fx:value="column_sd" />
+                  <String fx:value="scrollpane" />
+               </styleClass>
+               <content>
+                  <HBox>
+                     <children>
+                        <VBox fx:id="CourierVbox1" prefHeight="390.0" prefWidth="390.0" />
+                        <VBox fx:id="CourierVbox2" layoutX="10.0" layoutY="10.0" prefHeight="390.0" prefWidth="390.0" />
+                     </children>
+                  </HBox>
+               </content>
+            </ScrollPane>
+         </children>
+      </Pane>
+      <GNAvatarView layoutX="7.0" layoutY="6.0" prefHeight="30.0" prefWidth="30.0" stroke="#ffffff18" type="CIRCLE">
+         <image>
+            <Image url="@../../IMAGES/user.png" />
+         </image>
+      </GNAvatarView>
+      <Button layoutX="715.0" layoutY="2.0" mnemonicParsing="false" onAction="#MinimizeWindow" prefHeight="23.0" prefWidth="40.0" style="-fx-background-radius: 50; -fx-background-color: #00000000;">
+         <graphic>
+            <FontAwesomeIconView glyphName="MINUS" selectionStart="1" size="30" tabSize="6" wrappingWidth="23.571428298950195" />
+         </graphic>
+      </Button>
+      <Button layoutX="758.0" layoutY="1.0" mnemonicParsing="false" onAction="#CloseWindow" prefHeight="23.0" prefWidth="40.0" style="-fx-background-radius: 50; -fx-background-color: #00000000;">
+         <graphic>
+            <FontAwesomeIconView glyphName="CLOSE" selectionStart="1" size="30" tabSize="6" wrappingWidth="23.571428298950195" />
+         </graphic>
+      </Button>
+      <Button layoutX="670.0" layoutY="1.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" style="-fx-background-radius: 50; -fx-background-color: #00000000;">
+         <graphic>
+            <FontAwesomeIconView glyphName="HOME" onMouseClicked="#switchToHomePage" selectionStart="1" size="30" tabSize="6" wrappingWidth="23.571428298950195" />
+         </graphic>
+      </Button>
+   </children>
+</Pane>

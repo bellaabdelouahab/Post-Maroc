@@ -49,7 +49,7 @@ public class mail_log {
                 // System.exit(0);
                 List.add(new MailLog(Lest.getString("ID"), Lest.getString("WEIGHT"),
                 Lest.getString("ADDRESS"), Lest.getString("COLLECT_DATE"),
-                 Lest.getString("PRICE"), Lest.getString("STATE")));
+                 Lest.getString("PRICE"), Lest.getString("status")));
             }
             ;
 
@@ -61,7 +61,7 @@ public class mail_log {
         ADDRESS.setCellValueFactory(new PropertyValueFactory<MailLog, String>("ADDRESS"));
         COLLECT_DATE.setCellValueFactory(new PropertyValueFactory<MailLog, String>("COLLECT_DATE"));
         PRICE.setCellValueFactory(new PropertyValueFactory<MailLog, String>("PRICE"));
-        STATE.setCellValueFactory(new PropertyValueFactory<MailLog, String>("STATE"));
+        STATE.setCellValueFactory(new PropertyValueFactory<MailLog, String>("status"));
         USERSTABLE.setItems(List);
 
     }

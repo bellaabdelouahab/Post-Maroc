@@ -10,6 +10,7 @@ import com.jfoenix.controls.JFXButton;
 
 
 import Controllers.Login;
+import Controllers.Employer.Home;
 import animatefx.animation.FadeIn;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -21,19 +22,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.pdf.BaseFont;
-import com.itextpdf.text.pdf.PdfContentByte;
-import com.itextpdf.text.pdf.PdfReader;
-import com.itextpdf.text.pdf.PdfStamper;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileNotFoundException;
-import javafx.stage.FileChooser;
-
 
 // Main Class
 public class App extends Application {
@@ -58,14 +49,27 @@ public class App extends Application {
     // connect to database
     @Override
     public void start(Stage primaryStage) throws IOException, SQLException {
-        Properties Prop = new Properties();
-        FileInputStream config = new FileInputStream(System.getProperty("user.dir") + "/src/Config.properties");
-        Prop.load(config);
-        FXMLLoader loader = new FXMLLoader(App.class.getResource("../Resources/VIEW/LogIn.fxml"));
+        // client page
+        // Properties Prop = new Properties();
+        // FileInputStream config = new FileInputStream(System.getProperty("user.dir") + "/src/Config.properties");
+        // Prop.load(config);
+        // FXMLLoader loader = new FXMLLoader(App.class.getResource("../Resources/VIEW/LogIn.fxml"));
+        // Pane root=loader.load();
+        // Login controller = loader.getController();
+        // controller.connection = connection;
+        // controller.initializ();
+
+        /// employer page
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("../Resources/VIEW/Employer/Home.fxml"));
         Pane root=loader.load();
-        Login controller = loader.getController();
-        controller.connection = connection;
-        controller.initializ();
+        Home controller= new Home();
+        try {
+            controller = loader.getController();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.exit(0);
+        }
+        controller.setConnection(connection);
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
         primaryStage.initStyle(StageStyle.TRANSPARENT);
@@ -101,19 +105,23 @@ public class App extends Application {
         close_window.setOnAction(e -> App.closeNotification());
         Label message_label = new Label(message);
         // message_label.setStyle("-fx-background-color:red");
+        message_label.setTextAlignment(TextAlignment.CENTER);
         message_label.setAlignment(Pos.CENTER);
-        message_label.setPrefSize(250, 25);
+        message_label.setPrefSize(250, 60);
         message_label.setLayoutX(25);
-        message_label.setLayoutY(25);
+        message_label.setLayoutY(10);
+        message_label.setWrapText(true);
         FlowPane buttons_area = new FlowPane();
-        buttons_area.setPrefSize(250, 65);
+        buttons_area.setPrefSize(250, 25);
         buttons_area.setLayoutX(25);
-        buttons_area.setLayoutY(31);
+        buttons_area.setLayoutY(70);
         buttons_area.setAlignment(Pos.CENTER);
         // loop over all buttons
-        for (Button btn : btns_list) {
-            btn.setStyle(App.getStyle());
-            buttons_area.getChildren().add(btn);
+        if(btns_list!=null){
+            for (Button btn : btns_list) {
+                btn.setStyle(App.getStyle());
+                buttons_area.getChildren().add(btn);
+            }
         }
         X.getChildren().addAll(close_window, message_label, buttons_area);
         AnchorPane anchor_pane= (AnchorPane)(App.getpStage().getScene().getRoot());
@@ -126,7 +134,7 @@ public class App extends Application {
     }
 
     private static String getStyle() {
-        return "-fx-padding: 0 25 0 25;-fx-background-radius: 8;-fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),#9d4024,#d86e3a,radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c);-fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );-fx-font-weight: bold;-fx-font-size: 1.1em;";
+        return "-fx-padding: 0 25 0 25;-fx-background-radius: 8;";
     }
 
     public static void closeNotification() {
@@ -134,38 +142,6 @@ public class App extends Application {
         Pane x_ = (Pane) anchor_pane.getChildren().get(0);
         x_.getChildren().remove(CurrentNotification);
     }
-
-    private static void saveform(String Courier_id) throws IOException, DocumentException, FileNotFoundException {
-        PdfReader reader = new PdfReader("src/Resources/PDF/Courier_form.pdf");
-        // ask user for path 
-        FileChooser fileChooser = new FileChooser();    
-        fileChooser.setTitle("Save File");
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("PDF", "*.pdf"));
-        File file = fileChooser.showSaveDialog(App.getpStage());
-        // create a pdf stamper
-        PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(file));
-        // create a pdf form
-        // PdfFormField form = PdfFormField.createEmpty(stamper.getWriter());
-        PdfContentByte pageContentByte =  stamper.getOverContent(1);
-
-        //Create BaseFont instance.
-        BaseFont baseFont = BaseFont.createFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
-        // add image
-        // pageContentByte.addImage(Image.getInstance("src/Resources/Images/alert.png"));
-        pageContentByte.beginText();
-        //Set text font and size.
-        pageContentByte.setFontAndSize(baseFont, 14);
-        pageContentByte.setTextMatrix(260,640);
-        System.out.println("stamper");
-        //Write text
-        pageContentByte.showText(Courier_id);
-        pageContentByte.endText();
-        // close the pdf
-        stamper.close();
-        reader.close();
-    }
-
-
 }
 
 

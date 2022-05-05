@@ -10,6 +10,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
+import Controllers.Employer.Courier;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -102,23 +104,28 @@ public class DataBaseConnection {
             System.out.println("Problem");
         }
     }
-    public void AddMail(Float Weight , String id_client, String phonenbr_,String address_, LocalDate collect_date_){
+    public void AddMail(Float Weight , String id_client, String phonenbr_,Float price,String address_, LocalDate collect_date_, String collectHour, String collectMinutes,String FullName, String Address, String phonenbr){
         try {
-            String qry1 = "SELECT COUNT(*) FROM POSTMAIL";
+            String qry1 = "SELECT COUNT(*) FROM POSTCOURIER";
             
             result = statement.executeQuery(qry1);
             while (result.next()) {
                 mail_id = result.getInt(1);
             }
-            System.out.println("RR"+String.format("%09d", mail_id)+"MA"+"<->"+id_client);
+            // System.out.println("RR"+String.format("%09d", mail_id)+"MA"+"<->"+id_client);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-YYYY");
-            String Sql = "INSERT INTO POSTMAIL (ID, WEIGHT, ADDRESS, COLLECT_DATE, CLIENT_ID, BACKUPPHONENBR, PRICE)"+
+            // generate a 16bite random password
+            String receiver_id = BcryptTool.generateRandomId();
+            String qry2 = "INSERT INTO POSTCOURIER (ID, WEIGHT, ADDRESS, COLLECT_DATE, CLIENT_ID, BACKUPPHONENBR, PRICE,RECEIVER_ID)"+
                           "VALUES('"+"RR"+
                           String.format("%09d", mail_id)+
                           "MA"+"','"+Weight+"' , '"+address_+
-                          "' ,TO_DATE('"+collect_date_.format(formatter)+"', 'dd-mm-yyyy') , '"+
-                          id_client+"' , '"+phonenbr_+"','"+Weight*0.85+"')"; 
-            statement.executeUpdate(Sql);
+                          "' ,TO_DATE('"+collect_date_.format(formatter)+" "+collectHour+":"+collectMinutes+"', 'DD-MM-YYYY HH24:MI') , '"+
+                          id_client+"' , '"+phonenbr_+"','"+price+"','"+receiver_id+"')"; 
+            String qry3 = "INSERT INTO POSTCOURIER_RECEIVER (RECEIVER_ID,FULLNAME, ADDRESS,PHONENBR)"+
+                            "VALUES('"+receiver_id+"','"+FullName+"' , '"+Address+"' ,'"+phonenbr+"')";
+            statement.executeUpdate(qry2);
+            statement.executeUpdate(qry3);
             Button btn = new Button("OK");
             // close notification window
             btn.setOnAction(e -> App.closeNotification());
@@ -176,8 +183,103 @@ public class DataBaseConnection {
 
     public ResultSet GetEmails() throws SQLException {
         
-        String rs = "select * from postmail where lower(client_id)='" + user_account.getid() + "'";
+        String rs = "select * from POSTCOURIER where lower(client_id)='" + user_account.getid() + "'";
         result = statement.executeQuery(rs);
         return result;
+    }
+    public Float CalculatePrice(Float weight) {
+        String qry1 = "select price from postcourierprices where "+weight+"<=weight_end_point and "+weight+">=weight_start_point";
+        Float mail_id_=0.0f;
+            try {
+                result = statement.executeQuery(qry1);
+                while (result.next()) {
+                    mail_id_ = result.getFloat(1);
+                    return mail_id_;
+                }
+            } catch (SQLException e) {
+                Button btn = new Button("OK");
+                System.out.println(e);
+                // close notification window
+                btn.setOnAction(e_ -> App.closeNotification());
+                ArrayList<Button> btns = new ArrayList<Button>();
+                btns.add(btn);
+                App.ShowNotificationWindow("Error",  "Failed to get sources.",btns);
+            }
+            return mail_id_;
+    }
+
+    public ArrayList<Courier> getWaitingCourier() {
+        String qry1 = "select * from POSTCOURIER where status='Waiting'  ORDER BY id ";
+        try {
+            result = statement.executeQuery(qry1);
+            ArrayList<Courier> couriers = new ArrayList<Courier>();
+            while (result.next()) {
+                String id = result.getString(1);
+                String weight = result.getString(2);
+                String address = result.getString(3);
+                String collect_date = result.getString(4);
+                String client_id = result.getString(5);
+                String backup_phonenbr = result.getString(6);
+                String price = result.getString(7);
+                String receiver_id = result.getString(8);
+                // create a courier class with previous information
+                couriers.add(new Courier(id, weight, address, collect_date, client_id, backup_phonenbr, price,"Waiting", receiver_id));   
+            }
+            return couriers;
+        } catch (SQLException e) {
+            Button btn = new Button("OK");
+            e.printStackTrace();
+            System.exit(0);
+            // close notification window
+            btn.setOnAction(e_ -> App.closeNotification());
+            ArrayList<Button> btns = new ArrayList<Button>();
+            btns.add(btn);
+            App.ShowNotificationWindow("Error",  "Failed to get sources.",btns);
+            
+        }
+        return null;
+    }
+
+    public void SupportCourier(String CourierId) {
+        String qry1 = "update POSTCOURIER set status='Supported' where id='" + CourierId + "'";
+        try {
+            statement.executeUpdate(qry1);
+            Button btn = new Button("OK");
+            // close notification window
+            btn.setOnAction(e -> App.closeNotification());
+            ArrayList<Button> btns = new ArrayList<Button>();
+            btns.add(btn);
+            App.ShowNotificationWindow("info",  "Courier successfully Supprted ",btns);
+        } catch (SQLException e) {
+            Button btn = new Button("OK");
+            e.printStackTrace();
+            // close notification window
+            btn.setOnAction(E -> App.closeNotification());
+            ArrayList<Button> btns = new ArrayList<Button>();
+            btns.add(btn);
+            App.ShowNotificationWindow("info",  "Unable to Supprted try later or contact your administrator",btns);
+        }
+    }
+
+    public void CancelCourier(String CourierId) {
+        String qry1 = "update POSTCOURIER set status='Cancelled' where id='" + CourierId + "'";
+        try {
+            statement.executeUpdate(qry1);
+            Button btn = new Button("OK");
+            // close notification window
+            btn.setOnAction(e -> App.closeNotification());
+            ArrayList<Button> btns = new ArrayList<Button>();
+            btns.add(btn);
+            App.ShowNotificationWindow("info",  "Courier successfully Cancelled ",btns);
+        } catch (SQLException e) {
+            Button btn = new Button("OK");
+            e.printStackTrace();
+            // close notification window
+            btn.setOnAction(E -> App.closeNotification());
+            ArrayList<Button> btns = new ArrayList<Button>();
+            btns.add(btn);
+            App.ShowNotificationWindow("info",  "Unable to Cancelled try later or contact your administrator",btns);
+        }
+
     }
 }

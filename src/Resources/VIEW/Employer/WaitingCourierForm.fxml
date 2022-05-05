@@ -23,7 +23,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane layoutX="207.0" layoutY="10.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #00000000; -fx-border-color: #d7dce0;">
+            <Pane layoutX="199.0" layoutY="10.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #00000000; -fx-border-color: #d7dce0;">
                <children>
                   <Label fx:id="Courier_Address" layoutX="5.0" layoutY="14.0" prefHeight="17.0" prefWidth="141.0">
                      <font>
@@ -51,7 +51,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane layoutX="207.0" layoutY="53.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #00000000 ;-fx-border-color: #d7dce0;">
+            <Pane layoutX="200.0" layoutY="53.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #00000000 ;-fx-border-color: #d7dce0;">
                <children>
                   <Label fx:id="Courier_Price2" layoutX="6.0" prefHeight="17.0" prefWidth="141.0" text="Collect Date" textFill="#433a3a">
                      <font>
@@ -64,9 +64,13 @@
                      </font></Label>
                </children>
             </Pane>
-            <Button layoutX="19.0" layoutY="92.0" mnemonicParsing="false" onAction="#SupportCourier" prefHeight="25.0" prefWidth="183.0" style="-fx-background-color: #a7fa36;" text="Support Courier" />
-            <Button layoutX="209.0" layoutY="92.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="76.0" style="-fx-background-color: Gray;" text="Show more" />
-            <Button layoutX="294.0" layoutY="92.0" mnemonicParsing="false" onAction="#CancelCourier" prefHeight="25.0" prefWidth="62.0" style="-fx-background-color: #fb7a5c;" text="Cancel" />
+            <Pane fx:id="PlaceToShowStatus" layoutX="19.0" layoutY="92.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#SupportCourier" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #a7fa36;" text="Support Courier" />
+               </children>
+            </Pane>
+            <Button layoutX="200.0" layoutY="92.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: Gray;" text="Show more" />
+            <Button layoutX="288.0" layoutY="92.0" mnemonicParsing="false" onAction="#CancelCourier" prefHeight="25.0" prefWidth="62.0" style="-fx-background-color: #fb7a5c;" text="Cancel" />
          </children>
       </Pane>
    </children>

@@ -28,7 +28,7 @@ public class DataBaseConnection {
     Connection connection;
     Statement statement;
     ResultSet result;
-    UserAccount user_account;
+    private UserAccount user_account;
     private int mail_id;
     DataBaseConnection() {
         try {
@@ -38,6 +38,14 @@ public class DataBaseConnection {
         } catch (Exception e) {
             System.out.println("🔴 Data Base Connection Problem :" + e);
         }
+    }
+
+    public UserAccount getUser_account() {
+        return user_account;
+    }
+
+    public void setUser_account(UserAccount user_account) {
+        this.user_account = user_account;
     }
 
     public boolean Login_user(TextField email_Field, TextField password_text) {
@@ -60,12 +68,13 @@ public class DataBaseConnection {
             while (result.next()) {
                 // check password using bcrypt
                 if (BcryptTool.checkPassword(password_text.getText(), result.getString("password"))) {
-                    user_account = new UserAccount(
+                    setUser_account(new UserAccount(
                         result.getString("EMAIL"),
                         result.getString("password"),
-                        result.getString("id_user")
-                    );
-                    user_account.setacountdetails(statement);
+                        result.getString("id_user"),
+                        result.getString("accounttype")
+                    ));
+                    getUser_account().setacountdetails(statement);
                     return true;
                 } else {
                     Button btn = new Button("OK");
@@ -178,12 +187,12 @@ public class DataBaseConnection {
     }
     // get user classe
     public UserAccount getuserclass() {
-        return user_account;
+        return getUser_account();
     }
 
     public ResultSet GetEmails() throws SQLException {
         
-        String rs = "select * from POSTCOURIER where lower(client_id)='" + user_account.getid() + "'";
+        String rs = "select * from POSTCOURIER where lower(client_id)='" + getUser_account().getid() + "'";
         result = statement.executeQuery(rs);
         return result;
     }
@@ -208,8 +217,9 @@ public class DataBaseConnection {
             return mail_id_;
     }
 
-    public ArrayList<Courier> getWaitingCourier() {
-        String qry1 = "select * from POSTCOURIER where status='Waiting'  ORDER BY id ";
+    public ArrayList<Courier> getCourier(String status) {
+        String qry1 = "select * from POSTCOURIER where status in("+status+")  ORDER BY id ";
+        System.out.println(qry1);
         try {
             result = statement.executeQuery(qry1);
             ArrayList<Courier> couriers = new ArrayList<Courier>();
@@ -221,9 +231,10 @@ public class DataBaseConnection {
                 String client_id = result.getString(5);
                 String backup_phonenbr = result.getString(6);
                 String price = result.getString(7);
-                String receiver_id = result.getString(8);
+                String status_ = result.getString(8);
+                String receiver_id = result.getString(9);
                 // create a courier class with previous information
-                couriers.add(new Courier(id, weight, address, collect_date, client_id, backup_phonenbr, price,"Waiting", receiver_id));   
+                couriers.add(new Courier(id, weight, address, collect_date, client_id, backup_phonenbr, price,status_, receiver_id));   
             }
             return couriers;
         } catch (SQLException e) {

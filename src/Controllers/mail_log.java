@@ -38,18 +38,16 @@ public class mail_log {
     @FXML
     private TableColumn<MailLog, String> PRICE;
     @FXML
-    private TableColumn<MailLog, String> STATE;
+    private TableColumn<MailLog, String> STATUS;
 
     public void SetData() throws SQLException{
         ResultSet Lest = connection.GetEmails();    
         try {
 
             while (Lest.next()) {
-                // System.out.println(Lest.getString("ID"));
-                // System.exit(0);
                 List.add(new MailLog(Lest.getString("ID"), Lest.getString("WEIGHT"),
                 Lest.getString("ADDRESS"), Lest.getString("COLLECT_DATE"),
-                 Lest.getString("PRICE"), Lest.getString("status")));
+                 Lest.getString("PRICE"), Lest.getString("STATUS")));
             }
             ;
 
@@ -61,7 +59,7 @@ public class mail_log {
         ADDRESS.setCellValueFactory(new PropertyValueFactory<MailLog, String>("ADDRESS"));
         COLLECT_DATE.setCellValueFactory(new PropertyValueFactory<MailLog, String>("COLLECT_DATE"));
         PRICE.setCellValueFactory(new PropertyValueFactory<MailLog, String>("PRICE"));
-        STATE.setCellValueFactory(new PropertyValueFactory<MailLog, String>("status"));
+        STATUS.setCellValueFactory(new PropertyValueFactory<MailLog, String>("STATUS"));
         USERSTABLE.setItems(List);
 
     }

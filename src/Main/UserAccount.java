@@ -17,11 +17,13 @@ public class UserAccount {
     private String nationnality;
     private String jobtitle;
     private String gender;
+    private String accounttype;
 
-    public UserAccount(String username, String password,String id) {
+    public UserAccount(String username, String password,String id,String accounttype) {
         this.username = username;
         this.password = password;
         this.id = id;
+        this.accounttype=accounttype;
     }
     // set acount details 
     public void setacountdetails(Statement statement) {
@@ -72,6 +74,9 @@ public class UserAccount {
     }
     public String getgender() {
         return gender;
+    }
+    public String getaccounttype(){
+        return accounttype;
     }
     
 }

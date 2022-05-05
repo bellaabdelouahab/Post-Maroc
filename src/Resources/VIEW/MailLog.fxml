@@ -17,7 +17,7 @@
             <TableColumn fx:id="ADDRESS" prefWidth="174.66668701171875" text="ADDRESS" />
             <TableColumn fx:id="COLLECT_DATE" minWidth="0.0" prefWidth="123.0" text="COLLECT DATE" />
             <TableColumn fx:id="PRICE" minWidth="0.0" prefWidth="106.33331298828125" text="PRICE" />
-            <TableColumn fx:id="STATE" minWidth="0.0" prefWidth="138.6666259765625" text="STATE" />
+            <TableColumn fx:id="STATUS" minWidth="0.0" prefWidth="138.6666259765625" text="STATUS" />
          </columns>
       </TableView>
       <Pane layoutX="14.0" layoutY="429.0" prefHeight="65.0" prefWidth="191.0" />

@@ -6,15 +6,15 @@ public class MailLog {
     private String ADDRESS;
     private String COLLECT_DATE;
     private String PRICE;   
-    private String STATE;
+    private String STATUS;
     // constructor
-    public MailLog(String ID, String WEIGHT, String ADDRESS, String COLLECT_DATE, String PRICE, String STATE) {
+    public MailLog(String ID, String WEIGHT, String ADDRESS, String COLLECT_DATE, String PRICE, String STATUS) {
         this.Id = ID;
         this.WEIGHT = WEIGHT;
         this.ADDRESS = ADDRESS;
         this.COLLECT_DATE = COLLECT_DATE;
         this.PRICE = PRICE;
-        this.STATE = STATE;
+        this.STATUS = STATUS;
     }
     // getters
     public String getId() {
@@ -32,7 +32,7 @@ public class MailLog {
     public String getPRICE() {
         return PRICE;
     }
-    public String getSTATE() {
-        return STATE;
+    public String getSTATUS() {
+        return STATUS;
     }
 }

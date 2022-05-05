@@ -13,33 +13,35 @@ public class Home {
     private DataBaseConnection connection;
     // Switch To Waiting Courier
     @FXML
-    private void SwitchToWaitingCourier() throws IOException{
-        FXMLLoader loder = new FXMLLoader(getClass().getResource("../../Resources/VIEW/Employer/WaitingCourier.fxml"));
-        Pane root = loder.load();
-        WaitingCourier controller = loder.getController();
-        controller.setConnection(connection);
-        controller.SetData();
-        App.changeStage(root);
+    private void SwitchToWaitingCourier() {
+        SwitchTo(true,false,false);
     }
+    
     //SwitchToAllCourier
     @FXML
-    private void SwitchToAllCourier() throws IOException{
-        FXMLLoader loder = new FXMLLoader(getClass().getResource("../../Resources/VIEW/Employer/AllCourier.fxml"));
-        Pane root = loder.load();
-        AllCourier controller = loder.getController();
-        controller.setConnection(connection);
-        controller.SetData();
-        App.changeStage(root);
+    private void SwitchToAllCourier(){
+        SwitchTo(false,false,true);
     }
     //SwitchToConfirmedCourier
     @FXML
-    private void SwitchToConfirmedCourier() throws IOException{
-        FXMLLoader loder = new FXMLLoader(getClass().getResource("../../Resources/VIEW/Employer/ConfirmedCourier.fxml"));
-        Pane root = loder.load();
-        ConfirmedCourier controller = loder.getController();
-        controller.setConnection(connection);
-        controller.SetData();
-        App.changeStage(root);
+    private void SwitchToConfirmedCourier(){
+        SwitchTo(false,true,false);
+    }
+    // Switcher
+    private void SwitchTo(Boolean Waiting, Boolean Confirmed,Boolean All)  {
+        try {
+            FXMLLoader loder = new FXMLLoader(getClass().getResource("../../Resources/VIEW/Employer/WaitingCourier.fxml"));
+            Pane root;
+            root = loder.load();
+            CourierTable controller = loder.getController();
+            controller.setConnection(connection);
+            controller.SetData(Waiting, Confirmed,All);
+            App.changeStage(root);
+        } catch (IOException e) {
+            // notifiy that it couldn't switch
+            e.printStackTrace();
+        }
+        
     }
     // create a setter for Data Base Connection
     public void setConnection(DataBaseConnection connection){

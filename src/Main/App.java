@@ -1,16 +1,13 @@
 package Main;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Properties;
 
 import com.jfoenix.controls.JFXButton;
 
 
 import Controllers.Login;
-import Controllers.Employer.Home;
 import animatefx.animation.FadeIn;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -34,7 +31,7 @@ public class App extends Application {
     public static void main(String[] args) throws Exception {
         
         connection = new DataBaseConnection();
-        // System.out.println(BcryptTool.hashPassword("123456"));
+        System.out.println(BcryptTool.hashPassword("123456"));
         
         
         launch(args);
@@ -49,27 +46,12 @@ public class App extends Application {
     // connect to database
     @Override
     public void start(Stage primaryStage) throws IOException, SQLException {
-        // client page
-        // Properties Prop = new Properties();
-        // FileInputStream config = new FileInputStream(System.getProperty("user.dir") + "/src/Config.properties");
-        // Prop.load(config);
-        // FXMLLoader loader = new FXMLLoader(App.class.getResource("../Resources/VIEW/LogIn.fxml"));
-        // Pane root=loader.load();
-        // Login controller = loader.getController();
-        // controller.connection = connection;
-        // controller.initializ();
-
-        /// employer page
-        FXMLLoader loader = new FXMLLoader(App.class.getResource("../Resources/VIEW/Employer/Home.fxml"));
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("../Resources/VIEW/LogIn.fxml"));
         Pane root=loader.load();
-        Home controller= new Home();
-        try {
-            controller = loader.getController();
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.exit(0);
-        }
-        controller.setConnection(connection);
+        Login controller = loader.getController();
+        controller.connection = connection;
+        controller.initializ();
+        controller = loader.getController();
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
         primaryStage.initStyle(StageStyle.TRANSPARENT);

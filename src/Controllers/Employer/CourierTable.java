@@ -12,7 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
-public class WaitingCourier {
+public class CourierTable {
 
     private DataBaseConnection connection;
     private ArrayList<Courier> couriers;
@@ -22,8 +22,19 @@ public class WaitingCourier {
     private VBox CourierVbox1;
     
 
-    public void SetData() throws IOException {
-        this.couriers = connection.getWaitingCourier();
+    public void SetData(Boolean Waiting, Boolean Confirmed,Boolean All) throws IOException {
+        if (Waiting){
+            this.couriers = connection.getCourier("'Waiting'");
+        }
+        else if(Confirmed){
+            this.couriers = connection.getCourier("'Supported'");
+        }
+        else if(All){
+            this.couriers = connection.getCourier("'Waiting' , 'Supported' , 'Delivered'");
+        }
+        else {
+            return;
+        }
         // loop over couriers with index  
         if(couriers == null){
             System.out.println("No couriers");
@@ -39,6 +50,15 @@ public class WaitingCourier {
             controller.Courier_Address.setText(courier.getAddress());
             controller.Courier_Price.setText(courier.getPrice());
             controller.Courier_Collect_Date.setText(courier.getCollectDate());
+            if(All){
+                controller.PlaceToShowStatus.getChildren().clear();
+                Label Status = new Label(courier.getStatus());
+                Status.setPrefSize(183, 25);
+                controller.PlaceToShowStatus.getChildren().add(Status);
+            }
+            else if(Confirmed){
+                controller.PlaceToShowStatus.getChildren().clear();
+            }
             if(couriers.indexOf(courier)%2==0){
                 CourierVbox1.getChildren().add(root);
                 CourierVbox1.setPrefHeight(CourierVbox1.getPrefHeight()+root.getPrefHeight()/2);

@@ -3,6 +3,7 @@ package Controllers.Employer;
 import Main.DataBaseConnection;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 
 public class WaitingCourierForm {
     private DataBaseConnection connection;
@@ -11,6 +12,8 @@ public class WaitingCourierForm {
     @FXML Label Courier_Price;
     @FXML Label Courier_Collect_Date;
     Courier courier;
+    @FXML
+    Pane PlaceToShowStatus;
 
     @FXML 
     private void SupportCourier(){

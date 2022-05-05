@@ -18,6 +18,7 @@ import java.io.IOException;
 import org.controlsfx.control.MaskerPane;
 import org.controlsfx.control.ToggleSwitch;
 
+import Controllers.Employer.Home;
 import Main.App;
 import Main.DataBaseConnection;
 
@@ -54,34 +55,50 @@ public class Login{
             timeline1.play();
             timeline1.setOnFinished(ep->{
                 if (connection.Login_user(email_field,password_text)) {
-                    FXMLLoader loder = new FXMLLoader(getClass().getResource("../Resources/VIEW/Home.fxml"));
-                    Pane root;
-                    try {
+                    Timeline timeline = new Timeline();
+                    KeyValue kv1 = new KeyValue(rightpane.translateXProperty(),-(900), Interpolator.EASE_IN);
+                    KeyFrame kf1 = new KeyFrame(Duration.seconds(1), kv1);
+                    timeline.getKeyFrames().add(kf1);
+                    timeline.setOnFinished(t -> {
+                        subStage.getChildren().remove(rightpane);
+                        subStage.getChildren().remove(login_animation);
+                        Stage stage = App.getpStage();
+                        stage.setX(stage.getX()+49);
+                        stage.setY(stage.getY()+49);
+                        stage.setWidth(800);
+                        stage.setHeight(500);
+                        if(connection.getUser_account().getaccounttype().equals("client")){
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("../Resources/VIEW/Home.fxml"));
+                            Pane root;
+                            try {
+                                root = loader.load();home controller = loader.getController();
+                                controller.connection=connection;
+                                App.changeStage(root);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        else if(connection.getUser_account().getaccounttype().equals("employer")){
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("../Resources/VIEW/Employer/Home.fxml"));
+                            Pane root;
+                            try {
+                                root = loader.load();
+                                Home controller = loader.getController();
+                                controller.setConnection(connection);
+                                App.changeStage(root);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        else{
+                            System.out.println(connection.getUser_account().getaccounttype().equals("client"));
+                            System.exit(0);
+                            // TODO: show notification for error
+                        }
                         
-                        root = loder.load();
-                        Timeline timeline = new Timeline();
-                        KeyValue kv1 = new KeyValue(rightpane.translateXProperty(),-(900), Interpolator.EASE_IN);
-                        KeyFrame kf1 = new KeyFrame(Duration.seconds(1), kv1);
-                        timeline.getKeyFrames().add(kf1);
-                        timeline.setOnFinished(t -> {
-                            subStage.getChildren().remove(rightpane);
-                            subStage.getChildren().remove(login_animation);
-                            home controller = loder.getController();
-                            controller.connection=connection;
-                            
-                            App.changeStage(root);
-                            Stage stage = App.getpStage();
-                            stage.setWidth(800);
-                            stage.setHeight(500);
-                            stage.setX(stage.getX()+49);
-                            stage.setY(stage.getY()+49);
-                        });
-                        timeline.play();
-                        
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    
+                    });
+                    timeline.play();
+                
                 }
                 else{
                     subStage.getChildren().remove(login_animation);

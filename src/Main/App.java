@@ -9,6 +9,10 @@ import com.jfoenix.controls.JFXButton;
 
 import Controllers.Login;
 import animatefx.animation.FadeIn;
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -19,9 +23,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 
 // Main Class
 public class App extends Application {
@@ -124,6 +130,18 @@ public class App extends Application {
         Pane x_ = (Pane) anchor_pane.getChildren().get(0);
         x_.getChildren().remove(CurrentNotification);
     }
+    public static Timeline GetButtonAnimtation(Pane Container,Circle rotatingcircle,int Endvalue1,int Endvalue2){
+        Timeline timeline = new Timeline();
+        KeyValue kv = new KeyValue(Container.rotateProperty(), Endvalue1, Interpolator.EASE_IN);
+        KeyValue kv1 = new KeyValue(rotatingcircle.radiusProperty(), Endvalue2, Interpolator.EASE_IN);
+        KeyFrame kf = new KeyFrame(Duration.seconds(0.5), kv);
+        KeyFrame kf1 = new KeyFrame(Duration.seconds(0.5), kv1);
+        timeline.getKeyFrames().add(kf);
+        timeline.getKeyFrames().add(kf1);
+        timeline.play();
+        return timeline;
+    }
+
 }
 
 

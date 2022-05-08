@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import io.github.gleidson28.GNAvatarView?>
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DisplacementMap?>
+<?import javafx.scene.effect.FloatMap?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.CubicCurve?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<Pane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #444444; -fx-background-radius: 25;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.create_mail">
+   <children>
+      <Pane layoutX="157.0">
+         <children>
+            <ImageView fitHeight="69.0" fitWidth="489.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../IMAGES/04_auto_x2%20(1).jpg" />
+               </image>
+            </ImageView>
+            <CubicCurve controlX1="38.25" controlX2="-5.25" controlY1="-29.25" controlY2="35.96296310424805" endX="136.25" endY="28.462963104248047" fill="#ededed00" layoutX="104.0" layoutY="23.0" startX="-159.9166259765625" startY="-29.25" stroke="#444444" strokeDashOffset="25.0" strokeLineJoin="BEVEL" strokeMiterLimit="25.0" strokeWidth="6.0" />
+            <CubicCurve controlX1="38.25" controlX2="-5.25" controlY1="-29.25" controlY2="35.96296310424805" endX="136.25" endY="28.462963104248047" fill="#ededed00" layoutX="404.0" layoutY="23.0" rotate="180.0" startX="-159.9166259765625" startY="-29.25" stroke="#444444" strokeDashOffset="25.0" strokeLineJoin="BEVEL" strokeMiterLimit="25.0" strokeWidth="6.0">
+               <rotationAxis>
+                  <Point3D y="1.0" />
+               </rotationAxis>
+            </CubicCurve>
+            <ImageView blendMode="SRC_ATOP" fitHeight="53.0" fitWidth="108.0" layoutX="190.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../IMAGES/Barid.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="ChildPaneXS" layoutY="55.0" prefHeight="390.0" prefWidth="800.0" style="-fx-background-color: #11111199;">
+         <effect>
+            <DisplacementMap>
+               <mapData>
+                  <FloatMap />
+               </mapData>
+            </DisplacementMap>
+         </effect>
+         <children>
+            <Line endX="-100.0" endY="334.9000244140625" layoutX="516.0" layoutY="19.0" startX="-100.0" strokeWidth="3.0" />
+            <HBox layoutY="60.0" prefHeight="33.0" prefWidth="411.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="128.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="First Name" />
+                  <TextField fx:id="first_name" alignment="CENTER" prefHeight="52.0" prefWidth="277.0" promptText="Enter First Name" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
+               </children>
+            </HBox>
+            <HBox layoutY="110.0" prefHeight="33.0" prefWidth="411.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="128.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Last Name" />
+                  <TextField fx:id="last_name" alignment="CENTER" prefHeight="52.0" prefWidth="277.0" promptText="Enter Last Name" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
+               </children>
+            </HBox>
+            <HBox layoutY="160.0" prefHeight="33.0" prefWidth="411.0">
+               <children>
+                  <Label alignment="CENTER" layoutY="179.0" prefHeight="38.0" prefWidth="128.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Nationality" />
+                  <TextField fx:id="natio" alignment="CENTER" prefHeight="52.0" prefWidth="277.0" promptText="Enter Nationality" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
+               </children>
+            </HBox>
+            <HBox layoutY="210.0" prefHeight="33.0" prefWidth="411.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="128.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Cin" />
+                  <TextField fx:id="cin" alignment="CENTER" prefHeight="52.0" prefWidth="277.0" promptText="Enter Cin" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
+               </children>
+            </HBox>
+            <HBox layoutX="12.0" layoutY="263.0" prefHeight="33.0" prefWidth="397.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="117.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Address" />
+                  <TextField fx:id="address" alignment="CENTER" prefHeight="33.0" prefWidth="285.0" promptText="Enter Address" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
+               </children>
+            </HBox>
+            <HBox layoutX="11.0" layoutY="315.0" prefHeight="33.0" prefWidth="397.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="117.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Phone number" />
+                  <TextField fx:id="phonenbr" alignment="CENTER" prefHeight="33.0" prefWidth="285.0" promptText="Enter Phone Number" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
+               </children>
+            </HBox>
+            <HBox layoutX="481.0" layoutY="306.0" prefHeight="39.0" prefWidth="320.0" />
+            <Label alignment="CENTER" layoutX="119.0" layoutY="8.0" prefHeight="60.0" prefWidth="174.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Client Information" />
+            <Label alignment="CENTER" layoutX="540.0" layoutY="12.0" prefHeight="60.0" prefWidth="174.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Courier Information" />
+            <HBox layoutX="432.0" layoutY="63.0" prefHeight="33.0" prefWidth="353.0">
+               <children>
+                  <TextField fx:id="weight" alignment="CENTER" prefHeight="38.0" prefWidth="160.0" promptText="Courier weight" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
+                  <Label alignment="CENTER" prefHeight="33.0" prefWidth="33.0" text="=" textAlignment="CENTER" textFill="#eeeeee" textOverrun="CLIP">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="Pricefield" alignment="CENTER" disable="true" prefHeight="38.0" prefWidth="160.0" promptText="Corresponding Price" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
+               </children>
+            </HBox>
+            <HBox layoutX="432.0" layoutY="107.0" prefHeight="33.0" prefWidth="353.0">
+               <children>
+                  <Label fx:id="outdate" alignment="CENTER" prefHeight="38.0" prefWidth="117.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Collect Date" />
+                  <DatePicker fx:id="collect_date" prefHeight="38.0" prefWidth="248.0" promptText="Enter A Date" showWeekNumbers="true" style="-fx-background-color: #33333300; -fx-text-fill: #fff;" />
+               </children>
+            </HBox>
+            <Line endX="-100.0" endY="334.9000244140625" layoutX="709.0" layoutY="34.0" rotate="90.0" startX="-100.0" strokeWidth="3.0" />
+            <Label alignment="CENTER" layoutX="536.0" layoutY="185.0" prefHeight="60.0" prefWidth="174.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Receiver Information" />
+            <HBox layoutX="432.0" layoutY="232.0" prefHeight="33.0" prefWidth="353.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="117.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Name" />
+                  <TextField fx:id="receiverFullname" alignment="CENTER" prefHeight="38.0" prefWidth="248.0" promptText="Enter Full Name" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
+               </children>
+            </HBox>
+            <HBox layoutX="432.0" layoutY="272.0" prefHeight="33.0" prefWidth="353.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="117.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Address" />
+                  <TextField fx:id="receiveraddress" alignment="CENTER" prefHeight="33.0" prefWidth="248.0" promptText="Enter Address" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
+               </children>
+            </HBox>
+            <HBox layoutX="432.0" layoutY="315.0" prefHeight="33.0" prefWidth="353.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="117.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Phone number" />
+                  <TextField fx:id="receiverphonenbr" alignment="CENTER" prefHeight="33.0" prefWidth="248.0" promptText="Enter Phone Number" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
+               </children>
+            </HBox>
+            <Button fx:id="B_ValidateForm1" layoutX="276.0" layoutY="356.0" mnemonicParsing="false" onAction="#ValidateMail" prefHeight="33.0" prefWidth="277.0" style="-fx-background-color: #fbdf08;" text="Validate" />
+            <HBox layoutX="442.0" layoutY="156.0" prefHeight="25.0" prefWidth="340.0">
+               <children>
+                  <Label fx:id="outdate1" prefHeight="25.0" prefWidth="111.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Collect Time" />
+                  <Label alignment="CENTER" graphicTextGap="8.0" lineSpacing="5.0" prefHeight="25.0" prefWidth="65.0" text="Hour" textFill="#dddada">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="combohour" prefHeight="25.0" prefWidth="66.0" />
+                  <Label alignment="CENTER" lineSpacing="2.0" prefHeight="25.0" prefWidth="75.0" text="Minute" textFill="#e8d7d7">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="combominutes" prefHeight="25.0" prefWidth="67.0" />
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <GNAvatarView layoutX="7.0" layoutY="6.0" prefHeight="30.0" prefWidth="30.0" stroke="#ffffff18" type="CIRCLE">
+         <image>
+            <Image url="@../IMAGES/user.png" />
+         </image>
+      </GNAvatarView>
+      <Button layoutX="715.0" layoutY="2.0" mnemonicParsing="false" onAction="#MinimizeWindow" prefHeight="23.0" prefWidth="40.0" style="-fx-background-radius: 50; -fx-background-color: #00000000;">
+         <graphic>
+            <FontAwesomeIconView glyphName="MINUS" selectionStart="1" size="30" tabSize="6" wrappingWidth="23.571428298950195" />
+         </graphic>
+      </Button>
+      <Button layoutX="758.0" layoutY="1.0" mnemonicParsing="false" onAction="#CloseWindow" prefHeight="23.0" prefWidth="40.0" style="-fx-background-radius: 50; -fx-background-color: #00000000;">
+         <graphic>
+            <FontAwesomeIconView glyphName="CLOSE" selectionStart="1" size="30" tabSize="6" wrappingWidth="23.571428298950195" />
+         </graphic>
+      </Button>
+      <Button layoutX="670.0" layoutY="1.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" style="-fx-background-radius: 50; -fx-background-color: #00000000;">
+         <graphic>
+            <FontAwesomeIconView glyphName="HOME" onMouseClicked="#switchToHomePage" selectionStart="1" size="30" tabSize="6" wrappingWidth="23.571428298950195" />
+         </graphic>
+      </Button>
+   </children>
+</Pane>

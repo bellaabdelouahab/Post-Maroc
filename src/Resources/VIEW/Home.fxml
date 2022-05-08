@@ -7,7 +7,10 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.CubicCurve?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
 <Pane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #444444; -fx-background-radius: 25;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.home">
    <children>
@@ -16,8 +19,6 @@
             <Image url="@../IMAGES/user.png" />
          </image>
       </GNAvatarView>
-      <Button layoutX="200.0" layoutY="200.0" mnemonicParsing="false" onAction="#SwitchToAddMailForm" prefHeight="100.0" prefWidth="100.0" style="-fx-background-radius: 80;" text="Add Mail" />
-      <Button layoutX="500.0" layoutY="200.0" mnemonicParsing="false" onAction="#SwitchMailLog" prefHeight="100.0" prefWidth="100.0" style="-fx-background-radius: 100;" text="View Mail" />
       <Button layoutX="715.0" layoutY="2.0" mnemonicParsing="false" onAction="#MinimizeWindow" prefHeight="23.0" prefWidth="40.0" style="-fx-background-radius: 50; -fx-background-color: #00000000;">
          <graphic>
             <FontAwesomeIconView glyphName="MINUS" selectionStart="1" size="30" tabSize="6" wrappingWidth="23.571428298950195" />
@@ -49,5 +50,47 @@
             </CubicCurve>
          </children>
       </Pane>
+      <Pane fx:id="Pane1_button_animation" layoutX="175.0" layoutY="175.0" prefHeight="150.0" prefWidth="150.0">
+         <children>
+            <Circle fill="#56585b" layoutX="75.0" layoutY="75.0" radius="80.0" stroke="#f54a4a" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fill="#363028" layoutX="75.0" layoutY="75.0" radius="70.0" stroke="#f54a4a" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fill="#11100f" layoutX="75.0" layoutY="75.0" radius="65.0" stroke="#f54a4a" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fill="#f05f13" layoutX="75.0" layoutY="75.0" radius="62.0" stroke="#f54a4a" strokeType="INSIDE" strokeWidth="0.0" />
+            <Line endX="25.0" layoutX="77.0" layoutY="40.0" rotate="90.0" startX="-25.0" strokeWidth="5.0" />
+            <Line endX="25.0" layoutX="38.0" layoutY="75.0" startX="-25.0" strokeWidth="5.0" />
+            <Line endX="25.0" layoutX="77.0" layoutY="112.0" rotate="90.0" startX="-25.0" strokeWidth="5.0" />
+            <Line endX="25.0" layoutX="112.0" layoutY="75.0" startX="-25.0" strokeWidth="5.0" />
+            <Line endX="25.0" layoutX="48.0" layoutY="52.0" rotate="45.0" startX="-25.0" strokeWidth="5.0" />
+            <Line endX="25.0" layoutX="103.0" layoutY="51.0" rotate="135.0" startX="-25.0" strokeWidth="5.0" />
+            <Line endX="25.0" layoutX="50.0" layoutY="102.0" rotate="-45.0" startX="-25.0" strokeWidth="5.0" />
+            <Line endX="25.0" layoutX="103.0" layoutY="99.0" rotate="45.0" startX="-25.0" strokeWidth="5.0" />
+            <Circle fx:id="Pane1_circle_animation" layoutX="75.0" layoutY="75.0" radius="50.0" stroke="#f54a4a" strokeType="INSIDE" strokeWidth="0.0" />
+         </children>
+      </Pane>
+      <Pane fx:id="Pane2_button_animation" layoutX="490.0" layoutY="175.0" prefHeight="150.0" prefWidth="150.0">
+         <children>
+            <Circle fill="#56585b" layoutX="75.0" layoutY="75.0" radius="80.0" stroke="#f54a4a" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fill="#363028" layoutX="75.0" layoutY="75.0" radius="70.0" stroke="#f54a4a" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fill="#11100f" layoutX="75.0" layoutY="75.0" radius="65.0" stroke="#f54a4a" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fill="#f05b13" layoutX="75.0" layoutY="75.0" radius="62.0" stroke="#f54a4a" strokeType="INSIDE" strokeWidth="0.0" />
+            <Line endX="25.0" layoutX="77.0" layoutY="40.0" rotate="90.0" startX="-25.0" strokeWidth="5.0" />
+            <Line endX="25.0" layoutX="38.0" layoutY="75.0" startX="-25.0" strokeWidth="5.0" />
+            <Line endX="25.0" layoutX="77.0" layoutY="112.0" rotate="90.0" startX="-25.0" strokeWidth="5.0" />
+            <Line endX="25.0" layoutX="112.0" layoutY="75.0" startX="-25.0" strokeWidth="5.0" />
+            <Line endX="25.0" layoutX="48.0" layoutY="52.0" rotate="45.0" startX="-25.0" strokeWidth="5.0" />
+            <Line endX="25.0" layoutX="103.0" layoutY="51.0" rotate="135.0" startX="-25.0" strokeWidth="5.0" />
+            <Line endX="25.0" layoutX="50.0" layoutY="102.0" rotate="-45.0" startX="-25.0" strokeWidth="5.0" />
+            <Line endX="25.0" layoutX="103.0" layoutY="99.0" rotate="45.0" startX="-25.0" strokeWidth="5.0" />
+            <Circle fx:id="Pane2_circle_animation" layoutX="75.0" layoutY="75.0" radius="50.0" stroke="#f54a4a" strokeType="INSIDE" strokeWidth="0.0" />
+         </children>
+      </Pane>
+      <Button layoutX="490.0" layoutY="175.0" mnemonicParsing="false" onAction="#SwitchMailLog" onMouseEntered="#StartAnimation2" onMouseExited="#EndAnimation2" prefHeight="150.0" prefWidth="150.0" style="-fx-background-radius: 100; -fx-background-color: #00000000;" text="VIEW COURIER" textFill="WHITE">
+         <font>
+            <Font name="Consolas Bold" size="13.0" />
+         </font></Button>
+      <Button layoutX="175.0" layoutY="175.0" mnemonicParsing="false" onAction="#SwitchToAddMailForm" onMouseEntered="#StartAnimation1" onMouseExited="#EndAnimation1" prefHeight="150.0" prefWidth="150.0" style="-fx-background-radius: 80; -fx-background-color: #00000000;" text="ADD COURIER" textFill="WHITE">
+         <font>
+            <Font name="Consolas Bold" size="13.0" />
+         </font></Button>
    </children>
 </Pane>

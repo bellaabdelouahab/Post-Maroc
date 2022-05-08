@@ -8,9 +8,11 @@ import Main.App;
 import Main.DataBaseConnection;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.TextAlignment;
 
 public class CourierTable {
 
@@ -54,6 +56,8 @@ public class CourierTable {
                 controller.PlaceToShowStatus.getChildren().clear();
                 Label Status = new Label(courier.getStatus());
                 Status.setPrefSize(183, 25);
+                Status.setTextAlignment(TextAlignment.CENTER);
+                Status.setAlignment(Pos.CENTER);
                 controller.PlaceToShowStatus.getChildren().add(Status);
             }
             else if(Confirmed){

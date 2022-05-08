@@ -260,7 +260,7 @@ public class DataBaseConnection {
             btn.setOnAction(e -> App.closeNotification());
             ArrayList<Button> btns = new ArrayList<Button>();
             btns.add(btn);
-            App.ShowNotificationWindow("info",  "Courier successfully Supprted ",btns);
+            App.ShowNotificationWindow("info",  "Courier successfully Supported ",btns);
         } catch (SQLException e) {
             Button btn = new Button("OK");
             e.printStackTrace();

@@ -38,7 +38,7 @@
     background-color: black;
 }
 .column_sd{
-     -fx-background-color: linear-gradient( to left top,#000000 25%,  #2C3E50 100%);
+     -fx-background-color: linear-gradient( to left top,#100c27 25%,  #2C3E50 100%);
      background-color: linear-gradient( to left top,#0D324D 25%,  #7F5A83 100%);}
 
 .scrollpane .content{

@@ -14,6 +14,7 @@
 <?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.ToggleSwitch?>
 <?import org.controlsfx.control.textfield.CustomPasswordField?>
@@ -22,30 +23,17 @@
    <children>
       <Pane fx:id="subStage" layoutX="47.0" layoutY="49.0" prefHeight="500.0" prefWidth="800.0" style="-fx-background-radius: 25; -fx-background-color: #444444;" styleClass="hed">
          <children>
-            <TextField fx:id="email_field" layoutX="428.0" layoutY="152.0" prefHeight="32.0" prefWidth="228.0" promptText="Email" style="-fx-background-radius: 10;" text="Abdo@gmail.com" />
-            <CustomPasswordField fx:id="password_text" layoutX="428.0" layoutY="204.0" prefHeight="32.0" prefWidth="228.0" promptText="Password" style="-fx-background-radius: 10;" text="123456" />
-            <JFXCheckBox layoutX="432.0" layoutY="253.0" text="Remember me" textFill="#e4dddd" />
-            <Label layoutX="433.0" layoutY="58.0" prefHeight="41.0" prefWidth="68.0" text="Login">
+            <Button fx:id="Loging_btn" cache="true" layoutX="507.0" layoutY="337.0" mnemonicParsing="false" onAction="#StartConnection" prefHeight="41.0" prefWidth="118.0" style="-fx-background-radius: 25; -fx-background-color: #e09d1d;" text="LOGIN" textFill="#837c5f">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
                <font>
-                  <Font name="Bodoni MT" size="26.0" />
+                  <Font name="Verdana" size="21.0" />
                </font>
-               <textFill>
-                  <RadialGradient centerX="0.5138121546961326" centerY="0.6161137440758294" focusDistance="-0.48275862068965525" radius="0.5172413793103448">
-                     <stops>
-                        <Stop>
-                           <color>
-                              <Color red="0.9300000071525574" green="0.11159999668598175" blue="0.11159999668598175" opacity="0.9961832165718079" />
-                           </color>
-                        </Stop>
-                        <Stop offset="1.0">
-                           <color>
-                              <Color red="0.9300000071525574" green="0.8906742930412292" blue="0.241799995303154" />
-                           </color>
-                        </Stop>
-                     </stops>
-                  </RadialGradient>
-               </textFill>
-            </Label>
+            </Button>
+            <TextField fx:id="email_field" layoutX="473.0" layoutY="177.0" prefHeight="32.0" prefWidth="228.0" promptText="Email" style="-fx-background-radius: 10; -fx-background-color: #00000000; -fx-text-fill: #eee;" text="Abdo@gmail.com" />
+            <CustomPasswordField fx:id="password_text" layoutX="476.0" layoutY="231.0" prefHeight="32.0" prefWidth="228.0" promptText="Password" style="-fx-background-radius: 10; -fx-background-color: #00000000; -fx-text-fill: #eee;" text="123456" />
+            <JFXCheckBox checkedColor="#e09d1d" layoutX="511.0" layoutY="283.0" text="Remember me" textFill="#e4dddd" />
             <Button layoutX="758.0" layoutY="1.0" mnemonicParsing="false" onAction="#CloseWindow" prefHeight="23.0" prefWidth="40.0" style="-fx-background-radius: 50; -fx-background-color: #00000000;" textFill="WHITE">
                <graphic>
                   <FontAwesomeIconView fill="#fffbfb" glyphName="CLOSE" selectionFill="#e83f3f" selectionStart="1" size="30" stroke="#f89d9d" tabSize="6" wrappingWidth="23.571428298950195" />
@@ -56,15 +44,6 @@
                   <Font name="Dubai Regular" size="13.0" />
                </font>
             </ToggleSwitch>
-            <Pane layoutX="428.0" layoutY="293.0" prefHeight="32.0" prefWidth="228.0" />
-            <Button fx:id="Loging_btn" cache="true" layoutX="483.0" layoutY="305.0" mnemonicParsing="false" onAction="#StartConnection" prefHeight="41.0" prefWidth="118.0" style="-fx-background-radius: 25; -fx-background-color: linear-gradient(from 84.3602% 74.8815% to 73.4597% 100.0%, reflect, #f8f122 0.0%, #f7d023 100.0%);" text="Log In " textFill="#3ea8ee">
-               <cursor>
-                  <Cursor fx:constant="DEFAULT" />
-               </cursor>
-               <font>
-                  <Font name="Calibri" size="21.0" />
-               </font>
-            </Button>
             <AnchorPane fx:id="rightpane" layoutX="-447.0" layoutY="-159.0">
                <children>
                   <Circle layoutX="408.0" layoutY="408.0" radius="408.0" stroke="#d6585800" strokeLineCap="BUTT" strokeType="INSIDE">
@@ -78,7 +57,7 @@
                               </Stop>
                               <Stop offset="1.0">
                                  <color>
-                                    <Color red="0.9078947305679321" green="0.8636208772659302" blue="0.2437865436077118" />
+                                    <Color red="0.9098039269447327" green="0.8627451062202454" blue="0.24313725531101227" />
                                  </color>
                               </Stop>
                            </stops>
@@ -92,7 +71,34 @@
                   </ImageView>
                </children>
             </AnchorPane>
+            <Line endX="257.0" layoutX="495.0" layoutY="215.0" startX="-100.0" />
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="419.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../IMAGES/person_80px.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="31.0" fitWidth="30.0" layoutX="421.0" layoutY="231.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../IMAGES/lock_64px.png" />
+               </image>
+            </ImageView>
+            <Label contentDisplay="TOP" graphicTextGap="50.0" layoutX="455.0" layoutY="67.0" text="Members Log in" textAlignment="CENTER" textFill="#e09d1d" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Verdana" size="30.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="718.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../IMAGES/remove.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
+      <Line endX="257.0" layoutX="541.0" layoutY="316.0" startX="-100.0" />
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="764.0" layoutY="285.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../IMAGES/remove.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

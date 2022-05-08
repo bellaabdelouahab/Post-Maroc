@@ -50,6 +50,41 @@ public class create_mail implements Initializable{
         LocalDate collect_date_ = collect_date.getValue();
         String collectHour = combohour.getValue();
         String collectMinutes = combominutes.getValue();
+        String time_ = collectHour + ":" + collectMinutes;
+        // check if the entered date bigger  current date
+        if(!collect_date_.isAfter(LocalDate.now()) && !collect_date_.isEqual(LocalDate.now())){
+            // notify
+            Button btn = new Button("OK");
+            // close notification window
+            btn.setOnAction(e -> App.closeNotification());
+            ArrayList<Button> btns = new ArrayList<Button>();
+            btns.add(btn);
+            App.ShowNotificationWindow("Error",  "Please enter a valid date",btns);
+            System.out.println(collect_date_+"<==>"+LocalDate.now());
+            return;
+        }
+        // if the entered date is equal to current date check time
+        if(collect_date_.isEqual(LocalDate.now())){
+            // check time
+            // get current hour and minutes
+            String[] currentTime = java.time.LocalDateTime.now().toString().split(":");
+            System.out.println(currentTime[0].substring(11, 13)+"<==>"+time_);
+            if(time_.compareTo(LocalDate.now().toString()) > 0){
+                // notify
+                Button btn = new Button("OK");
+                // close notification window
+                btn.setOnAction(e -> App.closeNotification());
+                ArrayList<Button> btns = new ArrayList<Button>();
+                btns.add(btn);
+                App.ShowNotificationWindow("Error",  "Please enter a valid time",btns);
+                System.out.println(time_+"<==>"+LocalDate.now().toString()+"\n "+time_.compareTo(LocalDate.now().toString()));
+                // System.out.println(collect_date_+"<==>"+LocalDate.now().);
+                return;
+            }
+            
+            System.out.println(time_+"<==>"+LocalDate.now().toString()+"\n "+time_.compareTo(LocalDate.now().toString()));
+        }
+        
         // get receiver information from text fields
         String receiverFullname_ = receiverFullname.getText();
         String receiveraddress_ = receiveraddress.getText();

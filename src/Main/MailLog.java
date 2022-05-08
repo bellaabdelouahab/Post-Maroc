@@ -2,7 +2,7 @@ package Main;
 
 public class MailLog {
     private String Id;
-    private String WEIGHT;
+    // private String WEIGHT;
     private String ADDRESS;
     private String COLLECT_DATE;
     private String PRICE;   
@@ -10,7 +10,7 @@ public class MailLog {
     // constructor
     public MailLog(String ID, String WEIGHT, String ADDRESS, String COLLECT_DATE, String PRICE, String STATUS) {
         this.Id = ID;
-        this.WEIGHT = WEIGHT;
+        // this.WEIGHT = WEIGHT;
         this.ADDRESS = ADDRESS;
         this.COLLECT_DATE = COLLECT_DATE;
         this.PRICE = PRICE;
@@ -20,9 +20,9 @@ public class MailLog {
     public String getId() {
         return Id;
     }
-    public String getWEIGHT() {
-        return WEIGHT;
-    }
+    // public String getWEIGHT() {
+    //     return WEIGHT;
+    // }
     public String getADDRESS() {
         return ADDRESS;
     }

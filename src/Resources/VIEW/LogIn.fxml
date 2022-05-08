@@ -64,14 +64,14 @@
                         </RadialGradient>
                      </fill>
                   </Circle>
-                  <ImageView fitHeight="259.0" fitWidth="450.0" layoutX="347.0" layoutY="290.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="259.0" fitWidth="450.0" layoutX="347.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../IMAGES/Barid_.png" />
                      </image>
                   </ImageView>
                </children>
             </AnchorPane>
-            <Line endX="257.0" layoutX="495.0" layoutY="215.0" startX="-100.0" />
+            <Line endX="257.0" layoutX="500.0" layoutY="215.0" startX="-100.0" />
             <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="419.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../IMAGES/person_80px.png" />
@@ -92,13 +92,13 @@
                   <Image url="@../IMAGES/remove.png" />
                </image>
             </ImageView>
+            <Line endX="257.0" layoutX="500.0" layoutY="270.0" startX="-100.0" />
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="720.0" layoutY="239.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../IMAGES/remove.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
-      <Line endX="257.0" layoutX="541.0" layoutY="316.0" startX="-100.0" />
-      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="764.0" layoutY="285.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../IMAGES/remove.png" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>

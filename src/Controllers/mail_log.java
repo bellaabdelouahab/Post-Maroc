@@ -29,8 +29,8 @@ public class mail_log {
 
     @FXML
     private TableColumn<MailLog, String> ID;
-    @FXML
-    private TableColumn<MailLog, String> WEIGHT;
+    // @FXML
+    // private TableColumn<MailLog, String> WEIGHT;
     @FXML
     private TableColumn<MailLog, String> ADDRESS;
     @FXML
@@ -54,8 +54,9 @@ public class mail_log {
         } catch (SQLException e) {
             System.out.println("No Data Found" + e);
         }
+        USERSTABLE.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         ID.setCellValueFactory(new PropertyValueFactory<MailLog, String>("Id"));
-        WEIGHT.setCellValueFactory(new PropertyValueFactory<MailLog, String>("WEIGHT"));
+        // WEIGHT.setCellValueFactory(new PropertyValueFactory<MailLog, String>("WEIGHT"));
         ADDRESS.setCellValueFactory(new PropertyValueFactory<MailLog, String>("ADDRESS"));
         COLLECT_DATE.setCellValueFactory(new PropertyValueFactory<MailLog, String>("COLLECT_DATE"));
         PRICE.setCellValueFactory(new PropertyValueFactory<MailLog, String>("PRICE"));

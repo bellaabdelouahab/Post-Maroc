@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 
-public class WaitingCourierForm {
+public class CourierForm {
     private DataBaseConnection connection;
     @FXML Label Courier_id;
     @FXML Label Courier_Address;

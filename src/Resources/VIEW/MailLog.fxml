@@ -13,37 +13,6 @@
 
 <Pane fx:id="LeaderBoardData" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-radius: 25; -fx-background-color: #444444;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.mail_log">
    <children>
-      <TableView fx:id="USERSTABLE" layoutY="98.0" prefHeight="352.0" prefWidth="800.0" style="-fx-background-color: #444444;">
-         <columns>
-            <TableColumn fx:id="ID" prefWidth="135.0" text="ID" />
-            <TableColumn fx:id="WEIGHT" prefWidth="118.33331298828125" text="WEIGHT" />
-            <TableColumn fx:id="ADDRESS" prefWidth="174.66668701171875" text="ADDRESS" />
-            <TableColumn fx:id="COLLECT_DATE" minWidth="0.0" prefWidth="123.0" text="COLLECT DATE" />
-            <TableColumn fx:id="PRICE" minWidth="0.0" prefWidth="106.33331298828125" text="PRICE" />
-            <TableColumn fx:id="STATUS" minWidth="0.0" prefWidth="138.6666259765625" text="STATUS" />
-         </columns>
-      </TableView>
-      <Pane layoutX="14.0" layoutY="429.0" prefHeight="65.0" prefWidth="191.0" />
-      <GNAvatarView layoutX="7.0" layoutY="6.0" prefHeight="30.0" prefWidth="30.0" stroke="#ffffff18" type="CIRCLE">
-         <image>
-            <Image url="@../IMAGES/user.png" />
-         </image>
-      </GNAvatarView>
-      <Button layoutX="715.0" layoutY="1.0" mnemonicParsing="false" onAction="#MinimizeWindow" prefHeight="23.0" prefWidth="40.0" style="-fx-background-radius: 50; -fx-background-color: #00000000;">
-         <graphic>
-            <FontAwesomeIconView glyphName="MINUS" selectionStart="1" size="30" tabSize="6" wrappingWidth="23.571428298950195" />
-         </graphic>
-      </Button>
-      <Button layoutX="758.0" mnemonicParsing="false" onAction="#CloseWindow" prefHeight="23.0" prefWidth="40.0" style="-fx-background-radius: 50; -fx-background-color: #00000000;">
-         <graphic>
-            <FontAwesomeIconView glyphName="CLOSE" selectionStart="1" size="30" tabSize="6" wrappingWidth="23.571428298950195" />
-         </graphic>
-      </Button>
-      <Button layoutX="671.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" style="-fx-background-radius: 50; -fx-background-color: #00000000;">
-         <graphic>
-            <FontAwesomeIconView glyphName="HOME" onMouseClicked="#switchToHomePage" selectionStart="1" size="30" tabSize="6" wrappingWidth="23.571428298950195" />
-         </graphic>
-      </Button>
       <Pane layoutX="157.0">
          <children>
             <ImageView fitHeight="69.0" fitWidth="489.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
@@ -64,5 +33,35 @@
             </CubicCurve>
          </children>
       </Pane>
+      <TableView fx:id="USERSTABLE" editable="true" fixedCellSize="0.0" layoutY="98.0" prefHeight="352.0" prefWidth="799.0" style="-fx-background-color: #444444;" stylesheets="@../CSS/Theme.css">
+         <columns>
+            <TableColumn fx:id="ID" prefWidth="99.66666412353516" text="ID" />
+            <TableColumn fx:id="ADDRESS" prefWidth="230.33333587646484" text="ADDRESS" />
+            <TableColumn fx:id="COLLECT_DATE" minWidth="0.0" prefWidth="156.66665649414062" text="COLLECT DATE" />
+            <TableColumn fx:id="PRICE" minWidth="0.0" prefWidth="131.00003051757812" text="PRICE" />
+            <TableColumn fx:id="STATUS" minWidth="0.0" prefWidth="178.0" text="STATUS" />
+         </columns>
+      </TableView>
+      <Pane layoutX="14.0" layoutY="429.0" prefHeight="65.0" prefWidth="191.0" />
+      <GNAvatarView layoutX="7.0" layoutY="6.0" prefHeight="30.0" prefWidth="30.0" stroke="#ffffff18" type="CIRCLE">
+         <image>
+            <Image url="@../IMAGES/user.png" />
+         </image>
+      </GNAvatarView>
+      <Button layoutX="715.0" layoutY="1.0" mnemonicParsing="false" onAction="#MinimizeWindow" prefHeight="23.0" prefWidth="40.0" style="-fx-background-radius: 50; -fx-background-color: #00000000;">
+         <graphic>
+            <FontAwesomeIconView glyphName="MINUS" selectionStart="1" size="30" tabSize="6" wrappingWidth="23.571428298950195" />
+         </graphic>
+      </Button>
+      <Button layoutX="758.0" mnemonicParsing="false" onAction="#CloseWindow" prefHeight="23.0" prefWidth="40.0" style="-fx-background-radius: 50; -fx-background-color: #00000000;">
+         <graphic>
+            <FontAwesomeIconView glyphName="CLOSE" selectionStart="1" size="30" tabSize="6" wrappingWidth="23.571428298950195" />
+         </graphic>
+      </Button>
+      <Button layoutX="671.0" mnemonicParsing="false" onAction="#switchToHomePage" onMouseClicked="#switchToHomePage" prefHeight="23.0" prefWidth="40.0" style="-fx-background-radius: 50; -fx-background-color: #00000000;">
+         <graphic>
+            <FontAwesomeIconView glyphName="HOME" onMouseClicked="#switchToHomePage" selectionStart="1" size="30" tabSize="6" wrappingWidth="23.571428298950195" />
+         </graphic>
+      </Button>
    </children>
 </Pane>

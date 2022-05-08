@@ -30,7 +30,7 @@ public class Home {
     // Switcher
     private void SwitchTo(Boolean Waiting, Boolean Confirmed,Boolean All)  {
         try {
-            FXMLLoader loder = new FXMLLoader(getClass().getResource("../../Resources/VIEW/Employer/WaitingCourier.fxml"));
+            FXMLLoader loder = new FXMLLoader(getClass().getResource("../../Resources/VIEW/Employer/Courier.fxml"));
             Pane root;
             root = loder.load();
             CourierTable controller = loder.getController();

@@ -7,6 +7,8 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -24,7 +26,7 @@ import Main.DataBaseConnection;
 
 public class Login{
 
-    public DataBaseConnection connection;
+    private DataBaseConnection connection;
     @FXML
     private AnchorPane WindowRoot ;
     @FXML
@@ -42,73 +44,68 @@ public class Login{
     public Stage presentStage;
     @FXML
     private void StartConnection() {
-            MaskerPane login_animation = new MaskerPane();
-            login_animation.setText("Connecting");
+        // TODO make sure this function is called only once
+            ProgressIndicator login_animation = new ProgressIndicator();
+            login_animation.setLayoutX(550);
+            login_animation.setLayoutY(523);
             login_animation.setProgress(-1);
-            login_animation.setLayoutX(306);
-            login_animation.setLayoutY(159);
-            subStage.getChildren().add(login_animation);
-            Timeline timeline1 = new Timeline();
-            KeyValue kvs = new KeyValue(login_animation.progressProperty(),-1, Interpolator.EASE_IN);
-            KeyFrame kfs = new KeyFrame(Duration.seconds(1), kvs);
-            timeline1.getKeyFrames().add(kfs);
-            timeline1.play();
-            timeline1.setOnFinished(ep->{
-                if (connection.Login_user(email_field,password_text)) {
-                    Timeline timeline = new Timeline();
-                    KeyValue kv1 = new KeyValue(rightpane.translateXProperty(),-(900), Interpolator.EASE_IN);
-                    KeyFrame kf1 = new KeyFrame(Duration.seconds(1), kv1);
-                    timeline.getKeyFrames().add(kf1);
-                    timeline.setOnFinished(t -> {
-                        subStage.getChildren().remove(rightpane);
-                        subStage.getChildren().remove(login_animation);
-                        Stage stage = App.getpStage();
-                        stage.setX(stage.getX()+49);
-                        stage.setY(stage.getY()+49);
-                        stage.setWidth(800);
-                        stage.setHeight(500);
-                        if(connection.getUser_account().getaccounttype().equals("client")){
-                            FXMLLoader loader = new FXMLLoader(getClass().getResource("../Resources/VIEW/Home.fxml"));
-                            Pane root;
-                            try {
-                                root = loader.load();home controller = loader.getController();
-                                controller.connection=connection;
-                                App.changeStage(root);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                        else if(connection.getUser_account().getaccounttype().equals("employer")){
-                            FXMLLoader loader = new FXMLLoader(getClass().getResource("../Resources/VIEW/Employer/Home.fxml"));
-                            Pane root;
-                            try {
-                                root = loader.load();
-                                Home controller = loader.getController();
-                                controller.setConnection(connection);
-                                App.changeStage(root);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                        else{
-                            System.out.println(connection.getUser_account().getaccounttype().equals("client"));
-                            System.exit(0);
-                            // TODO: show notification for error
-                        }
-                        
-                    });
-                    timeline.play();
-                
-                }
-                else{
+            // wait freez for 2 se
+            rightpane.getChildren().add(login_animation);
+            Boolean isConnected = this.connection.Login_user(email_field,password_text);
+            if (isConnected) {
+                Timeline timeline = new Timeline();
+                KeyValue kv1 = new KeyValue(rightpane.translateXProperty(),-(440), Interpolator.EASE_IN);
+                KeyFrame kf1 = new KeyFrame(Duration.seconds(1), kv1);
+                timeline.getKeyFrames().add(kf1);
+                timeline.setOnFinished(t -> {
+                    subStage.getChildren().remove(rightpane);
                     subStage.getChildren().remove(login_animation);
-                    System.out.println("💔 error");
-                }
-            });
+                    Stage stage = App.getpStage();
+                    stage.setX(stage.getX()+49);
+                    stage.setY(stage.getY()+49);
+                    stage.setWidth(800);
+                    stage.setHeight(500);
+                    subStage.setLayoutX(0);
+                    subStage.setLayoutY(0);
+                    
+                    if(this.connection.getUser_account().getaccounttype().equals("client")){
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Resources/VIEW/Home.fxml"));
+                        Pane root;
+                        try {
+                            root = loader.load();home controller = loader.getController();
+                            controller.connection=this.connection;
+                            App.changeStage(root);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    else if(this.connection.getUser_account().getaccounttype().equals("employer")){
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Resources/VIEW/Employer/Home.fxml"));
+                        Pane root;
+                        try {
+                            root = loader.load();
+                            Home controller = loader.getController();
+                            controller.setConnection(this.connection);
+                            App.changeStage(root);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                timeline.play();
+            }
+            else{
+                subStage.getChildren().remove(login_animation);
+                System.out.println("💔 error");
+            }
+    }
+
+    public void setConnection(DataBaseConnection connection) {
+        this.connection = connection;
     }
 
     public void CloseWindow() {
-        connection.Disconnect();
+        this.connection.Disconnect();
         App.getpStage().close();
     }
     public void MinimizeWindow() {

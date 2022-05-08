@@ -55,7 +55,7 @@ public class App extends Application {
         FXMLLoader loader = new FXMLLoader(App.class.getResource("../Resources/VIEW/LogIn.fxml"));
         Pane root=loader.load();
         Login controller = loader.getController();
-        controller.connection = connection;
+        controller.setConnection(connection);
         controller.initializ();
         controller = loader.getController();
         Scene scene = new Scene(root);

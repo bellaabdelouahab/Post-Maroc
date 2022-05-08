@@ -54,8 +54,8 @@
                <content>
                   <HBox>
                      <children>
-                        <VBox fx:id="CourierVbox1" prefHeight="390.0" prefWidth="390.0" />
-                        <VBox fx:id="CourierVbox2" layoutX="10.0" layoutY="10.0" prefHeight="390.0" prefWidth="390.0" />
+                        <VBox fx:id="CourierVbox1" prefHeight="0.0" prefWidth="390.0" />
+                        <VBox fx:id="CourierVbox2" layoutX="10.0" layoutY="10.0" prefHeight="0.0" prefWidth="390.0" />
                      </children>
                   </HBox>
                </content>

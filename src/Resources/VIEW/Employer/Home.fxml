@@ -3,8 +3,13 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import io.github.gleidson28.GNAvatarView?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
 <Pane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #444444; -fx-background-radius: 25;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Employer.Home">
    <children>
@@ -13,8 +18,6 @@
             <Image url="@../../IMAGES/user.png" />
          </image>
       </GNAvatarView>
-      <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="155.0" layoutY="138.0" mnemonicParsing="false" onAction="#SwitchToWaitingCourier" prefHeight="100.0" prefWidth="100.0" style="-fx-background-radius: 80;" text="Confirm a  Courier" textAlignment="CENTER" wrapText="true" />
-      <Button layoutX="549.0" layoutY="147.0" mnemonicParsing="false" onAction="#SwitchToAllCourier" prefHeight="100.0" prefWidth="100.0" style="-fx-background-radius: 100;" text="View Courier" />
       <Button layoutX="715.0" layoutY="2.0" mnemonicParsing="false" onAction="#MinimizeWindow" prefHeight="23.0" prefWidth="40.0" style="-fx-background-radius: 50; -fx-background-color: #00000000;">
          <graphic>
             <FontAwesomeIconView glyphName="MINUS" selectionStart="1" size="30" tabSize="6" wrappingWidth="23.571428298950195" />
@@ -26,6 +29,70 @@
          </graphic>
       </Button>
       <Button layoutX="667.0" layoutY="1.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" style="-fx-background-radius: 50; -fx-background-color: #00000000;" />
-      <Button layoutX="348.0" layoutY="264.0" mnemonicParsing="false" onAction="#SwitchToConfirmedCourier" prefHeight="100.0" prefWidth="100.0" style="-fx-background-radius: 80;" text="Confirmed Courier" textAlignment="CENTER" wrapText="true" />
+      <Pane fx:id="Pane2_button_animation" layoutX="325.0" layoutY="175.0" prefHeight="150.0" prefWidth="150.0">
+         <children>
+            <Circle fill="#bc650f" layoutX="75.0" layoutY="75.0" radius="90.0" stroke="#f54a4a" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fill="#56585b" layoutX="75.0" layoutY="75.0" radius="80.0" stroke="#f54a4a" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fill="#363028" layoutX="75.0" layoutY="75.0" radius="70.0" stroke="#f54a4a" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fill="#11100f" layoutX="75.0" layoutY="75.0" radius="65.0" stroke="#f54a4a" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fill="#f05b13" layoutX="75.0" layoutY="75.0" radius="62.0" stroke="#f54a4a" strokeType="INSIDE" strokeWidth="0.0" />
+            <Line endX="25.0" layoutX="77.0" layoutY="40.0" rotate="90.0" startX="-25.0" strokeWidth="5.0" />
+            <Line endX="25.0" layoutX="38.0" layoutY="75.0" startX="-25.0" strokeWidth="5.0" />
+            <Line endX="25.0" layoutX="77.0" layoutY="112.0" rotate="90.0" startX="-25.0" strokeWidth="5.0" />
+            <Line endX="25.0" layoutX="112.0" layoutY="75.0" startX="-25.0" strokeWidth="5.0" />
+            <Line endX="25.0" layoutX="48.0" layoutY="52.0" rotate="45.0" startX="-25.0" strokeWidth="5.0" />
+            <Line endX="25.0" layoutX="103.0" layoutY="51.0" rotate="135.0" startX="-25.0" strokeWidth="5.0" />
+            <Line endX="25.0" layoutX="50.0" layoutY="102.0" rotate="-45.0" startX="-25.0" strokeWidth="5.0" />
+            <Line endX="25.0" layoutX="103.0" layoutY="99.0" rotate="45.0" startX="-25.0" strokeWidth="5.0" />
+            <Circle fx:id="Pane2_circle_animation" layoutX="75.0" layoutY="75.0" radius="50.0" stroke="#f54a4a" strokeType="INSIDE" strokeWidth="0.0" />
+         </children>
+      </Pane>
+      <Button layoutX="325.0" layoutY="174.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" style="-fx-background-radius: 100; -fx-background-color: #00000000;" text="SCAN" textFill="#727171">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Button>
+      <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="313.0" layoutY="444.0" mnemonicParsing="false" onAction="#SwitchToWaitingCourier" prefHeight="30.0" prefWidth="180.0" style="-fx-background-radius: 15; -fx-background-color: #231f1f;" text="Manualy Confirm a  Courier" textAlignment="CENTER" textFill="#a48a8a" wrapText="true">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Pane layoutX="91.0" layoutY="220.0" prefHeight="100.0" prefWidth="100.0">
+         <children>
+            <Circle fx:id="Pane2_circle_animation1" fill="#575656" layoutX="50.0" layoutY="50.0" radius="50.0" stroke="#f54a4a" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="Pane2_circle_animation11" fill="#656363" layoutX="50.0" layoutY="50.0" radius="37.0" stroke="#f54a4a" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="Pane2_circle_animation111" fill="#2e2d2de7" layoutX="50.0" layoutY="50.0" radius="32.0" stroke="#f54a4a" strokeType="INSIDE" strokeWidth="0.0" />
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="27.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../IMAGES/ConfirmedCourierIcon.png" />
+               </image>
+            </ImageView>
+            <Button mnemonicParsing="false" onAction="#SwitchToConfirmedCourier" prefHeight="100.0" prefWidth="100.0" style="-fx-background-radius: 80; -fx-background-color: #00000000;" textAlignment="CENTER" wrapText="true" />
+         </children>
+      </Pane>
+      <Pane layoutX="600.0" layoutY="220.0" prefHeight="100.0" prefWidth="100.0">
+         <children>
+            <Circle fx:id="Pane2_circle_animation11" fill="#575656" layoutX="50.0" layoutY="50.0" radius="50.0" stroke="#f54a4a" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="Pane2_circle_animation111" fill="#656363" layoutX="50.0" layoutY="50.0" radius="37.0" stroke="#f54a4a" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="Pane2_circle_animation11111" fill="#2e2d2d" layoutX="50.0" layoutY="50.0" radius="32.0" stroke="#f54a4a" strokeType="INSIDE" strokeWidth="0.0" />
+            <ImageView fitHeight="38.0" fitWidth="40.0" layoutX="30.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../IMAGES/ViewCourierIcon.png" />
+               </image>
+            </ImageView>
+            <Circle fx:id="Pane2_circle_animation1111" fill="#2e2d2dad" layoutX="50.0" layoutY="50.0" radius="32.0" stroke="#f54a4a" strokeType="INSIDE" strokeWidth="0.0" />
+            <Button layoutX="1.0" layoutY="2.0" mnemonicParsing="false" onAction="#SwitchToAllCourier" prefHeight="100.0" prefWidth="100.0" style="-fx-background-radius: 100; -fx-background-color: #00000000;" />
+         </children>
+      </Pane>
+      <Label alignment="CENTER" layoutX="600.0" layoutY="325.0" prefHeight="17.0" prefWidth="100.0" text="View Courier" textFill="#111010">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="70.0" layoutY="326.0" prefHeight="21.0" prefWidth="140.0" text="Confirmed Courier" textFill="#111010">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

@@ -43,9 +43,9 @@ public class CourierTable {
         }
         for (Courier courier : couriers) {
             // get the courier
-            FXMLLoader loder = new FXMLLoader(getClass().getResource("../../Resources/VIEW/Employer/WaitingCourierForm.fxml"));
+            FXMLLoader loder = new FXMLLoader(getClass().getResource("../../Resources/VIEW/Employer/CourierForm.fxml"));
             Pane root = loder.load();
-            WaitingCourierForm controller = loder.getController();
+            CourierForm controller = loder.getController();
             controller.setConnection(connection);
             controller.courier = courier;
             controller.Courier_id.setText(courier.getCourierId());
@@ -65,11 +65,11 @@ public class CourierTable {
             }
             if(couriers.indexOf(courier)%2==0){
                 CourierVbox1.getChildren().add(root);
-                CourierVbox1.setPrefHeight(CourierVbox1.getPrefHeight()+root.getPrefHeight()/2);
+                CourierVbox1.setPrefHeight(CourierVbox1.getPrefHeight()+root.getPrefHeight());
             }
             else{
                 CourierVbox2.getChildren().add(root);
-                CourierVbox2.setPrefHeight(CourierVbox2.getPrefHeight()+root.getPrefHeight()/2);
+                CourierVbox2.setPrefHeight(CourierVbox2.getPrefHeight()+root.getPrefHeight());
             }
         }
     }

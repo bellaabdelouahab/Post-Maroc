@@ -26,9 +26,7 @@ public class Profile implements Initializable {
     @FXML
     private GridPane PasswordForm;
     Image Image1;
-    public DataBaseConnection connection;
-    // private String adr = "", natio = "", phone = "", cin = "", age = "", password = "";
-    // private int result = 0;
+    private DataBaseConnection connection;
 
     public String compte;
     BufferedImage ImagebBufferedImage;
@@ -44,6 +42,10 @@ public class Profile implements Initializable {
         } catch (IOException E) {
             E.printStackTrace();
         }
+    }
+
+    public void setConnection(DataBaseConnection connection) {
+        this.connection = connection;
     }
 
     public void FileChooser() {

@@ -98,7 +98,7 @@ public class CourierTable {
             FXMLLoader loder = new FXMLLoader(getClass().getResource("../Resources/VIEW/Profile.fxml"));
             Pane root = loder.load();
             Profile controller = loder.getController();
-            controller.connection=connection;
+            controller.setConnection(connection);
             App.changeStage(root);
         } catch (IOException e) {
             e.printStackTrace();

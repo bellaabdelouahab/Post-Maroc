@@ -14,22 +14,6 @@
 
 <Pane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #444444; -fx-background-radius: 25;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.home">
    <children>
-      <GNAvatarView layoutX="8.0" layoutY="8.0" onMouseClicked="#showProfile" prefHeight="30.0" prefWidth="30.0" stroke="#ffffff18" type="CIRCLE">
-         <image>
-            <Image url="@../IMAGES/user.png" />
-         </image>
-      </GNAvatarView>
-      <Button layoutX="715.0" layoutY="2.0" mnemonicParsing="false" onAction="#MinimizeWindow" prefHeight="23.0" prefWidth="40.0" style="-fx-background-radius: 50; -fx-background-color: #00000000;">
-         <graphic>
-            <FontAwesomeIconView glyphName="MINUS" selectionStart="1" size="30" tabSize="6" wrappingWidth="23.571428298950195" />
-         </graphic>
-      </Button>
-      <Button layoutX="758.0" layoutY="1.0" mnemonicParsing="false" onAction="#CloseWindow" prefHeight="23.0" prefWidth="40.0" style="-fx-background-radius: 50; -fx-background-color: #00000000;">
-         <graphic>
-            <FontAwesomeIconView glyphName="CLOSE" selectionStart="1" size="30" tabSize="6" wrappingWidth="23.571428298950195" />
-         </graphic>
-      </Button>
-      <Button layoutX="667.0" layoutY="1.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" style="-fx-background-radius: 50; -fx-background-color: #00000000;" />
       <Pane layoutX="157.0">
          <children>
             <ImageView fitHeight="69.0" fitWidth="489.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
@@ -50,6 +34,22 @@
             </CubicCurve>
          </children>
       </Pane>
+      <GNAvatarView layoutX="8.0" layoutY="8.0" onMouseClicked="#showProfile" prefHeight="30.0" prefWidth="30.0" stroke="#ffffff18" type="CIRCLE">
+         <image>
+            <Image url="@../IMAGES/user.png" />
+         </image>
+      </GNAvatarView>
+      <Button layoutX="715.0" layoutY="2.0" mnemonicParsing="false" onAction="#MinimizeWindow" prefHeight="23.0" prefWidth="40.0" style="-fx-background-radius: 50; -fx-background-color: #00000000;">
+         <graphic>
+            <FontAwesomeIconView glyphName="MINUS" selectionStart="1" size="30" tabSize="6" wrappingWidth="23.571428298950195" />
+         </graphic>
+      </Button>
+      <Button layoutX="758.0" layoutY="1.0" mnemonicParsing="false" onAction="#CloseWindow" prefHeight="23.0" prefWidth="40.0" style="-fx-background-radius: 50; -fx-background-color: #00000000;">
+         <graphic>
+            <FontAwesomeIconView glyphName="CLOSE" selectionStart="1" size="30" tabSize="6" wrappingWidth="23.571428298950195" />
+         </graphic>
+      </Button>
+      <Button layoutX="667.0" layoutY="1.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" style="-fx-background-radius: 50; -fx-background-color: #00000000;" />
       <Pane fx:id="Pane1_button_animation" layoutX="175.0" layoutY="175.0" prefHeight="150.0" prefWidth="150.0">
          <children>
             <Circle fill="#56585b" layoutX="75.0" layoutY="75.0" radius="80.0" stroke="#f54a4a" strokeType="INSIDE" strokeWidth="0.0" />

@@ -11,7 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 public class home {
-    public DataBaseConnection connection;
+    DataBaseConnection connection;
     @FXML
     private Pane Pane1_button_animation;
     @FXML
@@ -75,7 +75,7 @@ public class home {
             FXMLLoader loder = new FXMLLoader(getClass().getResource("../Resources/VIEW/Profile.fxml"));
             Pane root = loder.load();
             Profile controller = loder.getController();
-            controller.connection=connection;
+            controller.setConnection(connection);
             App.changeStage(root);
         } catch (IOException e) {
             e.printStackTrace();

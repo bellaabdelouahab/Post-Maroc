@@ -18,7 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
 public class create_mail implements Initializable{
-    public DataBaseConnection connection;
+    DataBaseConnection connection;
     @FXML
     private TextField cin, first_name, last_name, natio, phonenbr,address,weight,Pricefield,receiverFullname,receiveraddress,receiverphonenbr;
     @FXML

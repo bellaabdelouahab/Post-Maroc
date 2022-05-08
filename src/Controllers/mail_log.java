@@ -17,7 +17,7 @@ import javafx.scene.layout.Pane;
 
 public class mail_log {
 
-    public DataBaseConnection connection;
+    DataBaseConnection connection;
     
     @FXML
     private TableView<MailLog> USERSTABLE;

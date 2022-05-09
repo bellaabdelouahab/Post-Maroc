@@ -16,7 +16,6 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
-<?import org.controlsfx.control.ToggleSwitch?>
 <?import org.controlsfx.control.textfield.CustomPasswordField?>
 
 <AnchorPane fx:id="WindowRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #00000000; -fx-background-radius: 25; -fx-border-radius: 25;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Login">
@@ -31,19 +30,14 @@
                   <Font name="Verdana" size="21.0" />
                </font>
             </Button>
-            <TextField fx:id="email_field" layoutX="473.0" layoutY="177.0" prefHeight="32.0" prefWidth="228.0" promptText="Email" style="-fx-background-radius: 10; -fx-background-color: #00000000; -fx-text-fill: #eee;" text="Abdo@gmail.com" />
-            <CustomPasswordField fx:id="password_text" layoutX="476.0" layoutY="231.0" prefHeight="32.0" prefWidth="228.0" promptText="Password" style="-fx-background-radius: 10; -fx-background-color: #00000000; -fx-text-fill: #eee;" text="123456" />
-            <JFXCheckBox checkedColor="#e09d1d" layoutX="511.0" layoutY="283.0" text="Remember me" textFill="#e4dddd" />
+            <TextField fx:id="email_field" layoutX="473.0" layoutY="177.0" prefHeight="32.0" prefWidth="228.0" promptText="Email" style="-fx-background-radius: 10; -fx-background-color: #00000000; -fx-text-fill: #eee;" />
+            <CustomPasswordField fx:id="password_field" layoutX="476.0" layoutY="231.0" prefHeight="32.0" prefWidth="228.0" promptText="Password" style="-fx-background-radius: 10; -fx-background-color: #00000000; -fx-text-fill: #eee;" />
+            <JFXCheckBox fx:id="remember_me" checkedColor="#e09d1d" layoutX="511.0" layoutY="283.0" text="Remember me" textFill="#e4dddd" />
             <Button layoutX="758.0" layoutY="1.0" mnemonicParsing="false" onAction="#CloseWindow" prefHeight="23.0" prefWidth="40.0" style="-fx-background-radius: 50; -fx-background-color: #00000000;" textFill="WHITE">
                <graphic>
                   <FontAwesomeIconView fill="#fffbfb" glyphName="CLOSE" selectionFill="#e83f3f" selectionStart="1" size="30" stroke="#f89d9d" tabSize="6" wrappingWidth="23.571428298950195" />
                </graphic>
             </Button>
-            <ToggleSwitch fx:id="toggleSwitch" layoutX="703.0" layoutY="10.0" onMouseClicked="#ChangeTheme" selected="true">
-               <font>
-                  <Font name="Dubai Regular" size="13.0" />
-               </font>
-            </ToggleSwitch>
             <AnchorPane fx:id="rightpane" layoutX="-447.0" layoutY="-159.0">
                <children>
                   <Circle layoutX="408.0" layoutY="408.0" radius="408.0" stroke="#d6585800" strokeLineCap="BUTT" strokeType="INSIDE">
@@ -72,6 +66,7 @@
                </children>
             </AnchorPane>
             <Line endX="257.0" layoutX="500.0" layoutY="215.0" startX="-100.0" />
+            <Line fx:id="email_error_line" endX="257.0" layoutX="500.0" layoutY="215.0" startX="-100.0" stroke="RED" visible="false" />
             <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="419.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../IMAGES/person_80px.png" />
@@ -87,13 +82,14 @@
                   <Font name="Verdana" size="30.0" />
                </font>
             </Label>
-            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="718.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="email_error_circle" fitHeight="13.0" fitWidth="13.0" layoutX="739.0" layoutY="188.0" onMouseClicked="#clear_email" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../IMAGES/remove.png" />
                </image>
             </ImageView>
             <Line endX="257.0" layoutX="500.0" layoutY="270.0" startX="-100.0" />
-            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="720.0" layoutY="239.0" pickOnBounds="true" preserveRatio="true">
+            <Line fx:id="password_error_line" endX="257.0" layoutX="500.0" layoutY="270.0" startX="-100.0" stroke="RED" visible="false" />
+            <ImageView fx:id="password_error_circle" fitHeight="13.0" fitWidth="13.0" layoutX="739.0" layoutY="245.0" onMouseClicked="#clear_password" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../IMAGES/remove.png" />
                </image>

@@ -7,18 +7,20 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.prefs.Preferences;
 
-import org.controlsfx.control.MaskerPane;
-import org.controlsfx.control.ToggleSwitch;
+import com.jfoenix.controls.JFXCheckBox;
 
 import Controllers.Employer.Home;
 import Main.App;
@@ -32,16 +34,19 @@ public class Login{
     @FXML
     private TextField email_field;
     @FXML
-    private TextField password_text;
+    private TextField password_field;
     @FXML
-    private Button Loging_btn;
+    private Line email_error_line,password_error_line;
     @FXML
-    private ToggleSwitch toggleSwitch;
+    private ImageView email_error_circle,password_error_circle;
+    @FXML
+    private JFXCheckBox remember_me;
     @FXML
     private Pane subStage;
     @FXML
     private AnchorPane rightpane;
     public Stage presentStage;
+    Preferences preferences;
     @FXML
     private void StartConnection() {
         // TODO make sure this function is called only once
@@ -51,7 +56,7 @@ public class Login{
             login_animation.setProgress(-1);
             // wait freez for 2 se
             rightpane.getChildren().add(login_animation);
-            Boolean isConnected = this.connection.Login_user(email_field,password_text);
+            Boolean isConnected = this.connection.Login_user(email_field,password_field,email_error_line,email_error_circle,password_error_line,password_error_circle);
             if (isConnected) {
                 Timeline timeline = new Timeline();
                 KeyValue kv1 = new KeyValue(rightpane.translateXProperty(),-(440), Interpolator.EASE_IN);
@@ -91,38 +96,65 @@ public class Login{
                             e.printStackTrace();
                         }
                     }
+                    else{
+                        // notify user that he is not a client or employer
+                        Button btn = new Button("OK");
+                        // close notification window
+                        btn.setOnAction(e -> System.exit(0));
+                        ArrayList<Button> btns = new ArrayList<Button>();
+                        btns.add(btn);
+                        App.ShowNotificationWindow("Error", "How did you even get here, you're the type of client who makes our lives harder",btns);
+                    }
+                    // check if remeber me is checked
+                    if(remember_me.isSelected()){
+                        preferences = Preferences.userRoot().node("Login");
+                        preferences.put("email", email_field.getText());
+                        preferences.put("password", password_field.getText());
+                    }
                 });
                 timeline.play();
             }
             else{
-                subStage.getChildren().remove(login_animation);
+                rightpane.getChildren().remove(login_animation);
                 System.out.println("💔 error");
             }
     }
-
+    @FXML
+    private void clear_email() {
+        email_field.setText("");
+        // hide Circle
+        email_error_circle.setVisible(false);
+        // hide Line
+        email_error_line.setVisible(false);
+    }
+    @FXML
+    private void clear_password() {
+        password_field.setText("");
+        // hide Circle
+        password_error_circle.setVisible(false);
+        // hide Line
+        password_error_line.setVisible(false);
+    }
     public void setConnection(DataBaseConnection connection) {
         this.connection = connection;
     }
 
     public void CloseWindow() {
-        this.connection.Disconnect();
-        App.getpStage().close();
+        App.CloseWindow();
     }
     public void MinimizeWindow() {
         App.getpStage().setIconified(true);
     }
     public void initializ() {
-        // StartConnection();
-        // System.out.println("ERREUR :( \n" + "initializ");
-        // toggleSwitch.setOnMouseEntered(arg0 -> {
-        //     toggleSwitch.setText("helo");
-        // });
-    }
-    public void ChangeTheme() {
-        if (toggleSwitch.isSelected()) {
-            subStage.setStyle(subStage.getStyle()+"-fx-background-color:  #444444;");
-        } else {
-            subStage.setStyle(subStage.getStyle()+"-fx-background-color: #f2f2f2;");
+        // check if there is data in seassion
+        preferences = Preferences.userRoot().node("Login");
+        if(preferences.get("email",null)!=null){
+            email_field.setText(preferences.get("email",null));
+            password_field.setText(preferences.get("password",null));
+            remember_me.setSelected(true);
+        }
+        else{
+            remember_me.setSelected(false);
         }
     }
 

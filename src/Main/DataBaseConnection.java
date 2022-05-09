@@ -11,13 +11,13 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import Controllers.Employer.Courier;
-
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.shape.Line;
 
 // import BCrypt spring library
 
@@ -35,9 +35,15 @@ public class DataBaseConnection {
         try {
             connection = DriverManager.getConnection(db, username, password);
             statement = connection.createStatement();
-            System.out.println("Connected ✔");
         } catch (Exception e) {
-            System.out.println("🔴 Data Base Connection Problem :" + e);
+            // connection Failed notification
+            Button btn = new Button("OK");
+            // close notification window
+            btn.setOnAction(E -> System.exit(0));
+            ArrayList<Button> btns = new ArrayList<Button>();
+            btns.add(btn);
+            App.ShowNotificationWindow("Error",  "Failed to get sources. Try again on courier log page",btns);
+
         }
     }
 
@@ -49,7 +55,7 @@ public class DataBaseConnection {
         this.user_account = user_account;
     }
 
-    public boolean Login_user(TextField email_Field, TextField password_text) {
+    public boolean Login_user(TextField email_Field, TextField password_text, Line email_error_line, ImageView email_error_circle, Line password_error_line, ImageView password_error_circle) {
         String email = "";
         // email validation
         if (validateEmail(email = email_Field.getText())) {
@@ -78,17 +84,27 @@ public class DataBaseConnection {
                     getUser_account().setacountdetails(statement);
                     return true;
                 } else {
-                    Button btn = new Button("OK");
-                    // close notification window
-                    btn.setOnAction(e -> App.closeNotification());
-                    ArrayList<Button> btns = new ArrayList<Button>();
-                    App.ShowNotificationWindow("Error",  "Please enter a valid password",btns);
+                    // password incorrect
+                    password_error_line.setVisible(true);
+                    password_error_circle.setVisible(true);
                     return false;
                 }
             }
+            // email not found
+            email_error_line.setVisible(true);
+            email_error_circle.setVisible(true);
+            return false;
+          
+            
         }
         catch (Exception e) {
-            System.out.println("Aha ahmadi \n"+e);
+            // notify about connection error
+            Button btn = new Button("OK");
+            // close notification window
+            btn.setOnAction(E -> App.closeNotification());
+            ArrayList<Button> btns = new ArrayList<Button>();
+            btns.add(btn);
+            App.ShowNotificationWindow("Error", "Failed to get sources. check you internet connection",btns);
         }
         return false;
     }
@@ -106,13 +122,21 @@ public class DataBaseConnection {
     }
 
     // Disconnect from the Data Base
-    public void Disconnect() {
+    public boolean Disconnect() {
         try {
             connection.close();
             statement.close();
+            return true;
         } catch (SQLException e) {
-            System.out.println("Problem");
+            // notify that connection is not closed
+            Button btn = new Button("Close Anyway");
+            // close notification window
+            btn.setOnAction(E -> System.exit(0));
+            ArrayList<Button> btns = new ArrayList<Button>();
+            btns.add(btn);
+            App.ShowNotificationWindow("Error", "internet error : Failed to close connection",btns);
         }
+        return false;
     }
     public void AddMail(Float Weight , String id_client, String phonenbr_,Float price,String address_, LocalDate collect_date_, String collectHour, String collectMinutes,String FirstName,String LastName, String Address, String phonenbr){
         try {
@@ -122,7 +146,7 @@ public class DataBaseConnection {
             while (result.next()) {
                 mail_id = result.getInt(1);
             }
-            // System.out.println("RR"+String.format("%09d", mail_id)+"MA"+"<->"+id_client);
+            //"RR"+String.format("%09d", mail_id)+"MA"+"<->"+id_client);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-YYYY");
             // generate a 16bite random password
             String receiver_id = BcryptTool.generateRandomId();
@@ -153,17 +177,15 @@ public class DataBaseConnection {
                             Address,
                             phonenbr
                         );
-                        System.out.println("Saved to exe");
                         //  open an exe 
                         try {
-                            Runtime.getRuntime().exec("../Resources/CourierFormCreator.exe");
-                            System.out.println("Exe Opened");
+                            Runtime.getRuntime().exec("./CourierFormCreator.py");
                         } catch (IOException e1) {
                             // TODO Fix errors that the python exe may genrate
                             e1.printStackTrace();
                             Button btn1 = new Button("OK");
                             // close notification window
-                            btn.setOnAction(E -> System.exit(0));
+                            btn1.setOnAction(E -> System.exit(0));
                             ArrayList<Button> btns = new ArrayList<Button>();
                             btns.add(btn1);
                             App.ShowNotificationWindow("Error",  "Failed to get sources. Try again on courier log page",btns);
@@ -175,7 +197,6 @@ public class DataBaseConnection {
             btns.add(btn);
             App.ShowNotificationWindow("info",  "Courier added successfully \n Your Courier id is : "+"RR"+String.format("%09d", mail_id)+"MA",btns);
         } catch (Exception e) {
-            System.out.println("No" + e);
             Button btn = new Button("OK");
             // close notification window
             btn.setOnAction(E -> App.closeNotification());
@@ -206,7 +227,6 @@ public class DataBaseConnection {
                 }
             } catch (SQLException e) {
                 Button btn = new Button("OK");
-                System.out.println(e);
                 // close notification window
                 btn.setOnAction(e_ -> App.closeNotification());
                 ArrayList<Button> btns = new ArrayList<Button>();
@@ -218,7 +238,6 @@ public class DataBaseConnection {
 
     public ArrayList<Courier> getCourier(String status) {
         String qry1 = "select * from POSTCOURIER where status in("+status+")  ORDER BY id ";
-        System.out.println(qry1);
         try {
             result = statement.executeQuery(qry1);
             ArrayList<Courier> couriers = new ArrayList<Courier>();
@@ -308,14 +327,12 @@ public class DataBaseConnection {
             myWriter.close();
             return true;
         } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
             Button btn1 = new Button("OK");
             // close notification window
             btn1.setOnAction(E -> App.closeNotification());
             ArrayList<Button> btns = new ArrayList<Button>();
             btns.add(btn1);
-            App.ShowNotificationWindow("Error",  "File not Found",btns);
+            App.ShowNotificationWindow("Error",  "File not Created",btns);
             return false;
         }
       }

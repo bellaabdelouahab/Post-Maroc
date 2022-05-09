@@ -5,12 +5,20 @@ import java.io.IOException;
 import Controllers.Profile;
 import Main.App;
 import Main.DataBaseConnection;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
 
 public class Home {
     private DataBaseConnection connection;
+
+    @FXML
+    private Pane Pane1_button_animation;
+    @FXML
+    private Circle Pane1_circle_animation;
+
     // Switch To Waiting Courier
     @FXML
     private void SwitchToWaitingCourier() {
@@ -48,6 +56,16 @@ public class Home {
         this.connection = connection;
     }
     @FXML
+    private void StartAnimation1() {
+        Timeline timeline = App.GetButtonAnimtation(Pane1_button_animation, Pane1_circle_animation,100,53);
+        timeline.play();
+    }
+    @FXML
+    private void EndAnimation1(){
+        Timeline timeline = App.GetButtonAnimtation(Pane1_button_animation, Pane1_circle_animation,0,50);
+        timeline.play();
+    }
+    @FXML
     public void showProfile() throws IOException{
         try {
             FXMLLoader loder = new FXMLLoader(getClass().getResource("../Resources/VIEW/Profile.fxml"));
@@ -60,8 +78,7 @@ public class Home {
         }
     }
     public void CloseWindow() {
-        connection.Disconnect();
-        App.getpStage().close();
+        App.CloseWindow();
     }
     public void MinimizeWindow() {
         App.getpStage().setIconified(true);

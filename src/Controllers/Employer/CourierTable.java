@@ -105,8 +105,7 @@ public class CourierTable {
         }
     }
     public void CloseWindow() {
-        connection.Disconnect();
-        App.getpStage().close();
+       App.CloseWindow();
     }
     public void MinimizeWindow() {
         App.getpStage().setIconified(true);

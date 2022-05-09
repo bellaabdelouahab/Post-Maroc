@@ -143,8 +143,7 @@ public class create_mail implements Initializable{
         }
     }
     public void CloseWindow() {
-        connection.Disconnect();
-        App.getpStage().close();
+        App.CloseWindow();
     }
     public void MinimizeWindow() {
         App.getpStage().setIconified(true);

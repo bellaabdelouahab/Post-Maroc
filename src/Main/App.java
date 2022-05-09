@@ -141,6 +141,10 @@ public class App extends Application {
         timeline.play();
         return timeline;
     }
+    public static void CloseWindow(){
+        this.connection.Disconnect();
+        App.getpStage().close();
+    }
 
 }
 

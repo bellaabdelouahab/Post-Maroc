@@ -20,7 +20,7 @@ import javafx.scene.layout.Pane;
 public class create_mail implements Initializable{
     DataBaseConnection connection;
     @FXML
-    private TextField cin, first_name, last_name, natio, phonenbr,address,weight,Pricefield,receiverFullname,receiveraddress,receiverphonenbr;
+    private TextField cin, first_name, last_name, natio, phonenbr,address,weight,Pricefield,receiverFirstname,receiverLastname,receiveraddress,receiverphonenbr;
     @FXML
     private DatePicker collect_date;
     @FXML
@@ -28,7 +28,7 @@ public class create_mail implements Initializable{
     @FXML
     private void ValidateMail(){
         // get details from text fields
-        String cin_ = cin.getText();
+        String cin_ = connection.getuserclass().getid();
         String phonenbr_ = phonenbr.getText();
         String address_ = address.getText();
         Float weight_ = 0f;
@@ -86,11 +86,12 @@ public class create_mail implements Initializable{
         }
         
         // get receiver information from text fields
-        String receiverFullname_ = receiverFullname.getText();
+        String receiverFirstname_ = receiverFirstname.getText();
+        String receiverLastname_ = receiverLastname.getText();
         String receiveraddress_ = receiveraddress.getText();
         String receiverphonenbr_ = receiverphonenbr.getText();
         // check if all fields are filled
-        if(cin_==null || phonenbr_==null || address_==null || collectHour==null || collectMinutes==null || receiverFullname_==null || receiveraddress_==null || receiverphonenbr_==null){
+        if(cin_==null || phonenbr_==null || address_==null || collectHour==null || collectMinutes==null || receiverFirstname_==null || receiverLastname_==null || receiveraddress_==null || receiverphonenbr_==null){
             App.ShowNotificationWindow("Error", "Please fill all fields",null);
         }  
         // check cin
@@ -116,7 +117,7 @@ public class create_mail implements Initializable{
 
         
         // add details 
-        connection.AddMail( weight_,cin_,phonenbr_,price_ ,address_,collect_date_,collectHour,collectMinutes,receiverFullname_,receiveraddress_,receiverphonenbr_);
+        connection.AddMail( weight_,cin_,phonenbr_,price_ ,address_,collect_date_,collectHour,collectMinutes,receiverFirstname_,receiverLastname_,receiveraddress_,receiverphonenbr_);
         
     }
     // fill info details
@@ -124,8 +125,6 @@ public class create_mail implements Initializable{
         UserAccount user_account = connection.getuserclass();
         first_name.setText(user_account.getfirstname());
         last_name.setText(user_account.getlastname());
-        natio.setText(user_account.getnationnality());
-        cin.setText(user_account.getid());
         address.setText(user_account.getaddress());
         phonenbr.setText(user_account.getphone());
     }

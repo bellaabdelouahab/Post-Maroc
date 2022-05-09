@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
 import Controllers.Employer.Courier;
 
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import javafx.scene.control.Button;
@@ -113,7 +114,7 @@ public class DataBaseConnection {
             System.out.println("Problem");
         }
     }
-    public void AddMail(Float Weight , String id_client, String phonenbr_,Float price,String address_, LocalDate collect_date_, String collectHour, String collectMinutes,String FullName, String Address, String phonenbr){
+    public void AddMail(Float Weight , String id_client, String phonenbr_,Float price,String address_, LocalDate collect_date_, String collectHour, String collectMinutes,String FirstName,String LastName, String Address, String phonenbr){
         try {
             String qry1 = "SELECT COUNT(*) FROM POSTCOURIER";
             
@@ -131,8 +132,8 @@ public class DataBaseConnection {
                           "MA"+"','"+Weight+"' , '"+address_+
                           "' ,TO_DATE('"+collect_date_.format(formatter)+" "+collectHour+":"+collectMinutes+"', 'DD-MM-YYYY HH24:MI') , '"+
                           id_client+"' , '"+phonenbr_+"','"+price+"','"+receiver_id+"')"; 
-            String qry3 = "INSERT INTO POSTCOURIER_RECEIVER (RECEIVER_ID,FULLNAME, ADDRESS,PHONENBR)"+
-                            "VALUES('"+receiver_id+"','"+FullName+"' , '"+Address+"' ,'"+phonenbr+"')";
+            String qry3 = "INSERT INTO POSTCOURIER_RECEIVER (RECEIVER_ID,FIRSTNAME,LASTNAME, ADDRESS,PHONENBR)"+
+                            "VALUES('"+receiver_id+"','"+FirstName+"','"+LastName+"' , '"+Address+"' ,'"+phonenbr+"')";
             statement.executeUpdate(qry2);
             statement.executeUpdate(qry3);
             Button btn = new Button("OK");
@@ -141,35 +142,33 @@ public class DataBaseConnection {
             Button btn2 = new Button("Save a copy");
             // run pdfgenerator on action
             btn2.setOnAction(e -> {
-                    try {
-                        pdfGenerator.SavePdfForm(
-                            "RR"+String.format("%09d", mail_id)+"MA"
+                        WriteToFile(
+                            "RR"+String.format("%09d", mail_id)+"MA",
+                            user_account.getfirstname(),
+                            user_account.getlastname(),
+                            user_account.getaddress(),
+                            user_account.getphone(),
+                            FirstName,
+                            LastName,
+                            Address,
+                            phonenbr
                         );
-                    } catch (FileNotFoundException e1) {
-                        Button btn1 = new Button("OK");
-                        // close notification window
-                        btn.setOnAction(E -> App.closeNotification());
-                        ArrayList<Button> btns = new ArrayList<Button>();
-                        btns.add(btn1);
-                        App.ShowNotificationWindow("Error",  "File not Found",btns);
-                        return ;
-                    } catch (IOException e1) {
-                        Button btn1 = new Button("OK");
-                        // close notification window
-                        btn.setOnAction(E -> App.closeNotification());
-                        ArrayList<Button> btns = new ArrayList<Button>();
-                        btns.add(btn1);
-                        App.ShowNotificationWindow("Error",  "File not Supported",btns);
-                        return;
-                    } catch (Exception e1) {
-                        Button btn1 = new Button("OK");
-                        // close notification window
-                        btn.setOnAction(E -> App.closeNotification());
-                        ArrayList<Button> btns = new ArrayList<Button>();
-                        btns.add(btn1);
-                        App.ShowNotificationWindow("Error",  "Failed to get sources. Try again on courier log page",btns);
-                        return ;
-                    }
+                        System.out.println("Saved to exe");
+                        //  open an exe 
+                        try {
+                            Runtime.getRuntime().exec("../Resources/CourierFormCreator.exe");
+                            System.out.println("Exe Opened");
+                        } catch (IOException e1) {
+                            // TODO Fix errors that the python exe may genrate
+                            e1.printStackTrace();
+                            Button btn1 = new Button("OK");
+                            // close notification window
+                            btn.setOnAction(E -> System.exit(0));
+                            ArrayList<Button> btns = new ArrayList<Button>();
+                            btns.add(btn1);
+                            App.ShowNotificationWindow("Error",  "Failed to get sources. Try again on courier log page",btns);
+                            // System.exit(0);
+                        }
             });
             ArrayList<Button> btns = new ArrayList<Button>();
             btns.add(btn2);
@@ -293,4 +292,31 @@ public class DataBaseConnection {
         }
 
     }
+    private boolean WriteToFile(String CourierId, String user_FN, String user_LN, String user_address, String user_Phone, String FirstName, String LastName, String address, String phonenbr) {
+        try {
+            FileWriter myWriter = new FileWriter("../Resources/OutputCourierForm/prototype/CurrentCourierInfo.txt");
+            // whrite to file
+            myWriter.write(CourierId+"\n");
+            myWriter.write(user_LN + "\n");
+            myWriter.write(user_FN + "\n");
+            myWriter.write(FirstName+"\n");
+            myWriter.write(LastName+"\n");
+            myWriter.write(user_address + "\n");
+            myWriter.write(address + "\n");
+            myWriter.write(user_Phone + "\n");
+            myWriter.write(phonenbr + "\n");
+            myWriter.close();
+            return true;
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+            Button btn1 = new Button("OK");
+            // close notification window
+            btn1.setOnAction(E -> App.closeNotification());
+            ArrayList<Button> btns = new ArrayList<Button>();
+            btns.add(btn1);
+            App.ShowNotificationWindow("Error",  "File not Found",btns);
+            return false;
+        }
+      }
 }

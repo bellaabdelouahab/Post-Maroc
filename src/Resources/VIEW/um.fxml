@@ -49,47 +49,59 @@
             </DisplacementMap>
          </effect>
          <children>
-            <Line endX="-100.0" endY="334.9000244140625" layoutX="516.0" layoutY="19.0" startX="-100.0" strokeWidth="3.0" />
-            <HBox layoutY="60.0" prefHeight="33.0" prefWidth="411.0">
+            <Line endX="-100.0" endY="178.25" layoutX="513.0" layoutY="19.0" startX="-100.0" strokeWidth="3.0" />
+            <Label alignment="CENTER" layoutX="130.0" layoutY="-14.0" prefHeight="60.0" prefWidth="174.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Client Information" />
+            <HBox layoutX="25.0" layoutY="41.0" prefHeight="33.0" prefWidth="350.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="128.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="First Name" />
-                  <TextField fx:id="first_name" alignment="CENTER" prefHeight="52.0" prefWidth="277.0" promptText="Enter First Name" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
+                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="150.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="First Name" />
+                  <TextField fx:id="first_name" alignment="CENTER" disable="true" prefHeight="52.0" prefWidth="200.0" promptText="Enter First Name" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
                </children>
             </HBox>
-            <HBox layoutY="110.0" prefHeight="33.0" prefWidth="411.0">
+            <HBox layoutX="24.0" layoutY="83.0" prefHeight="33.0" prefWidth="350.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="128.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Last Name" />
-                  <TextField fx:id="last_name" alignment="CENTER" prefHeight="52.0" prefWidth="277.0" promptText="Enter Last Name" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
+                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="150.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Last Name" />
+                  <TextField fx:id="last_name" alignment="CENTER" disable="true" prefHeight="52.0" prefWidth="200.0" promptText="Enter First Name" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
                </children>
             </HBox>
-            <HBox layoutY="160.0" prefHeight="33.0" prefWidth="411.0">
+            <HBox layoutX="25.0" layoutY="125.0" prefHeight="33.0" prefWidth="350.0">
                <children>
-                  <Label alignment="CENTER" layoutY="179.0" prefHeight="38.0" prefWidth="128.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Nationality" />
-                  <TextField fx:id="natio" alignment="CENTER" prefHeight="52.0" prefWidth="277.0" promptText="Enter Nationality" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
+                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="150.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Address" />
+                  <TextField fx:id="address" alignment="CENTER" disable="true" prefHeight="33.0" prefWidth="200.0" promptText="Enter Address" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
                </children>
             </HBox>
-            <HBox layoutY="210.0" prefHeight="33.0" prefWidth="411.0">
+            <HBox layoutX="25.0" layoutY="167.0" prefHeight="33.0" prefWidth="350.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="128.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Cin" />
-                  <TextField fx:id="cin" alignment="CENTER" prefHeight="52.0" prefWidth="277.0" promptText="Enter Cin" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
+                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="150.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Phone number" />
+                  <TextField fx:id="phonenbr" alignment="CENTER" disable="true" prefHeight="33.0" prefWidth="200.0" promptText="Enter Phone Number" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
                </children>
             </HBox>
-            <HBox layoutX="12.0" layoutY="263.0" prefHeight="33.0" prefWidth="397.0">
+            <Label alignment="CENTER" layoutX="526.0" layoutY="-4.0" prefHeight="41.0" prefWidth="174.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Receiver Information" />
+            <HBox layoutX="416.0" layoutY="40.0" prefHeight="33.0" prefWidth="350.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="117.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Address" />
-                  <TextField fx:id="address" alignment="CENTER" prefHeight="33.0" prefWidth="285.0" promptText="Enter Address" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
+                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="150.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="First Name" />
+                  <TextField fx:id="receiverFirstname" alignment="CENTER" prefHeight="38.0" prefWidth="200.0" promptText="Enter First Name" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
                </children>
             </HBox>
-            <HBox layoutX="11.0" layoutY="315.0" prefHeight="33.0" prefWidth="397.0">
+            <HBox layoutX="416.0" layoutY="83.0" prefHeight="33.0" prefWidth="350.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="117.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Phone number" />
-                  <TextField fx:id="phonenbr" alignment="CENTER" prefHeight="33.0" prefWidth="285.0" promptText="Enter Phone Number" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
+                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="150.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Last Name" />
+                  <TextField fx:id="receiverLastname" alignment="CENTER" prefHeight="38.0" prefWidth="200.0" promptText="Enter Last Name" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
                </children>
             </HBox>
-            <HBox layoutX="481.0" layoutY="306.0" prefHeight="39.0" prefWidth="320.0" />
-            <Label alignment="CENTER" layoutX="119.0" layoutY="8.0" prefHeight="60.0" prefWidth="174.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Client Information" />
-            <Label alignment="CENTER" layoutX="540.0" layoutY="12.0" prefHeight="60.0" prefWidth="174.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Courier Information" />
-            <HBox layoutX="432.0" layoutY="63.0" prefHeight="33.0" prefWidth="353.0">
+            <HBox layoutX="416.0" layoutY="123.0" prefHeight="33.0" prefWidth="350.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="150.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Address" />
+                  <TextField fx:id="receiveraddress" alignment="CENTER" prefHeight="33.0" prefWidth="200.0" promptText="Enter Address" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
+               </children>
+            </HBox>
+            <HBox layoutX="416.0" layoutY="165.0" prefHeight="33.0" prefWidth="350.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="150.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Phone number" />
+                  <TextField fx:id="receiverphonenbr" alignment="CENTER" prefHeight="33.0" prefWidth="200.0" promptText="Enter Phone Number" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
+               </children>
+            </HBox>
+            <Label alignment="CENTER" layoutX="323.0" layoutY="195.0" prefHeight="60.0" prefWidth="174.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Courier Information" />
+            <HBox layoutX="215.0" layoutY="249.0" prefHeight="33.0" prefWidth="353.0">
                <children>
                   <TextField fx:id="weight" alignment="CENTER" prefHeight="38.0" prefWidth="160.0" promptText="Courier weight" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
                   <Label alignment="CENTER" prefHeight="33.0" prefWidth="33.0" text="=" textAlignment="CENTER" textFill="#eeeeee" textOverrun="CLIP">
@@ -100,34 +112,13 @@
                   <TextField fx:id="Pricefield" alignment="CENTER" disable="true" prefHeight="38.0" prefWidth="160.0" promptText="Corresponding Price" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
                </children>
             </HBox>
-            <HBox layoutX="432.0" layoutY="107.0" prefHeight="33.0" prefWidth="353.0">
+            <HBox layoutX="215.0" layoutY="295.0" prefHeight="33.0" prefWidth="353.0">
                <children>
                   <Label fx:id="outdate" alignment="CENTER" prefHeight="38.0" prefWidth="117.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Collect Date" />
-                  <DatePicker fx:id="collect_date" prefHeight="38.0" prefWidth="248.0" promptText="Enter A Date" showWeekNumbers="true" style="-fx-background-color: #33333300; -fx-text-fill: #fff;" />
+                  <DatePicker fx:id="collect_date" prefHeight="38.0" prefWidth="248.0" promptText="Enter A Date" showWeekNumbers="true" style="-fx-background-color: #333333; -fx-text-fill: #fff;" />
                </children>
             </HBox>
-            <Line endX="-100.0" endY="334.9000244140625" layoutX="709.0" layoutY="34.0" rotate="90.0" startX="-100.0" strokeWidth="3.0" />
-            <Label alignment="CENTER" layoutX="536.0" layoutY="185.0" prefHeight="60.0" prefWidth="174.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Receiver Information" />
-            <HBox layoutX="432.0" layoutY="232.0" prefHeight="33.0" prefWidth="353.0">
-               <children>
-                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="117.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Name" />
-                  <TextField fx:id="receiverFullname" alignment="CENTER" prefHeight="38.0" prefWidth="248.0" promptText="Enter Full Name" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
-               </children>
-            </HBox>
-            <HBox layoutX="432.0" layoutY="272.0" prefHeight="33.0" prefWidth="353.0">
-               <children>
-                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="117.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Address" />
-                  <TextField fx:id="receiveraddress" alignment="CENTER" prefHeight="33.0" prefWidth="248.0" promptText="Enter Address" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
-               </children>
-            </HBox>
-            <HBox layoutX="432.0" layoutY="315.0" prefHeight="33.0" prefWidth="353.0">
-               <children>
-                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="117.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Phone number" />
-                  <TextField fx:id="receiverphonenbr" alignment="CENTER" prefHeight="33.0" prefWidth="248.0" promptText="Enter Phone Number" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
-               </children>
-            </HBox>
-            <Button fx:id="B_ValidateForm1" layoutX="276.0" layoutY="356.0" mnemonicParsing="false" onAction="#ValidateMail" prefHeight="33.0" prefWidth="277.0" style="-fx-background-color: #fbdf08;" text="Validate" />
-            <HBox layoutX="442.0" layoutY="156.0" prefHeight="25.0" prefWidth="340.0">
+            <HBox layoutX="225.0" layoutY="341.0" prefHeight="25.0" prefWidth="340.0">
                <children>
                   <Label fx:id="outdate1" prefHeight="25.0" prefWidth="111.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Collect Time" />
                   <Label alignment="CENTER" graphicTextGap="8.0" lineSpacing="5.0" prefHeight="25.0" prefWidth="65.0" text="Hour" textFill="#dddada">
@@ -166,5 +157,6 @@
             <FontAwesomeIconView glyphName="HOME" onMouseClicked="#switchToHomePage" selectionStart="1" size="30" tabSize="6" wrappingWidth="23.571428298950195" />
          </graphic>
       </Button>
+      <Button fx:id="B_ValidateForm1" layoutX="262.0" layoutY="454.0" mnemonicParsing="false" onAction="#ValidateMail" prefHeight="33.0" prefWidth="277.0" style="-fx-background-color: #fbdf08;" text="Validate" />
    </children>
 </Pane>

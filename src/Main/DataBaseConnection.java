@@ -26,8 +26,8 @@ public class DataBaseConnection {
     private String db = "jdbc:oracle:thin:@localhost:1521:xe";
     private String username = "NFS";
     private String password = "bella462";
-    Connection connection;
-    Statement statement;
+    static Connection connection;
+    static Statement statement;
     ResultSet result;
     private UserAccount user_account;
     private int mail_id;
@@ -122,7 +122,7 @@ public class DataBaseConnection {
     }
 
     // Disconnect from the Data Base
-    public boolean Disconnect() {
+    public static boolean Disconnect() {
         try {
             connection.close();
             statement.close();

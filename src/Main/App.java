@@ -142,8 +142,9 @@ public class App extends Application {
         return timeline;
     }
     public static void CloseWindow(){
-        this.connection.Disconnect();
-        App.getpStage().close();
+        if(DataBaseConnection.Disconnect()){
+            pStage.close();
+        }
     }
 
 }

@@ -1,5 +1,6 @@
 package Controllers;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import Main.App;
@@ -79,10 +80,25 @@ public class mail_log {
             System.out.println("ERREUR :( \n" + e);
         }
     }
-    public void CloseWindow() {
+    @FXML
+    private void showProfile(){
+        try {
+            FXMLLoader loder = new FXMLLoader(getClass().getResource("../Resources/VIEW/Profile.fxml"));
+            Pane root = loder.load();
+            Profile controller = loder.getController();
+            controller.setConnection(connection);
+            App.changeStage(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+            App.ShowNotificationWindow("error", "Could not load page close app and try again", null);
+        }
+    }
+    @FXML
+    private void CloseWindow() {
         App.CloseWindow();
     }
-    public void MinimizeWindow() {
+    @FXML   
+    private void MinimizeWindow() {
         App.getpStage().setIconified(true);
     }
 }

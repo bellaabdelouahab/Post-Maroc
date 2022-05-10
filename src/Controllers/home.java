@@ -53,6 +53,7 @@ public class home {
             }
         } 
         catch (IOException e1) {
+            e1.printStackTrace();
             App.ShowNotificationWindow("error", "Could not load data close app and try again", null);
         }      
     }
@@ -78,7 +79,7 @@ public class home {
 
     }
     @FXML
-    public void showProfile() throws IOException{
+    private void showProfile(){
         try {
             FXMLLoader loder = new FXMLLoader(getClass().getResource("../Resources/VIEW/Profile.fxml"));
             Pane root = loder.load();
@@ -90,10 +91,12 @@ public class home {
             App.ShowNotificationWindow("error", "Could not load page close app and try again", null);
         }
     }
-    public void CloseWindow() {
+    @FXML
+    private void CloseWindow() {
         App.CloseWindow();
     }
-    public void MinimizeWindow() {
+    @FXML   
+    private void MinimizeWindow() {
         App.getpStage().setIconified(true);
     }
 }

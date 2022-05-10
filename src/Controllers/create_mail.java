@@ -1,5 +1,6 @@
 package Controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -106,13 +107,6 @@ public class create_mail implements Initializable{
             System.out.println("ERREUR :( \n" + e);
         }
     }
-    public void CloseWindow() {
-        App.CloseWindow();
-    }
-    public void MinimizeWindow() {
-        App.getpStage().setIconified(true);
-    }
-    
     private void CheckPriceField() {
         try{
             Float weight_ = weight.getText().isEmpty() ? 0 : Float.parseFloat(weight.getText());
@@ -143,5 +137,26 @@ public class create_mail implements Initializable{
             combominutes.getItems().add(String.format("%02d", i));
         }
         
+    }
+    @FXML
+    private void showProfile(){
+        try {
+            FXMLLoader loder = new FXMLLoader(getClass().getResource("../Resources/VIEW/Profile.fxml"));
+            Pane root = loder.load();
+            Profile controller = loder.getController();
+            controller.setConnection(connection);
+            App.changeStage(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+            App.ShowNotificationWindow("error", "Could not load page close app and try again", null);
+        }
+    }
+    @FXML
+    private void CloseWindow() {
+        App.CloseWindow();
+    }
+    @FXML   
+    private void MinimizeWindow() {
+        App.getpStage().setIconified(true);
     }
 }

@@ -100,10 +100,12 @@ public class App extends Application {
         buttons_area.setAlignment(Pos.CENTER);
         Button CloseNotification = new Button("OK");
         // close notification window
-        CloseNotification.setOnAction(E -> System.exit(0));
+        CloseNotification.setOnAction(E -> closeNotification());
         ArrayList<Button> ExtraButtons = new ArrayList<Button>();
         ExtraButtons.add(CloseNotification);
+        if(ExtraButton != null){
         ExtraButtons.add(ExtraButton);
+        }
         // loop over all buttons
         if(ExtraButtons!=null){
             for (Button btn : ExtraButtons) {

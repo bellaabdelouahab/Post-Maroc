@@ -111,6 +111,11 @@ public class Login{
                         preferences.put("email", email_field.getText());
                         preferences.put("password", password_field.getText());
                     }
+                    else{
+                        preferences = Preferences.userRoot().node("Login"); 
+                        preferences.remove("email");
+                        preferences.remove("password");
+                    }
                 });
                 timeline.play();
             }

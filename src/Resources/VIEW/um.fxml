@@ -101,7 +101,7 @@
                </children>
             </HBox>
             <Label alignment="CENTER" layoutX="323.0" layoutY="195.0" prefHeight="60.0" prefWidth="174.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Courier Information" />
-            <HBox layoutX="215.0" layoutY="249.0" prefHeight="33.0" prefWidth="353.0">
+            <HBox layoutX="234.0" layoutY="249.0" prefHeight="33.0" prefWidth="353.0">
                <children>
                   <TextField fx:id="weight" alignment="CENTER" prefHeight="38.0" prefWidth="160.0" promptText="Courier weight" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
                   <Label alignment="CENTER" prefHeight="33.0" prefWidth="33.0" text="=" textAlignment="CENTER" textFill="#eeeeee" textOverrun="CLIP">
@@ -112,13 +112,13 @@
                   <TextField fx:id="Pricefield" alignment="CENTER" disable="true" prefHeight="38.0" prefWidth="160.0" promptText="Corresponding Price" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
                </children>
             </HBox>
-            <HBox layoutX="215.0" layoutY="295.0" prefHeight="33.0" prefWidth="353.0">
+            <HBox layoutX="234.0" layoutY="295.0" prefHeight="33.0" prefWidth="353.0">
                <children>
                   <Label fx:id="outdate" alignment="CENTER" prefHeight="38.0" prefWidth="117.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Collect Date" />
-                  <DatePicker fx:id="collect_date" prefHeight="38.0" prefWidth="248.0" promptText="Enter A Date" showWeekNumbers="true" style="-fx-background-color: #333333; -fx-text-fill: #fff;" />
+                  <DatePicker fx:id="collect_date" prefHeight="38.0" prefWidth="248.0" promptText="Enter A Date" showWeekNumbers="true" style="-fx-background-color: #444444; -fx-text-fill: #fff; -fx-control-inner-background: #444444; -fx-border-color: #444444;" />
                </children>
             </HBox>
-            <HBox layoutX="225.0" layoutY="341.0" prefHeight="25.0" prefWidth="340.0">
+            <HBox layoutX="244.0" layoutY="341.0" prefHeight="25.0" prefWidth="340.0">
                <children>
                   <Label fx:id="outdate1" prefHeight="25.0" prefWidth="111.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Collect Time" />
                   <Label alignment="CENTER" graphicTextGap="8.0" lineSpacing="5.0" prefHeight="25.0" prefWidth="65.0" text="Hour" textFill="#dddada">
@@ -126,13 +126,13 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="combohour" prefHeight="25.0" prefWidth="66.0" />
+                  <ComboBox fx:id="combohour" prefHeight="25.0" prefWidth="66.0" style="-fx-background-color: #444444;" styleClass="combo-box1" stylesheets="@../CSS/Theme.css" />
                   <Label alignment="CENTER" lineSpacing="2.0" prefHeight="25.0" prefWidth="75.0" text="Minute" textFill="#e8d7d7">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="combominutes" prefHeight="25.0" prefWidth="67.0" />
+                  <ComboBox fx:id="combominutes" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: #444444;" styleClass="combo-box1" stylesheets="@../CSS/Theme.css" />
                </children>
             </HBox>
          </children>
@@ -157,6 +157,6 @@
             <FontAwesomeIconView glyphName="HOME" onMouseClicked="#switchToHomePage" selectionStart="1" size="30" tabSize="6" wrappingWidth="23.571428298950195" />
          </graphic>
       </Button>
-      <Button fx:id="B_ValidateForm1" layoutX="262.0" layoutY="454.0" mnemonicParsing="false" onAction="#ValidateMail" prefHeight="33.0" prefWidth="277.0" style="-fx-background-color: #fbdf08;" text="Validate" />
+      <Button fx:id="B_ValidateForm1" layoutX="284.0" layoutY="454.0" mnemonicParsing="false" onAction="#ValidateMail" prefHeight="33.0" prefWidth="277.0" style="-fx-background-color: #fbdf08;" text="Validate" />
    </children>
 </Pane>

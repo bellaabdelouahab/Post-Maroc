@@ -33,7 +33,8 @@
             "c:\\Program Files\\javafx-sdk-17.0.0.1\\lib\\mongo-java-driver-3.12.9.jar",
             "c:\\Program Files\\javafx-sdk-17.0.0.1\\lib\\ojdbc7.jar",
             "c:\\Program Files\\javafx-sdk-17.0.0.1\\Reference Library\\spring-security-crypto-5.6.3.jar",
-            "c:\\Users\\Abdelouahab\\Downloads\\jar_files (2)\\itextpdf-5.5.13.3.jar"
+            "c:\\Users\\Abdelouahab\\Downloads\\jar_files (2)\\itextpdf-5.5.13.3.jar",
+            "c:\\Program Files\\javafx-sdk-17.0.0.1\\Reference Library\\joda-time-2.10.14.jar"
         ],
         "exclude": [
             "lib/ojdbc6.jar"

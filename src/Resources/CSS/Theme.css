@@ -97,15 +97,18 @@
 
 .table-view .column-header-background{
     -fx-background-color: linear-gradient(#131313 0%, #424141 100%);
+    background-color: linear-gradient(#131313 0%, #424141 100%);
 }
 
 .table-view .column-header-background .label{
-    -fx-background-color: transparent;
+    -fx-background-color: linear-gradient(#131313 0%, #424141 100%);
+    background-color: linear-gradient(#131313 0%, #424141 100%);
     -fx-text-fill: rgb(213, 213, 213);
 }
 
 .table-view .column-header {
     -fx-background-color: transparent;
+    background-color: transparent;
 }
 
 .table-view .table-cell{
@@ -114,22 +117,29 @@
 
 .table-row-cell{
     -fx-background-color: -fx-table-cell-border-color, #616161;
+    background-color: -fx-table-cell-border-color, #616161;
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.0em; /* 0 */
+    padding: 0.0em; /* 0 */
 	-fx-border-color: -fx-box-border;
+	border-color: -fx-box-border;
     -fx-border-insets: -1 -1 0 0;
 }
 
 .table-row-cell:odd{
     -fx-background-color: -fx-table-cell-border-color, #424242;
+    background-color: -fx-table-cell-border-color, #424242;
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.0em; /* 0 */  
+    padding: 0.0em; /* 0 */  
 	-fx-border-color: -fx-box-border;
+	border-color: -fx-box-border;
     -fx-border-insets: -1 -1 0 0;
 }
 
 .table-row-cell:selected {
     -fx-background-color: #005797;
+    background-color: #005797;
     -fx-background-insets: 0;
     -fx-background-radius: 1;
 }
@@ -141,6 +151,7 @@
 .table-view > .virtual-flow > .scroll-bar:horizontal > .track,
 .table-view > .virtual-flow > .scroll-bar:horizontal > .track-background {
     -fx-background-color: transparent;
+    background-color: transparent;
 } */
 
 
@@ -169,4 +180,23 @@
 .table-view .column-header-background
 {
     -fx-background-color: transparent;
+}
+
+.combo-box1 .arrow-button
+{
+    -fx-background-color: null;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-padding: 0.0em 0em 0.0em 0.0em; /* 0 3 0 0 */
+}
+
+.combo-box1 .arrow-button .arrow
+{
+    -fx-background-color: -fx-mark-highlight-color, -fx-mark-color;
+    -fx-background-insets: 0 0 0 0, 0;
+    -fx-padding: 0em 0em 0em 0em; /* 3 3.75 3 3.75 */
+/*
+    -fx-shape: "M 0 0 h 7 l -3.5 4 z";
+*/
+    -fx-shape: null;
 }

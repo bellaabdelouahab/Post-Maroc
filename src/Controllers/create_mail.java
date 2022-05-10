@@ -50,9 +50,8 @@ public class create_mail implements Initializable{
         LocalDate collect_date_ = collect_date.getValue();
         String collectHour = combohour.getValue();
         String collectMinutes = combominutes.getValue();
-        String time_ = collectHour + ":" + collectMinutes;
         // check if the entered date bigger  current date
-        if(!collect_date_.isAfter(LocalDate.now()) && !collect_date_.isEqual(LocalDate.now())){
+        if(!collect_date_.isAfter(LocalDate.now()) ){
             // notify
             Button btn = new Button("OK");
             // close notification window
@@ -63,27 +62,6 @@ public class create_mail implements Initializable{
             System.out.println(collect_date_+"<==>"+LocalDate.now());
             return;
         }
-        // if the entered date is equal to current date check time
-        if(collect_date_.isEqual(LocalDate.now())){
-            // check time
-            // get current hour and minutes
-            String[] currentTime = java.time.LocalDateTime.now().toString().split(":");
-            System.out.println(currentTime[0].substring(11, 13)+"<==>"+time_);
-            if(time_.compareTo(LocalDate.now().toString()) > 0){
-                // notify
-                Button btn = new Button("OK");
-                // close notification window
-                btn.setOnAction(e -> App.closeNotification());
-                ArrayList<Button> btns = new ArrayList<Button>();
-                btns.add(btn);
-                App.ShowNotificationWindow("Error",  "Please enter a valid time",btns);
-                System.out.println(time_+"<==>"+LocalDate.now().toString()+"\n "+time_.compareTo(LocalDate.now().toString()));
-                // System.out.println(collect_date_+"<==>"+LocalDate.now().);
-                return;
-            }
-            
-            System.out.println(time_+"<==>"+LocalDate.now().toString()+"\n "+time_.compareTo(LocalDate.now().toString()));
-        }
         
         // get receiver information from text fields
         String receiverFirstname_ = receiverFirstname.getText();
@@ -93,29 +71,31 @@ public class create_mail implements Initializable{
         // check if all fields are filled
         if(cin_==null || phonenbr_==null || address_==null || collectHour==null || collectMinutes==null || receiverFirstname_==null || receiverLastname_==null || receiveraddress_==null || receiverphonenbr_==null){
             App.ShowNotificationWindow("Error", "Please fill all fields",null);
+            return;
         }  
-        // check cin
-        if(!(cin_.length() == 8 || cin_.length() == 7)){
-            Button btn = new Button("OK");
-            // close notification window
-            btn.setOnAction(e -> App.closeNotification());
-            ArrayList<Button> btns = new ArrayList<Button>();
-            btns.add(btn);
-            App.ShowNotificationWindow("Error",  "Please enter a valid CIN - 7 or 8 digits got :"+cin_.length(),btns);
-            return;
-        }
-        // check cin with regex /^[A-Za-z]{2}/
-        if(!cin_.matches("[A-Za-z]{2}[0-9]{6}") && !cin_.matches("[A-Za-z]{1}[0-9]{7}")){
-            Button btn = new Button("OK");
-            // close notification window
-            btn.setOnAction(e -> App.closeNotification());
-            ArrayList<Button> btns = new ArrayList<Button>();
-            btns.add(btn);
-            App.ShowNotificationWindow("Error",  "Please enter a valid CIN",btns);
-            return;
-        }
-
         
+        // check firstname and lastname
+        if(!first_name.getText().isEmpty() && !last_name.getText().isEmpty()){
+            // check if the firstname and lastname are valid
+            if(!first_name.getText().matches("[a-zA-Z]+") || !last_name.getText().matches("[a-zA-Z]+")){
+                App.ShowNotificationWindow("Error", "Please enter a valid firstname and lastname",null);
+                return;
+            }
+        }
+        // check if the phone number is valid   
+        if(!phonenbr.getText().isEmpty()){
+            if(!phonenbr.getText().matches("[0-9]+")){
+                App.ShowNotificationWindow("Error", "Please enter a valid phone number",null);
+                return;
+            }
+        }
+        // check if the address is valid
+        if(!address.getText().isEmpty()){
+            if(!address.getText().matches("[a-zA-Z0-9]+")){
+                App.ShowNotificationWindow("Error", "Please enter a valid address",null);
+                return;
+            }
+        }
         // add details 
         connection.AddMail( weight_,cin_,phonenbr_,price_ ,address_,collect_date_,collectHour,collectMinutes,receiverFirstname_,receiverLastname_,receiveraddress_,receiverphonenbr_);
         
@@ -171,7 +151,7 @@ public class create_mail implements Initializable{
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         LocalDate DateIn = LocalDate.now();
-        collect_date.setValue(DateIn);
+        collect_date.setValue(DateIn.plusDays(1));
         System.out.println("action added");
         weight.setOnKeyReleased((e) -> {
             CheckPriceField();

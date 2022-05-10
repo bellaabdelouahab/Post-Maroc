@@ -5,21 +5,10 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Launch pdfGenerator",
+            "name": "Launch Initializer",
             "request": "launch",
-            "mainClass": "Main.pdfGenerator",
+            "mainClass": "Main.Initializer",
             "projectName": "Post-Maroc_c50f35d2"
-        },
-        {
-            "type": "java",
-            "name": "Launch App",
-            "request": "launch",
-            "mainClass": "Main.App",
-            "projectName": "Post-Maroc_c50f35d2",
-            "vmArgs": "--module-path \"C:\\Program Files\\javafx-sdk-17.0.0.1\\lib\" --add-modules javafx.controls,javafx.fxml --add-exports javafx.base/com.sun.javafx.event=ALL-UNNAMED"
         }
     ]
 }
-//  "vmArgs": "--module-path \"${workspaceFolder}\\lib\" --add-modules javafx.controls,javafx.fxml --add-exports javafx.base/com.sun.javafx.event=ALL-UNNAMED"
-// vmargs pour settinig de git onta ahamza 3ti hadchi btissa3
-

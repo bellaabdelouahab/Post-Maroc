@@ -35,15 +35,10 @@ public class DataBaseConnection {
         try {
             connection = DriverManager.getConnection(db, username, password);
             statement = connection.createStatement();
+            System.out.println("con");
         } catch (Exception e) {
-            // connection Failed notification
-            Button btn = new Button("OK");
-            // close notification window
-            btn.setOnAction(E -> System.exit(0));
-            ArrayList<Button> btns = new ArrayList<Button>();
-            btns.add(btn);
-            App.ShowNotificationWindow("Error",  "Failed to get sources. Try again on courier log page",btns);
-
+            App.ShowNotificationWindow("Error",  "Failed to get sources. Try again on courier log page",null);
+            System.out.println("not con\n"+e);
         }
     }
 
@@ -58,53 +53,39 @@ public class DataBaseConnection {
     public boolean Login_user(TextField email_Field, TextField password_text, Line email_error_line, ImageView email_error_circle, Line password_error_line, ImageView password_error_circle) {
         String email = "";
         // email validation
-        if (validateEmail(email = email_Field.getText())) {
-            email = email_Field.getText();
-        } else {
-            Button btn = new Button("OK");
-            // close notification window
-            btn.setOnAction(e -> App.closeNotification());
-            ArrayList<Button> btns = new ArrayList<Button>();
-            btns.add(btn);
-            App.ShowNotificationWindow("Error", "Please enter a valid email",btns);
+        if (!validateEmail(email = email_Field.getText())) {
+            App.ShowNotificationWindow("Error", "Please enter a valid email",null);
             return false;
+            
         }
+        email = email_Field.getText();
         try {
             String rs = "select * from postaccount where lower(EMAIL)='" + email.toLowerCase() + "'";
             result = statement.executeQuery(rs);
             while (result.next()) {
                 // check password using bcrypt
-                if (BcryptTool.checkPassword(password_text.getText(), result.getString("password"))) {
-                    setUser_account(new UserAccount(
-                        result.getString("EMAIL"),
-                        result.getString("password"),
-                        result.getString("id_user"),
-                        result.getString("accounttype")
-                    ));
-                    getUser_account().setacountdetails(statement);
-                    return true;
-                } else {
+                if (!BcryptTool.checkPassword(password_text.getText(), result.getString("password"))) {
                     // password incorrect
                     password_error_line.setVisible(true);
                     password_error_circle.setVisible(true);
                     return false;
                 }
+                setUser_account(new UserAccount(
+                    result.getString("EMAIL"),
+                    result.getString("password"),
+                    result.getString("id_user"),
+                    result.getString("accounttype")
+                ));
+                getUser_account().setacountdetails(statement);
+                return true;
             }
-            // email not found
+            // email not found || resualt empty
             email_error_line.setVisible(true);
             email_error_circle.setVisible(true);
             return false;
-          
-            
         }
         catch (Exception e) {
-            // notify about connection error
-            Button btn = new Button("OK");
-            // close notification window
-            btn.setOnAction(E -> App.closeNotification());
-            ArrayList<Button> btns = new ArrayList<Button>();
-            btns.add(btn);
-            App.ShowNotificationWindow("Error", "Failed to get sources. check you internet connection",btns);
+            App.ShowNotificationWindow("Error", "Failed to get sources. check you internet connection",null);
         }
         return false;
     }
@@ -129,16 +110,13 @@ public class DataBaseConnection {
             return true;
         } catch (SQLException e) {
             // notify that connection is not closed
-            Button btn = new Button("Close Anyway");
-            // close notification window
-            btn.setOnAction(E -> System.exit(0));
-            ArrayList<Button> btns = new ArrayList<Button>();
-            btns.add(btn);
-            App.ShowNotificationWindow("Error", "internet error : Failed to close connection",btns);
+            Button ForceClose = new Button("Close Anyway");
+            ForceClose.setOnAction(E -> System.exit(0));
+            App.ShowNotificationWindow("Error", "internet error : Failed to close connection",ForceClose);
         }
         return false;
     }
-    public void AddMail(Float Weight , String id_client, String phonenbr_,Float price,String address_, LocalDate collect_date_, String collectHour, String collectMinutes,String FirstName,String LastName, String Address, String phonenbr){
+    public void AddMail(Float Weight , String id_client,Float price, LocalDate collect_date_, String collectHour, String collectMinutes,String FirstName,String LastName, String Address, String phonenbr){
         try {
             String qry1 = "SELECT COUNT(*) FROM POSTCOURIER";
             
@@ -153,56 +131,40 @@ public class DataBaseConnection {
             String qry2 = "INSERT INTO POSTCOURIER (ID, WEIGHT, ADDRESS, COLLECT_DATE, CLIENT_ID, BACKUPPHONENBR, PRICE,RECEIVER_ID)"+
                           "VALUES('"+"RR"+
                           String.format("%09d", mail_id)+
-                          "MA"+"','"+Weight+"' , '"+address_+
+                          "MA"+"','"+Weight+"' , '"+Address+
                           "' ,TO_DATE('"+collect_date_.format(formatter)+" "+collectHour+":"+collectMinutes+"', 'DD-MM-YYYY HH24:MI') , '"+
-                          id_client+"' , '"+phonenbr_+"','"+price+"','"+receiver_id+"')"; 
+                          id_client+"' , '"+user_account.getphone()+"','"+price+"','"+receiver_id+"')"; 
             String qry3 = "INSERT INTO POSTCOURIER_RECEIVER (RECEIVER_ID,FIRSTNAME,LASTNAME, ADDRESS,PHONENBR)"+
                             "VALUES('"+receiver_id+"','"+FirstName+"','"+LastName+"' , '"+Address+"' ,'"+phonenbr+"')";
             statement.executeUpdate(qry2);
             statement.executeUpdate(qry3);
-            Button btn = new Button("OK");
-            // close notification window
-            btn.setOnAction(e -> App.closeNotification());
-            Button btn2 = new Button("Save a copy");
+            Button save_copy = new Button("Save A Copy");
             // run pdfgenerator on action
-            btn2.setOnAction(e -> {
-                        WriteToFile(
-                            "RR"+String.format("%09d", mail_id)+"MA",
-                            user_account.getfirstname(),
-                            user_account.getlastname(),
-                            user_account.getaddress(),
-                            user_account.getphone(),
-                            FirstName,
-                            LastName,
-                            Address,
-                            phonenbr
-                        );
-                        //  open an exe 
-                        try {
-                            Runtime.getRuntime().exec("./CourierFormCreator.py");
-                        } catch (IOException e1) {
-                            // TODO Fix errors that the python exe may genrate
-                            e1.printStackTrace();
-                            Button btn1 = new Button("OK");
-                            // close notification window
-                            btn1.setOnAction(E -> System.exit(0));
-                            ArrayList<Button> btns = new ArrayList<Button>();
-                            btns.add(btn1);
-                            App.ShowNotificationWindow("Error",  "Failed to get sources. Try again on courier log page",btns);
-                            // System.exit(0);
-                        }
+            save_copy.setOnAction(e -> {
+                WriteToFile(
+                    "RR"+String.format("%09d", mail_id)+"MA",
+                    user_account.getfirstname(),
+                    user_account.getlastname(),
+                    user_account.getaddress(),
+                    user_account.getphone(),
+                    FirstName,
+                    LastName,
+                    Address,
+                    phonenbr
+                );
+                //  open an exe 
+                try {
+                    Runtime.getRuntime().exec("./CourierFormCreator.py");
+                } catch (IOException e1) {
+                    // TODO Fix errors that the python exe may genrate
+                    e1.printStackTrace();
+                    App.ShowNotificationWindow("Error",  "Failed to get sources. Try again on courier log page",null);
+                }
             });
-            ArrayList<Button> btns = new ArrayList<Button>();
-            btns.add(btn2);
-            btns.add(btn);
-            App.ShowNotificationWindow("info",  "Courier added successfully \n Your Courier id is : "+"RR"+String.format("%09d", mail_id)+"MA",btns);
+            App.ShowNotificationWindow("info",  "Courier added successfully \n Your Courier id is : "+
+                                       "RR"+String.format("%09d", mail_id)+"MA",save_copy);
         } catch (Exception e) {
-            Button btn = new Button("OK");
-            // close notification window
-            btn.setOnAction(E -> App.closeNotification());
-            ArrayList<Button> btns = new ArrayList<Button>();
-            btns.add(btn);
-            App.ShowNotificationWindow("info", "Mail not added double check your information",btns);
+            App.ShowNotificationWindow("info", "Mail not added double check your information",null);
         }
     }
     // get user classe
@@ -226,12 +188,7 @@ public class DataBaseConnection {
                     return mail_id_;
                 }
             } catch (SQLException e) {
-                Button btn = new Button("OK");
-                // close notification window
-                btn.setOnAction(e_ -> App.closeNotification());
-                ArrayList<Button> btns = new ArrayList<Button>();
-                btns.add(btn);
-                App.ShowNotificationWindow("Error",  "Failed to get sources.",btns);
+                App.ShowNotificationWindow("Error",  "Failed to get sources.",null);
             }
             return mail_id_;
     }
@@ -256,14 +213,7 @@ public class DataBaseConnection {
             }
             return couriers;
         } catch (SQLException e) {
-            Button btn = new Button("OK");
-            e.printStackTrace();
-            System.exit(0);
-            // close notification window
-            btn.setOnAction(e_ -> App.closeNotification());
-            ArrayList<Button> btns = new ArrayList<Button>();
-            btns.add(btn);
-            App.ShowNotificationWindow("Error",  "Failed to get sources.",btns);
+            App.ShowNotificationWindow("Error",  "Failed to get sources.",null);
             
         }
         return null;
@@ -273,20 +223,9 @@ public class DataBaseConnection {
         String qry1 = "update POSTCOURIER set status='Supported' where id='" + CourierId + "'";
         try {
             statement.executeUpdate(qry1);
-            Button btn = new Button("OK");
-            // close notification window
-            btn.setOnAction(e -> App.closeNotification());
-            ArrayList<Button> btns = new ArrayList<Button>();
-            btns.add(btn);
-            App.ShowNotificationWindow("info",  "Courier successfully Supported ",btns);
+            App.ShowNotificationWindow("info",  "Courier successfully Supported ",null);
         } catch (SQLException e) {
-            Button btn = new Button("OK");
-            e.printStackTrace();
-            // close notification window
-            btn.setOnAction(E -> App.closeNotification());
-            ArrayList<Button> btns = new ArrayList<Button>();
-            btns.add(btn);
-            App.ShowNotificationWindow("info",  "Unable to Supprted try later or contact your administrator",btns);
+            App.ShowNotificationWindow("info",  "Unable to Supprted try later or contact your administrator",null);
         }
     }
 
@@ -294,20 +233,9 @@ public class DataBaseConnection {
         String qry1 = "update POSTCOURIER set status='Cancelled' where id='" + CourierId + "'";
         try {
             statement.executeUpdate(qry1);
-            Button btn = new Button("OK");
-            // close notification window
-            btn.setOnAction(e -> App.closeNotification());
-            ArrayList<Button> btns = new ArrayList<Button>();
-            btns.add(btn);
-            App.ShowNotificationWindow("info",  "Courier successfully Cancelled ",btns);
+            App.ShowNotificationWindow("info",  "Courier successfully Cancelled ",null);
         } catch (SQLException e) {
-            Button btn = new Button("OK");
-            e.printStackTrace();
-            // close notification window
-            btn.setOnAction(E -> App.closeNotification());
-            ArrayList<Button> btns = new ArrayList<Button>();
-            btns.add(btn);
-            App.ShowNotificationWindow("info",  "Unable to Cancelled try later or contact your administrator",btns);
+            App.ShowNotificationWindow("info",  "Unable to Cancelled try later or contact your administrator",null);
         }
 
     }
@@ -327,12 +255,7 @@ public class DataBaseConnection {
             myWriter.close();
             return true;
         } catch (IOException e) {
-            Button btn1 = new Button("OK");
-            // close notification window
-            btn1.setOnAction(E -> App.closeNotification());
-            ArrayList<Button> btns = new ArrayList<Button>();
-            btns.add(btn1);
-            App.ShowNotificationWindow("Error",  "File not Created",btns);
+            App.ShowNotificationWindow("Error",  "File not Created",null);
             return false;
         }
       }

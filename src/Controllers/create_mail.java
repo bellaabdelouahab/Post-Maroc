@@ -2,7 +2,6 @@ package Controllers;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import Main.App;
@@ -11,7 +10,6 @@ import Main.UserAccount;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -20,7 +18,7 @@ import javafx.scene.layout.Pane;
 public class create_mail implements Initializable{
     DataBaseConnection connection;
     @FXML
-    private TextField cin, first_name, last_name, natio, phonenbr,address,weight,Pricefield,receiverFirstname,receiverLastname,receiveraddress,receiverphonenbr;
+    private TextField first_name, last_name,phonenbr,address,weight,Pricefield,receiverFirstname,receiverLastname,receiveraddress,receiverphonenbr;
     @FXML
     private DatePicker collect_date;
     @FXML
@@ -29,8 +27,6 @@ public class create_mail implements Initializable{
     private void ValidateMail(){
         // get details from text fields
         String cin_ = connection.getuserclass().getid();
-        String phonenbr_ = phonenbr.getText();
-        String address_ = address.getText();
         Float weight_ = 0f;
         Float price_ = 0f;
         try{
@@ -38,12 +34,7 @@ public class create_mail implements Initializable{
         price_ = Pricefield.getText().isEmpty() ? 0 : Float.parseFloat(Pricefield.getText());
         CheckPriceField();
         }catch(Exception E){
-            Button btn = new Button("OK");
-            // close notification window
-            btn.setOnAction(e -> App.closeNotification());
-            ArrayList<Button> btns = new ArrayList<Button>();
-            btns.add(btn);
-            App.ShowNotificationWindow("Error",  "Please enter a valid weight",btns);
+            App.ShowNotificationWindow("Error",  "Please enter a valid weight",null);
             return;
         }
         // get date from text fields
@@ -52,13 +43,7 @@ public class create_mail implements Initializable{
         String collectMinutes = combominutes.getValue();
         // check if the entered date bigger  current date
         if(!collect_date_.isAfter(LocalDate.now()) ){
-            // notify
-            Button btn = new Button("OK");
-            // close notification window
-            btn.setOnAction(e -> App.closeNotification());
-            ArrayList<Button> btns = new ArrayList<Button>();
-            btns.add(btn);
-            App.ShowNotificationWindow("Error",  "Please enter a valid date",btns);
+            App.ShowNotificationWindow("Error",  "Please enter a valid date",null);
             System.out.println(collect_date_+"<==>"+LocalDate.now());
             return;
         }
@@ -69,35 +54,35 @@ public class create_mail implements Initializable{
         String receiveraddress_ = receiveraddress.getText();
         String receiverphonenbr_ = receiverphonenbr.getText();
         // check if all fields are filled
-        if(cin_==null || phonenbr_==null || address_==null || collectHour==null || collectMinutes==null || receiverFirstname_==null || receiverLastname_==null || receiveraddress_==null || receiverphonenbr_==null){
+        if(cin_==null || collectHour==null || collectMinutes==null || receiverFirstname_==null || receiverLastname_==null || receiveraddress_==null || receiverphonenbr_==null){
             App.ShowNotificationWindow("Error", "Please fill all fields",null);
             return;
         }  
         
         // check firstname and lastname
-        if(!first_name.getText().isEmpty() && !last_name.getText().isEmpty()){
-            // check if the firstname and lastname are valid
-            if(!first_name.getText().matches("[a-zA-Z]+") || !last_name.getText().matches("[a-zA-Z]+")){
-                App.ShowNotificationWindow("Error", "Please enter a valid firstname and lastname",null);
-                return;
-            }
+        if(receiverFirstname_.isEmpty() || receiverLastname_.isEmpty()){
+            return;
+        }
+        // check if the firstname and lastname are valid
+        if(!receiverFirstname_.matches("[a-zA-Z]+") || !receiverLastname_.matches("[a-zA-Z]+")){
+            App.ShowNotificationWindow("Error", "Please enter a valid firstname and lastname",null);
+            return;
         }
         // check if the phone number is valid   
-        if(!phonenbr.getText().isEmpty()){
-            if(!phonenbr.getText().matches("[0-9]+")){
-                App.ShowNotificationWindow("Error", "Please enter a valid phone number",null);
-                return;
-            }
+        if(receiverphonenbr_.isEmpty() || receiverphonenbr_.matches("[0-9]+")){
+            App.ShowNotificationWindow("Error", "Please enter a valid phone number",null);
+            return;
         }
         // check if the address is valid
-        if(!address.getText().isEmpty()){
-            if(!address.getText().matches("[a-zA-Z0-9]+")){
-                App.ShowNotificationWindow("Error", "Please enter a valid address",null);
-                return;
-            }
+        if(receiveraddress_.isEmpty()){
+            return;
+        }
+        if(!receiveraddress_.matches("[a-zA-Z0-9]+")){
+            App.ShowNotificationWindow("Error", "Please enter a valid address",null);
+            return;
         }
         // add details 
-        connection.AddMail( weight_,cin_,phonenbr_,price_ ,address_,collect_date_,collectHour,collectMinutes,receiverFirstname_,receiverLastname_,receiveraddress_,receiverphonenbr_);
+        connection.AddMail( weight_,cin_,price_ ,collect_date_,collectHour,collectMinutes,receiverFirstname_,receiverLastname_,receiveraddress_,receiverphonenbr_);
         
     }
     // fill info details
@@ -115,7 +100,6 @@ public class create_mail implements Initializable{
             Pane root = loader.load();
             home controller = loader.getController();
             controller.connection=connection;
-            // get window parentstage
             App.changeStage(root);
         }
         catch (Exception e) {
@@ -137,13 +121,7 @@ public class create_mail implements Initializable{
             String price_ = String.valueOf(price);
             Pricefield.setText(price_);
         }catch(Exception E){
-            System.out.println(E);
-            Button btn = new Button("OK");
-            // close notification window
-            btn.setOnAction(e1 -> App.closeNotification());
-            ArrayList<Button> btns = new ArrayList<Button>();
-            btns.add(btn);
-            App.ShowNotificationWindow("Error",  "Please enter a valid weight",btns);
+            App.ShowNotificationWindow("Error",  "Please enter a valid weight",null);
             // TODO : add error message
             return;
         }

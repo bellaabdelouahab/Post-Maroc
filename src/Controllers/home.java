@@ -36,17 +36,25 @@ public class home {
         }
     }
     @FXML
-    private void SwitchMailLog() throws IOException{
+    private void SwitchMailLog() {
         FXMLLoader loder = new FXMLLoader(getClass().getResource("../Resources/VIEW/MailLog.fxml"));
-                Pane root = loder.load();
+        Pane root;
+        try {
+            root = loder.load();
+            App.changeStage(root);
+            try {
                 mail_log controller = loder.getController();
                 controller.connection=connection;
-                try {
-                    controller.SetData();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                App.changeStage(root);
+                controller.SetData();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                App.ShowNotificationWindow("error", "Could not load page close app and try again", null);
+                return;
+            }
+        } 
+        catch (IOException e1) {
+            App.ShowNotificationWindow("error", "Could not load data close app and try again", null);
+        }      
     }
     @FXML
     private void StartAnimation1() {
@@ -79,6 +87,7 @@ public class home {
             App.changeStage(root);
         } catch (IOException e) {
             e.printStackTrace();
+            App.ShowNotificationWindow("error", "Could not load page close app and try again", null);
         }
     }
     public void CloseWindow() {

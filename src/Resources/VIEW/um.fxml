@@ -139,7 +139,7 @@
       </Pane>
       <GNAvatarView layoutX="7.0" layoutY="6.0" prefHeight="30.0" prefWidth="30.0" stroke="#ffffff18" type="CIRCLE">
          <image>
-            <Image url="@../IMAGES/user.png" />
+            <Image url="@../IMAGES/ProfilePictures/Default.png" />
          </image>
       </GNAvatarView>
       <Button layoutX="715.0" layoutY="2.0" mnemonicParsing="false" onAction="#MinimizeWindow" prefHeight="23.0" prefWidth="40.0" style="-fx-background-radius: 50; -fx-background-color: #00000000;">

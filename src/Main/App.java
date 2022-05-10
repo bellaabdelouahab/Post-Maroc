@@ -1,11 +1,9 @@
 package Main;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.jfoenix.controls.JFXButton;
-
 
 import Controllers.Login;
 import animatefx.animation.FadeIn;
@@ -34,13 +32,11 @@ public class App extends Application {
     static DataBaseConnection connection;
     private static Stage pStage;
     private static Pane CurrentNotification;
-    public static void main(String[] args) throws Exception {
+    public void Main(String[] args) throws Exception {
         
         connection = new DataBaseConnection();
-        System.out.println(BcryptTool.hashPassword("123456"));
-        
-        
         launch(args);
+        
     }
     
     public static Stage getpStage() {
@@ -51,17 +47,16 @@ public class App extends Application {
     }
     // connect to database
     @Override
-    public void start(Stage primaryStage) throws IOException, SQLException {
+    public void start(Stage primaryStage) throws IOException {
         FXMLLoader loader = new FXMLLoader(App.class.getResource("../Resources/VIEW/LogIn.fxml"));
-        Pane root=loader.load();
+        Pane root = loader.load();
         Login controller = loader.getController();
         controller.setConnection(connection);
         controller.initializ();
-        controller = loader.getController();
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
         primaryStage.initStyle(StageStyle.TRANSPARENT);
-        primaryStage.setTitle("Hotel BBBE");
+        primaryStage.setTitle("Courier Managment System");
         primaryStage.setScene(scene);
         primaryStage.centerOnScreen();
         primaryStage.show();
@@ -79,7 +74,7 @@ public class App extends Application {
         scene.setFill(Color.TRANSPARENT);
         App.getpStage().setScene(scene);
     }
-    public static void ShowNotificationWindow(String type, String message,ArrayList<Button> btns_list) {
+    public static void ShowNotificationWindow(String type, String message,Button ExtraButton) {
         App.closeNotification();
         Pane X = new Pane();
         X.setPrefSize(300, 100);
@@ -92,7 +87,6 @@ public class App extends Application {
         close_window.setLayoutY(7);
         close_window.setOnAction(e -> App.closeNotification());
         Label message_label = new Label(message);
-        // message_label.setStyle("-fx-background-color:red");
         message_label.setTextAlignment(TextAlignment.CENTER);
         message_label.setAlignment(Pos.CENTER);
         message_label.setPrefSize(250, 60);
@@ -104,9 +98,15 @@ public class App extends Application {
         buttons_area.setLayoutX(25);
         buttons_area.setLayoutY(70);
         buttons_area.setAlignment(Pos.CENTER);
+        Button CloseNotification = new Button("OK");
+        // close notification window
+        CloseNotification.setOnAction(E -> System.exit(0));
+        ArrayList<Button> ExtraButtons = new ArrayList<Button>();
+        ExtraButtons.add(CloseNotification);
+        ExtraButtons.add(ExtraButton);
         // loop over all buttons
-        if(btns_list!=null){
-            for (Button btn : btns_list) {
+        if(ExtraButtons!=null){
+            for (Button btn : ExtraButtons) {
                 btn.setStyle(App.getStyle());
                 buttons_area.getChildren().add(btn);
             }

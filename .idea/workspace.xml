@@ -6,18 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c98eb816-f6a8-4eb1-8a9a-e859702ff4e1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Post_Maroc_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main/Initializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vscode/launch.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/launch.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hotel-Management-System.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Post-Maroc.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/DataBaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/DataBaseConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Resources/VIEW/Home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/VIEW/Home.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="c98eb816-f6a8-4eb1-8a9a-e859702ff4e1" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

@@ -34,7 +34,6 @@ public class App extends Application {
     private static Pane CurrentNotification;
     public void Main(String[] args) throws Exception {
         
-        connection = new DataBaseConnection();
         launch(args);
         
     }
@@ -51,8 +50,9 @@ public class App extends Application {
         FXMLLoader loader = new FXMLLoader(App.class.getResource("../Resources/VIEW/LogIn.fxml"));
         Pane root = loader.load();
         Login controller = loader.getController();
-        controller.setConnection(connection);
+        
         controller.initializ();
+        connection = controller.getConnection();
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
         primaryStage.initStyle(StageStyle.TRANSPARENT);
@@ -147,6 +147,9 @@ public class App extends Application {
         if(DataBaseConnection.Disconnect()){
             pStage.close();
         }
+    }
+
+    public static void Logout() {
     }
 
 }

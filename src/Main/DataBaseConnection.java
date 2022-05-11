@@ -31,7 +31,7 @@ public class DataBaseConnection {
     ResultSet result;
     private UserAccount user_account;
     private int mail_id;
-    DataBaseConnection() {
+    public DataBaseConnection() {
         try {
             connection = DriverManager.getConnection(db, username, password);
             statement = connection.createStatement();
@@ -100,6 +100,10 @@ public class DataBaseConnection {
             return true;
         } 
         return false;
+    }
+    // Log out
+    public void Logout(){
+        user_account = null; 
     }
 
     // Disconnect from the Data Base

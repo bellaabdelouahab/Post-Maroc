@@ -159,4 +159,8 @@ public class create_mail implements Initializable{
     private void MinimizeWindow() {
         App.getpStage().setIconified(true);
     }
+    @FXML
+    private void Logout(){
+        App.Logout();
+    }
 }

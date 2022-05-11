@@ -46,7 +46,8 @@ public class Login{
     Preferences preferences;
     @FXML
     private void StartConnection() {
-        // TODO make sure this function is called only once
+            connection = new DataBaseConnection();
+            // TODO make sure this function is called only once
             ProgressIndicator login_animation = new ProgressIndicator();
             login_animation.setLayoutX(550);
             login_animation.setLayoutY(523);
@@ -147,5 +148,8 @@ public class Login{
     }
     public void setWindowRoot(AnchorPane windowRoot) {
         this.WindowRoot = windowRoot;
+    }
+    public DataBaseConnection getConnection() {
+        return connection;
     }
 }

@@ -29,7 +29,7 @@ public class DataBaseConnection {
     static Connection connection;
     static Statement statement;
     ResultSet result;
-    private UserAccount user_account;
+    private static UserAccount user_account;
     private int mail_id;
     public DataBaseConnection() {
         try {
@@ -101,16 +101,13 @@ public class DataBaseConnection {
         } 
         return false;
     }
-    // Log out
-    public void Logout(){
-        user_account = null; 
-    }
 
     // Disconnect from the Data Base
     public static boolean Disconnect() {
         try {
             connection.close();
             statement.close();
+            user_account = null; 
             return true;
         } catch (SQLException e) {
             // notify that connection is not closed

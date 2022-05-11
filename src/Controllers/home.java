@@ -99,4 +99,8 @@ public class home {
     private void MinimizeWindow() {
         App.getpStage().setIconified(true);
     }
+    @FXML
+    private void Logout(){
+        App.Logout();
+    }
 }

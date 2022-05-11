@@ -8,6 +8,7 @@ import com.jfoenix.controls.JFXCheckBox;
 import Controllers.Employer.Home;
 import Main.App;
 import Main.DataBaseConnection;
+import animatefx.animation.FadeIn;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -74,6 +75,7 @@ public class Login{
                 stage.setHeight(500);
                 subStage.setLayoutX(0);
                 subStage.setLayoutY(0);
+                
                 if(this.connection.getUser_account().getaccounttype().equals("client")){
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../Resources/VIEW/Home.fxml"));
                     Pane root;
@@ -81,6 +83,7 @@ public class Login{
                         root = loader.load();home controller = loader.getController();
                         controller.connection=this.connection;
                         App.changeStage(root);
+                        new FadeIn(root).play();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -93,6 +96,7 @@ public class Login{
                         Home controller = loader.getController();
                         controller.setConnection(this.connection);
                         App.changeStage(root);
+                        new FadeIn(root).play();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

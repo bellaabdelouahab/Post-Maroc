@@ -150,8 +150,31 @@ public class App extends Application {
     }
 
     public static void Logout() {
+        if(!DataBaseConnection.Disconnect()){
+            // could not disconnect
+            ShowNotificationWindow("Error", "Could not disconnect from account try again", null);
+            return;
+        }
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("../Resources/VIEW/LogIn.fxml"));
+            Pane root = loader.load();
+            Login controller = loader.getController();
+            controller.initializ();
+            connection = controller.getConnection();
+            Scene scene = new Scene(root);
+            scene.setFill(Color.TRANSPARENT);
+            getpStage().setScene(scene);
+            new FadeIn(root).play();
+            Stage stage = App.getpStage();
+                stage.setX(stage.getX()-49);
+                stage.setY(stage.getY()-49);
+                stage.setWidth(900);
+                stage.setHeight(600);
+        } catch (IOException ex) {  
+            // could not load login window
+            ShowNotificationWindow("Error", "Could not load login window", null);
+        }
     }
-
 }
 
 

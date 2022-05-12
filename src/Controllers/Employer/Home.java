@@ -38,9 +38,17 @@ public class Home {
     // Switcher
     private void SwitchTo(Boolean Waiting, Boolean Confirmed,Boolean All)  {
         try {
-            FXMLLoader loder = new FXMLLoader(getClass().getResource("../../Resources/VIEW/Employer/Courier.fxml"));
-            Pane root;
-            root = loder.load();
+            FXMLLoader loder = new FXMLLoader(getClass().getResource("/Resources/VIEW/Employer/Courier.fxml"));
+            Pane root=new Pane();
+
+
+            try{
+                root = loder.load();
+            }
+            catch (Exception e) {
+                System.out.println(System.getProperty("user.dir")+"/../Resources/VIEW/Employer/Courier.fxml");
+                System.exit(0);
+            }
             CourierTable controller = loder.getController();
             controller.setConnection(connection);
             controller.SetData(Waiting, Confirmed,All);
@@ -68,11 +76,13 @@ public class Home {
     @FXML
     private void showProfile(){
         try {
-            FXMLLoader loder = new FXMLLoader(getClass().getResource("../Resources/VIEW/Profile.fxml"));
+            FXMLLoader loder = new FXMLLoader(getClass().getResource("/Resources/VIEW/Profile.fxml"));
             Pane root = loder.load();
             Profile controller = loder.getController();
             controller.setConnection(connection);
-            App.changeStage(root);
+            Pane parent = (Pane) App.getpStage().getScene().getRoot().getChildrenUnmodifiable().get(0);
+            parent.getChildren().add(root);
+            controller.setParent(parent);
         } catch (IOException e) {
             e.printStackTrace();
             App.ShowNotificationWindow("error", "Could not load page close app and try again", null);

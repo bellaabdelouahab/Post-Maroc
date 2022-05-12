@@ -77,7 +77,7 @@ public class Login{
                 subStage.setLayoutY(0);
                 
                 if(this.connection.getUser_account().getaccounttype().equals("client")){
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../Resources/VIEW/Home.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/VIEW/Home.fxml"));
                     Pane root;
                     try {
                         root = loader.load();home controller = loader.getController();
@@ -89,7 +89,7 @@ public class Login{
                     }
                 }
                 else if(this.connection.getUser_account().getaccounttype().equals("employer")){
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../Resources/VIEW/Employer/Home.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/VIEW/Employer/Home.fxml"));
                     Pane root;
                     try {
                         root = loader.load();
@@ -131,7 +131,7 @@ public class Login{
     }
 
     public void CloseWindow() {
-        App.CloseWindow();
+        System.exit(0);
     }
     public void MinimizeWindow() {
         App.getpStage().setIconified(true);

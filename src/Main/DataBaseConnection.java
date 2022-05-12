@@ -242,7 +242,7 @@ public class DataBaseConnection {
     }
     private boolean WriteToFile(String CourierId, String user_FN, String user_LN, String user_address, String user_Phone, String FirstName, String LastName, String address, String phonenbr) {
         try {
-            FileWriter myWriter = new FileWriter("../Resources/OutputCourierForm/prototype/CurrentCourierInfo.txt");
+            FileWriter myWriter = new FileWriter("/Resources/OutputCourierForm/prototype/CurrentCourierInfo.txt");
             // whrite to file
             myWriter.write(CourierId+"\n");
             myWriter.write(user_LN + "\n");

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import Controllers.Profile;
 import Main.App;
 import Main.DataBaseConnection;
+import animatefx.animation.FadeIn;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -43,7 +44,7 @@ public class CourierTable {
         }
         for (Courier courier : couriers) {
             // get the courier
-            FXMLLoader loder = new FXMLLoader(getClass().getResource("../../Resources/VIEW/Employer/CourierForm.fxml"));
+            FXMLLoader loder = new FXMLLoader(getClass().getResource("/Resources/VIEW/Employer/CourierForm.fxml"));
             Pane root = loder.load();
             CourierForm controller = loder.getController();
             controller.setConnection(connection);
@@ -81,7 +82,7 @@ public class CourierTable {
     @FXML
     private void switchToHomePage(){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Resources/VIEW/Employer/Home.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/VIEW/Employer/Home.fxml"));
             Pane root = loader.load();
             Home controller = loader.getController();
             controller.setConnection(connection);
@@ -95,11 +96,15 @@ public class CourierTable {
     @FXML
     private void showProfile(){
         try {
-            FXMLLoader loder = new FXMLLoader(getClass().getResource("../Resources/VIEW/Profile.fxml"));
+            FXMLLoader loder = new FXMLLoader(getClass().getResource("/Resources/VIEW/Profile.fxml"));
             Pane root = loder.load();
             Profile controller = loder.getController();
             controller.setConnection(connection);
-            App.changeStage(root);
+            Pane parent = (Pane) App.getpStage().getScene().getRoot().getChildrenUnmodifiable().get(0);
+            parent.getChildren().add(root);
+            FadeIn fadeIn = new FadeIn(root);
+            fadeIn.play();
+            controller.setParent(parent);
         } catch (IOException e) {
             e.printStackTrace();
             App.ShowNotificationWindow("error", "Could not load page close app and try again", null);

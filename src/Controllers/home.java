@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import Main.App;
 import Main.DataBaseConnection;
+import animatefx.animation.FadeIn;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +24,7 @@ public class home {
     
     @FXML
     private void SwitchToAddMailForm() {
-        FXMLLoader loder = new FXMLLoader(getClass().getResource("../Resources/VIEW/um.fxml"));
+        FXMLLoader loder = new FXMLLoader(getClass().getResource("/Resources/VIEW/um.fxml"));
         Pane root;
         try {
             root = loder.load();
@@ -32,12 +33,13 @@ public class home {
             controller.fillinfo();
             App.changeStage(root);
         } catch (IOException e) {
+            e.printStackTrace();
             App.ShowNotificationWindow("error", "Could not load page close app and try again", null);
         }
     }
     @FXML
     private void SwitchMailLog() {
-        FXMLLoader loder = new FXMLLoader(getClass().getResource("../Resources/VIEW/MailLog.fxml"));
+        FXMLLoader loder = new FXMLLoader(getClass().getResource("/Resources/VIEW/MailLog.fxml"));
         Pane root;
         try {
             root = loder.load();
@@ -81,11 +83,15 @@ public class home {
     @FXML
     private void showProfile(){
         try {
-            FXMLLoader loder = new FXMLLoader(getClass().getResource("../Resources/VIEW/Profile.fxml"));
+            FXMLLoader loder = new FXMLLoader(getClass().getResource("/Resources/VIEW/Profile.fxml"));
             Pane root = loder.load();
             Profile controller = loder.getController();
             controller.setConnection(connection);
-            App.changeStage(root);
+            Pane parent = (Pane) App.getpStage().getScene().getRoot().getChildrenUnmodifiable().get(0);
+            parent.getChildren().add(root);
+            FadeIn fadeIn = new FadeIn(root);
+            fadeIn.play();
+            controller.setParent(parent);
         } catch (IOException e) {
             e.printStackTrace();
             App.ShowNotificationWindow("error", "Could not load page close app and try again", null);

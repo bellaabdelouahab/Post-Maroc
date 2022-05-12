@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import Main.App;
 import Main.DataBaseConnection;
 import Main.MailLog;
+import animatefx.animation.FadeIn;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -69,7 +70,7 @@ public class mail_log {
     @FXML
     private void switchToHomePage(){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../Resources/VIEW/Home.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/VIEW/Home.fxml"));
             Pane root = loader.load();
             home controller = loader.getController();
             controller.connection=connection;
@@ -83,11 +84,15 @@ public class mail_log {
     @FXML
     private void showProfile(){
         try {
-            FXMLLoader loder = new FXMLLoader(getClass().getResource("../Resources/VIEW/Profile.fxml"));
+            FXMLLoader loder = new FXMLLoader(getClass().getResource("/Resources/VIEW/Profile.fxml"));
             Pane root = loder.load();
             Profile controller = loder.getController();
             controller.setConnection(connection);
-            App.changeStage(root);
+            Pane parent = (Pane) App.getpStage().getScene().getRoot().getChildrenUnmodifiable().get(0);
+            parent.getChildren().add(root);
+            FadeIn fadeIn = new FadeIn(root);
+            fadeIn.play();
+            controller.setParent(parent);
         } catch (IOException e) {
             e.printStackTrace();
             App.ShowNotificationWindow("error", "Could not load page close app and try again", null);

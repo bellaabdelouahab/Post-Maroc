@@ -47,7 +47,7 @@ public class App extends Application {
     // connect to database
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(App.class.getResource("../Resources/VIEW/LogIn.fxml"));
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("/Resources/VIEW/LogIn.fxml"));
         Pane root = loader.load();
         Login controller = loader.getController();
         
@@ -156,7 +156,7 @@ public class App extends Application {
             return;
         }
         try {
-            FXMLLoader loader = new FXMLLoader(App.class.getResource("../Resources/VIEW/LogIn.fxml"));
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("/Resources/VIEW/LogIn.fxml"));
             Pane root = loader.load();
             Login controller = loader.getController();
             controller.initializ();
@@ -164,6 +164,7 @@ public class App extends Application {
             Scene scene = new Scene(root);
             scene.setFill(Color.TRANSPARENT);
             getpStage().setScene(scene);
+            //  animation fadein
             new FadeIn(root).play();
             Stage stage = App.getpStage();
                 stage.setX(stage.getX()-49);

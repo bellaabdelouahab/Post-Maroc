@@ -1,20 +1,18 @@
 package Controllers;
 
-import javafx.scene.image.Image;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import Main.DataBaseConnection;
 import io.github.gleidson28.GNAvatarView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import Main.App;
-import Main.DataBaseConnection;
 
 public class Profile implements Initializable {
     @FXML
@@ -31,17 +29,18 @@ public class Profile implements Initializable {
     public String compte;
     BufferedImage ImagebBufferedImage;
     public GNAvatarView HomeProfilePicture;
+    private Pane parent;
 
-    public void Goback(ActionEvent e) throws IOException {
-        try {
-            FXMLLoader loder = new FXMLLoader(getClass().getResource("../Resources/VIEW/Home.fxml"));
-            Pane root = loder.load();
-            home controller = loder.getController();
-            controller.connection=connection;
-            App.changeStage(root);
-        } catch (IOException E) {
-            E.printStackTrace();
-        }
+    public void Goback(ActionEvent e)  {
+            parent.getChildren().remove(ChildPane1);
+    }
+
+    public Pane getParent() {
+        return parent;
+    }
+
+    public void setParent(Pane parent) {
+        this.parent = parent;
     }
 
     public void setConnection(DataBaseConnection connection) {

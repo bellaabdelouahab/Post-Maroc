@@ -97,7 +97,7 @@ public class create_mail implements Initializable{
     @FXML
     private void switchToHomePage(){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../Resources/VIEW/Home.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/VIEW/Home.fxml"));
             Pane root = loader.load();
             home controller = loader.getController();
             controller.connection=connection;
@@ -141,7 +141,7 @@ public class create_mail implements Initializable{
     @FXML
     private void showProfile(){
         try {
-            FXMLLoader loder = new FXMLLoader(getClass().getResource("../Resources/VIEW/Profile.fxml"));
+            FXMLLoader loder = new FXMLLoader(getClass().getResource("/Resources/VIEW/Profile.fxml"));
             Pane root = loder.load();
             Profile controller = loder.getController();
             controller.setConnection(connection);

@@ -1,8 +1,10 @@
-package Controllers;
+package Controllers.Client;
 
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import Controllers.Profile;
 import Main.App;
 import Main.DataBaseConnection;
 import Main.MailLog;
@@ -70,10 +72,10 @@ public class mail_log {
     @FXML
     private void switchToHomePage(){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/VIEW/Home.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/VIEW/Client/Home.fxml"));
             Pane root = loader.load();
-            home controller = loader.getController();
-            controller.connection=connection;
+            client_home controller = loader.getController();
+            controller.setConnection(connection);
             // get window parentstage
             App.changeStage(root);
         }

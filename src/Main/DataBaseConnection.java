@@ -35,7 +35,7 @@ public class DataBaseConnection {
         try {
             connection = DriverManager.getConnection(db, username, password);
             statement = connection.createStatement();
-            System.out.println("con");
+            System.out.println("connected successfully");
         } catch (Exception e) {
             App.ShowNotificationWindow("Error",  "Failed to get sources. Try again on courier log page",null);
             System.out.println("not con\n"+e);
@@ -47,7 +47,7 @@ public class DataBaseConnection {
     }
 
     public void setUser_account(UserAccount user_account) {
-        this.user_account = user_account;
+        DataBaseConnection.user_account = user_account;
     }
 
     public boolean Login_user(TextField email_Field, TextField password_text, Line email_error_line, ImageView email_error_circle, Line password_error_line, ImageView password_error_circle) {
@@ -85,6 +85,7 @@ public class DataBaseConnection {
             return false;
         }
         catch (Exception e) {
+            e.printStackTrace();
             App.ShowNotificationWindow("Error", "Failed to get sources. check you internet connection",null);
         }
         return false;

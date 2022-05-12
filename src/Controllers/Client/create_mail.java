@@ -1,10 +1,11 @@
-package Controllers;
+package Controllers.Client;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+import Controllers.Profile;
 import Main.App;
 import Main.DataBaseConnection;
 import Main.UserAccount;
@@ -97,10 +98,10 @@ public class create_mail implements Initializable{
     @FXML
     private void switchToHomePage(){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/VIEW/Home.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/VIEW/Client/Home.fxml"));
             Pane root = loader.load();
-            home controller = loader.getController();
-            controller.connection=connection;
+            client_home controller = loader.getController();
+            controller.setConnection(connection);
             App.changeStage(root);
         }
         catch (Exception e) {

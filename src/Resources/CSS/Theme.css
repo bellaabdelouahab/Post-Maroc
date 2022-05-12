@@ -200,3 +200,6 @@
 */
     -fx-shape: null;
 }
+.combo-box-bg, .text-field{
+    -fx-background-color:  #22222299;
+}

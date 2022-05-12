@@ -44,15 +44,11 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="ChildPane1" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #11111100;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Profile">
+<Pane fx:id="ChildPane1" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #0000000;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Profile">
    <children>
-      <Button mnemonicParsing="false" onAction="#Goback" prefHeight="500.0" prefWidth="409.0" style="-fx-background-color: #444444; -fx-background-radius: 25;" text="😶 Cancel">
-         <font>
-            <Font name="Bodoni MT" size="33.0" />
-         </font></Button>
-      <Pane layoutX="391.0" prefHeight="500.0" prefWidth="382.0" style="-fx-background-color: #111222fe;">
+      <Pane layoutX="24.0" prefHeight="500.0" prefWidth="392.0" style="-fx-background-color: #111222fe;">
          <children>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="409.0" style="-fx-background-color: #111222fe; -fx-opacity: 1; -fx-background-radius: 25;">
+            <Pane layoutX="-24.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="416.0" style="-fx-background-color: #111222fe; -fx-opacity: 1; -fx-background-radius: 25;">
                <children>
                   <Pane layoutX="144.0" layoutY="23.0" prefHeight="93.0" prefWidth="246.0" style="-fx-background-color: #1d1b29;">
                      <children>
@@ -60,7 +56,7 @@
                         <TextField fx:id="FullName" layoutX="14.0" layoutY="50.0" prefHeight="29.0" prefWidth="200.0" promptText="FULL NAME" style="-fx-background-color: #11111100; -fx-border-color: #eeeeee55; -fx-border-radius: 3; -fx-border-width: 2; -fx-text-fill: #eee;" />
                      </children>
                   </Pane>
-                  <JFXButton layoutX="22.0" layoutY="126.0" style="-fx-background-color: #1d1b29; -fx-background-radius: 25;" text="Add a Profile Picture">
+                  <JFXButton layoutX="22.0" layoutY="126.0" onAction="#FileChooser" style="-fx-background-color: #1d1b29; -fx-background-radius: 25;" text="Add a Profile Picture">
                      <textFill>
                         <LinearGradient endX="0.6208530805687205" endY="1.0" startX="0.6018957345971564">
                            <stops>
@@ -104,7 +100,7 @@
                            </font>
                         </TextField>
                         <Label alignment="CENTER_RIGHT" layoutX="42.0" layoutY="222.0" prefHeight="19.0" prefWidth="23.0" style="-fx-background-color: #1d1b29;" text="SEX" textFill="#f5f5f5" />
-                        <TextField fx:id="Age" layoutX="247.0" layoutY="231.0" prefHeight="36.0" prefWidth="120.0" style="-fx-background-color: #11111100; -fx-border-color: #eeeeee55; -fx-border-radius: 3; -fx-border-width: 2; -fx-text-fill: #eee;">
+                        <TextField fx:id="jobtitle" layoutX="247.0" layoutY="231.0" prefHeight="36.0" prefWidth="120.0" style="-fx-background-color: #11111100; -fx-border-color: #eeeeee55; -fx-border-radius: 3; -fx-border-width: 2; -fx-text-fill: #eee;">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -124,7 +120,7 @@
                         </Pane>
                      </children>
                   </Pane>
-                  <GNAvatarView layoutX="21.0" layoutY="20.0" prefHeight="101.0" prefWidth="127.0" stylesheets="@../CSS/Theme.css">
+                  <GNAvatarView fx:id="ProfilePicture" layoutX="21.0" layoutY="20.0" prefHeight="101.0" prefWidth="127.0" stylesheets="@../CSS/Theme.css">
                      <image>
                         <Image url="@../IMAGES/Down-arrow.png" />
                      </image>
@@ -133,5 +129,9 @@
             </Pane>
          </children>
       </Pane>
+      <Button blendMode="DARKEN" layoutX="417.0" mnemonicParsing="false" onAction="#Goback" prefHeight="500.0" prefWidth="384.0" style="-fx-background-color: #44444411; -fx-background-radius: 25;">
+         <font>
+            <Font name="Bodoni MT" size="33.0" />
+         </font></Button>
    </children>
 </Pane>

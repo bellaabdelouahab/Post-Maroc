@@ -42,5 +42,6 @@
     },
     "java.project.sourcePaths": [
         "src"
-    ]
+    ],
+    "liveServer.settings.port": 5501
 }

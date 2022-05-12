@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javafx.scene.image.Image;
+
 public class UserAccount {
     // account constructor
     public String username;
@@ -18,6 +20,7 @@ public class UserAccount {
     private String jobtitle;
     private String gender;
     private String accounttype;
+    private Image Image;
 
     public UserAccount(String username, String password,String id,String accounttype) {
         this.username = username;
@@ -25,6 +28,18 @@ public class UserAccount {
         this.id = id;
         this.accounttype=accounttype;
     }
+    // private Image imagesetter() {
+    //     Image profilepic;
+    //     // System.out.println(path+"/src/Resources/IMAGES/ProfilePictures/" + this.id + ".png");
+    //     try{
+    //         profilepic = new Image("/Resources/IMAGES/ProfilePictures/" + this.id + ".png");
+    //     }
+    //     catch(Exception e){
+    //         System.out.println("no image ==> using default image");
+    //         profilepic = new Image("/Resources/IMAGES/ProfilePictures/Default.png");
+    //     }
+    //     return profilepic;
+    // }
     // set acount details 
     public void setacountdetails(Statement statement) {
         try {
@@ -78,5 +93,16 @@ public class UserAccount {
     public String getaccounttype(){
         return accounttype;
     }
-    
+    public Image getImage() {
+        Image profilepic;
+        // System.out.println(path+"/src/Resources/IMAGES/ProfilePictures/" + this.id + ".png");
+        try{
+            profilepic = new Image("/Resources/IMAGES/ProfilePictures/" + this.id + ".png");
+        }
+        catch(Exception e){
+            System.out.println("no image ==> using default image");
+            profilepic = new Image("/Resources/IMAGES/ProfilePictures/Default.png");
+        }
+        return profilepic;
+    }
 }

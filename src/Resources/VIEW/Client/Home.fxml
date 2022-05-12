@@ -12,18 +12,18 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #444444; -fx-background-radius: 25;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.home">
+<Pane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #444444; -fx-background-radius: 25;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Client.client_home">
    <children>
       <Pane layoutX="157.0">
          <children>
             <ImageView fitHeight="69.0" fitWidth="489.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../IMAGES/04_auto_x2%20(1).jpg" />
+                  <Image url="@../../IMAGES/04_auto_x2%20(1).jpg" />
                </image>
             </ImageView>
             <ImageView blendMode="SRC_ATOP" fitHeight="53.0" fitWidth="108.0" layoutX="190.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../IMAGES/Barid.png" />
+                  <Image url="@../../IMAGES/Barid.png" />
                </image>
             </ImageView>
             <CubicCurve controlX1="38.25" controlX2="-5.25" controlY1="-29.25" controlY2="35.96296310424805" endX="136.25" endY="28.462963104248047" fill="#ededed00" layoutX="104.0" layoutY="23.0" startX="-159.9166259765625" startY="-29.25" stroke="#444444" strokeDashOffset="25.0" strokeLineJoin="BEVEL" strokeMiterLimit="25.0" strokeWidth="6.0" />
@@ -36,12 +36,12 @@
       </Pane>
       <GNAvatarView layoutX="7.0" layoutY="6.0" onMouseClicked="#showProfile" prefHeight="30.0" prefWidth="30.0" stroke="#ffffff18" type="CIRCLE">
          <image>
-            <Image url="@../IMAGES/ProfilePictures/Default.png" />
+            <Image url="@../../IMAGES/ProfilePictures/Default.png" />
          </image>
       </GNAvatarView>
       <ImageView fitHeight="25.0" fitWidth="19.0" layoutX="46.0" onMouseClicked="#Logout" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../IMAGES/logout.png" />
+            <Image url="@../../IMAGES/logout.png" />
          </image>
       </ImageView>
       <Button layoutX="715.0" layoutY="2.0" mnemonicParsing="false" onAction="#MinimizeWindow" prefHeight="23.0" prefWidth="40.0" style="-fx-background-radius: 50; -fx-background-color: #00000000;">

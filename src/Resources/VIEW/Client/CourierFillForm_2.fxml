@@ -46,13 +46,13 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="combohour" prefHeight="25.0" prefWidth="66.0" style="-fx-background-color: #444444;" styleClass="combo-box1" stylesheets="@../CSS/Theme.css" />
+            <ComboBox fx:id="combohour" prefHeight="25.0" prefWidth="66.0" style="-fx-background-color: #444444;" styleClass="combo-box1" stylesheets="@../../CSS/Theme.css" />
             <Label alignment="CENTER" lineSpacing="2.0" prefHeight="25.0" prefWidth="75.0" text="Minute" textFill="#e8d7d7">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="combominutes" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: #444444;" styleClass="combo-box1" stylesheets="@../CSS/Theme.css" />
+            <ComboBox fx:id="combominutes" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: #444444;" styleClass="combo-box1" stylesheets="@../../CSS/Theme.css" />
          </children>
       </HBox>
       <TextArea layoutX="234.0" layoutY="249.0" prefHeight="72.0" prefWidth="353.0" style="-fx-background-color: #444444;" />

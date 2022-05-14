@@ -9,8 +9,6 @@
             "c:\\Program Files\\javafx-sdk-17.0.0.1\\Reference Library\\fontawesomefx-fontawesome-4.7.0-9.1.2.jar",
             "c:\\Program Files\\javafx-sdk-17.0.0.1\\Reference Library\\GNAvatarView-1.0.5.jar",
             "c:\\Program Files\\javafx-sdk-17.0.0.1\\Reference Library\\javax.mail.jar",
-            "c:\\Program Files\\javafx-sdk-17.0.0.1\\Reference Library\\ojdbc6.jar",
-            "c:\\Program Files\\javafx-sdk-17.0.0.1\\Reference Library\\ojdbc7.jar",
             "c:\\Program Files\\javafx-sdk-17.0.0.1\\Reference Library\\ons.jar",
             "c:\\Program Files\\javafx-sdk-17.0.0.1\\Reference Library\\simplefan.jar",
             "c:\\Program Files\\javafx-sdk-17.0.0.1\\Reference Library\\ucp.jar",
@@ -31,10 +29,13 @@
             "c:\\Program Files\\javafx-sdk-17.0.0.1\\lib\\javafx-swt.jar",
             "c:\\Program Files\\javafx-sdk-17.0.0.1\\lib\\javax.mail.jar",
             "c:\\Program Files\\javafx-sdk-17.0.0.1\\lib\\mongo-java-driver-3.12.9.jar",
-            "c:\\Program Files\\javafx-sdk-17.0.0.1\\lib\\ojdbc7.jar",
+            "c:\\Program Files\\javafx-sdk-17.0.0.1\\lib\\ojdbc11.jar",
             "c:\\Program Files\\javafx-sdk-17.0.0.1\\Reference Library\\spring-security-crypto-5.6.3.jar",
             "c:\\Users\\Abdelouahab\\Downloads\\jar_files (2)\\itextpdf-5.5.13.3.jar",
-            "c:\\Program Files\\javafx-sdk-17.0.0.1\\Reference Library\\joda-time-2.10.14.jar"
+            "c:\\Program Files\\javafx-sdk-17.0.0.1\\Reference Library\\joda-time-2.10.14.jar",
+            "c:\\Users\\Abdelouahab\\Downloads\\jar_files (4)\\oraclepki-21.5.0.0.jar",
+            "c:\\Users\\Abdelouahab\\Downloads\\jar_files (4)\\osdt_cert-21.5.0.0.jar",
+            "c:\\Users\\Abdelouahab\\Downloads\\jar_files (4)\\osdt_core-21.5.0.0.jar"
         ],
         "exclude": [
             "lib/ojdbc6.jar"

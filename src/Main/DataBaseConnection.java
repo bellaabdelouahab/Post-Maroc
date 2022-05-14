@@ -1,10 +1,16 @@
 package Main;
 
+
+
+
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
+
+import oracle.ucp.jdbc.PoolDataSourceFactory;
+import oracle.ucp.jdbc.PoolDataSource;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -23,21 +29,44 @@ import javafx.scene.shape.Line;
 
 public class DataBaseConnection {
     // sql server connection
-    private String db = "jdbc:oracle:thin:@localhost:1521:xe";
-    private String username = "NFS";
-    private String password = "bella462";
+    final static String DB_URL="jdbc:oracle:thin:@nfs315_high?TNS_ADMIN=Wallet_NFS315";
+    final static String DB_USER = "admin";
+    final static String DB_PASSWORD = "Abdobella4624";
+    final static String CONN_FACTORY_CLASS_NAME="oracle.jdbc.pool.OracleDataSource";
     static Connection connection;
     static Statement statement;
     ResultSet result;
     private static UserAccount user_account;
     private int mail_id;
     public DataBaseConnection() {
-        try {
-            connection = DriverManager.getConnection(db, username, password);
-            statement = connection.createStatement();
-            System.out.println("connected successfully");
+
+        try{
+        PoolDataSource pds = PoolDataSourceFactory.getPoolDataSource();
+        pds.setConnectionFactoryClassName(CONN_FACTORY_CLASS_NAME);
+        pds.setURL(DB_URL);
+        pds.setUser(DB_USER);
+        pds.setPassword(DB_PASSWORD);
+        pds.setConnectionPoolName("JDBC_UCP_POOL");
+        pds.setInitialPoolSize(5);
+        pds.setMinPoolSize(5);
+        pds.setMaxPoolSize(20);
+        pds.setTimeoutCheckInterval(5);
+        pds.setInactiveConnectionTimeout(10);
+        Properties connProps = new Properties();
+        connProps.setProperty("fixedString", "false");
+        connProps.setProperty("remarksReporting", "false");
+        connProps.setProperty("restrictGetTables", "false");
+        connProps.setProperty("includeSynonyms", "false");
+        connProps.setProperty("defaultNChar", "false");
+        connProps.setProperty("AccumulateBatchResult", "false");
+        connection = pds.getConnection();
+        System.out.println(DB_URL + "    is connected");
+        System.out.println("Available connections after checkout: "+ pds.getAvailableConnectionsCount());
+        System.out.println("Borrowed  connections after checkout: "+ pds.getBorrowedConnectionsCount());
+        statement = connection.createStatement();
+        System.out.println("connected successfully");
         } catch (Exception e) {
-            App.ShowNotificationWindow("Error",  "Failed to get sources. Try again on courier log page",null);
+            App.ShowNotificationWindow("Error",  "Failed to get sources.",null);
             System.out.println("not con\n"+e);
         }
     }

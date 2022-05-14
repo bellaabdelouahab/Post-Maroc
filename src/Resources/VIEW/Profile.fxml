@@ -120,7 +120,7 @@
                         </Pane>
                      </children>
                   </Pane>
-                  <GNAvatarView fx:id="ProfilePicture" layoutX="21.0" layoutY="20.0" prefHeight="101.0" prefWidth="127.0" stylesheets="@../CSS/Theme.css">
+                  <GNAvatarView fx:id="ProfilePicture" layoutX="21.0" layoutY="20.0" prefHeight="101.0" prefWidth="127.0" stylesheets="@../../CSS/Theme.css">
                      <image>
                         <Image url="@../IMAGES/Down-arrow.png" />
                      </image>

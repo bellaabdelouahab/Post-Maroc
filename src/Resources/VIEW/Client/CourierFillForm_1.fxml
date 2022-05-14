@@ -62,7 +62,7 @@
       <HBox layoutX="416.0" layoutY="187.0" prefHeight="33.0" prefWidth="350.0">
          <children>
             <Label alignment="CENTER" prefHeight="38.0" prefWidth="150.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="City" />
-            <SearchableComboBox prefHeight="33.0" prefWidth="202.0" promptText="Select City" style="-fx-text-fill: red;" stylesheets="@../CSS/Theme.css">
+            <SearchableComboBox prefHeight="33.0" prefWidth="202.0" promptText="Select City" style="-fx-text-fill: red;" stylesheets="@../../CSS/Theme.css">
                <styleClass>
                   <String fx:value="combo-box1" />
                   <String fx:value="combo-box-bg" />

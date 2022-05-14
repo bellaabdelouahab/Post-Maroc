@@ -6,13 +6,20 @@ def textsliceTool(filename):
         for line in file:
             # slice from index 0 to index with value ","
             try:
-                print(line[0:line.index(",")])
-                newText.append(line[0:line.index(",")])
+                # print(line[0:line.index(",")])
+                # replcae Nfs with NTS in line
+                # newText.append(line.replace('"NFS".', ""))
+                newText.append(line.replace('NFS.', ""))
             except ValueError:
                 pass
-        # write to file
-        with open("newText.txt", 'w') as newFile:
+        # # write to file
+        # with open("newText.txt", 'w') as newFile:
+        #     for line in newText:
+        #         newFile.write(line + "\n")
+        # over write file with new text
+        with open(filename, 'w') as file:
             for line in newText:
-                newFile.write(line + "\n")
+                file.write(line + "\n")
+
                 
-textsliceTool("cities.txt")
+textsliceTool("C:/Users/Abdelouahab/Downloads/sql4")

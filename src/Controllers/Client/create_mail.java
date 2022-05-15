@@ -35,6 +35,7 @@ public class create_mail implements Initializable{
         if (currentform==1){
             Courier Courier_cach = Form1controller.validateForm1();
             if(Courier_cach==null)return;
+            courier=Courier_cach;
             SwitchToForm2();
         }
         // get details from text fields

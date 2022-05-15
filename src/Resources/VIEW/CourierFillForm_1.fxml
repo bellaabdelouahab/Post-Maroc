@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import java.lang.String?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -50,19 +51,19 @@
       <HBox layoutX="416.0" layoutY="104.0" prefHeight="33.0" prefWidth="350.0">
          <children>
             <Label alignment="CENTER" prefHeight="38.0" prefWidth="150.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="First Name" />
-            <TextField fx:id="receiverFirstname" alignment="CENTER" onMouseClicked="#hide_error" prefHeight="38.0" prefWidth="200.0" promptText="Enter First Name" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
+            <TextField fx:id="receiverFirstname" alignment="CENTER" prefHeight="38.0" prefWidth="200.0" promptText="Enter First Name" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
          </children>
       </HBox>
       <HBox layoutX="416.0" layoutY="147.0" prefHeight="33.0" prefWidth="350.0">
          <children>
             <Label alignment="CENTER" prefHeight="38.0" prefWidth="150.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Last Name" />
-            <TextField fx:id="receiverLastname" alignment="CENTER" onMouseClicked="#hide_error" prefHeight="38.0" prefWidth="200.0" promptText="Enter Last Name" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
+            <TextField fx:id="receiverLastname" alignment="CENTER" prefHeight="38.0" prefWidth="200.0" promptText="Enter Last Name" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
          </children>
       </HBox>
       <HBox layoutX="416.0" layoutY="187.0" prefHeight="33.0" prefWidth="350.0">
          <children>
             <Label alignment="CENTER" prefHeight="38.0" prefWidth="150.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="City" />
-            <SearchableComboBox fx:id="combobox_city" onMouseClicked="#hide_error" prefHeight="33.0" prefWidth="202.0" promptText="Select City" style="-fx-text-fill: red;" stylesheets="@../../CSS/Theme.css">
+            <SearchableComboBox fx:id="combobox_city" prefHeight="33.0" prefWidth="202.0" promptText="Select City" style="-fx-text-fill: red;" stylesheets="@../CSS/Theme.css">
                <styleClass>
                   <String fx:value="combo-box1" />
                   <String fx:value="combo-box-bg" />
@@ -73,20 +74,21 @@
       <HBox layoutX="416.0" layoutY="231.0" prefHeight="33.0" prefWidth="350.0">
          <children>
             <Label alignment="CENTER" prefHeight="38.0" prefWidth="150.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Address" />
-            <TextField fx:id="receiveraddress" alignment="CENTER" onMouseClicked="#hide_error" prefHeight="33.0" prefWidth="200.0" promptText="Enter Address" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
+            <TextField fx:id="receiveraddress" alignment="CENTER" prefHeight="33.0" prefWidth="200.0" promptText="Enter Address" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
          </children>
       </HBox>
       <HBox layoutX="416.0" layoutY="273.0" prefHeight="33.0" prefWidth="350.0">
          <children>
             <Label alignment="CENTER" prefHeight="38.0" prefWidth="150.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Phone number" />
-            <TextField fx:id="receiverphonenbr" alignment="CENTER" onMouseClicked="#hide_error" prefHeight="33.0" prefWidth="200.0" promptText="Enter Phone Number" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
+            <TextField fx:id="receiverphonenbr" alignment="CENTER" prefHeight="33.0" prefWidth="200.0" promptText="Enter Phone Number" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
          </children>
       </HBox>
-      <VBox layoutX="51.0" layoutY="275.0" prefHeight="71.0" prefWidth="270.0">
+      <VBox layoutX="51.0" layoutY="273.0" prefHeight="71.0" prefWidth="270.0">
          <children>
             <Label alignment="CENTER" prefHeight="38.0" prefWidth="349.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Back-up Phone number (Optional)" />
-            <TextField fx:id="backup_phonenbr" alignment="CENTER" prefHeight="33.0" prefWidth="200.0" promptText="Enter Phone Number" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
+            <TextField alignment="CENTER" prefHeight="33.0" prefWidth="200.0" promptText="Enter Phone Number" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
          </children>
       </VBox>
+      <JFXButton layoutX="518.0" layoutY="318.0" onAction="#switchtoform2" prefHeight="31.0" prefWidth="120.0" ripplerFill="#f59527" style="-fx-background-color: #345566;" text="Next" />
    </children>
 </Pane>

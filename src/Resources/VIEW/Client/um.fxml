@@ -4,19 +4,12 @@
 <?import io.github.gleidson28.GNAvatarView?>
 <?import javafx.geometry.Point3D?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DisplacementMap?>
 <?import javafx.scene.effect.FloatMap?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.CubicCurve?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.text.Font?>
 
 <Pane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #444444; -fx-background-radius: 25;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Client.create_mail">
    <children>
@@ -40,7 +33,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="ChildPaneXS" layoutY="55.0" prefHeight="390.0" prefWidth="800.0" style="-fx-background-color: #11111199;">
+      <Pane fx:id="forms" layoutY="55.0" prefHeight="390.0" prefWidth="800.0" style="-fx-background-color: #11111199;">
          <effect>
             <DisplacementMap>
                <mapData>
@@ -48,101 +41,13 @@
                </mapData>
             </DisplacementMap>
          </effect>
-         <children>
-            <Line endX="-100.0" endY="178.25" layoutX="513.0" layoutY="19.0" startX="-100.0" strokeWidth="3.0" />
-            <Label alignment="CENTER" layoutX="130.0" layoutY="-14.0" prefHeight="60.0" prefWidth="174.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Client Information" />
-            <HBox layoutX="25.0" layoutY="41.0" prefHeight="33.0" prefWidth="350.0">
-               <children>
-                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="150.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="First Name" />
-                  <TextField fx:id="first_name" alignment="CENTER" disable="true" prefHeight="52.0" prefWidth="200.0" promptText="Enter First Name" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
-               </children>
-            </HBox>
-            <HBox layoutX="24.0" layoutY="83.0" prefHeight="33.0" prefWidth="350.0">
-               <children>
-                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="150.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Last Name" />
-                  <TextField fx:id="last_name" alignment="CENTER" disable="true" prefHeight="52.0" prefWidth="200.0" promptText="Enter First Name" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
-               </children>
-            </HBox>
-            <HBox layoutX="25.0" layoutY="125.0" prefHeight="33.0" prefWidth="350.0">
-               <children>
-                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="150.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Address" />
-                  <TextField fx:id="address" alignment="CENTER" disable="true" prefHeight="33.0" prefWidth="200.0" promptText="Enter Address" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
-               </children>
-            </HBox>
-            <HBox layoutX="25.0" layoutY="167.0" prefHeight="33.0" prefWidth="350.0">
-               <children>
-                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="150.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Phone number" />
-                  <TextField fx:id="phonenbr" alignment="CENTER" disable="true" prefHeight="33.0" prefWidth="200.0" promptText="Enter Phone Number" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
-               </children>
-            </HBox>
-            <Label alignment="CENTER" layoutX="526.0" layoutY="-4.0" prefHeight="41.0" prefWidth="174.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Receiver Information" />
-            <HBox layoutX="416.0" layoutY="40.0" prefHeight="33.0" prefWidth="350.0">
-               <children>
-                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="150.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="First Name" />
-                  <TextField fx:id="receiverFirstname" alignment="CENTER" prefHeight="38.0" prefWidth="200.0" promptText="Enter First Name" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
-               </children>
-            </HBox>
-            <HBox layoutX="416.0" layoutY="83.0" prefHeight="33.0" prefWidth="350.0">
-               <children>
-                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="150.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Last Name" />
-                  <TextField fx:id="receiverLastname" alignment="CENTER" prefHeight="38.0" prefWidth="200.0" promptText="Enter Last Name" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
-               </children>
-            </HBox>
-            <HBox layoutX="416.0" layoutY="123.0" prefHeight="33.0" prefWidth="350.0">
-               <children>
-                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="150.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Address" />
-                  <TextField fx:id="receiveraddress" alignment="CENTER" prefHeight="33.0" prefWidth="200.0" promptText="Enter Address" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
-               </children>
-            </HBox>
-            <HBox layoutX="416.0" layoutY="165.0" prefHeight="33.0" prefWidth="350.0">
-               <children>
-                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="150.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Phone number" />
-                  <TextField fx:id="receiverphonenbr" alignment="CENTER" prefHeight="33.0" prefWidth="200.0" promptText="Enter Phone Number" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
-               </children>
-            </HBox>
-            <Label alignment="CENTER" layoutX="323.0" layoutY="195.0" prefHeight="60.0" prefWidth="174.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Courier Information" />
-            <HBox layoutX="234.0" layoutY="249.0" prefHeight="33.0" prefWidth="353.0">
-               <children>
-                  <TextField fx:id="weight" alignment="CENTER" prefHeight="38.0" prefWidth="160.0" promptText="Courier weight" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
-                  <Label alignment="CENTER" prefHeight="33.0" prefWidth="33.0" text="=" textAlignment="CENTER" textFill="#eeeeee" textOverrun="CLIP">
-                     <font>
-                        <Font size="22.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="Pricefield" alignment="CENTER" disable="true" prefHeight="38.0" prefWidth="160.0" promptText="Corresponding Price" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
-               </children>
-            </HBox>
-            <HBox layoutX="234.0" layoutY="295.0" prefHeight="33.0" prefWidth="353.0">
-               <children>
-                  <Label fx:id="outdate" alignment="CENTER" prefHeight="38.0" prefWidth="117.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Collect Date" />
-                  <DatePicker fx:id="collect_date" prefHeight="38.0" prefWidth="248.0" promptText="Enter A Date" showWeekNumbers="true" style="-fx-background-color: #444444; -fx-text-fill: #fff; -fx-control-inner-background: #444444; -fx-border-color: #444444;" />
-               </children>
-            </HBox>
-            <HBox layoutX="244.0" layoutY="341.0" prefHeight="25.0" prefWidth="340.0">
-               <children>
-                  <Label fx:id="outdate1" prefHeight="25.0" prefWidth="111.0" style="-fx-font-family: Century Gothic W1G Light; -fx-text-fill: #fff; -fx-font-size: 15;" text="Collect Time" />
-                  <Label alignment="CENTER" graphicTextGap="8.0" lineSpacing="5.0" prefHeight="25.0" prefWidth="65.0" text="Hour" textFill="#dddada">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <ComboBox fx:id="combohour" prefHeight="25.0" prefWidth="66.0" style="-fx-background-color: #444444;" styleClass="combo-box1" stylesheets="@../../CSS/Theme.css" />
-                  <Label alignment="CENTER" lineSpacing="2.0" prefHeight="25.0" prefWidth="75.0" text="Minute" textFill="#e8d7d7">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <ComboBox fx:id="combominutes" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: #444444;" styleClass="combo-box1" stylesheets="@../../CSS/Theme.css" />
-               </children>
-            </HBox>
-         </children>
       </Pane>
       <GNAvatarView layoutX="7.0" layoutY="6.0" onMouseClicked="#showProfile" prefHeight="30.0" prefWidth="30.0" stroke="#ffffff18" type="CIRCLE">
          <image>
             <Image url="@../../IMAGES/ProfilePictures/Default.png" />
          </image>
       </GNAvatarView>
-      <ImageView fitHeight="25.0" fitWidth="19.0" layoutX="46.0" onMouseClicked="#Logout" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="25.0" fitWidth="19.0" layoutX="46.0" layoutY="11.0" onMouseClicked="#Logout" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../IMAGES/logout.png" />
          </image>

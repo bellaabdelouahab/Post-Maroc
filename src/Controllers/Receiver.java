@@ -1,16 +1,18 @@
-package Controllers.Employer;
+package Controllers;
 
 public class Receiver {
-    private String FullName;
+    private String FirstName;
+    private String LastName;
     private String ReceiverAddress;
     private String ReceiverPhonenbr;
-    public Receiver(String fullName2, String receiverAddress, String receiverPhonenbr) {
-        FullName = fullName2;
+    public Receiver(String firstName, String lastName, String receiverAddress, String receiverPhonenbr) {
+        FirstName = firstName;
+        LastName = lastName;
         ReceiverAddress = receiverAddress;
         ReceiverPhonenbr = receiverPhonenbr;
     }
     public String getFullName() {
-        return FullName;
+        return FirstName + " " + LastName;
     }
     public String getReceiverAddress() {
         return ReceiverAddress;

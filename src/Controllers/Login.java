@@ -14,8 +14,10 @@ import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -39,82 +41,57 @@ public class Login{
     @FXML
     private ImageView email_error_circle,password_error_circle;
     @FXML
+    private Button Loging_btn;
+    @FXML
     private JFXCheckBox remember_me;
     @FXML
     private Pane subStage;
     @FXML
     private AnchorPane rightpane;
+
     public Stage presentStage;
+    
     Preferences preferences;
+
+    ProgressIndicator login_animation;
+    
+    Task<Void> task;
+
     @FXML
     private void StartConnection() {
-        ProgressIndicator login_animation = new ProgressIndicator();
+        login_animation = new ProgressIndicator();
         login_animation.setLayoutX(550);
         login_animation.setLayoutY(523);
         login_animation.setProgress(-1);
-        connection = new DataBaseConnection();
-        // TODO make sure this function is called only once
-        
-        // wait freez for 2 se
         rightpane.getChildren().add(login_animation);
-        Boolean isConnected = this.connection.Login_user(email_field,password_field,email_error_line,email_error_circle,password_error_line,password_error_circle);
-        if (!isConnected) {
-            rightpane.getChildren().remove(login_animation);
-            System.out.println("💔 error");
-            return;
-        }
-        Timeline timeline = new Timeline();
-        KeyValue kv1 = new KeyValue(rightpane.translateXProperty(),-(440), Interpolator.EASE_IN);
-        KeyFrame kf1 = new KeyFrame(Duration.seconds(1), kv1);
-        timeline.getKeyFrames().add(kf1);
-        timeline.setOnFinished(t -> {
-            subStage.getChildren().remove(rightpane);
-            subStage.getChildren().remove(login_animation);
-            Stage stage = App.getpStage();
-            stage.setX(stage.getX()+49);
-            stage.setY(stage.getY()+49);
-            stage.setWidth(800);
-            stage.setHeight(500);
-            subStage.setLayoutX(0);
-            subStage.setLayoutY(0);
-            
-            if(this.connection.getUser_account().getaccounttype().equals("client")){
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/VIEW/Client/Home.fxml"));
-                Pane root;
-                try {
-                    root = loader.load();client_home controller = loader.getController();
-                    controller.setConnection(this.connection);
-                    App.changeStage(root);
-                    new FadeIn(root).play();
-                } catch (IOException e) {
-                    e.printStackTrace();
+        Loging_btn.setDisable(true);
+        Timeline tl = new Timeline();
+        KeyFrame kf = new KeyFrame(Duration.seconds(1), new KeyValue(login_animation.progressProperty(),-(1), Interpolator.EASE_IN));
+        tl.getKeyFrames().add(kf);
+        tl.setOnFinished(t -> {
+            if (connection == null)   tl.play();
+            else{
+                // Start Data base Connection using javafx Task
+                Boolean isConnected = connection.Login_user(email_field,password_field,
+                                                            email_error_line,email_error_circle,
+                                                            password_error_line,password_error_circle);
+                if (!isConnected) {
+                    rightpane.getChildren().remove(login_animation);
+                    Loging_btn.setDisable(false);
+                    System.out.println("Not connected");
+                    return;
                 }
+                Timeline timeline = new Timeline();
+                KeyFrame kf1 = new KeyFrame(Duration.seconds(1), new KeyValue(rightpane.translateXProperty(),-(440), Interpolator.EASE_IN));
+                timeline.getKeyFrames().add(kf1);
+                timeline.setOnFinished(e -> {
+                    LoadNextPage();
+                });
+                timeline.play();      
             }
-            else if(this.connection.getUser_account().getaccounttype().equals("employer")){
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/VIEW/Employer/Home.fxml"));
-                Pane root;
-                try {
-                    root = loader.load();
-                    client_home controller = loader.getController();
-                    controller.setConnection(this.connection);
-                    App.changeStage(root);
-                    new FadeIn(root).play();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            // check if remeber me is checked
-            if(!remember_me.isSelected()){
-                preferences = Preferences.userRoot().node("Login"); 
-                preferences.remove("email");
-                preferences.remove("password");
-                return;
-            }   
-            preferences = Preferences.userRoot().node("Login");
-            preferences.put("email", email_field.getText());
-            preferences.put("password", password_field.getText());
         });
-        timeline.play();
+        tl.play();
+        return;
     }
     @FXML
     private void clear_email() {
@@ -139,7 +116,7 @@ public class Login{
         App.getpStage().setIconified(true);
     }
     public void initializ() {
-        // check if there is data in seassion
+        // check for data in seassion
         preferences = Preferences.userRoot().node("Login");
         if(preferences.get("email",null)==null){
             remember_me.setSelected(false);
@@ -149,6 +126,55 @@ public class Login{
         password_field.setText(preferences.get("password",null));
         remember_me.setSelected(true);
     }
+    private void LoadNextPage() {
+        subStage.getChildren().remove(rightpane);
+        Stage stage = App.getpStage();
+        stage.setX(stage.getX()+49);
+        stage.setY(stage.getY()+49);
+        stage.setWidth(800);
+        stage.setHeight(500);
+        subStage.setLayoutX(0);
+        subStage.setLayoutY(0);
+        Pane root= new Pane();
+        if(this.connection.getUser_account().getaccounttype().equals("client")){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/VIEW/Client/Home.fxml"));
+            try {
+                root = loader.load();
+                client_home controller = loader.getController();
+                controller.setConnection(this.connection);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return;
+            }
+        }
+        else if(this.connection.getUser_account().getaccounttype().equals("employer")){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/VIEW/Employer/Home.fxml"));
+            try {
+                root = loader.load();
+                Home controller = loader.getController();
+                controller.setConnection(this.connection);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return;
+            }
+        }
+        App.changeStage(root);
+        new FadeIn(root).play();
+        // check if remeber me is checked
+        if(!remember_me.isSelected()){
+            preferences = Preferences.userRoot().node("Login"); 
+            preferences.remove("email");
+            preferences.remove("password");
+            return;
+        }   
+        preferences = Preferences.userRoot().node("Login");
+        preferences.put("email", email_field.getText());
+        preferences.put("password", password_field.getText());
+    }
+
+
+
+
     public AnchorPane getWindowRoot() {
         return WindowRoot;
     }

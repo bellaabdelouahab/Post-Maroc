@@ -16,7 +16,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
-import Controllers.Employer.Courier;
+import Controllers.Courier;
+
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -38,10 +39,11 @@ public class DataBaseConnection {
     ResultSet result;
     private static UserAccount user_account;
     private int mail_id;
+    static PoolDataSource pds;
     public DataBaseConnection() {
 
         try{
-        PoolDataSource pds = PoolDataSourceFactory.getPoolDataSource();
+        pds = PoolDataSourceFactory.getPoolDataSource();
         pds.setConnectionFactoryClassName(CONN_FACTORY_CLASS_NAME);
         pds.setURL(DB_URL);
         pds.setUser(DB_USER);
@@ -66,11 +68,9 @@ public class DataBaseConnection {
         statement = connection.createStatement();
         System.out.println("connected successfully");
         } catch (Exception e) {
-            App.ShowNotificationWindow("Error",  "Failed to get sources.",null);
-            System.out.println("not con\n"+e);
+            App.ShowNotificationWindow("Error",  "No internet connection please restart the app and try again.",null);
         }
     }
-
     public UserAccount getUser_account() {
         return user_account;
     }
@@ -83,7 +83,7 @@ public class DataBaseConnection {
         String email = "";
         // email validation
         if (!validateEmail(email = email_Field.getText())) {
-            App.ShowNotificationWindow("Error", "Please enter a valid email",null);
+            App.ShowNotificationWindow("error","Please enter a valid email",null); ;
             return false;
             
         }
@@ -115,7 +115,8 @@ public class DataBaseConnection {
         }
         catch (Exception e) {
             e.printStackTrace();
-            App.ShowNotificationWindow("Error", "Failed to get sources. check you internet connection",null);
+            App.ShowNotificationWindow("error",  "Failed to get sources. check you internet connection",null);
+
         }
         return false;
     }
@@ -134,18 +135,8 @@ public class DataBaseConnection {
 
     // Disconnect from the Data Base
     public static boolean Disconnect() {
-        try {
-            connection.close();
-            statement.close();
-            user_account = null; 
-            return true;
-        } catch (SQLException e) {
-            // notify that connection is not closed
-            Button ForceClose = new Button("Close Anyway");
-            ForceClose.setOnAction(E -> System.exit(0));
-            App.ShowNotificationWindow("Error", "internet error : Failed to close connection",ForceClose);
-        }
-        return false;
+        user_account = null; 
+        return true;
     }
     public void AddMail(Float Weight , String id_client,Float price, LocalDate collect_date_, String collectHour, String collectMinutes,String FirstName,String LastName, String Address, String phonenbr){
         try {
@@ -290,4 +281,23 @@ public class DataBaseConnection {
             return false;
         }
       }
+    public String[] getCities() {
+        String qry1 = "select * from postavaiablecities";
+        try {
+            result = statement.executeQuery(qry1);
+            ArrayList<String> cities = new ArrayList<String>();
+            while (result.next()) {
+                String city = result.getString(1);
+                cities.add(city);
+            }
+            String[] cities_ = new String[cities.size()];
+            for (int i = 0; i < cities.size(); i++) {
+                cities_[i] = cities.get(i);
+            }
+            return cities_;
+        } catch (SQLException e) {
+            App.ShowNotificationWindow("Error",  "Failed to get sources.",null);
+        }
+        return null;
+    }
 }

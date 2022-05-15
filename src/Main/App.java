@@ -36,6 +36,7 @@ public class App extends Application {
         
         launch(args);
         
+        
     }
     
     public static Stage getpStage() {
@@ -47,10 +48,22 @@ public class App extends Application {
     // connect to database
     @Override
     public void start(Stage primaryStage) throws IOException {
+        
         FXMLLoader loader = new FXMLLoader(App.class.getResource("/Resources/VIEW/LogIn.fxml"));
         Pane root = loader.load();
         Login controller = loader.getController();
-        
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    connection = new DataBaseConnection();
+                    controller.setConnection(connection);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+        controller.setConnection(connection);
         controller.initializ();
         connection = controller.getConnection();
         Scene scene = new Scene(root);
@@ -63,7 +76,6 @@ public class App extends Application {
         new FadeIn(root).play();
         primaryStage.setResizable(false);
         setpStage(primaryStage);
-        // System.exit(0);
     }
     public static void changeStage(Pane root){
         AnchorPane holder = new AnchorPane();
@@ -150,17 +162,13 @@ public class App extends Application {
     }
 
     public static void Logout() {
-        if(!DataBaseConnection.Disconnect()){
-            // could not disconnect
-            ShowNotificationWindow("Error", "Could not disconnect from account try again", null);
-            return;
-        }
+        DataBaseConnection.Disconnect();
         try {
             FXMLLoader loader = new FXMLLoader(App.class.getResource("/Resources/VIEW/LogIn.fxml"));
             Pane root = loader.load();
             Login controller = loader.getController();
             controller.initializ();
-            connection = controller.getConnection();
+            controller.setConnection(connection);;
             Scene scene = new Scene(root);
             scene.setFill(Color.TRANSPARENT);
             getpStage().setScene(scene);
@@ -176,6 +184,7 @@ public class App extends Application {
             ShowNotificationWindow("Error", "Could not load login window", null);
         }
     }
+    
 }
 
 

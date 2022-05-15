@@ -7,9 +7,11 @@ def textsliceTool(filename):
             # slice from index 0 to index with value ","
             try:
                 # print(line[0:line.index(",")])
+                
                 # replcae Nfs with NTS in line
                 # newText.append(line.replace('"NFS".', ""))
-                newText.append(line.replace('NFS.', ""))
+                # newText.append(line.replace('NFS.', ""))
+                newText.append("INSERT INTO POSTAVAIABLECITIES (NAMES) VALUES ('"+line[:-2]+"');\n")
             except ValueError:
                 pass
         # # write to file
@@ -22,4 +24,4 @@ def textsliceTool(filename):
                 file.write(line + "\n")
 
                 
-textsliceTool("C:/Users/Abdelouahab/Downloads/sql4")
+textsliceTool("newText.txt")

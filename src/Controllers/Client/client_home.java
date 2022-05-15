@@ -31,7 +31,7 @@ public class client_home {
             root = loder.load();
             create_mail controller = loder.getController();
             controller.connection=getConnection();
-            controller.fillinfo();
+            controller.SwitchToForm1();
             App.changeStage(root);
         } catch (IOException e) {
             e.printStackTrace();

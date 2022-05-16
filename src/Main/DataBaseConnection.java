@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import Controllers.Courier;
+import Controllers.Receiver;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -138,26 +139,25 @@ public class DataBaseConnection {
         user_account = null; 
         return true;
     }
-    public void AddMail(Float Weight , String id_client,Float price, LocalDate collect_date_, String collectHour, String collectMinutes,String FirstName,String LastName, String Address, String phonenbr){
+    public void AddMail(String cin_, Courier courier){
         try {
             String qry1 = "SELECT COUNT(*) FROM POSTCOURIER";
-            
             result = statement.executeQuery(qry1);
             while (result.next()) {
                 mail_id = result.getInt(1);
             }
-            //"RR"+String.format("%09d", mail_id)+"MA"+"<->"+id_client);
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-YYYY");
             // generate a 16bite random password
             String receiver_id = BcryptTool.generateRandomId();
             String qry2 = "INSERT INTO POSTCOURIER (ID, WEIGHT, ADDRESS, COLLECT_DATE, CLIENT_ID, BACKUPPHONENBR, PRICE,RECEIVER_ID)"+
                           "VALUES('"+"RR"+
                           String.format("%09d", mail_id)+
-                          "MA"+"','"+Weight+"' , '"+Address+
-                          "' ,TO_DATE('"+collect_date_.format(formatter)+" "+collectHour+":"+collectMinutes+"', 'DD-MM-YYYY HH24:MI') , '"+
-                          id_client+"' , '"+user_account.getphone()+"','"+price+"','"+receiver_id+"')"; 
+                          "MA"+"','"+courier.getWeight()+"' , '"+courier.getReceiver().getReceiverAddress()+
+                          "' ,TO_DATE('"+courier.getCollectDate()+"', 'DD-MM-YYYY HH24:MI') , '"+
+                          cin_+"' , '"+user_account.getphone()+"','"+courier.getPrice()+"','"+receiver_id+"')";
+            Receiver receiver = courier.getReceiver();
             String qry3 = "INSERT INTO POSTCOURIER_RECEIVER (RECEIVER_ID,FIRSTNAME,LASTNAME, ADDRESS,PHONENBR)"+
-                            "VALUES('"+receiver_id+"','"+FirstName+"','"+LastName+"' , '"+Address+"' ,'"+phonenbr+"')";
+                          "VALUES('"+receiver_id+"','"+receiver.getFirstName()+"','"+receiver.getLastName()+
+                          "' , '"+receiver.getReceiverAddress()+"' ,'"+receiver.getReceiverPhonenbr()+"')";
             statement.executeUpdate(qry2);
             statement.executeUpdate(qry3);
             Button save_copy = new Button("Save A Copy");
@@ -169,14 +169,14 @@ public class DataBaseConnection {
                     user_account.getlastname(),
                     user_account.getaddress(),
                     user_account.getphone(),
-                    FirstName,
-                    LastName,
-                    Address,
-                    phonenbr
+                    receiver.getFirstName(),
+                    receiver.getLastName(),
+                    receiver.getReceiverAddress(),
+                    receiver.getReceiverPhonenbr()
                 );
                 //  open an exe 
                 try {
-                    Runtime.getRuntime().exec("./CourierFormCreator.py");
+                    Runtime.getRuntime().exec("CourierFormCreator.py");
                 } catch (IOException e1) {
                     // TODO Fix errors that the python exe may genrate
                     e1.printStackTrace();
@@ -186,6 +186,7 @@ public class DataBaseConnection {
             App.ShowNotificationWindow("info",  "Courier added successfully \n Your Courier id is : "+
                                        "RR"+String.format("%09d", mail_id)+"MA",save_copy);
         } catch (Exception e) {
+            e.printStackTrace();
             App.ShowNotificationWindow("info", "Mail not added double check your information",null);
         }
     }
@@ -196,7 +197,8 @@ public class DataBaseConnection {
 
     public ResultSet GetEmails() throws SQLException {
         
-        String rs = "select * from POSTCOURIER where lower(client_id)='" + getUser_account().getid() + "'";
+        String rs = "select * from POSTCOURIER ";
+        System.out.println(rs+"\n ");
         result = statement.executeQuery(rs);
         return result;
     }
@@ -222,12 +224,12 @@ public class DataBaseConnection {
             ArrayList<Courier> couriers = new ArrayList<Courier>();
             while (result.next()) {
                 String id = result.getString(1);
-                String weight = result.getString(2);
+                float weight = result.getFloat(2);
                 String address = result.getString(3);
                 String collect_date = result.getString(4);
                 String client_id = result.getString(5);
                 String backup_phonenbr = result.getString(6);
-                String price = result.getString(7);
+                float price = result.getFloat(7);
                 String status_ = result.getString(8);
                 String receiver_id = result.getString(9);
                 // create a courier class with previous information

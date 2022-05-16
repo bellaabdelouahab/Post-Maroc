@@ -11,8 +11,11 @@ public class Receiver {
         ReceiverAddress = receiverAddress;
         ReceiverPhonenbr = receiverPhonenbr;
     }
-    public String getFullName() {
-        return FirstName + " " + LastName;
+    public String getFirstName() {
+        return FirstName;
+    }
+    public String getLastName() {
+        return LastName;
     }
     public String getReceiverAddress() {
         return ReceiverAddress;

@@ -47,7 +47,7 @@ public class form_1 {
         // check firstname and lastname
         
         // check if the firstname and lastname are valid
-        if(receiverFirstname_.isEmpty() || !receiverFirstname_.matches("[a-zA-Z]+") ){
+        if(receiverFirstname_.isEmpty()|| !receiverFirstname_.matches("[a-zA-Z]+") ){
             show_error(receiverFirstname);
             isvalid = false;
         }
@@ -55,19 +55,19 @@ public class form_1 {
             show_error(receiverLastname);
             isvalid = false;
         }
-        // check if the phone number is valid   
-        if(receiverphonenbr_.isEmpty() || receiverphonenbr_.matches("[0-9]+")){
-            show_error(receiverphonenbr);
-            isvalid = false;
-        }
         // check if the address is valid
-        if(receiveraddress_.isEmpty() || !receiveraddress_.matches("[a-zA-Z0-9]+")){
+        if(receiveraddress_.isEmpty()  || !receiveraddress_.matches("[a-zA-Z0-9]+")){
             show_error(receiveraddress);
             isvalid = false;
         }
+        // check if the phone number is valid   
+        if(receiverphonenbr_.isEmpty() || !receiverphonenbr_.matches("[0-9]+")){
+            show_error(receiverphonenbr);
+            isvalid = false;
+        }
         // check if the backup phone number is valid
-        if(backup_phonenbr_.isEmpty() || backup_phonenbr_.matches("[0-9]+")){
-            show_error(receiverFirstname);
+        if(!backup_phonenbr_.isEmpty()  && !backup_phonenbr_.matches("[0-9]+")){
+            show_error(backup_phonenbr);
             isvalid = false;
         }
         // check combobox
@@ -79,24 +79,21 @@ public class form_1 {
             return null;
         }
         System.out.println("passed validation");
-        courier.setReceiver(new Receiver(receiverFirstname_,receiverLastname_,combobox_city.getValue()+" : "+receiveraddress_,receiverphonenbr_));
-        courier.setBackupphonenbr(backup_phonenbr_);
+        create_mail.courier.setReceiver(new Receiver(receiverFirstname_,receiverLastname_,combobox_city.getValue()+" : "+receiveraddress_,receiverphonenbr_));
+        create_mail.courier.setBackupphonenbr(backup_phonenbr_);
         return courier;
     }
 
     private void show_error(Node textfield) {
-        textfield.setStyle(textfield.getStyle()+"-fx-border-color: red");
+        textfield.setStyle(textfield.getStyle()+";-fx-border-color: red");
     }
     // mouse click event for reset style of text fields
     @FXML
     private void hide_error(MouseEvent event) {
         field = (Node)event.getSource();
-        field.setStyle(field.getStyle()+"-fx-border-color: #d3d3d3");
+        field.setStyle(field.getStyle()+";-fx-border-color: #00000000");
     }
     public void setConnection(DataBaseConnection connection) {
         this.connection = connection;
-    }
-    public void setCourier(Courier courier) {
-        this.courier = courier;
     }
 }

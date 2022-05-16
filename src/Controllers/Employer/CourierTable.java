@@ -52,7 +52,7 @@ public class CourierTable {
             controller.courier = courier;
             controller.Courier_id.setText(courier.getCourierId());
             controller.Courier_Address.setText(courier.getAddress());
-            controller.Courier_Price.setText(courier.getPrice());
+            controller.Courier_Price.setText(courier.getPrice().toString());
             controller.Courier_Collect_Date.setText(courier.getCollectDate());
             if(All){
                 controller.PlaceToShowStatus.getChildren().clear();

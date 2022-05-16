@@ -33,7 +33,6 @@ public class App extends Application {
     private static Stage pStage;
     private static Pane CurrentNotification;
     public void Main(String[] args) throws Exception {
-        
         launch(args);
         
         

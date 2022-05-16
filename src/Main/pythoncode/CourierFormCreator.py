@@ -22,14 +22,14 @@ class DocxCreator ():
         "${PHONE1}": "No information",
         "${PHONE2}": "No information",
         }
-    template_file_path = working_directory+'//Resources/OutputCourierForm/CourierForm.docx'
-    output_file_path = working_directory+'//Resources/OutputCourierForm/DocxForm/result.docx'
+    template_file_path = working_directory+'/Resources/OutputCourierForm/CourierForm.docx'
+    output_file_path = working_directory+'/Resources/OutputCourierForm/DocxForm/result.docx'
     # read information from file txt
     def read_file(self):
         # print working directory
         print(os.getcwd())
         
-        with open(working_directory+'//Resources/OutputCourierForm/prototype/CurrentCourierInfo.txt', 'r') as file:
+        with open(working_directory+'/Resources/OutputCourierForm/prototype/CurrentCourierInfo.txt', 'r') as file:
             lines = file.readlines()
             # remove \n
             lines = [line.strip() for line in lines]

@@ -11,8 +11,6 @@ import java.util.Properties;
 
 import oracle.ucp.jdbc.PoolDataSourceFactory;
 import oracle.ucp.jdbc.PoolDataSource;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
@@ -69,6 +67,8 @@ public class DataBaseConnection {
         statement = connection.createStatement();
         System.out.println("connected successfully");
         } catch (Exception e) {
+            e.printStackTrace();
+            System.exit(0);
             App.ShowNotificationWindow("Error",  "No internet connection please restart the app and try again.",null);
         }
     }
@@ -176,7 +176,10 @@ public class DataBaseConnection {
                 );
                 //  open an exe 
                 try {
-                    Runtime.getRuntime().exec("CourierFormCreator.py");
+                    System.out.println();
+                    Runtime.getRuntime().exec(
+                        System.getProperty("user.dir")+"\\src\\Main\\pythoncode\\CourierFormCreator.exe"
+                        );
                 } catch (IOException e1) {
                     // TODO Fix errors that the python exe may genrate
                     e1.printStackTrace();

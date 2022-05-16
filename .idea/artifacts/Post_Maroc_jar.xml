@@ -3,11 +3,12 @@
     <output-path>$PROJECT_DIR$/out/artifacts/Post_Maroc_jar</output-path>
     <root id="archive" name="Post-Maroc.jar">
       <element id="module-output" name="Post-Maroc" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/jar_files (4)/oraclepki-21.5.0.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/jar_files (4)/osdt_cert-21.5.0.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/jar_files (4)/osdt_core-21.5.0.0.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../Program Files/javafx-sdk-17.0.0.1/Reference Library/ons.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../Program Files/javafx-sdk-17.0.0.1/Reference Library/ucp.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../Program Files/javafx-sdk-17.0.0.1/Reference Library/xdb6.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../Program Files/javafx-sdk-17.0.0.1/Reference Library/ojdbc6.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../Program Files/javafx-sdk-17.0.0.1/Reference Library/ojdbc7.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../Program Files/javafx-sdk-17.0.0.1/Reference Library/simplefan.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../Program Files/javafx-sdk-17.0.0.1/Reference Library/javax.mail.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../Program Files/javafx-sdk-17.0.0.1/Reference Library/jfoenix-9.0.10.jar" path-in-jar="/" />
@@ -19,7 +20,7 @@
       <element id="extracted-dir" path="$PROJECT_DIR$/../../Program Files/javafx-sdk-17.0.0.1/Reference Library/fontawesomefx-commons-9.1.2.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../Program Files/javafx-sdk-17.0.0.1/Reference Library/spring-security-crypto-5.6.3.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../Program Files/javafx-sdk-17.0.0.1/Reference Library/fontawesomefx-fontawesome-4.7.0-9.1.2.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../Program Files/javafx-sdk-17.0.0.1/lib/ojdbc7.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Program Files/javafx-sdk-17.0.0.1/lib/ojdbc11.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../Program Files/javafx-sdk-17.0.0.1/lib/javafx-swt.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../Program Files/javafx-sdk-17.0.0.1/lib/javafx.web.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../Program Files/javafx-sdk-17.0.0.1/lib/javax.mail.jar" path-in-jar="/" />

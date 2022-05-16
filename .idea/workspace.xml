@@ -7,20 +7,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c98eb816-f6a8-4eb1-8a9a-e859702ff4e1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Post_Maroc_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/Post_Maroc_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/Employer/CourierTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/Employer/CourierTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/Employer/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/Employer/Home.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/Profile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/create_mail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/create_mail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/home.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/mail_log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/mail_log.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/CourierFormCreator.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/CourierFormCreator.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main/DataBaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/DataBaseConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Resources/VIEW/Employer/Courier.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/VIEW/Employer/Courier.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Resources/VIEW/um.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/VIEW/um.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/pythoncode/CourierFormCreator.exe" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/pythoncode/CourierFormCreator.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/pythoncode/CourierFormCreator.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/pythoncode/CourierFormCreator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resources/OutputCourierForm/DocxForm/result.docx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/OutputCourierForm/DocxForm/result.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resources/OutputCourierForm/prototype/CurrentCourierInfo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/OutputCourierForm/prototype/CurrentCourierInfo.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

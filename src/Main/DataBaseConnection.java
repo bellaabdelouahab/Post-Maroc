@@ -40,7 +40,6 @@ public class DataBaseConnection {
     private int mail_id;
     static PoolDataSource pds;
     public DataBaseConnection() {
-
         try{
         pds = PoolDataSourceFactory.getPoolDataSource();
         pds.setConnectionFactoryClassName(CONN_FACTORY_CLASS_NAME);
@@ -268,7 +267,7 @@ public class DataBaseConnection {
     }
     private boolean WriteToFile(String CourierId, String user_FN, String user_LN, String user_address, String user_Phone, String FirstName, String LastName, String address, String phonenbr) {
         try {
-            FileWriter myWriter = new FileWriter("/Resources/OutputCourierForm/prototype/CurrentCourierInfo.txt");
+            FileWriter myWriter = new FileWriter(System.getProperty("user.dir")+"\\src\\Resources\\OutputCourierForm\\prototype\\CurrentCourierInfo.txt");
             // whrite to file
             myWriter.write(CourierId+"\n");
             myWriter.write(user_LN + "\n");
@@ -282,6 +281,7 @@ public class DataBaseConnection {
             myWriter.close();
             return true;
         } catch (IOException e) {
+            e.printStackTrace();
             App.ShowNotificationWindow("Error",  "File not Created",null);
             return false;
         }

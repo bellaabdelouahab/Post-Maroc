@@ -1,13 +1,14 @@
 <component name="libraryTable">
   <library name="lib">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/lib" />
       <root url="file://$PROJECT_DIR$/../../Program Files/javafx-sdk-17.0.0.1/Reference Library" />
       <root url="file://$PROJECT_DIR$/../../Program Files/javafx-sdk-17.0.0.1/lib" />
+      <root url="jar://$USER_HOME$/Downloads/jar_files (4)/oraclepki-21.5.0.0.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/jar_files (4)/osdt_cert-21.5.0.0.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/jar_files (4)/osdt_core-21.5.0.0.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
-    <jarDirectory url="file://$PROJECT_DIR$/lib" recursive="false" />
     <jarDirectory url="file://$PROJECT_DIR$/../../Program Files/javafx-sdk-17.0.0.1/lib" recursive="false" />
     <jarDirectory url="file://$PROJECT_DIR$/../../Program Files/javafx-sdk-17.0.0.1/Reference Library" recursive="false" />
   </library>

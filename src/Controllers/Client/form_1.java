@@ -24,7 +24,7 @@ public class form_1 {
 
     // fill info details
     public void fillinfo() {
-        UserAccount user_account = connection.getuserclass();
+        UserAccount user_account = connection.getUser_account();
         first_name.setText(user_account.getfirstname());
         last_name.setText(user_account.getlastname());
         address.setText(user_account.getaddress());

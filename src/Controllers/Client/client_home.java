@@ -3,17 +3,15 @@ package Controllers.Client;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import Controllers.Profile;
 import Main.App;
-import Main.DataBaseConnection;
-import animatefx.animation.FadeIn;
+import Main.Client_Connection;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 public class client_home {
-    private DataBaseConnection connection;
+    private Client_Connection connection;
     @FXML
     private Pane Pane1_button_animation;
     @FXML
@@ -38,10 +36,10 @@ public class client_home {
             App.ShowNotificationWindow("error", "Could not load page close app and try again", null);
         }
     }
-    public DataBaseConnection getConnection() {
+    public Client_Connection getConnection() {
         return connection;
     }
-    public void setConnection(DataBaseConnection connection) {
+    public void setConnection(Client_Connection connection) {
         this.connection = connection;
     }
     @FXML
@@ -89,20 +87,7 @@ public class client_home {
     }
     @FXML
     private void showProfile(){
-        try {
-            FXMLLoader loder = new FXMLLoader(getClass().getResource("/Resources/VIEW/Profile.fxml"));
-            Pane root = loder.load();
-            Profile controller = loder.getController();
-            controller.setConnection(getConnection());
-            Pane parent = (Pane) App.getpStage().getScene().getRoot().getChildrenUnmodifiable().get(0);
-            parent.getChildren().add(root);
-            FadeIn fadeIn = new FadeIn(root);
-            fadeIn.play();
-            controller.setParent(parent);
-        } catch (IOException e) {
-            e.printStackTrace();
-            App.ShowNotificationWindow("error", "Could not load page close app and try again", null);
-        }
+        App.ShowProfile();
     }
     @FXML
     private void CloseWindow() {

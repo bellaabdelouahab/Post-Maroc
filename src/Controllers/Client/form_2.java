@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
 
 import Controllers.Courier;
 import Main.App;
-import Main.DataBaseConnection;
+import Main.Client_Connection;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -19,7 +19,7 @@ import javafx.scene.input.MouseEvent;
 
 public class form_2 implements Initializable{
 
-    private DataBaseConnection connection;
+    private Client_Connection connection;
     @FXML
     private TextField weight,Pricefield;
     @FXML
@@ -36,13 +36,17 @@ public class form_2 implements Initializable{
 
     private void CheckPriceField() {
         try{
-            Float weight_ = weight.getText().isEmpty() ? 0 : Float.parseFloat(weight.getText());
+            Float weight_ = weight.getText().isEmpty() ? 0.1f : Float.parseFloat(weight.getText());
             Float price = connection.CalculatePrice(weight_);
+            if(price == null){
+                Pricefield.setText("");
+                throw new Exception();
+            }
             // price to String
             String price_ = String.valueOf(price);
             Pricefield.setText(price_);
         }catch(Exception E){
-            App.ShowNotificationWindow("Error",  "Please enter a valid weight",null);
+            App.ShowNotificationWindow("Error",  "Please enter a valid weight, It should be a numirecal value between 0 and 10",null);
             // TODO : add error message
             return;
         }
@@ -95,7 +99,7 @@ public class form_2 implements Initializable{
     private void CalculatePrice() {
         Pricefield.setText(connection.CalculatePrice(weight.getText().isEmpty() ? 0.2f : Float.parseFloat(weight.getText()))+"");
     }
-    public void setConnection(DataBaseConnection connection) {
+    public void setConnection(Client_Connection connection) {
         this.connection = connection;
     }
     public void setCourier(Courier courier) {
@@ -107,7 +111,10 @@ public class form_2 implements Initializable{
         collect_date.setValue(DateIn.plusDays(1));
         System.out.println("action added");
         weight.setOnKeyReleased((e) -> {
-            CheckPriceField();
+            // check if enter was clicked 
+            if(e.getCode().equals(javafx.scene.input.KeyCode.ENTER)){
+                CheckPriceField();
+            }
         });
         // add hours to the combohour
         for(int i = 8; i < 18; i++){

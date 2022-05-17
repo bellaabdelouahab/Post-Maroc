@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import com.jfoenix.controls.JFXButton;
 
 import Controllers.Login;
+import Controllers.Profile;
 import animatefx.animation.FadeIn;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
@@ -55,7 +56,7 @@ public class App extends Application {
             @Override
             public void run() {
                 try {
-                    connection = new DataBaseConnection();
+                    connection = new DataBaseConnection(true);
                     controller.setConnection(connection);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -181,6 +182,27 @@ public class App extends Application {
         } catch (IOException ex) {  
             // could not load login window
             ShowNotificationWindow("Error", "Could not load login window", null);
+        }
+    }
+
+    public static void ShowProfile() {
+        try {
+            FXMLLoader loder = new FXMLLoader(App.class.getResource("/Resources/VIEW/Profile.fxml"));
+            Pane root = loder.load();
+            Profile controller = loder.getController();
+            controller.setConnection(connection);
+            Pane parent = (Pane) App.getpStage().getScene().getRoot().getChildrenUnmodifiable().get(0);
+            root.translateXProperty().set(-400);
+            parent.getChildren().add(root);
+            Timeline timeline = new Timeline();
+            KeyValue kv = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_IN);
+            KeyFrame kf = new KeyFrame(Duration.seconds(0.7), kv);
+            timeline.getKeyFrames().add(kf);
+            timeline.play();
+            controller.setParent(parent);
+        } catch (IOException e) {
+            e.printStackTrace();
+            App.ShowNotificationWindow("error", "Could not load page close app and try again", null);
         }
     }
     

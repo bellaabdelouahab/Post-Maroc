@@ -20,7 +20,6 @@ public class UserAccount {
     private String jobtitle;
     private String gender;
     private String accounttype;
-    private Image Image;
 
     public UserAccount(String username, String password,String id,String accounttype) {
         this.username = username;
@@ -28,22 +27,9 @@ public class UserAccount {
         this.id = id;
         this.accounttype=accounttype;
     }
-    // private Image imagesetter() {
-    //     Image profilepic;
-    //     // System.out.println(path+"/src/Resources/IMAGES/ProfilePictures/" + this.id + ".png");
-    //     try{
-    //         profilepic = new Image("/Resources/IMAGES/ProfilePictures/" + this.id + ".png");
-    //     }
-    //     catch(Exception e){
-    //         System.out.println("no image ==> using default image");
-    //         profilepic = new Image("/Resources/IMAGES/ProfilePictures/Default.png");
-    //     }
-    //     return profilepic;
-    // }
-    // set acount details 
     public void setacountdetails(Statement statement) {
         try {
-            String Qry = "select * from postuser where lower(id_client)='" + this.id + "'";
+            String Qry = "select * from postuser where lower(id)='" + this.id + "'";
             ResultSet result = statement.executeQuery(Qry);
             while (result.next()) {
                 this.email = result.getString(2).toLowerCase();
@@ -84,7 +70,7 @@ public class UserAccount {
     public String getid() {
         return id;
     }
-    public String jobtitle() {
+    public String getjobtitle() {
         return jobtitle;
     }
     public String getgender() {
@@ -104,5 +90,24 @@ public class UserAccount {
             profilepic = new Image("/Resources/IMAGES/ProfilePictures/Default.png");
         }
         return profilepic;
+    }
+    // set acount details
+    public void setemail(String email) {
+        this.email = email;
+    }
+    public void setphone(String phone) {
+        this.phone = phone;
+    }
+    public void setaddress(String address) {
+        this.address = address;
+    }
+    public void setfirstname(String first_name) {
+        this.first_name = first_name;
+    }
+    public void setlastname(String last_name) {
+        this.last_name = last_name;
+    }
+    public void setjobtitle(String jobtitle) {
+        this.jobtitle = jobtitle;
     }
 }

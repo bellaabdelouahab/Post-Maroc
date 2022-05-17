@@ -4,10 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import Controllers.Courier;
-import Controllers.Profile;
 import Main.App;
-import Main.DataBaseConnection;
-import animatefx.animation.FadeIn;
+import Main.Employer_Connection;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -18,7 +16,7 @@ import javafx.scene.text.TextAlignment;
 
 public class CourierTable {
 
-    private DataBaseConnection connection;
+    private Employer_Connection connection;
     private ArrayList<Courier> couriers;
     @FXML
     private VBox CourierVbox2;
@@ -77,7 +75,7 @@ public class CourierTable {
     }
 
 
-    public void setConnection(DataBaseConnection connection) {
+    public void setConnection(Employer_Connection connection) {
         this.connection = connection;
     }
     @FXML
@@ -96,20 +94,7 @@ public class CourierTable {
     }
     @FXML
     private void showProfile(){
-        try {
-            FXMLLoader loder = new FXMLLoader(getClass().getResource("/Resources/VIEW/Profile.fxml"));
-            Pane root = loder.load();
-            Profile controller = loder.getController();
-            controller.setConnection(connection);
-            Pane parent = (Pane) App.getpStage().getScene().getRoot().getChildrenUnmodifiable().get(0);
-            parent.getChildren().add(root);
-            FadeIn fadeIn = new FadeIn(root);
-            fadeIn.play();
-            controller.setParent(parent);
-        } catch (IOException e) {
-            e.printStackTrace();
-            App.ShowNotificationWindow("error", "Could not load page close app and try again", null);
-        }
+        App.ShowProfile();
     }
     @FXML
     private void CloseWindow() {

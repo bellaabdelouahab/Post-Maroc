@@ -1,20 +1,14 @@
 package Controllers.Client;
 
-import java.io.IOException;
-import java.net.URL;
-import java.time.LocalDate;
-import java.util.ResourceBundle;
-
 import Controllers.Courier;
-import Controllers.Profile;
 import Main.App;
-import Main.DataBaseConnection;
+import Main.Client_Connection;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 
 public class create_mail{
-    DataBaseConnection connection;
+    Client_Connection connection;
     static Courier courier = new Courier();
     @FXML Pane forms;
     
@@ -34,7 +28,7 @@ public class create_mail{
             if(Courier_cach==null)return;
             courier=Courier_cach;
             // get details from text fields
-            String cin_ = connection.getuserclass().getid();
+            String cin_ = connection.getUser_account().getid();
             // add details 
             connection.AddMail( cin_,courier);
         } 
@@ -89,16 +83,7 @@ public class create_mail{
     
     @FXML
     private void showProfile(){
-        try {
-            FXMLLoader loder = new FXMLLoader(getClass().getResource("/Resources/VIEW/Profile.fxml"));
-            Pane root = loder.load();
-            Profile controller = loder.getController();
-            controller.setConnection(connection);
-            App.changeStage(root);
-        } catch (IOException e) {
-            e.printStackTrace();
-            App.ShowNotificationWindow("error", "Could not load page close app and try again", null);
-        }
+        App.ShowProfile();
     }
     @FXML
     private void CloseWindow() {

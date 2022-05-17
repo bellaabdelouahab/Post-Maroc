@@ -2,9 +2,8 @@ package Controllers.Employer;
 
 import java.io.IOException;
 
-import Controllers.Profile;
 import Main.App;
-import Main.DataBaseConnection;
+import Main.Employer_Connection;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +11,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 
 public class Home {
-    private DataBaseConnection connection;
+    private Employer_Connection connection;
 
     @FXML
     private Pane Pane1_button_animation;
@@ -60,7 +59,7 @@ public class Home {
         
     }
     // create a setter for Data Base Connection
-    public void setConnection(DataBaseConnection connection){
+    public void setConnection(Employer_Connection connection){
         this.connection = connection;
     }
     @FXML
@@ -75,18 +74,7 @@ public class Home {
     }
     @FXML
     private void showProfile(){
-        try {
-            FXMLLoader loder = new FXMLLoader(getClass().getResource("/Resources/VIEW/Profile.fxml"));
-            Pane root = loder.load();
-            Profile controller = loder.getController();
-            controller.setConnection(connection);
-            Pane parent = (Pane) App.getpStage().getScene().getRoot().getChildrenUnmodifiable().get(0);
-            parent.getChildren().add(root);
-            controller.setParent(parent);
-        } catch (IOException e) {
-            e.printStackTrace();
-            App.ShowNotificationWindow("error", "Could not load page close app and try again", null);
-        }
+        App.ShowProfile();
     }
     @FXML
     private void CloseWindow() {

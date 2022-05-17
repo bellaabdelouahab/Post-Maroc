@@ -7,23 +7,15 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Properties;
-
-import oracle.ucp.jdbc.PoolDataSourceFactory;
-import oracle.ucp.jdbc.PoolDataSource;
 import java.util.ArrayList;
+import java.util.Properties;
 import java.util.regex.Pattern;
 
-import Controllers.Courier;
-import Controllers.Receiver;
-
-import java.io.FileWriter;
-import java.io.IOException;
-
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Line;
+import oracle.ucp.jdbc.PoolDataSource;
+import oracle.ucp.jdbc.PoolDataSourceFactory;
 
 // import BCrypt spring library
 
@@ -36,10 +28,11 @@ public class DataBaseConnection {
     static Connection connection;
     static Statement statement;
     ResultSet result;
-    private static UserAccount user_account;
-    private int mail_id;
+    static UserAccount user_account;
+     int mail_id;
     static PoolDataSource pds;
-    public DataBaseConnection() {
+    public DataBaseConnection(Boolean parent) {
+        if(!parent) return;
         try{
         pds = PoolDataSourceFactory.getPoolDataSource();
         pds.setConnectionFactoryClassName(CONN_FACTORY_CLASS_NAME);
@@ -138,154 +131,6 @@ public class DataBaseConnection {
         user_account = null; 
         return true;
     }
-    public void AddMail(String cin_, Courier courier){
-        try {
-            String qry1 = "SELECT COUNT(*) FROM POSTCOURIER";
-            result = statement.executeQuery(qry1);
-            while (result.next()) {
-                mail_id = result.getInt(1);
-            }
-            // generate a 16bite random password
-            String receiver_id = BcryptTool.generateRandomId();
-            String qry2 = "INSERT INTO POSTCOURIER (ID, WEIGHT, ADDRESS, COLLECT_DATE, CLIENT_ID, BACKUPPHONENBR, PRICE,RECEIVER_ID)"+
-                          "VALUES('"+"RR"+
-                          String.format("%09d", mail_id)+
-                          "MA"+"','"+courier.getWeight()+"' , '"+courier.getReceiver().getReceiverAddress()+
-                          "' ,TO_DATE('"+courier.getCollectDate()+"', 'DD-MM-YYYY HH24:MI') , '"+
-                          cin_+"' , '"+user_account.getphone()+"','"+courier.getPrice()+"','"+receiver_id+"')";
-            Receiver receiver = courier.getReceiver();
-            String qry3 = "INSERT INTO POSTCOURIER_RECEIVER (RECEIVER_ID,FIRSTNAME,LASTNAME, ADDRESS,PHONENBR)"+
-                          "VALUES('"+receiver_id+"','"+receiver.getFirstName()+"','"+receiver.getLastName()+
-                          "' , '"+receiver.getReceiverAddress()+"' ,'"+receiver.getReceiverPhonenbr()+"')";
-            statement.executeUpdate(qry2);
-            statement.executeUpdate(qry3);
-            Button save_copy = new Button("Save A Copy");
-            // run pdfgenerator on action
-            save_copy.setOnAction(e -> {
-                WriteToFile(
-                    "RR"+String.format("%09d", mail_id)+"MA",
-                    user_account.getfirstname(),
-                    user_account.getlastname(),
-                    user_account.getaddress(),
-                    user_account.getphone(),
-                    receiver.getFirstName(),
-                    receiver.getLastName(),
-                    receiver.getReceiverAddress(),
-                    receiver.getReceiverPhonenbr()
-                );
-                //  open an exe 
-                try {
-                    System.out.println();
-                    Runtime.getRuntime().exec(
-                        System.getProperty("user.dir")+"\\src\\Main\\pythoncode\\CourierFormCreator.exe"
-                        );
-                } catch (IOException e1) {
-                    // TODO Fix errors that the python exe may genrate
-                    e1.printStackTrace();
-                    App.ShowNotificationWindow("Error",  "Failed to get sources. Try again on courier log page",null);
-                }
-            });
-            App.ShowNotificationWindow("info",  "Courier added successfully \n Your Courier id is : "+
-                                       "RR"+String.format("%09d", mail_id)+"MA",save_copy);
-        } catch (Exception e) {
-            e.printStackTrace();
-            App.ShowNotificationWindow("info", "Mail not added double check your information",null);
-        }
-    }
-    // get user classe
-    public UserAccount getuserclass() {
-        return getUser_account();
-    }
-
-    public ResultSet GetEmails() throws SQLException {
-        
-        String rs = "select * from POSTCOURIER ";
-        System.out.println(rs+"\n ");
-        result = statement.executeQuery(rs);
-        return result;
-    }
-    public Float CalculatePrice(Float weight) {
-        String qry1 = "select price from postcourierprices where "+weight+"<=weight_end_point and "+weight+">=weight_start_point";
-        Float mail_id_=0.0f;
-            try {
-                result = statement.executeQuery(qry1);
-                while (result.next()) {
-                    mail_id_ = result.getFloat(1);
-                    return mail_id_;
-                }
-            } catch (SQLException e) {
-                App.ShowNotificationWindow("Error",  "Failed to get sources.",null);
-            }
-            return mail_id_;
-    }
-
-    public ArrayList<Courier> getCourier(String status) {
-        String qry1 = "select * from POSTCOURIER where status in("+status+")  ORDER BY id ";
-        try {
-            result = statement.executeQuery(qry1);
-            ArrayList<Courier> couriers = new ArrayList<Courier>();
-            while (result.next()) {
-                String id = result.getString(1);
-                float weight = result.getFloat(2);
-                String address = result.getString(3);
-                String collect_date = result.getString(4);
-                String client_id = result.getString(5);
-                String backup_phonenbr = result.getString(6);
-                float price = result.getFloat(7);
-                String status_ = result.getString(8);
-                String receiver_id = result.getString(9);
-                // create a courier class with previous information
-                couriers.add(new Courier(id, weight, address, collect_date, client_id, backup_phonenbr, price,status_, receiver_id));   
-            }
-            return couriers;
-        } catch (SQLException e) {
-            App.ShowNotificationWindow("Error",  "Failed to get sources.",null);
-            
-        }
-        return null;
-    }
-
-    public void SupportCourier(String CourierId) {
-        String qry1 = "update POSTCOURIER set status='Supported' where id='" + CourierId + "'";
-        try {
-            statement.executeUpdate(qry1);
-            App.ShowNotificationWindow("info",  "Courier successfully Supported ",null);
-        } catch (SQLException e) {
-            App.ShowNotificationWindow("info",  "Unable to Supprted try later or contact your administrator",null);
-        }
-    }
-
-    public void CancelCourier(String CourierId) {
-        String qry1 = "update POSTCOURIER set status='Cancelled' where id='" + CourierId + "'";
-        try {
-            statement.executeUpdate(qry1);
-            App.ShowNotificationWindow("info",  "Courier successfully Cancelled ",null);
-        } catch (SQLException e) {
-            App.ShowNotificationWindow("info",  "Unable to Cancelled try later or contact your administrator",null);
-        }
-
-    }
-    private boolean WriteToFile(String CourierId, String user_FN, String user_LN, String user_address, String user_Phone, String FirstName, String LastName, String address, String phonenbr) {
-        try {
-            FileWriter myWriter = new FileWriter(System.getProperty("user.dir")+"\\src\\Resources\\OutputCourierForm\\prototype\\CurrentCourierInfo.txt");
-            // whrite to file
-            myWriter.write(CourierId+"\n");
-            myWriter.write(user_LN + "\n");
-            myWriter.write(user_FN + "\n");
-            myWriter.write(FirstName+"\n");
-            myWriter.write(LastName+"\n");
-            myWriter.write(user_address + "\n");
-            myWriter.write(address + "\n");
-            myWriter.write(user_Phone + "\n");
-            myWriter.write(phonenbr + "\n");
-            myWriter.close();
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
-            App.ShowNotificationWindow("Error",  "File not Created",null);
-            return false;
-        }
-      }
     public String[] getCities() {
         String qry1 = "select * from postavaiablecities";
         try {
@@ -304,5 +149,18 @@ public class DataBaseConnection {
             App.ShowNotificationWindow("Error",  "Failed to get sources.",null);
         }
         return null;
+    }
+    public void updateUser_account(UserAccount useraccount) {
+        String qry1 = "update POSTUSER set first_name='"+useraccount.getfirstname()+
+                      "',last_name='"+useraccount.getlastname()+"',address='"+useraccount.getaddress()+
+                      "',phonenbr='"+useraccount.getphone()+"',JOB_TITLE='"+useraccount.getjobtitle()+
+                      "' where id='"+useraccount.getid()+"'";
+        try {
+            statement.executeUpdate(qry1);
+            App.ShowNotificationWindow("info",  "User account successfully updated ",null);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            App.ShowNotificationWindow("info",  "Unable to update try later or contact your administrator",null);
+        }
     }
 }

@@ -52,7 +52,7 @@
                <children>
                   <Pane layoutX="144.0" layoutY="23.0" prefHeight="93.0" prefWidth="246.0" style="-fx-background-color: #1d1b29;">
                      <children>
-                        <TextField fx:id="Cin" layoutX="14.0" layoutY="14.0" prefHeight="29.0" prefWidth="169.0" promptText="CIN" style="-fx-background-color: #11111100; -fx-border-color: #eeeeee55; -fx-border-radius: 3; -fx-border-width: 2; -fx-text-fill: #eee;" />
+                        <TextField fx:id="Cin" disable="true" layoutX="14.0" layoutY="14.0" prefHeight="29.0" prefWidth="169.0" promptText="CIN" style="-fx-background-color: #11111100; -fx-border-color: #eeeeee55; -fx-border-radius: 3; -fx-border-width: 2; -fx-text-fill: #eee;" />
                         <TextField fx:id="FullName" layoutX="14.0" layoutY="50.0" prefHeight="29.0" prefWidth="200.0" promptText="FULL NAME" style="-fx-background-color: #11111100; -fx-border-color: #eeeeee55; -fx-border-radius: 3; -fx-border-width: 2; -fx-text-fill: #eee;" />
                      </children>
                   </Pane>
@@ -81,7 +81,7 @@
                               <Font size="14.0" />
                            </font>
                         </TextField>
-                        <TextField fx:id="Nationnality" layoutX="32.0" layoutY="121.0" prefHeight="36.0" prefWidth="337.0" style="-fx-background-color: #11111100; -fx-border-color: #eeeeee55; -fx-border-radius: 5; -fx-border-width: 2; -fx-text-fill: #eee;">
+                        <TextField fx:id="Nationnality" disable="true" layoutX="32.0" layoutY="121.0" prefHeight="36.0" prefWidth="337.0" style="-fx-background-color: #11111100; -fx-border-color: #eeeeee55; -fx-border-radius: 5; -fx-border-width: 2; -fx-text-fill: #eee;">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -94,7 +94,7 @@
                         <Label alignment="CENTER_RIGHT" layoutX="43.0" layoutY="112.0" prefHeight="19.0" prefWidth="85.0" style="-fx-background-color: #1d1b29;" text="NATIONNALITY" textFill="#f2ecec" />
                         <Label alignment="CENTER_RIGHT" layoutX="38.0" layoutY="61.0" prefHeight="19.0" prefWidth="54.0" style="-fx-background-color: #1d1b29;" text="ADDRESS" textAlignment="CENTER" textFill="#f5f5f5" />
                         <Label alignment="CENTER_RIGHT" layoutX="38.0" layoutY="168.0" prefHeight="19.0" prefWidth="95.0" style="-fx-background-color: #1d1b29;" text="PHONE NUMBER" textFill="#fcf7f7" />
-                        <TextField fx:id="Sex" layoutX="28.0" layoutY="231.0" prefHeight="36.0" prefWidth="169.0" style="-fx-background-color: #11111100; -fx-border-color: #eeeeee55; -fx-border-radius: 3; -fx-border-width: 2; -fx-text-fill: #eee;">
+                        <TextField fx:id="Sex" disable="true" layoutX="28.0" layoutY="231.0" prefHeight="36.0" prefWidth="169.0" style="-fx-background-color: #11111100; -fx-border-color: #eeeeee55; -fx-border-radius: 3; -fx-border-width: 2; -fx-text-fill: #eee;">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -105,8 +105,8 @@
                               <Font size="14.0" />
                            </font>
                         </TextField>
-                        <Label alignment="CENTER_RIGHT" layoutX="256.0" layoutY="222.0" prefHeight="19.0" prefWidth="23.0" style="-fx-background-color: #1d1b29;" text="AGE" textFill="#f5f5f5" />
-                        <TextField fx:id="email" layoutX="30.0" layoutY="17.0" prefHeight="36.0" prefWidth="337.0" style="-fx-background-color: #11111100; -fx-border-color: #eeeeee55; -fx-border-radius: 5; -fx-border-width: 2; -fx-text-fill: #eee;">
+                        <Label layoutX="256.0" layoutY="222.0" prefHeight="19.0" prefWidth="45.0" style="-fx-background-color: #1d1b29;" text="Job Title" textFill="#f5f5f5" />
+                        <TextField fx:id="email" disable="true" layoutX="30.0" layoutY="17.0" prefHeight="36.0" prefWidth="337.0" style="-fx-background-color: #11111100; -fx-border-color: #eeeeee55; -fx-border-radius: 5; -fx-border-width: 2; -fx-text-fill: #eee;">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -120,7 +120,7 @@
                         </Pane>
                      </children>
                   </Pane>
-                  <GNAvatarView fx:id="ProfilePicture" layoutX="21.0" layoutY="20.0" prefHeight="101.0" prefWidth="127.0" stylesheets="@../../CSS/Theme.css">
+                  <GNAvatarView fx:id="ProfilePicture" layoutX="21.0" layoutY="20.0" prefHeight="101.0" prefWidth="127.0">
                      <image>
                         <Image url="@../IMAGES/Down-arrow.png" />
                      </image>
@@ -129,7 +129,7 @@
             </Pane>
          </children>
       </Pane>
-      <Button blendMode="DARKEN" layoutX="417.0" mnemonicParsing="false" onAction="#Goback" prefHeight="500.0" prefWidth="384.0" style="-fx-background-color: #44444411; -fx-background-radius: 25;">
+      <Button blendMode="DARKEN" layoutX="417.0" mnemonicParsing="false" onAction="#Goback" prefHeight="500.0" prefWidth="384.0" style="-fx-background-color: #00000000; -fx-background-radius: 25;">
          <font>
             <Font name="Bodoni MT" size="33.0" />
          </font></Button>

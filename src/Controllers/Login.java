@@ -8,7 +8,9 @@ import com.jfoenix.controls.JFXCheckBox;
 import Controllers.Client.client_home;
 import Controllers.Employer.Home;
 import Main.App;
+import Main.Client_Connection;
 import Main.DataBaseConnection;
+import Main.Employer_Connection;
 import animatefx.animation.FadeIn;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
@@ -141,7 +143,7 @@ public class Login{
             try {
                 root = loader.load();
                 client_home controller = loader.getController();
-                controller.setConnection(this.connection);
+                controller.setConnection(new Client_Connection(false));
             } catch (IOException e) {
                 e.printStackTrace();
                 return;
@@ -152,7 +154,7 @@ public class Login{
             try {
                 root = loader.load();
                 Home controller = loader.getController();
-                controller.setConnection(this.connection);
+                controller.setConnection(new Employer_Connection(false));
             } catch (IOException e) {
                 e.printStackTrace();
                 return;

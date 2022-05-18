@@ -20,6 +20,7 @@ public class UserAccount {
     private String jobtitle;
     private String gender;
     private String accounttype;
+    private int deliveryline;
 
     public UserAccount(String username, String password,String id,String accounttype) {
         this.username = username;
@@ -29,17 +30,32 @@ public class UserAccount {
     }
     public void setacountdetails(Statement statement) {
         try {
-            String Qry = "select * from postuser where lower(id)='" + this.id + "'";
-            ResultSet result = statement.executeQuery(Qry);
-            while (result.next()) {
-                this.email = result.getString(2).toLowerCase();
-                this.first_name = result.getString(3).toLowerCase();
-                this.last_name = result.getString(4).toLowerCase();
-                this.nationnality = result.getString(5).toLowerCase();
-                this.gender = result.getString(6).toLowerCase();
-                this.address = result.getString(7).toLowerCase();
-                this.jobtitle = result.getString(8).toLowerCase();
-                this.phone = result.getString(9).toLowerCase();
+            if(this.accounttype.equals("client")){
+                String Qry = "select * from postclient where lower(id)='" + this.id + "'";
+                ResultSet result = statement.executeQuery(Qry);
+                while (result.next()) {
+                    this.email = result.getString(2).toLowerCase();
+                    this.first_name = result.getString(3).toLowerCase();
+                    this.last_name = result.getString(4).toLowerCase();
+                    this.nationnality = result.getString(5).toLowerCase();
+                    this.gender = result.getString(6).toLowerCase();
+                    this.address = result.getString(7).toLowerCase();
+                    this.jobtitle = result.getString(8).toLowerCase();
+                    this.phone = result.getString(9).toLowerCase();
+                }
+            }
+            else if (this.accounttype.equals("employee")) {
+                String Qry = "select * from postemployee where lower(id)='" + this.id + "'";
+                ResultSet result = statement.executeQuery(Qry);
+                while (result.next()) {
+                    this.email = result.getString(2).toLowerCase();
+                    this.first_name = result.getString(3).toLowerCase();
+                    this.last_name = result.getString(4).toLowerCase();
+                    this.nationnality = result.getString(5).toLowerCase();
+                    this.address = result.getString(6).toLowerCase();
+                    this.phone = result.getString(7).toLowerCase();
+                    this.deliveryline = result.getInt(8);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -91,6 +107,7 @@ public class UserAccount {
         }
         return profilepic;
     }
+    
     // set acount details
     public void setemail(String email) {
         this.email = email;

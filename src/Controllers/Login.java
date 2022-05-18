@@ -21,6 +21,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -50,7 +51,8 @@ public class Login{
     private Pane subStage;
     @FXML
     private AnchorPane rightpane;
-
+    @FXML
+    private TextArea justf;
     public Stage presentStage;
     
     Preferences preferences;
@@ -71,8 +73,10 @@ public class Login{
         KeyFrame kf = new KeyFrame(Duration.seconds(1), new KeyValue(login_animation.progressProperty(),-(1), Interpolator.EASE_IN));
         tl.getKeyFrames().add(kf);
         tl.setOnFinished(t -> {
-            if (connection == null)   tl.play();
+            if (connection == null)   {tl.play();justf.setText(App.currentnote);}
+            // C:\Git-hub\Post-Maroc\out\artifacts\Post_Maroc_jar\src\Resources\Wallet_NFS315
             else{
+                // return;
                 // Start Data base Connection using javafx Task
                 Boolean isConnected = connection.Login_user(email_field,password_field,
                                                             email_error_line,email_error_circle,
@@ -149,7 +153,7 @@ public class Login{
                 return;
             }
         }
-        else if(this.connection.getUser_account().getaccounttype().equals("employer")){
+        else if(this.connection.getUser_account().getaccounttype().equals("employee")){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/VIEW/Employer/Home.fxml"));
             try {
                 root = loader.load();

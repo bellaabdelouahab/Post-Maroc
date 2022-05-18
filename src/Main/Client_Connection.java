@@ -14,7 +14,6 @@ import javafx.stage.DirectoryChooser;
 public class Client_Connection extends DataBaseConnection{
     public Client_Connection(Boolean parent) {
         super(parent);
-        //TODO Auto-generated constructor stub
     }
     private int mail_id;
     public void AddMail(String cin_, Courier courier){
@@ -41,8 +40,8 @@ public class Client_Connection extends DataBaseConnection{
             String qry4 = "INSERT INTO POSTCOURIER_RECEIVER (RECEIVER_ID,FIRSTNAME,LASTNAME, ADDRESS,PHONENBR)"+
                           "VALUES('"+receiver_id+"','"+receiver.getFirstName()+"','"+receiver.getLastName()+
                           "' , '"+receiver.getReceiverAddress()+"' ,'"+receiver.getReceiverPhonenbr()+"')";
-            statement.executeUpdate(qry3);
             statement.executeUpdate(qry4);
+            statement.executeUpdate(qry3);
             Button save_copy = new Button("Save A Copy");
             // run pdfgenerator on action
             save_copy.setOnAction(e -> {
@@ -75,9 +74,11 @@ public class Client_Connection extends DataBaseConnection{
                     App.ShowNotificationWindow("Error",  "Failed to get sources from exe.",null);
                 }
                 try {
+                    System.out.println(selectedDirectory.getAbsolutePath()+"\\"+"RR"+String.format("%09d", mail_id)+"MA.docx");
                     tools_.copyDirectory(
                         new File(System.getProperty("user.dir")+"\\src\\Resources\\OutputCourierForm\\DocxForm\\result.docx"),
-                        selectedDirectory);
+                        new File(selectedDirectory.getAbsolutePath()+"\\"+"RR"+String.format("%09d", mail_id)+"MA.docx")
+                        );
                 } catch (IOException e1) {
                     e1.printStackTrace();
                     App.ShowNotificationWindow("Error",  "Failed to copy file go to \n"+

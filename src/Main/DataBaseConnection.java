@@ -21,7 +21,7 @@ import oracle.ucp.jdbc.PoolDataSourceFactory;
 
 public class DataBaseConnection {
     // sql server connection
-    final static String DB_URL="jdbc:oracle:thin:@nfs315_high?TNS_ADMIN=Wallet_NFS315";
+    final static String DB_URL="jdbc:oracle:thin:@nfs315_high?TNS_ADMIN=src/Resources/Wallet_NFS315";
     final static String DB_USER = "admin";
     final static String DB_PASSWORD = "Abdobella4624";
     final static String CONN_FACTORY_CLASS_NAME="oracle.jdbc.pool.OracleDataSource";
@@ -34,6 +34,9 @@ public class DataBaseConnection {
     public DataBaseConnection(Boolean parent) {
         if(!parent) return;
         try{
+            System.out.println("dfdsfsdfdsf");
+            // App.currentnote=System.getProperty("user.dir")+"\\src\\Resources\\Wallet_NFS315";
+        // System.setProperty("oracle.net.tns_admin",System.getProperty("user.dir")+"\\src\\Resources\\Wallet_NFS315");
         pds = PoolDataSourceFactory.getPoolDataSource();
         pds.setConnectionFactoryClassName(CONN_FACTORY_CLASS_NAME);
         pds.setURL(DB_URL);
@@ -60,8 +63,7 @@ public class DataBaseConnection {
         System.out.println("connected successfully");
         } catch (Exception e) {
             e.printStackTrace();
-            System.exit(0);
-            App.ShowNotificationWindow("Error",  "No internet connection please restart the app and try again.",null);
+            App.ShowNotificationWindow("Error",  e.getMessage(),null);
         }
     }
     public UserAccount getUser_account() {

@@ -9,10 +9,10 @@ public class Employer_Connection extends DataBaseConnection {
 
     public Employer_Connection(Boolean parent) {
         super(parent);
-        //TODO Auto-generated constructor stub
     }
     public ArrayList<Courier> getCourier(String status) {
-        String qry1 = "select * from POSTCOURIER where status in("+status+")  ORDER BY id ";
+        // TODO: please fix this
+        String qry1 = "select * from POSTCOURIER where status in("+status+") and deliveryLine="+getUser_account().+"  ORDER BY id ";
         try {
             result = statement.executeQuery(qry1);
             ArrayList<Courier> couriers = new ArrayList<Courier>();

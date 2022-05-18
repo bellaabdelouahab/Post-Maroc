@@ -44,7 +44,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="ChildPane1" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #0000000;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Profile">
+<Pane fx:id="ChildPane1" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #00000000;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Profile">
    <children>
       <Pane layoutX="24.0" prefHeight="500.0" prefWidth="392.0" style="-fx-background-color: #111222fe;">
          <children>

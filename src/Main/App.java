@@ -33,9 +33,9 @@ public class App extends Application {
     static DataBaseConnection connection;
     private static Stage pStage;
     private static Pane CurrentNotification;
+    public static String currentnote;
     public void Main(String[] args) throws Exception {
         launch(args);
-        
         
     }
     
@@ -48,7 +48,7 @@ public class App extends Application {
     // connect to database
     @Override
     public void start(Stage primaryStage) throws IOException {
-        
+        System.out.println(System.getProperty("user.dir"));
         FXMLLoader loader = new FXMLLoader(App.class.getResource("/Resources/VIEW/LogIn.fxml"));
         Pane root = loader.load();
         Login controller = loader.getController();

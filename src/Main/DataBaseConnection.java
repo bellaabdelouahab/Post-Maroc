@@ -17,10 +17,8 @@ import javafx.scene.shape.Line;
 import oracle.ucp.jdbc.PoolDataSource;
 import oracle.ucp.jdbc.PoolDataSourceFactory;
 
-// import BCrypt spring library
 
 public class DataBaseConnection {
-    // sql server connection
     final static String DB_URL="jdbc:oracle:thin:@nfs315_high?TNS_ADMIN=src/Resources/Wallet_NFS315";
     final static String DB_USER = "admin";
     final static String DB_PASSWORD = "Abdobella4624";
@@ -34,7 +32,6 @@ public class DataBaseConnection {
     public DataBaseConnection(Boolean parent) {
         if(!parent) return;
         try{
-            System.out.println("dfdsfsdfdsf");
             // App.currentnote=System.getProperty("user.dir")+"\\src\\Resources\\Wallet_NFS315";
         // System.setProperty("oracle.net.tns_admin",System.getProperty("user.dir")+"\\src\\Resources\\Wallet_NFS315");
         pds = PoolDataSourceFactory.getPoolDataSource();
@@ -162,6 +159,7 @@ public class DataBaseConnection {
             App.ShowNotificationWindow("info",  "User account successfully updated ",null);
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("failed to update user account postuser");
             App.ShowNotificationWindow("info",  "Unable to update try later or contact your administrator",null);
         }
     }

@@ -79,7 +79,7 @@ public class form_1 {
             return null;
         }
         System.out.println("passed validation");
-        create_mail.courier.setReceiver(new Receiver(receiverFirstname_,receiverLastname_,combobox_city.getValue()+" : "+receiveraddress_,receiverphonenbr_));
+        create_mail.courier.setReceiver(new Receiver(receiverFirstname_,receiverLastname_,combobox_city.getValue()+": "+receiveraddress_,receiverphonenbr_));
         create_mail.courier.setBackupphonenbr(backup_phonenbr_);
         return courier;
     }

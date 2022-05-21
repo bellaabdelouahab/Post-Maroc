@@ -18,10 +18,12 @@ public class CourierTable {
 
     private Employer_Connection connection;
     private ArrayList<Courier> couriers;
+    @FXML Pane ChildPaneXS;
     @FXML
     private VBox CourierVbox2;
     @FXML
     private VBox CourierVbox1;
+    private Pane InfoPane;
     
 
     public void SetData(Boolean Waiting, Boolean Confirmed,Boolean All) throws IOException {
@@ -48,6 +50,7 @@ public class CourierTable {
             CourierForm controller = loder.getController();
             controller.setConnection(connection);
             controller.courier = courier;
+            controller.PrentController = this;
             controller.Courier_id.setText(courier.getCourierId());
             controller.Courier_Address.setText(courier.getAddress());
             controller.Courier_Price.setText(courier.getPrice().toString());
@@ -73,7 +76,25 @@ public class CourierTable {
             }
         }
     }
-
+    public void ShowAllinfo(String CourierId){
+        FXMLLoader loder = new FXMLLoader(getClass().getResource("/Resources/VIEW/Employer/CourierInfo.fxml"));
+        Pane root = null;
+        try {
+            root = loder.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        CourierInfoForm controller = loder.getController();
+        controller.setConnection(connection);
+        controller.Fillinfo(CourierId);
+        controller.ParentController = this;
+        ChildPaneXS.getChildren().add(root);
+        InfoPane = root;
+    }
+    public void closeinfowindow(){
+        if(InfoPane==null)return;
+        ChildPaneXS.getChildren().remove(InfoPane);
+    }
 
     public void setConnection(Employer_Connection connection) {
         this.connection = connection;

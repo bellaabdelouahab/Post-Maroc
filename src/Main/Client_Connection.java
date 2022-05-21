@@ -15,35 +15,27 @@ public class Client_Connection extends DataBaseConnection{
     public Client_Connection(Boolean parent) {
         super(parent);
     }
-    private int mail_id;
     public void AddMail(String cin_, Courier courier){
         try {
-            String qry1 = "SELECT COUNT(*) FROM POSTCOURIER";
-            result = statement.executeQuery(qry1);
-            while (result.next()) {
-                mail_id = result.getInt(1);
-            }
-            String qry2 = "SELECT COUNT(*) FROM POSTCOURIER_RECEIVER";
-            result = statement.executeQuery(qry2);
-            int receiver_id=0;
-            while (result.next()) {
-                receiver_id = result.getInt(1);
-            }
-            // generate a 16bite random password
-            String qry3 = "INSERT INTO POSTCOURIER (ID, WEIGHT, ADDRESS, COLLECT_DATE, CLIENT_ID, BACKUPPHONENBR, PRICE,RECEIVER_ID,DISCRIPTION)"+
+            int mail_id = getnextCourierId();
+            int receiver_id = getnextReceiverId();
+            Receiver receiver = courier.getReceiver();
+            // get deliveryline
+            int deliveryLine_id = getdeliverylineId(user_account.getaddress(),receiver.getReceiverAddress());
+            String qry3 = "INSERT INTO POSTCOURIER_RECEIVER (RECEIVER_ID,FIRSTNAME,LASTNAME, ADDRESS,PHONENBR)"+
+                          "VALUES('"+receiver_id+"','"+receiver.getFirstName()+"','"+receiver.getLastName()+
+                          "' , '"+receiver.getReceiverAddress()+"' ,'"+receiver.getReceiverPhonenbr()+"')";
+            statement.executeUpdate(qry3);
+            String qry4 = "INSERT INTO POSTCOURIER (ID, WEIGHT, ADDRESS, COLLECT_DATE, CLIENT_ID, BACKUPPHONENBR, PRICE,RECEIVER_ID,DISCRIPTION,DELIVERYLINE)"+
                           "VALUES('"+"RR"+
                           String.format("%09d", mail_id)+
                           "MA"+"','"+courier.getWeight()+"' , '"+courier.getReceiver().getReceiverAddress()+
                           "' ,TO_DATE('"+courier.getCollectDate()+"', 'DD-MM-YYYY HH24:MI') , '"+
-                          cin_+"' , '"+courier.getBackupphonenbr()+"','"+courier.getPrice()+"','"+receiver_id+"','"+courier.getDiscription()+"')";
-            Receiver receiver = courier.getReceiver();
-            String qry4 = "INSERT INTO POSTCOURIER_RECEIVER (RECEIVER_ID,FIRSTNAME,LASTNAME, ADDRESS,PHONENBR)"+
-                          "VALUES('"+receiver_id+"','"+receiver.getFirstName()+"','"+receiver.getLastName()+
-                          "' , '"+receiver.getReceiverAddress()+"' ,'"+receiver.getReceiverPhonenbr()+"')";
+                          cin_+"' , '"+courier.getBackupphonenbr()+"','"+courier.getPrice()+"','"+
+                          receiver_id+"','"+courier.getDiscription()+"',"+deliveryLine_id+")";
+            
             statement.executeUpdate(qry4);
-            statement.executeUpdate(qry3);
             Button save_copy = new Button("Save A Copy");
-            // run pdfgenerator on action
             save_copy.setOnAction(e -> {
                 // ask user for outout directory
                 DirectoryChooser directoryChooser = new DirectoryChooser();
@@ -51,7 +43,6 @@ public class Client_Connection extends DataBaseConnection{
                 if (selectedDirectory == null) {
                     return;
                 }
-                
                 WriteToFile(
                     "RR"+String.format("%09d", mail_id)+"MA",
                     user_account.getfirstname(),
@@ -92,6 +83,23 @@ public class Client_Connection extends DataBaseConnection{
             e.printStackTrace();
             App.ShowNotificationWindow("info", "Mail not added double check your information",null);
         }
+    }
+    private int getnextReceiverId() throws SQLException {
+        String qry2 = "SELECT COUNT(*) FROM POSTCOURIER_RECEIVER";
+        result = statement.executeQuery(qry2);
+        
+        while (result.next()) {
+            return result.getInt(1);
+        }
+        return 0;
+    }
+    private int getnextCourierId() throws SQLException {
+        String qry1 = "SELECT COUNT(*) FROM POSTCOURIER";
+        result = statement.executeQuery(qry1);
+        while (result.next()) {
+            return result.getInt(1);
+        }
+        return 0;
     }
     private boolean WriteToFile(String CourierId, String user_FN, String user_LN, String user_address, String user_Phone, String FirstName, String LastName, String address, String phonenbr) {
         try {
@@ -134,5 +142,25 @@ public class Client_Connection extends DataBaseConnection{
                 App.ShowNotificationWindow("Error",  "Failed to get sources.",null);
             }
             return null;
+    }
+    public int getdeliverylineId(String Sender_Address,String Receiver_Address) {
+
+        // slice address till M
+        Sender_Address = Sender_Address.split(":")[0];
+        Receiver_Address = Receiver_Address.split(":")[0];
+        // qwery
+        String qry = "select id from POSTDELIVERY_LINE where lower(from_)='"+Sender_Address.toLowerCase()+"' and lower(to_)='"+Receiver_Address.toLowerCase()+"'";
+        try{
+            result = statement.executeQuery(qry);
+            while (result.next()) {
+                return result.getInt(1);
+            }
+            throw new Exception("Delivery line not found");
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(qry);
+        }
+        return 0;
     }
 }

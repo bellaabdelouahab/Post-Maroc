@@ -28,7 +28,7 @@
 
 .scroll-bar:horizontal .thumb,
 .scroll-bar:vertical .thumb {
-    -fx-background-color: white;
+    -fx-background-color: #2b2f3e;
     background-color: white;
     -fx-background-radius: 5em;
 }
@@ -38,7 +38,7 @@
     background-color: black;
 }
 .column_sd{
-     -fx-background-color: linear-gradient( to left top,#100c27 25%,  #2C3E50 100%);
+     -fx-background-color: #191e2c;/*linear-gradient( to left top,#343434 25%,  #565656 100%);*/
      background-color: linear-gradient( to left top,#0D324D 25%,  #7F5A83 100%);}
 
 .scrollpane .content{

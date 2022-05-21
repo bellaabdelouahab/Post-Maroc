@@ -15,7 +15,11 @@ public class CourierForm {
     Courier courier;
     @FXML
     Pane PlaceToShowStatus;
-
+    CourierTable PrentController;
+    @FXML
+    private void Show_more(){
+        PrentController.ShowAllinfo(Courier_id.getText());
+    }
     @FXML 
     private void SupportCourier(){
         connection.SupportCourier(Courier_id.getText());

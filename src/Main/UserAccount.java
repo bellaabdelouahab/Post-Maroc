@@ -45,7 +45,8 @@ public class UserAccount {
                 }
             }
             else if (this.accounttype.equals("employee")) {
-                String Qry = "select * from postemployee where lower(id)='" + this.id + "'";
+                String Qry = "select * from postemployee where lower(id)='" + this.id.toLowerCase() + "'";
+                System.out.println(Qry);
                 ResultSet result = statement.executeQuery(Qry);
                 while (result.next()) {
                     this.email = result.getString(2).toLowerCase();
@@ -54,7 +55,7 @@ public class UserAccount {
                     this.nationnality = result.getString(5).toLowerCase();
                     this.address = result.getString(6).toLowerCase();
                     this.phone = result.getString(7).toLowerCase();
-                    this.deliveryline = result.getInt(8);
+                    this.deliveryline =Integer.parseInt(result.getString("DELIVERYLINE_ID"));
                 }
             }
         } catch (SQLException e) {
@@ -107,7 +108,9 @@ public class UserAccount {
         }
         return profilepic;
     }
-    
+    public int getdeliveryline(){
+        return deliveryline;
+    }    
     // set acount details
     public void setemail(String email) {
         this.email = email;

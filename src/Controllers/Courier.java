@@ -13,8 +13,9 @@ public class Courier {
     private String receiver_id;
     private Receiver receiver;
     private String discription;
+    private String creationdate;
     // constructor
-    public Courier(String CourierId, Float Weight, String Address, String CollectDate, String ClientId, String Backupphonenbr, Float Price, String Status, String Receiver_id) {
+    public Courier(String CourierId, Float Weight, String Address, String CollectDate, String ClientId, String Backupphonenbr, Float Price, String Status, String Receiver_id, String creationdate, String discription) {
         this.CourierId = CourierId;
         this.Weight = Weight;
         this.Address = Address;
@@ -24,6 +25,8 @@ public class Courier {
         this.Price = Price;
         this.Status = Status;
         this.receiver_id = Receiver_id;
+        this.creationdate = creationdate;
+        this.discription = discription;
     }
     public Courier(){
         this.CourierId = "";
@@ -68,6 +71,9 @@ public class Courier {
     }
     public String getDiscription() {
         return discription;
+    }
+    public String getCreationdate() {
+        return creationdate;
     }
     // setters
     public void setCourierId(String CourierId) {

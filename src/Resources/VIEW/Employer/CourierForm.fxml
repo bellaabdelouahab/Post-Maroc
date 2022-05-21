@@ -5,75 +5,89 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="150.0" prefWidth="390.0" style="-fx-background-color: #00000000;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Employer.CourierForm">
+<Pane prefHeight="211.0" prefWidth="390.0" style="-fx-background-color: #00000000;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Employer.CourierForm">
    <children>
-      <Pane layoutX="12.5" layoutY="12.5" prefHeight="125.0" prefWidth="365.0" style="-fx-background-color: #222739; -fx-background-radius: 25; -fx-border-radius: 25;">
+      <Pane layoutX="13.0" layoutY="13.0" prefHeight="186.0" prefWidth="365.0" style="-fx-background-color: #2b2f3e; -fx-background-radius: 25; -fx-border-radius: 25;">
          <children>
-            <Pane layoutX="20.0" layoutY="8.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #00000000; -fx-border-color: #1c2031; -fx-border-radius: 7;">
+            <Pane layoutX="112.0" layoutY="9.0" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #00000000; -fx-border-color: #1c2031; -fx-border-radius: 7;">
                <children>
-                  <Label fx:id="Courier_id" alignment="CENTER" layoutX="6.0" layoutY="13.0" prefHeight="17.0" prefWidth="141.0">
+                  <Label fx:id="Courier_id" alignment="CENTER" layoutX="6.0" layoutY="20.0" prefHeight="17.0" prefWidth="141.0">
                      <font>
                         <Font name="Arial Black" size="12.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" layoutX="6.0" layoutY="-1.0" prefHeight="17.0" prefWidth="141.0" text="Courier id" textFill="#aea7a7">
+                  <Label alignment="CENTER" layoutX="6.0" layoutY="5.0" prefHeight="17.0" prefWidth="141.0" text="Courier id" textFill="#aea7a7">
                      <font>
                         <Font name="Arial Black" size="10.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Pane layoutX="199.0" layoutY="8.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #00000000; -fx-border-color: #1c2031; -fx-border-radius: 7;">
+            <Pane layoutX="19.0" layoutY="59.0" prefHeight="35.0" prefWidth="160.0" style="-fx-background-color: #00000000; -fx-border-color: #1c2031; -fx-border-radius: 7;">
                <children>
-                  <Label fx:id="Courier_Address" alignment="CENTER" layoutX="5.0" layoutY="13.0" prefHeight="17.0" prefWidth="141.0">
+                  <Label alignment="CENTER" layoutX="11.0" layoutY="15.0" prefHeight="17.0" prefWidth="141.0" text="Bella Test">
                      <font>
                         <Font name="Arial Black" size="12.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" layoutX="6.0" layoutY="-1.0" prefHeight="17.0" prefWidth="141.0" text="Address" textFill="#aea7a7">
+                  <Label alignment="CENTER" layoutX="10.0" layoutY="-1.0" prefHeight="17.0" prefWidth="141.0" text="Client Full Name" textFill="#aea7a7">
                      <font>
                         <Font name="Arial Black" size="10.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Pane layoutX="20.0" layoutY="46.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #00000000; -fx-border-color: #1c2031; -fx-border-radius: 7;">
+            <Pane layoutX="192.0" layoutY="60.0" prefHeight="35.0" prefWidth="160.0" style="-fx-background-color: #00000000; -fx-border-color: #1c2031; -fx-border-radius: 7;">
                <children>
-                  <Label fx:id="Courier_Price" alignment="CENTER" layoutX="6.0" layoutY="13.0" prefHeight="17.0" prefWidth="141.0">
+                  <Label fx:id="Courier_Address" alignment="CENTER" layoutX="5.0" layoutY="15.0" prefHeight="17.0" prefWidth="141.0">
                      <font>
                         <Font name="Arial Black" size="12.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" layoutX="6.0" layoutY="-1.0" prefHeight="17.0" prefWidth="141.0" text="Price" textFill="#aea7a7">
+                  <Label alignment="CENTER" layoutX="10.0" layoutY="-1.0" prefHeight="17.0" prefWidth="141.0" text="Receiver Address" textFill="#aea7a7">
                      <font>
                         <Font name="Arial Black" size="10.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Pane layoutX="200.0" layoutY="46.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #00000000; -fx-border-color: #1c2031; -fx-border-radius: 7;">
+            <Pane layoutX="20.0" layoutY="98.0" prefHeight="35.0" prefWidth="160.0" style="-fx-background-color: #00000000; -fx-border-color: #1c2031; -fx-border-radius: 7;">
                <children>
-                  <Label fx:id="Courier_Price2" alignment="CENTER" layoutX="6.0" prefHeight="17.0" prefWidth="141.0" text="Collect Date" textFill="#aea7a7">
+                  <Label fx:id="Courier_Price" alignment="CENTER" layoutX="9.0" layoutY="15.0" prefHeight="17.0" prefWidth="141.0">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="10.0" layoutY="-1.0" prefHeight="17.0" prefWidth="141.0" text="Price" textFill="#aea7a7">
                      <font>
                         <Font name="Arial Black" size="10.0" />
                      </font>
                   </Label>
-                  <Label fx:id="Courier_Collect_Date" alignment="CENTER" layoutX="5.0" layoutY="13.0" prefHeight="17.0" prefWidth="141.0" textFill="WHITE">
+               </children>
+            </Pane>
+            <Pane layoutX="192.0" layoutY="98.0" prefHeight="35.0" prefWidth="160.0" style="-fx-background-color: #00000000; -fx-border-color: #1c2031; -fx-border-radius: 7;">
+               <children>
+                  <Label fx:id="Courier_Price2" alignment="CENTER" layoutX="12.0" prefHeight="17.0" prefWidth="141.0" text="Collect Date" textFill="#aea7a7">
+                     <font>
+                        <Font name="Arial Black" size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="Courier_Collect_Date" alignment="CENTER" layoutX="5.0" layoutY="15.0" prefHeight="17.0" prefWidth="141.0" textFill="WHITE">
                      <font>
                         <Font name="Arial Black" size="9.0" />
                      </font></Label>
                </children>
             </Pane>
-            <Pane fx:id="PlaceToShowStatus" layoutX="106.0" layoutY="88.0" prefHeight="27.0" prefWidth="157.0">
+            <Pane fx:id="PlaceToShowStatus" layoutX="106.0" layoutY="140.0" prefHeight="27.0" prefWidth="157.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#SupportCourier" prefHeight="26.0" prefWidth="157.0" style="-fx-background-color: #28b367; -fx-background-radius: 0;" text="Support Courier" />
                </children>
             </Pane>
-            <Button layoutX="21.0" layoutY="88.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="79.0" style="-fx-background-color: #00000000; -fx-background-radius: 0; -fx-border-color: #78c4ec; -fx-border-width: 0.5;" text="Show more" textFill="#78c4ec">
+            <Button layoutX="21.0" layoutY="140.0" mnemonicParsing="false" onAction="#Show_more" prefHeight="27.0" prefWidth="79.0" style="-fx-background-color: #00000000; -fx-background-radius: 0; -fx-border-color: #78c4ec; -fx-border-width: 0.5;" text="Show more" textFill="#78c4ec">
                <font>
                   <Font name="Bauhaus 93" size="12.0" />
                </font></Button>
-            <Button layoutX="269.0" layoutY="88.0" mnemonicParsing="false" onAction="#CancelCourier" prefHeight="26.0" prefWidth="79.0" style="-fx-background-color: #00000000; -fx-background-radius: 0; -fx-border-radius: 0; -fx-border-color: #6e3535; -fx-border-width: 0.5;" text="Cancel" textFill="#6e3535">
+            <Button layoutX="269.0" layoutY="140.0" mnemonicParsing="false" onAction="#CancelCourier" prefHeight="26.0" prefWidth="79.0" style="-fx-background-color: #00000000; -fx-background-radius: 0; -fx-border-radius: 0; -fx-border-color: #6e3535; -fx-border-width: 0.5;" text="Cancel" textFill="#6e3535">
                <font>
                   <Font name="Bauhaus 93" size="12.0" />
                </font></Button>

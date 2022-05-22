@@ -6,10 +6,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane prefHeight="390.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Employer.CourierInfoForm">
+<Pane prefHeight="390.0" prefWidth="800.0" stylesheets="@../../CSS/Theme.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Employer.CourierInfoForm">
    <children>
-      <Pane layoutX="137.0" layoutY="55.0" prefHeight="280.0" prefWidth="530.0" style="-fx-background-color: #2b2f35; -fx-background-radius: 25; -fx-border-radius: 25;">
+      <Pane layoutX="137.0" layoutY="55.0" prefHeight="289.0" prefWidth="530.0" style="-fx-background-color: #2b2f35; -fx-background-radius: 25; -fx-border-radius: 25;">
          <children>
             <Pane layoutX="125.0" layoutY="6.0" prefHeight="40.0" prefWidth="286.0" style="-fx-background-color: #00000000; -fx-border-color: #1c2031; -fx-border-radius: 7;">
                <children>
@@ -165,7 +164,7 @@
                   </Label>
                </children>
             </Pane>
-            <Button layoutX="479.0" layoutY="5.0" mnemonicParsing="false" onAction="#Close" prefHeight="23.0" prefWidth="40.0" style="-fx-background-radius: 50; -fx-background-color: #00000000;">
+            <Button fx:id="closebutton" layoutX="479.0" layoutY="5.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" style="-fx-background-radius: 50; -fx-background-color: #00000000;">
                <graphic>
                   <FontAwesomeIconView glyphName="CLOSE" selectionStart="1" size="30" tabSize="6" wrappingWidth="23.571428298950195" />
                </graphic>

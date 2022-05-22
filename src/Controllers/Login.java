@@ -51,8 +51,6 @@ public class Login{
     private Pane subStage;
     @FXML
     private AnchorPane rightpane;
-    @FXML
-    private TextArea justf;
     public Stage presentStage;
     
     Preferences preferences;
@@ -73,11 +71,9 @@ public class Login{
         KeyFrame kf = new KeyFrame(Duration.seconds(1), new KeyValue(login_animation.progressProperty(),-(1), Interpolator.EASE_IN));
         tl.getKeyFrames().add(kf);
         tl.setOnFinished(t -> {
-            if (connection == null)   {tl.play();justf.setText(App.currentnote);}
-            // C:\Git-hub\Post-Maroc\out\artifacts\Post_Maroc_jar\src\Resources\Wallet_NFS315
+            if (connection == null)
+            tl.play();
             else{
-                // return;
-                // Start Data base Connection using javafx Task
                 Boolean isConnected = connection.Login_user(email_field,password_field,
                                                             email_error_line,email_error_circle,
                                                             password_error_line,password_error_circle);
@@ -135,12 +131,12 @@ public class Login{
     private void LoadNextPage() {
         subStage.getChildren().remove(rightpane);
         Stage stage = App.getpStage();
-        stage.setX(stage.getX()+49);
-        stage.setY(stage.getY()+49);
-        stage.setWidth(800);
-        stage.setHeight(500);
-        subStage.setLayoutX(0);
-        subStage.setLayoutY(0);
+        // stage.setX(stage.getX()+49);
+        // stage.setY(stage.getY()+49);
+        // stage.setWidth(800);
+        // stage.setHeight(500);
+        // subStage.setLayoutX(0);
+        // subStage.setLayoutY(0);
         Pane root= new Pane();
         if(this.connection.getUser_account().getaccounttype().equals("client")){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/VIEW/Client/Home.fxml"));

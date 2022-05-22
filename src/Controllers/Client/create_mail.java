@@ -18,7 +18,9 @@ public class create_mail{
     @FXML
     private void ValidateMail(){
         if (currentform==1){
-            Form1controller.validateForm1();
+            Courier Courier_cach = Form1controller.validateForm1();
+            if(Courier_cach==null)return;
+            courier=Courier_cach;
             SwitchToForm2();
             currentform++;
             return;
@@ -30,7 +32,12 @@ public class create_mail{
             // get details from text fields
             String cin_ = connection.getUser_account().getid();
             // add details 
-            connection.AddMail( cin_,courier);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                connection.AddMail( cin_,courier);
+                }
+            });
         } 
         
         

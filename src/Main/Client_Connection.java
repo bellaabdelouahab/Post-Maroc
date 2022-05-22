@@ -38,51 +38,61 @@ public class Client_Connection extends DataBaseConnection{
             Button save_copy = new Button("Save A Copy");
             save_copy.setOnAction(e -> {
                 // ask user for outout directory
-                DirectoryChooser directoryChooser = new DirectoryChooser();
-                File selectedDirectory = directoryChooser.showDialog(null);
-                if (selectedDirectory == null) {
-                    return;
-                }
-                WriteToFile(
-                    "RR"+String.format("%09d", mail_id)+"MA",
-                    user_account.getfirstname(),
-                    user_account.getlastname(),
-                    user_account.getaddress(),
-                    user_account.getphone(),
-                    receiver.getFirstName(),
-                    receiver.getLastName(),
-                    receiver.getReceiverAddress(),
-                    receiver.getReceiverPhonenbr()
-                );
-                //  open an exe 
-                try {
-                    System.out.println();
-                    Runtime.getRuntime().exec(
-                        System.getProperty("user.dir")+"\\src\\Main\\pythoncode\\CourierFormCreator.exe"
-                        );
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                    App.ShowNotificationWindow("Error",  "Failed to get sources from exe.",null);
-                }
-                try {
-                    System.out.println(selectedDirectory.getAbsolutePath()+"\\"+"RR"+String.format("%09d", mail_id)+"MA.docx");
-                    tools_.copyDirectory(
-                        new File(System.getProperty("user.dir")+"\\src\\Resources\\OutputCourierForm\\DocxForm\\result.docx"),
-                        new File(selectedDirectory.getAbsolutePath()+"\\"+"RR"+String.format("%09d", mail_id)+"MA.docx")
-                        );
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                    App.ShowNotificationWindow("Error",  "Failed to copy file go to \n"+
-                    System.getProperty("user.dir")+"\\src\\Resources\\OutputCourierForm\\DocxForm\\result.docx",null);
-                }
-                App.ShowNotificationWindow("info",  "Courier saved successfully ",null);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        SaveCopy(mail_id, receiver);
+                    }
+                });
             });
-            App.ShowNotificationWindow("info",  "Courier added successfully \n Your Courier id is : "+
-                                       "RR"+String.format("%09d", mail_id)+"MA",save_copy);
+            App.ExtraButton = save_copy;
+            App.CurrentNotification =  "Courier added successfully \n Your Courier id is : "+
+                                       "RR"+String.format("%09d", mail_id)+"MA";
+
         } catch (Exception e) {
             e.printStackTrace();
-            App.ShowNotificationWindow("info", "Mail not added double check your information",null);
+            App.CurrentNotification = "Mail not added double check your information";
         }
+    }
+    private void SaveCopy(int mail_id, Receiver receiver) {
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        File selectedDirectory = directoryChooser.showDialog(null);
+        if (selectedDirectory == null) {
+            return;
+        }
+        WriteToFile(
+            "RR"+String.format("%09d", mail_id)+"MA",
+            user_account.getfirstname(),
+            user_account.getlastname(),
+            user_account.getaddress(),
+            user_account.getphone(),
+            receiver.getFirstName(),
+            receiver.getLastName(),
+            receiver.getReceiverAddress(),
+            receiver.getReceiverPhonenbr()
+        );
+        //  open an exe 
+        try {
+            System.out.println();
+            Runtime.getRuntime().exec(
+                System.getProperty("user.dir")+"\\src\\Main\\pythoncode\\CourierFormCreator.exe"
+                );
+        } catch (IOException e1) {
+            e1.printStackTrace();
+            App.CurrentNotification = "Failed to get sources from exe.";
+        }
+        try {
+            System.out.println(selectedDirectory.getAbsolutePath()+"\\"+"RR"+String.format("%09d", mail_id)+"MA.docx");
+            tools_.copyDirectory(
+                new File(System.getProperty("user.dir")+"\\src\\Resources\\OutputCourierForm\\DocxForm\\result.docx"),
+                new File(selectedDirectory.getAbsolutePath()+"\\"+"RR"+String.format("%09d", mail_id)+"MA.docx")
+                );
+        } catch (IOException e1) {
+            e1.printStackTrace();
+            App.CurrentNotification = "Failed to copy file go to \n"+
+            System.getProperty("user.dir")+"\\src\\Resources\\OutputCourierForm\\DocxForm\\result.docx";
+        }
+        App.CurrentNotification =   "Courier saved successfully ";
     }
     private int getnextReceiverId() throws SQLException {
         String qry2 = "SELECT COUNT(*) FROM POSTCOURIER_RECEIVER";
@@ -118,7 +128,7 @@ public class Client_Connection extends DataBaseConnection{
             return true;
         } catch (IOException e) {
             e.printStackTrace();
-            App.ShowNotificationWindow("Error",  "File not Created",null);
+            App.CurrentNotification = "File not Created";
             return false;
         }
     }
@@ -139,7 +149,7 @@ public class Client_Connection extends DataBaseConnection{
                     return mail_id_;
                 }
             } catch (SQLException e) {
-                App.ShowNotificationWindow("Error",  "Failed to get sources.",null);
+                App.CurrentNotification = "Failed to get sources.";
             }
             return null;
     }

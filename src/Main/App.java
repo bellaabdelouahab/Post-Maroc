@@ -31,8 +31,11 @@ import javafx.util.Duration;
 // Main Class
 public class App extends Application {
     static DataBaseConnection connection;
+    static AnchorPane BaseWindow;
     private static Stage pStage;
-    private static Pane CurrentNotification;
+    public static String CurrentNotification;
+    public static Button ExtraButton;
+    private static Pane CurrentNotificationPane;
     public static String currentnote;
     public void Main(String[] args) throws Exception {
         launch(args);
@@ -72,11 +75,30 @@ public class App extends Application {
         primaryStage.setTitle("Courier Managment System");
         primaryStage.setScene(scene);
         primaryStage.centerOnScreen();
+        primaryStage.setResizable(false);
         primaryStage.show();
         new FadeIn(root).play();
-        primaryStage.setResizable(false);
         setpStage(primaryStage);
+        BaseWindow= (AnchorPane)(App.getpStage().getScene().getRoot());
+        NotificationUpdater();
     }
+    private void NotificationUpdater() {
+        Timeline Updater = new Timeline();
+        KeyValue kvs = new KeyValue(new Pane().layoutXProperty(), 0, Interpolator.EASE_IN);
+        KeyFrame kf = new KeyFrame(Duration.millis(100), kvs);
+        Updater.getKeyFrames().add(kf);
+        Updater.setOnFinished(e -> {
+            if(CurrentNotification==null){
+                Updater.play();
+                return;
+            }
+            ShowNotificationWindow(CurrentNotification);
+            CurrentNotification = null;
+            Updater.play();
+        });
+        Updater.play();
+    }
+
     public static void changeStage(Pane root){
         AnchorPane holder = new AnchorPane();
         holder.getChildren().add(root);
@@ -86,7 +108,7 @@ public class App extends Application {
         scene.setFill(Color.TRANSPARENT);
         App.getpStage().setScene(scene);
     }
-    public static void ShowNotificationWindow(String type, String message,Button ExtraButton) {
+    public static void ShowNotificationWindow( String message) {
         App.closeNotification();
         Pane X = new Pane();
         X.setPrefSize(300, 100);
@@ -126,12 +148,11 @@ public class App extends Application {
             }
         }
         X.getChildren().addAll(close_window, message_label, buttons_area);
-        AnchorPane anchor_pane= (AnchorPane)(App.getpStage().getScene().getRoot());
-        Pane x_ = (Pane) anchor_pane.getChildren().get(0);
+        Pane x_ = (Pane) BaseWindow.getChildren().get(0);
         Pane Xoutter = new Pane();
         Xoutter.setPrefSize(800, 500);
         Xoutter.getChildren().add(X);
-        CurrentNotification = Xoutter;
+        CurrentNotificationPane = Xoutter;
         x_.getChildren().add(Xoutter);
     }
 
@@ -142,7 +163,7 @@ public class App extends Application {
     public static void closeNotification() {
         AnchorPane anchor_pane= (AnchorPane)(App.getpStage().getScene().getRoot());
         Pane x_ = (Pane) anchor_pane.getChildren().get(0);
-        x_.getChildren().remove(CurrentNotification);
+        x_.getChildren().remove(CurrentNotificationPane);
     }
     public static Timeline GetButtonAnimtation(Pane Container,Circle rotatingcircle,int Endvalue1,int Endvalue2){
         Timeline timeline = new Timeline();
@@ -175,13 +196,13 @@ public class App extends Application {
             //  animation fadein
             new FadeIn(root).play();
             Stage stage = App.getpStage();
-                stage.setX(stage.getX()-49);
-                stage.setY(stage.getY()-49);
-                stage.setWidth(900);
-                stage.setHeight(600);
+                // stage.setX(stage.getX()-49);
+                // stage.setY(stage.getY()-49);
+                // stage.setWidth(900);
+                // stage.setHeight(600);
         } catch (IOException ex) {  
             // could not load login window
-            ShowNotificationWindow("Error", "Could not load login window", null);
+            CurrentNotification = "Could not load login window";
         }
     }
 
@@ -202,7 +223,7 @@ public class App extends Application {
             controller.setParent(parent);
         } catch (IOException e) {
             e.printStackTrace();
-            App.ShowNotificationWindow("error", "Could not load page close app and try again", null);
+            CurrentNotification =  "Could not load page close app and try again";
         }
     }
     

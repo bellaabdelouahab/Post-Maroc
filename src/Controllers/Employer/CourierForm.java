@@ -22,11 +22,11 @@ public class CourierForm {
     }
     @FXML 
     private void SupportCourier(){
-        connection.SupportCourier(Courier_id.getText());
+        connection.UpdateCourierStatus(Courier_id.getText(),"Supported");
     }
     @FXML
     private void CancelCourier(){
-        connection.CancelCourier(Courier_id.getText());
+        connection.UpdateCourierStatus(Courier_id.getText(),"Canceled");
     }
 
     public void setConnection(Employer_Connection connection) {

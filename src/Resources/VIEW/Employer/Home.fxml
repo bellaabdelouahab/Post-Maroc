@@ -2,6 +2,7 @@
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import io.github.gleidson28.GNAvatarView?>
+<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -11,8 +12,13 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #444444; -fx-background-radius: 25;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Employer.Home">
+<Pane fx:id="parent_pane" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #444444; -fx-background-radius: 25;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Employer.Home">
    <children>
+      <Label fx:id="msglabel" alignment="TOP_CENTER" layoutX="287.0" layoutY="463.0" prefHeight="28.0" prefWidth="239.0" style="-fx-background-color: #575656; -fx-background-radius: 10;" text="Search All Database" textAlignment="CENTER" textFill="#343434" wrapText="true">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
       <GNAvatarView layoutX="7.0" layoutY="6.0" onMouseClicked="#showProfile" prefHeight="30.0" prefWidth="30.0" stroke="#ffffff18" type="CIRCLE">
          <image>
             <Image url="@../../IMAGES/ProfilePictures/Default.png" />
@@ -101,47 +107,35 @@
       </Label>
       <Pane layoutX="250.0" layoutY="481.0" prefHeight="19.0" prefWidth="300.0" style="-fx-background-color: #343434;">
          <children>
-            <Pane layoutY="-20.0" prefHeight="42.0" prefWidth="300.0" style="-fx-background-color: #343434; -fx-background-radius: 100;">
+            <Pane layoutY="-20.0" prefHeight="42.0" prefWidth="300.0" style="-fx-background-color: #343434; -fx-background-radius: 100;" stylesheets="@../../CSS/Theme.css">
                <children>
-                  <Button layoutX="27.0" layoutY="5.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: #343434; -fx-background-radius: 25;">
-                     <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../IMAGES/search_database.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button layoutX="95.0" layoutY="5.0" mnemonicParsing="false" style="-fx-background-color: #343434; -fx-background-radius: 25;">
-                     <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../IMAGES/search_client.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button layoutX="163.0" layoutY="5.0" mnemonicParsing="false" style="-fx-background-color: #343434; -fx-background-radius: 25;">
-                     <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../IMAGES/expensive_price.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button layoutX="231.0" layoutY="5.0" mnemonicParsing="false" style="-fx-background-color: #343434; -fx-background-radius: 25;">
-                     <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../IMAGES/search_database.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
+                  <ImageView fx:id="icon1" fitHeight="25.0" fitWidth="25.0" layoutX="27.0" layoutY="5.0" onMouseClicked="#ShowCourierSearchForm" onMouseEntered="#set_text_1" onMouseExited="#unset_text" pickOnBounds="true" preserveRatio="true" styleClass="icons_">
+                     <image>
+                        <Image url="@../../IMAGES/search_database.png" />
+                     </image>
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                  </ImageView>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="97.0" layoutY="5.0" onMouseClicked="#ShowClientSearchForm" onMouseEntered="#set_text_2" onMouseExited="#unset_text" pickOnBounds="true" preserveRatio="true" styleClass="icons_">
+                     <image>
+                        <Image url="@../../IMAGES/search_client.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="167.0" layoutY="5.0" onMouseEntered="#set_text_3" onMouseExited="#unset_text" pickOnBounds="true" preserveRatio="true" styleClass="icons_">
+                     <image>
+                        <Image url="@../../IMAGES/expensive_price.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="237.0" layoutY="5.0" onMouseEntered="#set_text_4" onMouseExited="#unset_text" pickOnBounds="true" preserveRatio="true" styleClass="icons_">
+                     <image>
+                        <Image url="@../../IMAGES/search_database.png" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
          </children>
       </Pane>
+      <Pane fx:id="Extraoption" layoutX="69.0" layoutY="66.0" prefHeight="370.0" prefWidth="650.0" visible="false" />
    </children>
 </Pane>

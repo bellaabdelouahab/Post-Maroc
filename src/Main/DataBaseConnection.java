@@ -60,7 +60,8 @@ public class DataBaseConnection {
         System.out.println("connected successfully");
         } catch (Exception e) {
             e.printStackTrace();
-            App.ShowNotificationWindow("Error",  e.getMessage(),null);
+            System.out.println("notification added");
+            App.CurrentNotification="Connection Failed";
         }
     }
     public UserAccount getUser_account() {
@@ -75,7 +76,7 @@ public class DataBaseConnection {
         String email = "";
         // email validation
         if (!validateEmail(email = email_Field.getText())) {
-            App.ShowNotificationWindow("error","Please enter a valid email",null); ;
+            App.CurrentNotification = "Please enter a valid email" ;
             return false;
             
         }
@@ -107,7 +108,7 @@ public class DataBaseConnection {
         }
         catch (Exception e) {
             e.printStackTrace();
-            App.ShowNotificationWindow("error",  "Failed to get sources. check you internet connection",null);
+            App.CurrentNotification = "Failed to get sources. check you internet connection";
 
         }
         return false;
@@ -145,7 +146,7 @@ public class DataBaseConnection {
             }
             return cities_;
         } catch (SQLException e) {
-            App.ShowNotificationWindow("Error",  "Failed to get sources.",null);
+            App.CurrentNotification = "Failed to get sources.";
         }
         return null;
     }
@@ -156,11 +157,11 @@ public class DataBaseConnection {
                       "' where id='"+useraccount.getid()+"'";
         try {
             statement.executeUpdate(qry1);
-            App.ShowNotificationWindow("info",  "User account successfully updated ",null);
+            App.CurrentNotification =  "User account successfully updated ";
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("failed to update user account postuser");
-            App.ShowNotificationWindow("info",  "Unable to update try later or contact your administrator",null);
+            App.CurrentNotification = "Unable to update try later or contact your administrator";
         }
     }
 }

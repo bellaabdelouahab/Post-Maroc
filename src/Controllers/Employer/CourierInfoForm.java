@@ -3,6 +3,7 @@ package Controllers.Employer;
 import Controllers.Courier;
 import Main.Employer_Connection;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 public class CourierInfoForm {
@@ -18,10 +19,11 @@ public class CourierInfoForm {
     @FXML Label courierstatus;
     @FXML Label creationdate;
     @FXML Label courierdiscription;
+    @FXML Button closebutton;
     public CourierTable ParentController;
     
-    public void Fillinfo(String CourierId){
-        Courier courier = connection.getCourierbyid(CourierId);
+    public void Fillinfo(String CourierId,Boolean DeliveryLine){
+        Courier courier = connection.getCourierbyid(CourierId,DeliveryLine);
         Courier_id.setText(CourierId);
         Courier_Address.setText(courier.getAddress());
         Courier_Price.setText(courier.getPrice()+" DH");
@@ -34,10 +36,6 @@ public class CourierInfoForm {
         creationdate.setText(courier.getCreationdate());
         courierdiscription.setText(courier.getDiscription());
 
-    }
-    @FXML
-    private void Close(){
-        ParentController.closeinfowindow();
     }
     public void setConnection(Employer_Connection connection) {
         this.connection = connection;

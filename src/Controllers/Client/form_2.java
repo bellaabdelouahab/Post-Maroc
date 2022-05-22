@@ -46,7 +46,7 @@ public class form_2 implements Initializable{
             String price_ = String.valueOf(price);
             Pricefield.setText(price_);
         }catch(Exception E){
-            App.ShowNotificationWindow("Error",  "Please enter a valid weight, It should be a numirecal value between 0 and 10",null);
+            App.CurrentNotification = "Please enter a valid weight, It should be a numirecal value between 0 and 10";
             // TODO : add error message
             return;
         }
@@ -61,7 +61,7 @@ public class form_2 implements Initializable{
         }
         catch(Exception E){
             show_error(weight);
-            App.ShowNotificationWindow("Error",  "Please enter a valid weight",null);
+            App.CurrentNotification = "Please enter a valid weight";
             return null;
         }
         // get date from text fields
@@ -71,7 +71,7 @@ public class form_2 implements Initializable{
         // check if the entered date bigger  current date
         if(!collect_date_.isAfter(LocalDate.now()) ){
             show_error(collect_date);
-            App.ShowNotificationWindow("Error",  "Please enter a valid date",null);
+            App.CurrentNotification = "Please enter a valid date";
             System.out.println(collect_date_+"<==>"+LocalDate.now());
             return null;
         }
@@ -112,9 +112,8 @@ public class form_2 implements Initializable{
         System.out.println("action added");
         weight.setOnKeyReleased((e) -> {
             // check if enter was clicked 
-            if(e.getCode().equals(javafx.scene.input.KeyCode.ENTER)){
-                CheckPriceField();
-            }
+            if(!e.getCode().equals(javafx.scene.input.KeyCode.ENTER))return;
+            CheckPriceField();
         });
         // add hours to the combohour
         for(int i = 8; i < 18; i++){

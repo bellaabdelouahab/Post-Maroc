@@ -120,7 +120,13 @@ public class Profile implements Initializable {
         useraccount.setaddress(Adress.getText());
         useraccount.setphone(Phonenumber.getText());
         useraccount.setjobtitle(jobtitle.getText());
-        connection.updateUser_account(useraccount);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                connection.updateUser_account(useraccount);
+            }
+        });
+        // connection.updateUser_account(useraccount);
         try{
         user_id = connection.getUser_account().getid();
         File file = new File(System.getProperty("user.dir")+ "/src/Resources/IMAGES/ProfilePictures/"+user_id+".png");

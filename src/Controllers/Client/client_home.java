@@ -33,7 +33,7 @@ public class client_home {
             App.changeStage(root);
         } catch (IOException e) {
             e.printStackTrace();
-            App.ShowNotificationWindow("error", "Could not load page close app and try again", null);
+            App.CurrentNotification =  "Could not load page close app and try again";
         }
     }
     public Client_Connection getConnection() {
@@ -55,13 +55,13 @@ public class client_home {
                 controller.SetData();
             } catch (SQLException e) {
                 e.printStackTrace();
-                App.ShowNotificationWindow("error", "Could not load page close app and try again", null);
+                App.CurrentNotification = "Could not load page close app and try again";
                 return;
             }
         } 
         catch (IOException e1) {
             e1.printStackTrace();
-            App.ShowNotificationWindow("error", "Could not load data close app and try again", null);
+            App.CurrentNotification = "Could not load data close app and try again";
         }      
     }
     @FXML

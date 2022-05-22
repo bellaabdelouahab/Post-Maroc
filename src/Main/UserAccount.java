@@ -21,6 +21,7 @@ public class UserAccount {
     private String gender;
     private String accounttype;
     private int deliveryline;
+    private String jobclass;
 
     public UserAccount(String username, String password,String id,String accounttype) {
         this.username = username;
@@ -56,6 +57,7 @@ public class UserAccount {
                     this.address = result.getString(6).toLowerCase();
                     this.phone = result.getString(7).toLowerCase();
                     this.deliveryline =Integer.parseInt(result.getString("DELIVERYLINE_ID"));
+                    this.jobclass = result.getString("JOBCLASS");
                 }
             }
         } catch (SQLException e) {
@@ -111,6 +113,9 @@ public class UserAccount {
     public int getdeliveryline(){
         return deliveryline;
     }    
+    public String getjobclass(){
+        return jobclass;
+    }
     // set acount details
     public void setemail(String email) {
         this.email = email;

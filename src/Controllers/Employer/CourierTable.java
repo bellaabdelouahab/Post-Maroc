@@ -23,7 +23,6 @@ public class CourierTable {
     private VBox CourierVbox2;
     @FXML
     private VBox CourierVbox1;
-    private Pane InfoPane;
     
 
     public void SetData(Boolean Waiting, Boolean Confirmed,Boolean All) throws IOException {
@@ -78,22 +77,23 @@ public class CourierTable {
     }
     public void ShowAllinfo(String CourierId){
         FXMLLoader loder = new FXMLLoader(getClass().getResource("/Resources/VIEW/Employer/CourierInfo.fxml"));
-        Pane root = null;
+        
         try {
-            root = loder.load();
+            Pane root = loder.load();
+            CourierInfoForm controller = loder.getController();
+            controller.setConnection(connection);
+            controller.Fillinfo(CourierId,true);
+            controller.closebutton.setOnAction(e->{
+                ChildPaneXS.getChildren().remove(root);
+            });
+            root.setOnMouseClicked(arg0->{
+                ChildPaneXS.getChildren().remove(root);
+            });
+            ChildPaneXS.getChildren().add(root);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        CourierInfoForm controller = loder.getController();
-        controller.setConnection(connection);
-        controller.Fillinfo(CourierId);
-        controller.ParentController = this;
-        ChildPaneXS.getChildren().add(root);
-        InfoPane = root;
-    }
-    public void closeinfowindow(){
-        if(InfoPane==null)return;
-        ChildPaneXS.getChildren().remove(InfoPane);
+        
     }
 
     public void setConnection(Employer_Connection connection) {

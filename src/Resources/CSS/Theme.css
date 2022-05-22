@@ -203,3 +203,10 @@
 .combo-box-bg, .text-field{
     -fx-background-color:  #22222299;
 }
+.combo-box-css .list-cell{
+    -fx-text-fill: #f7af8e; 
+    /* -fx-background-color:  #22222299; */
+}
+.icons_:hover{
+    -fx-blend-mode: soft-light;
+}

@@ -89,10 +89,12 @@ public class App extends Application {
         Updater.getKeyFrames().add(kf);
         Updater.setOnFinished(e -> {
             if(CurrentNotification==null){
+                // System.out.println("");
                 Updater.play();
                 return;
             }
             ShowNotificationWindow(CurrentNotification);
+            System.out.println("showing");
             CurrentNotification = null;
             Updater.play();
         });
@@ -101,6 +103,7 @@ public class App extends Application {
 
     public static void changeStage(Pane root){
         AnchorPane holder = new AnchorPane();
+        holder.getChildren().clear();
         holder.getChildren().add(root);
         
         holder.setStyle("-fx-background:#00000000");
@@ -148,7 +151,8 @@ public class App extends Application {
             }
         }
         X.getChildren().addAll(close_window, message_label, buttons_area);
-        Pane x_ = (Pane) BaseWindow.getChildren().get(0);
+        AnchorPane holder = (AnchorPane)(App.getpStage().getScene().getRoot());
+        Pane x_ = (Pane) holder.getChildren().get(0);
         Pane Xoutter = new Pane();
         Xoutter.setPrefSize(800, 500);
         Xoutter.getChildren().add(X);

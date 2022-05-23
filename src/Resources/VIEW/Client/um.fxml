@@ -67,6 +67,6 @@
             <FontAwesomeIconView glyphName="HOME" onMouseClicked="#switchToHomePage" selectionStart="1" size="30" tabSize="6" wrappingWidth="23.571428298950195" />
          </graphic>
       </Button>
-      <Button fx:id="B_ValidateForm1" layoutX="284.0" layoutY="454.0" mnemonicParsing="false" onAction="#ValidateMail" prefHeight="33.0" prefWidth="277.0" style="-fx-background-color: #fbdf08;" text="Validate" />
+      <Button fx:id="B_ValidateForm1" layoutX="259.0" layoutY="454.0" mnemonicParsing="false" onAction="#ValidateMail" prefHeight="33.0" prefWidth="277.0" style="-fx-background-color: #fbdf08;" text="Validate" />
    </children>
 </Pane>

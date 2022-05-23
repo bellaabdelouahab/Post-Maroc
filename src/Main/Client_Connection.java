@@ -17,6 +17,7 @@ public class Client_Connection extends DataBaseConnection{
     }
     public void AddMail(String cin_, Courier courier){
         try {
+            System.out.println("Start");
             int mail_id = getnextCourierId();
             int receiver_id = getnextReceiverId();
             Receiver receiver = courier.getReceiver();
@@ -35,19 +36,16 @@ public class Client_Connection extends DataBaseConnection{
                           receiver_id+"','"+courier.getDiscription()+"',"+deliveryLine_id+")";
             
             statement.executeUpdate(qry4);
+            System.out.println("Show save a copy");
             Button save_copy = new Button("Save A Copy");
             save_copy.setOnAction(e -> {
                 // ask user for outout directory
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        SaveCopy(mail_id, receiver);
-                    }
-                });
+                SaveCopy(mail_id, receiver);
             });
             App.ExtraButton = save_copy;
             App.CurrentNotification =  "Courier added successfully \n Your Courier id is : "+
                                        "RR"+String.format("%09d", mail_id)+"MA";
+            System.out.println("showDialog");
 
         } catch (Exception e) {
             e.printStackTrace();

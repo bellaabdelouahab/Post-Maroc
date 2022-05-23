@@ -125,7 +125,7 @@ public class Profile implements Initializable {
             public void run() {
                 connection.updateUser_account(useraccount);
             }
-        });
+        }).start();
         // connection.updateUser_account(useraccount);
         try{
         user_id = connection.getUser_account().getid();

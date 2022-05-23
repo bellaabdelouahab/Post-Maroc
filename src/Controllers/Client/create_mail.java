@@ -37,7 +37,7 @@ public class create_mail{
                 public void run() {
                 connection.AddMail( cin_,courier);
                 }
-            });
+            }).start();;
         } 
         
         

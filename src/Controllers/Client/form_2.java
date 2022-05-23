@@ -109,7 +109,6 @@ public class form_2 implements Initializable{
     public void initialize(URL arg0, ResourceBundle arg1) {
         LocalDate DateIn = LocalDate.now();
         collect_date.setValue(DateIn.plusDays(1));
-        System.out.println("action added");
         weight.setOnKeyReleased((e) -> {
             // check if enter was clicked 
             if(!e.getCode().equals(javafx.scene.input.KeyCode.ENTER))return;

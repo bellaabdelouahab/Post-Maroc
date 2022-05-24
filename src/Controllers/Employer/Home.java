@@ -1,6 +1,8 @@
 package Controllers.Employer;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 
@@ -12,6 +14,7 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -24,7 +27,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
-public class Home {
+public class Home implements Initializable{
     private Employer_Connection connection;
 
     @FXML
@@ -33,7 +36,6 @@ public class Home {
     private Circle Pane1_circle_animation;
     @FXML
     private Label msglabel;
-    @FXML Pane Extraoption;
     @FXML
     private Pane parent_pane;
     @FXML private ImageView icon1;
@@ -81,15 +83,19 @@ public class Home {
     private void ShowClientSearchForm(){
         if(!connection.getUser_account().getjobclass().equals("A")){
             App.CurrentNotification = "You are not allowed to access this page";
+            return;
         }
-        
-        GaussianBlur blur2 = new GaussianBlur();
-        blur2.setRadius(10);
-        parent_pane.setEffect(blur2);
+        Pane ToolWindow = new Pane();
+        ToolWindow.setPrefSize(800, 420);
+        ToolWindow.setLayoutX(0);
+        ToolWindow.setLayoutY(40);
+        GaussianBlur blur =  new GaussianBlur();
+        blur.setRadius(4);
+        parent_pane.setEffect(blur);
         String style_ = "-fx-background-color: #11111199;-fx-border-raduis:0;-fx-text-fill: white;-fx-font-size: 10px;-fx-font-family: 'Segoe UI';-fx-border-radius:0;";
         Pane search = new Pane();
         search.setPrefSize(280, 113);
-        search.setLayoutX(192);
+        search.setLayoutX(260);
         search.setLayoutY(200);
         search.setStyle("-fx-background-color:#575656;-fx-background-radius:25");
         TextField search_text = new TextField();
@@ -109,7 +115,7 @@ public class Home {
             if(search_text.getText().equals("")){
                 return;
             }
-            Extraoption.setVisible(false);
+            // App.BaseWindow.getChildren().remove(ToolWindow);
             FXMLLoader loder = new FXMLLoader(getClass().getResource("/Resources/VIEW/Employer/ClientInfo.fxml"));
             try {
                 Pane root = loder.load();
@@ -117,35 +123,45 @@ public class Home {
                 controller.setConnection(connection);   
                 controller.fillinfo(search_text.getText());
                 controller.closebutton.setOnAction(e1->{
-                    parent_pane.getChildren().remove(root);
+                    App.BaseWindow.getChildren().remove(ToolWindow);
+                    parent_pane.setEffect(null);
                 });
                 root.setOnMouseClicked(arg0->{
-                    parent_pane.getChildren().remove(root);
+                    App.BaseWindow.getChildren().remove(ToolWindow);
+                    parent_pane.setEffect(null);
                 });
-                root.setLayoutY(60);
-                parent_pane.getChildren().add(root);
+                ToolWindow.getChildren().clear();
+                ToolWindow.getChildren().add(root);
             } catch (IOException e1) {
                 e1.printStackTrace();
                 App.CurrentNotification = "Couldn't load the page, please report essue";
             }
         });
-        Extraoption.setVisible(true);
-        Extraoption.setOnMouseClicked(arg0->{
-            Extraoption.getChildren().clear();
-            Extraoption.setVisible(false);
+        ToolWindow.setOnMouseClicked(arg0->{
+            parent_pane.setEffect(null);
+            App.BaseWindow.getChildren().remove(ToolWindow);
         });
         search.getChildren().addAll(search_text,search_button);
-        Extraoption.getChildren().add(search);
+        ToolWindow.getChildren().add(search);
+        App.BaseWindow.getChildren().add(ToolWindow);
     }
     @FXML
     private void ShowCourierSearchForm(){
         if(!connection.getUser_account().getjobclass().equals("A")){
             App.CurrentNotification = "You are not allowed to access this page";
+            return;
         }
+        Pane ToolWindow = new Pane();
+        ToolWindow.setPrefSize(800, 420);
+        ToolWindow.setLayoutX(0);
+        ToolWindow.setLayoutY(40);
+        GaussianBlur blur =  new GaussianBlur();
+        blur.setRadius(4);
+        parent_pane.setEffect(blur);
         String style_ = "-fx-background-color: #11111199;-fx-border-raduis:0;-fx-text-fill: white;-fx-font-size: 10px;-fx-font-family: 'Segoe UI';-fx-border-radius:0;";
         Pane search = new Pane();
         search.setPrefSize(280, 113);
-        search.setLayoutX(192);
+        search.setLayoutX(260);
         search.setLayoutY(200);
         search.setStyle("-fx-background-color:#575656;-fx-background-radius:25");
         TextField search_text = new TextField();
@@ -178,7 +194,6 @@ public class Home {
             if(search_text.getText().equals("")){
                 return;
             }
-            Extraoption.setVisible(false);
             FXMLLoader loder = new FXMLLoader(getClass().getResource("/Resources/VIEW/Employer/courierinfo.fxml"));
             try {
                 Pane root = loder.load();
@@ -203,31 +218,35 @@ public class Home {
                 validate.setStyle(style_);
                 validate.setOnAction(value->{
                     connection.UpdateCourierStatus(controller.Courier_id.getText(),status_menu.getValue());
-                    parent_pane.getChildren().remove(root);
+                    App.BaseWindow.getChildren().remove(ToolWindow);
+                    parent_pane.setEffect(null);
                 });
                 root.getChildren().addAll(status,status_menu,validate);
-                controller.setConnection(connection);   
-                controller.Fillinfo("RR"+search_text.getText()+"MA",false);
+                controller.setConnection(connection); 
                 controller.closebutton.setOnAction(e1->{
-                    parent_pane.getChildren().remove(root);
+                    App.BaseWindow.getChildren().remove(ToolWindow);
+                    parent_pane.setEffect(null);
                 });
                 root.setOnMouseClicked(arg0->{
-                    parent_pane.getChildren().remove(root);
-                });
-                root.setLayoutY(90);
-                parent_pane.getChildren().add(root);
+                    App.BaseWindow.getChildren().remove(ToolWindow);
+                    parent_pane.setEffect(null);
+                });  
+                controller.Fillinfo("RR"+search_text.getText()+"MA",false);
+                
+                ToolWindow.getChildren().add(root);
+                
             } catch (IOException e1) {
                 e1.printStackTrace();
                 App.CurrentNotification = "Couldn't load the page, please report essue";
             }
             });
-        Extraoption.setVisible(true);
-        Extraoption.setOnMouseClicked(arg0->{
-            Extraoption.getChildren().clear();
-            Extraoption.setVisible(false);
+        ToolWindow.setOnMouseClicked(arg0->{
+            App.BaseWindow.getChildren().remove(ToolWindow);          
+            parent_pane.setEffect(null);
         });
         search.getChildren().addAll(search_text,search_button,RR,MA);
-        Extraoption.getChildren().add(search);
+        ToolWindow.getChildren().add(search);
+        App.BaseWindow.getChildren().add(ToolWindow);
     }
     // create a setter for Data Base Connection
     public void setConnection(Employer_Connection connection){
@@ -293,11 +312,16 @@ public class Home {
     }
     @FXML   
     private void MinimizeWindow() {
-        App.getpStage().setIconified(true);
+        App.getprimaryStage().setIconified(true);
     }
     @FXML
     private void Logout(){
         App.Logout();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("Employer Dashboard");
     }
 
 }

@@ -16,6 +16,10 @@ public class ClientInfoForm {
     public void fillinfo(String Clientid){
         ClientAccount client = connection.getClient(Clientid);
         // set data
+        if(client==null) {
+            closebutton.fire();
+            return;
+        }
         clientid = client.getId();
         email.setText(client.getemail());
         firstname.setText(client.getfirstname());

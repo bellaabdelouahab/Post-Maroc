@@ -21,7 +21,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressIndicator;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -58,6 +57,7 @@ public class Login{
     ProgressIndicator login_animation;
     
     Task<Void> task;
+    // TODO : Task
 
     @FXML
     private void StartConnection() {
@@ -115,7 +115,7 @@ public class Login{
         System.exit(0);
     }
     public void MinimizeWindow() {
-        App.getpStage().setIconified(true);
+        App.getprimaryStage().setIconified(true);
     }
     public void initializ() {
         // check for data in seassion
@@ -130,13 +130,6 @@ public class Login{
     }
     private void LoadNextPage() {
         subStage.getChildren().remove(rightpane);
-        Stage stage = App.getpStage();
-        // stage.setX(stage.getX()+49);
-        // stage.setY(stage.getY()+49);
-        // stage.setWidth(800);
-        // stage.setHeight(500);
-        // subStage.setLayoutX(0);
-        // subStage.setLayoutY(0);
         Pane root= new Pane();
         if(this.connection.getUser_account().getaccounttype().equals("client")){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/VIEW/Client/Home.fxml"));
@@ -172,16 +165,6 @@ public class Login{
         preferences = Preferences.userRoot().node("Login");
         preferences.put("email", email_field.getText());
         preferences.put("password", password_field.getText());
-    }
-
-
-
-
-    public AnchorPane getWindowRoot() {
-        return WindowRoot;
-    }
-    public void setWindowRoot(AnchorPane windowRoot) {
-        this.WindowRoot = windowRoot;
     }
     public DataBaseConnection getConnection() {
         return connection;

@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import Controllers.Courier;
-import javafx.scene.control.TextField;
 
 public class Employer_Connection extends DataBaseConnection {
 
@@ -65,6 +64,7 @@ public class Employer_Connection extends DataBaseConnection {
                 // create a courier class with previous information
                 return new Courier(id, weight, address, collect_date, client_id, backup_phonenbr, price,status_, receiver_id, creationdate, discription);   
             }
+            App.CurrentNotification = "Courier Does Not Exist.";
         } catch (SQLException e) {
             App.CurrentNotification =  "Failed to get sources,courier not found.";
             
@@ -112,9 +112,11 @@ public class Employer_Connection extends DataBaseConnection {
                 String phonenbr = result.getString(9);
                 return new ClientAccount(id,email, firstname, lastname, nationnality,gender,address,jobtitle,phonenbr);
             }
+            App.CurrentNotification = "Client Dose not Exist";
         }
         catch(Exception e){
             System.out.println("error at emp con line 115");
+            App.CurrentNotification = "Connection Problem, Please Restart App";
         }
         return null;
     }

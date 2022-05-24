@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import Main.App;
 import Main.DataBaseConnection;
 import Main.UserAccount;
 import io.github.gleidson28.GNAvatarView;
@@ -40,7 +41,6 @@ public class Profile implements Initializable {
     public String compte;
     BufferedImage ImagebBufferedImage;
     public GNAvatarView HomeProfilePicture;
-    private Pane parent;
     private String user_id;
     private String[] namearray;
 
@@ -51,16 +51,8 @@ public class Profile implements Initializable {
         timeline.getKeyFrames().add(kf);
         timeline.play();
         timeline.setOnFinished(event -> {
-            parent.getChildren().remove(ChildPane1);
+            App.BaseWindow.getChildren().remove(ChildPane1);
         });
-    }
-
-    public Pane getParent() {
-        return parent;
-    }
-
-    public void setParent(Pane parent) {
-        this.parent = parent;
     }
 
     public void setConnection(DataBaseConnection connection) {

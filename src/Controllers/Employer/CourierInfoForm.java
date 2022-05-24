@@ -24,6 +24,10 @@ public class CourierInfoForm {
     
     public void Fillinfo(String CourierId,Boolean DeliveryLine){
         Courier courier = connection.getCourierbyid(CourierId,DeliveryLine);
+        if(courier==null) {
+            closebutton.fire();
+            return;
+        }
         Courier_id.setText(CourierId);
         Courier_Address.setText(courier.getAddress());
         Courier_Price.setText(courier.getPrice()+" DH");

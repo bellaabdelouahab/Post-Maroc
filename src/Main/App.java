@@ -1,7 +1,6 @@
 package Main;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import com.jfoenix.controls.JFXButton;
 
@@ -14,6 +13,7 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -31,27 +31,25 @@ import javafx.util.Duration;
 // Main Class
 public class App extends Application {
     static DataBaseConnection connection;
-    static AnchorPane BaseWindow;
-    private static Stage pStage;
+    public static AnchorPane BaseWindow;
+    private static Stage primaryStage;
     public static String CurrentNotification;
     public static Button ExtraButton;
     private static Pane CurrentNotificationPane;
-    public static String currentnote;
     public void Main(String[] args) throws Exception {
         launch(args);
         
     }
     
-    public static Stage getpStage() {
-        return pStage;
+    public static Stage getprimaryStage() {
+        return primaryStage;
     }
-    public static void setpStage(Stage pStage) {
-        App.pStage = pStage;
+    public static void setprimaryStage(Stage primaryStage) {
+        App.primaryStage = primaryStage;
     }
     // connect to database
     @Override
     public void start(Stage primaryStage) throws IOException {
-        System.out.println(System.getProperty("user.dir"));
         FXMLLoader loader = new FXMLLoader(App.class.getResource("/Resources/VIEW/LogIn.fxml"));
         Pane root = loader.load();
         Login controller = loader.getController();
@@ -69,7 +67,10 @@ public class App extends Application {
         controller.setConnection(connection);
         controller.initializ();
         connection = controller.getConnection();
-        Scene scene = new Scene(root);
+        BaseWindow = new AnchorPane();
+        BaseWindow.getChildren().add(root);
+        BaseWindow.setStyle("-fx-border-radius:25;-fx-background-radius:25;-fx-background-color:#00000000");
+        Scene scene = new Scene(BaseWindow);
         scene.setFill(Color.TRANSPARENT);
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setTitle("Courier Managment System");
@@ -78,8 +79,7 @@ public class App extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
         new FadeIn(root).play();
-        setpStage(primaryStage);
-        BaseWindow= (AnchorPane)(App.getpStage().getScene().getRoot());
+        setprimaryStage(primaryStage);
         NotificationUpdater();
     }
     private void NotificationUpdater() {
@@ -89,7 +89,6 @@ public class App extends Application {
         Updater.getKeyFrames().add(kf);
         Updater.setOnFinished(e -> {
             if(CurrentNotification==null){
-                // System.out.println("");
                 Updater.play();
                 return;
             }
@@ -102,14 +101,8 @@ public class App extends Application {
     }
 
     public static void changeStage(Pane root){
-        AnchorPane holder = new AnchorPane();
-        holder.getChildren().clear();
-        holder.getChildren().add(root);
-        
-        holder.setStyle("-fx-background:#00000000");
-        Scene scene = new Scene(holder);
-        scene.setFill(Color.TRANSPARENT);
-        App.getpStage().setScene(scene);
+        BaseWindow.getChildren().clear();
+        BaseWindow.getChildren().add(root);
     }
     public static void ShowNotificationWindow( String message) {
         App.closeNotification();
@@ -117,9 +110,9 @@ public class App extends Application {
         X.setPrefSize(300, 100);
         X.setLayoutX(250);
         X.setLayoutY(200);
-        X.setStyle("-fx-background-radius:25;-fx-background-color:gray");
+        X.setStyle("-fx-background-radius:10;-fx-background-color:gray");
         JFXButton close_window = new JFXButton("X");
-        close_window.setStyle("-fx-background-radius:25;-fx-background-color:#594875;-fx-text-fill:white");
+        close_window.setStyle("-fx-background-radius:20;-fx-background-color:#343434;-fx-text-fill:white");
         close_window.setLayoutX(270);
         close_window.setLayoutY(7);
         close_window.setOnAction(e -> App.closeNotification());
@@ -131,43 +124,39 @@ public class App extends Application {
         message_label.setLayoutY(10);
         message_label.setWrapText(true);
         FlowPane buttons_area = new FlowPane();
+        
         buttons_area.setPrefSize(250, 25);
         buttons_area.setLayoutX(25);
-        buttons_area.setLayoutY(70);
+        buttons_area.setLayoutY(60);
         buttons_area.setAlignment(Pos.CENTER);
+        String style = "-fx-background-radius:10;-fx-border-radius:10;-fx-background-color:#434343";
         Button CloseNotification = new Button("OK");
+        CloseNotification.setStyle(style);
+        CloseNotification.setPrefWidth(65);
+        CloseNotification.setPadding(new Insets(3, 10, 3, 10));
+        FlowPane.setMargin(CloseNotification, new Insets(0, 10, 0, 10));
         // close notification window
         CloseNotification.setOnAction(E -> closeNotification());
-        ArrayList<Button> ExtraButtons = new ArrayList<Button>();
-        ExtraButtons.add(CloseNotification);
+        buttons_area.getChildren().add(CloseNotification);
         if(ExtraButton != null){
-        ExtraButtons.add(ExtraButton);
-        }
-        // loop over all buttons
-        if(ExtraButtons!=null){
-            for (Button btn : ExtraButtons) {
-                btn.setStyle(App.getStyle());
-                buttons_area.getChildren().add(btn);
-            }
+            ExtraButton.setStyle(style);
+            ExtraButton.setPadding(new Insets(3, 10, 3, 10));
+            buttons_area.getChildren().add(ExtraButton);
+            
         }
         X.getChildren().addAll(close_window, message_label, buttons_area);
-        AnchorPane holder = (AnchorPane)(App.getpStage().getScene().getRoot());
-        Pane x_ = (Pane) holder.getChildren().get(0);
         Pane Xoutter = new Pane();
         Xoutter.setPrefSize(800, 500);
         Xoutter.getChildren().add(X);
+        Xoutter.setOnMouseClicked(e->{
+            closeNotification();
+        });
         CurrentNotificationPane = Xoutter;
-        x_.getChildren().add(Xoutter);
-    }
-
-    private static String getStyle() {
-        return "-fx-padding: 0 25 0 25;-fx-background-radius: 8;";
+        BaseWindow.getChildren().add(Xoutter);
     }
 
     public static void closeNotification() {
-        AnchorPane anchor_pane= (AnchorPane)(App.getpStage().getScene().getRoot());
-        Pane x_ = (Pane) anchor_pane.getChildren().get(0);
-        x_.getChildren().remove(CurrentNotificationPane);
+        BaseWindow.getChildren().remove(CurrentNotificationPane);
     }
     public static Timeline GetButtonAnimtation(Pane Container,Circle rotatingcircle,int Endvalue1,int Endvalue2){
         Timeline timeline = new Timeline();
@@ -182,7 +171,7 @@ public class App extends Application {
     }
     public static void CloseWindow(){
         if(DataBaseConnection.Disconnect()){
-            pStage.close();
+            primaryStage.close();
         }
     }
 
@@ -193,17 +182,11 @@ public class App extends Application {
             Pane root = loader.load();
             Login controller = loader.getController();
             controller.initializ();
-            controller.setConnection(connection);;
-            Scene scene = new Scene(root);
-            scene.setFill(Color.TRANSPARENT);
-            getpStage().setScene(scene);
+            controller.setConnection(connection);
+            BaseWindow.getChildren().clear();
+            BaseWindow.getChildren().add(root);
             //  animation fadein
             new FadeIn(root).play();
-            Stage stage = App.getpStage();
-                // stage.setX(stage.getX()-49);
-                // stage.setY(stage.getY()-49);
-                // stage.setWidth(900);
-                // stage.setHeight(600);
         } catch (IOException ex) {  
             // could not load login window
             CurrentNotification = "Could not load login window";
@@ -216,15 +199,13 @@ public class App extends Application {
             Pane root = loder.load();
             Profile controller = loder.getController();
             controller.setConnection(connection);
-            Pane parent = (Pane) App.getpStage().getScene().getRoot().getChildrenUnmodifiable().get(0);
             root.translateXProperty().set(-400);
-            parent.getChildren().add(root);
+            BaseWindow.getChildren().add(root);
             Timeline timeline = new Timeline();
             KeyValue kv = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_IN);
             KeyFrame kf = new KeyFrame(Duration.seconds(0.7), kv);
             timeline.getKeyFrames().add(kf);
             timeline.play();
-            controller.setParent(parent);
         } catch (IOException e) {
             e.printStackTrace();
             CurrentNotification =  "Could not load page close app and try again";

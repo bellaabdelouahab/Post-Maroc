@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
@@ -60,6 +61,7 @@ public class CourierTable {
                 Status.setPrefSize(183, 25);
                 Status.setTextAlignment(TextAlignment.CENTER);
                 Status.setAlignment(Pos.CENTER);
+                Status.setStyle("-fx-background-color:#c39797");
                 controller.PlaceToShowStatus.getChildren().add(Status);
             }
             else if(Confirmed){
@@ -84,12 +86,17 @@ public class CourierTable {
             controller.setConnection(connection);
             controller.Fillinfo(CourierId,true);
             controller.closebutton.setOnAction(e->{
-                ChildPaneXS.getChildren().remove(root);
+                App.BaseWindow.getChildren().remove(root);
+                ChildPaneXS.setEffect(null);
             });
             root.setOnMouseClicked(arg0->{
-                ChildPaneXS.getChildren().remove(root);
+                App.BaseWindow.getChildren().remove(root);
+                ChildPaneXS.setEffect(null);
             });
-            ChildPaneXS.getChildren().add(root);
+            App.BaseWindow.getChildren().add(root);
+            GaussianBlur blur =  new GaussianBlur();
+            blur.setRadius(4);
+            ChildPaneXS.setEffect(blur);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -123,7 +130,7 @@ public class CourierTable {
     }
     @FXML   
     private void MinimizeWindow() {
-        App.getpStage().setIconified(true);
+        App.getprimaryStage().setIconified(true);
     }
     @FXML
     private void Logout(){

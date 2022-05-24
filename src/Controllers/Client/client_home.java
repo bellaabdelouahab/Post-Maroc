@@ -95,7 +95,7 @@ public class client_home {
     }
     @FXML   
     private void MinimizeWindow() {
-        App.getpStage().setIconified(true);
+        App.getprimaryStage().setIconified(true);
     }
     @FXML
     private void Logout(){

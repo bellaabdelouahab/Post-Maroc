@@ -1,6 +1,11 @@
 package Main;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Properties;
+import java.util.prefs.Preferences;
 
 import com.jfoenix.controls.JFXButton;
 
@@ -24,6 +29,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
@@ -36,7 +42,9 @@ public class App extends Application {
     public static String CurrentNotification;
     public static Button ExtraButton;
     private static Pane CurrentNotificationPane;
+    static String path_to_wallet="C:\\Users\\Abdelouahab\\Downloads\\Wallet";
     public void Main(String[] args) throws Exception {
+        System.out.println("working i think");
         launch(args);
         
     }
@@ -49,7 +57,30 @@ public class App extends Application {
     }
     // connect to database
     @Override
-    public void start(Stage primaryStage) throws IOException {
+    public void start(Stage primaryStage) throws IOException  {
+        Preferences preferences = Preferences.userRoot().node("Init");
+        if(preferences.get("Path_To_File",null)==null){
+            DirectoryChooser directoryChooser = new DirectoryChooser();
+            File selectedDirectory = directoryChooser.showDialog(null);
+            new File(selectedDirectory.getPath()+"\\Wallet").mkdirs();
+            ArrayList<String> files = new ArrayList<String>();
+            files.add("cwallet.sso");
+            files.add("ewallet.p12");
+            files.add("ewallet.pem");
+            files.add("keystore.jks");
+            files.add("ojdbc.properties");
+            files.add("sqlnet.ora");
+            files.add("tnsnames.ora");
+            files.add("truststore.jks");
+            for (String file : files) {
+                tools_.copyInputStreamToFile(App.class.getResourceAsStream("/Resources/Wallet_NFS315/"+file), new File(selectedDirectory.getPath()+"\\Wallet\\"+file));
+            }
+            preferences.put("Path_To_File", selectedDirectory.getPath()+"\\Wallet");
+        }
+        path_to_wallet = preferences.get("Path_To_File",null);
+
+
+        
         FXMLLoader loader = new FXMLLoader(App.class.getResource("/Resources/VIEW/LogIn.fxml"));
         Pane root = loader.load();
         Login controller = loader.getController();
@@ -153,17 +184,18 @@ public class App extends Application {
         });
         CurrentNotificationPane = Xoutter;
         BaseWindow.getChildren().add(Xoutter);
+        ExtraButton=null;
     }
 
     public static void closeNotification() {
         BaseWindow.getChildren().remove(CurrentNotificationPane);
     }
-    public static Timeline GetButtonAnimtation(Pane Container,Circle rotatingcircle,int Endvalue1,int Endvalue2){
+    public static Timeline GetButtonAnimtation(Pane Container,Circle rotatingcircle,int Endvalue1,int Endvalue2,Double duration){
         Timeline timeline = new Timeline();
         KeyValue kv = new KeyValue(Container.rotateProperty(), Endvalue1, Interpolator.EASE_IN);
         KeyValue kv1 = new KeyValue(rotatingcircle.radiusProperty(), Endvalue2, Interpolator.EASE_IN);
-        KeyFrame kf = new KeyFrame(Duration.seconds(0.5), kv);
-        KeyFrame kf1 = new KeyFrame(Duration.seconds(0.5), kv1);
+        KeyFrame kf = new KeyFrame(Duration.seconds(duration), kv);
+        KeyFrame kf1 = new KeyFrame(Duration.seconds(duration), kv1);
         timeline.getKeyFrames().add(kf);
         timeline.getKeyFrames().add(kf1);
         timeline.play();

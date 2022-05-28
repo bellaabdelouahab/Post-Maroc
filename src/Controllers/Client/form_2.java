@@ -53,10 +53,8 @@ public class form_2 implements Initializable{
     }
     public Courier validateForm2(){
         Float weight_ = 0f;
-        Float price_ = 0f;
         try{
             weight_ = weight.getText().isEmpty() ? 0.1f : Float.parseFloat(weight.getText());
-            price_ = Float.parseFloat(Pricefield.getText());
             CheckPriceField();
         }
         catch(Exception E){
@@ -79,8 +77,8 @@ public class form_2 implements Initializable{
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-YYYY");
         String collect_date_str = collect_date_.format(formatter)+" "+collectHour+":"+collectMinutes;
         courier.setCollectDate(collect_date_str);
-        courier.setPrice(price_);
         courier.setWeight(weight_);
+        courier.setPrice(connection.CalculatePrice(weight_));
         courier.setDiscription(discription.getText());
         return courier;
     }

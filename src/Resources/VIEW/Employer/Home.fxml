@@ -46,7 +46,7 @@
             <Circle fill="#56585b" layoutX="75.0" layoutY="75.0" radius="80.0" stroke="#f54a4a" strokeType="INSIDE" strokeWidth="0.0" />
             <Circle fill="#363028" layoutX="75.0" layoutY="75.0" radius="70.0" stroke="#f54a4a" strokeType="INSIDE" strokeWidth="0.0" />
             <Circle fill="#11100f" layoutX="75.0" layoutY="75.0" radius="65.0" stroke="#f54a4a" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fill="#f05b13" layoutX="75.0" layoutY="75.0" radius="62.0" stroke="#f54a4a" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="Scanner" fill="#f05b13" layoutX="75.0" layoutY="75.0" radius="62.0" stroke="#f54a4a" strokeType="INSIDE" strokeWidth="0.0" />
             <Line endX="25.0" layoutX="77.0" layoutY="40.0" rotate="90.0" startX="-25.0" strokeWidth="5.0" />
             <Line endX="25.0" layoutX="38.0" layoutY="75.0" startX="-25.0" strokeWidth="5.0" />
             <Line endX="25.0" layoutX="77.0" layoutY="112.0" rotate="90.0" startX="-25.0" strokeWidth="5.0" />
@@ -58,7 +58,7 @@
             <Circle fx:id="Pane1_circle_animation" layoutX="75.0" layoutY="75.0" radius="50.0" stroke="#f54a4a" strokeType="INSIDE" strokeWidth="0.0" />
          </children>
       </Pane>
-      <Button layoutX="325.0" layoutY="125.0" mnemonicParsing="false" onMouseEntered="#StartAnimation1" onMouseExited="#EndAnimation1" prefHeight="150.0" prefWidth="150.0" style="-fx-background-radius: 100; -fx-background-color: #00000000;" text="SCAN" textFill="#727171">
+      <Button layoutX="325.0" layoutY="125.0" mnemonicParsing="false" onAction="#Scan" onMouseEntered="#StartAnimation1" onMouseExited="#EndAnimation1" prefHeight="150.0" prefWidth="150.0" style="-fx-background-radius: 100; -fx-background-color: #00000000;" text="SCAN" textFill="#727171">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
@@ -122,20 +122,20 @@
                         <Image url="@../../IMAGES/search_client.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="167.0" layoutY="5.0" onMouseEntered="#set_text_3" onMouseExited="#unset_text" pickOnBounds="true" preserveRatio="true" styleClass="icons_">
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="167.0" layoutY="5.0" onMouseClicked="#ShowClientPaymentForm" onMouseEntered="#set_text_3" onMouseExited="#unset_text" pickOnBounds="true" preserveRatio="true" styleClass="icons_">
                      <image>
                         <Image url="@../../IMAGES/expensive_price.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="237.0" layoutY="5.0" onMouseEntered="#set_text_4" onMouseExited="#unset_text" pickOnBounds="true" preserveRatio="true" styleClass="icons_">
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="237.0" layoutY="5.0" onMouseClicked="#ShowEmployeeDeliveryLine" onMouseEntered="#set_text_4" onMouseExited="#unset_text" pickOnBounds="true" preserveRatio="true" styleClass="icons_">
                      <image>
-                        <Image url="@../../IMAGES/search_database.png" />
+                        <Image url="@../../IMAGES/delivery.png" />
                      </image>
                   </ImageView>
                </children>
             </Pane>
          </children>
       </Pane>
-      <Pane fx:id="Extraoption" layoutX="69.0" layoutY="66.0" prefHeight="370.0" prefWidth="650.0" visible="false" />
+      <Pane fx:id="Extraoption" layoutY="40.0" prefHeight="420.0" prefWidth="800.0" style="-fx-background-color: #00000000\;" visible="false" />
    </children>
 </Pane>

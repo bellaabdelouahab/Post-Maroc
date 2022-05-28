@@ -36,6 +36,21 @@ public class client_home {
             App.CurrentNotification =  "Could not load page close app and try again";
         }
     }
+    @FXML
+    private void SwitchToPaymentLog(){
+        FXMLLoader loder = new FXMLLoader(getClass().getResource("/Resources/VIEW/Client/Payment.fxml"));
+        Pane root;
+        try {
+            root = loder.load();
+            Paymentlog controller = loder.getController();
+            controller.connection=getConnection();
+            controller.filldata();
+            App.changeStage(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+            App.CurrentNotification =  "Could not load page close app and try again";
+        }
+    }
     public Client_Connection getConnection() {
         return connection;
     }
@@ -66,24 +81,13 @@ public class client_home {
     }
     @FXML
     private void StartAnimation1() {
-        Timeline timeline = App.GetButtonAnimtation(Pane1_button_animation, Pane1_circle_animation,100,53);
-        timeline.play();
-    }
-    @FXML
-    private void StartAnimation2() {
-        Timeline timeline = App.GetButtonAnimtation(Pane2_button_animation, Pane2_circle_animation,100,53);
+        Timeline timeline = App.GetButtonAnimtation(Pane1_button_animation, Pane1_circle_animation,100,53,0.5);
         timeline.play();
     }
     @FXML
     private void EndAnimation1(){
-        Timeline timeline = App.GetButtonAnimtation(Pane1_button_animation, Pane1_circle_animation,0,50);
+        Timeline timeline = App.GetButtonAnimtation(Pane1_button_animation, Pane1_circle_animation,0,50,0.5);
         timeline.play();
-    }
-    @FXML
-    private void EndAnimation2(){
-        Timeline timeline = App.GetButtonAnimtation(Pane2_button_animation, Pane2_circle_animation,0,50);
-        timeline.play();
-
     }
     @FXML
     private void showProfile(){

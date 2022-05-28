@@ -19,7 +19,7 @@ import oracle.ucp.jdbc.PoolDataSourceFactory;
 
 
 public class DataBaseConnection {
-    final static String DB_URL="jdbc:oracle:thin:@nfs315_high?TNS_ADMIN=src/Resources/Wallet_NFS315";
+    final static String DB_URL="jdbc:oracle:thin:@nfs315_high";
     final static String DB_USER = "admin";
     final static String DB_PASSWORD = "Abdobella4624";
     final static String CONN_FACTORY_CLASS_NAME="oracle.jdbc.pool.OracleDataSource";
@@ -32,8 +32,9 @@ public class DataBaseConnection {
     public DataBaseConnection(Boolean parent) {
         if(!parent) return;
         try{
-            // App.currentnote=System.getProperty("user.dir")+"\\src\\Resources\\Wallet_NFS315";
-        // System.setProperty("oracle.net.tns_admin",System.getProperty("user.dir")+"\\src\\Resources\\Wallet_NFS315");
+            // System.out.println(DataBaseConnection.class("\\src\\Resources\\Wallet_NFS315"));
+        System.setProperty("oracle.net.tns_admin",App.path_to_wallet);
+        // System.exit(0);
         pds = PoolDataSourceFactory.getPoolDataSource();
         pds.setConnectionFactoryClassName(CONN_FACTORY_CLASS_NAME);
         pds.setURL(DB_URL);

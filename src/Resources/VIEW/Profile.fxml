@@ -46,19 +46,19 @@
 
 <Pane fx:id="ChildPane1" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #00000000;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Profile">
    <children>
-      <Pane layoutX="24.0" prefHeight="500.0" prefWidth="392.0" style="-fx-background-color: #111222fe;">
+      <Pane layoutX="24.0" prefHeight="500.0" prefWidth="392.0" style="-fx-background-color: #232323;">
          <children>
-            <Pane layoutX="-24.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="416.0" style="-fx-background-color: #111222fe; -fx-opacity: 1; -fx-background-radius: 25;">
+            <Pane layoutX="-24.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="416.0" style="-fx-background-color: #232323; -fx-opacity: 1; -fx-background-radius: 25;">
                <children>
-                  <Pane layoutX="144.0" layoutY="23.0" prefHeight="93.0" prefWidth="246.0" style="-fx-background-color: #1d1b29;">
+                  <Pane layoutX="144.0" layoutY="23.0" prefHeight="93.0" prefWidth="246.0" style="-fx-background-color: #343434;">
                      <children>
                         <TextField fx:id="Cin" disable="true" layoutX="14.0" layoutY="14.0" prefHeight="29.0" prefWidth="169.0" promptText="CIN" style="-fx-background-color: #11111100; -fx-border-color: #eeeeee55; -fx-border-radius: 3; -fx-border-width: 2; -fx-text-fill: #eee;" />
                         <TextField fx:id="FullName" layoutX="14.0" layoutY="50.0" prefHeight="29.0" prefWidth="200.0" promptText="FULL NAME" style="-fx-background-color: #11111100; -fx-border-color: #eeeeee55; -fx-border-radius: 3; -fx-border-width: 2; -fx-text-fill: #eee;" />
                      </children>
                   </Pane>
-                  <JFXButton layoutX="22.0" layoutY="126.0" onAction="#FileChooser" style="-fx-background-color: #1d1b29; -fx-background-radius: 25;" text="Add a Profile Picture">
+                  <JFXButton layoutX="22.0" layoutY="126.0" onAction="#FileChooser" style="-fx-background-color: #343434; -fx-background-radius: 25;" text="Add a Profile Picture">
                      <textFill>
-                        <LinearGradient endX="0.6208530805687205" endY="1.0" startX="0.6018957345971564">
+                        <LinearGradient endX="0.6445497630331755" endY="1.0" startY="0.4786729857819905">
                            <stops>
                               <Stop>
                                  <color>
@@ -67,14 +67,14 @@
                               </Stop>
                               <Stop offset="1.0">
                                  <color>
-                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                    <Color red="0.9736841917037964" green="0.8614400625228882" blue="0.5995370149612427" opacity="0.6499999761581421" />
                                  </color>
                               </Stop>
                            </stops>
                         </LinearGradient>
                      </textFill>
                   </JFXButton>
-                  <Pane layoutX="4.0" layoutY="164.0" prefHeight="284.0" prefWidth="403.0" style="-fx-background-color: #1d1b29;">
+                  <Pane layoutX="4.0" layoutY="164.0" prefHeight="284.0" prefWidth="403.0" style="-fx-background-color: #343434;">
                      <children>
                         <TextField fx:id="Adress" layoutX="32.0" layoutY="70.0" prefHeight="36.0" prefWidth="337.0" style="-fx-background-color: #11111100; -fx-border-color: #eeeeee55; -fx-border-radius: 5; -fx-border-width: 2; -fx-text-fill: #eee;">
                            <font>
@@ -91,28 +91,28 @@
                               <Font size="14.0" />
                            </font>
                         </TextField>
-                        <Label alignment="CENTER_RIGHT" layoutX="43.0" layoutY="112.0" prefHeight="19.0" prefWidth="85.0" style="-fx-background-color: #1d1b29;" text="NATIONNALITY" textFill="#f2ecec" />
-                        <Label alignment="CENTER_RIGHT" layoutX="38.0" layoutY="61.0" prefHeight="19.0" prefWidth="54.0" style="-fx-background-color: #1d1b29;" text="ADDRESS" textAlignment="CENTER" textFill="#f5f5f5" />
-                        <Label alignment="CENTER_RIGHT" layoutX="38.0" layoutY="168.0" prefHeight="19.0" prefWidth="95.0" style="-fx-background-color: #1d1b29;" text="PHONE NUMBER" textFill="#fcf7f7" />
+                        <Label alignment="CENTER_RIGHT" layoutX="43.0" layoutY="112.0" prefHeight="19.0" prefWidth="85.0" style="-fx-background-color: #343434;" text="NATIONNALITY" textFill="#f2ecec" />
+                        <Label alignment="CENTER_RIGHT" layoutX="38.0" layoutY="61.0" prefHeight="19.0" prefWidth="54.0" style="-fx-background-color: #343434;" text="ADDRESS" textAlignment="CENTER" textFill="#f5f5f5" />
+                        <Label alignment="CENTER_RIGHT" layoutX="38.0" layoutY="168.0" prefHeight="19.0" prefWidth="95.0" style="-fx-background-color: #343434;" text="PHONE NUMBER" textFill="#fcf7f7" />
                         <TextField fx:id="Sex" disable="true" layoutX="28.0" layoutY="231.0" prefHeight="36.0" prefWidth="169.0" style="-fx-background-color: #11111100; -fx-border-color: #eeeeee55; -fx-border-radius: 3; -fx-border-width: 2; -fx-text-fill: #eee;">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </TextField>
-                        <Label alignment="CENTER_RIGHT" layoutX="42.0" layoutY="222.0" prefHeight="19.0" prefWidth="23.0" style="-fx-background-color: #1d1b29;" text="SEX" textFill="#f5f5f5" />
+                        <Label alignment="CENTER_RIGHT" layoutX="42.0" layoutY="222.0" prefHeight="19.0" prefWidth="23.0" style="-fx-background-color: #343434;" text="SEX" textFill="#f5f5f5" />
                         <TextField fx:id="jobtitle" layoutX="247.0" layoutY="231.0" prefHeight="36.0" prefWidth="120.0" style="-fx-background-color: #11111100; -fx-border-color: #eeeeee55; -fx-border-radius: 3; -fx-border-width: 2; -fx-text-fill: #eee;">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </TextField>
-                        <Label layoutX="256.0" layoutY="222.0" prefHeight="19.0" prefWidth="45.0" style="-fx-background-color: #1d1b29;" text="Job Title" textFill="#f5f5f5" />
+                        <Label layoutX="256.0" layoutY="222.0" prefHeight="19.0" prefWidth="45.0" style="-fx-background-color: #343434;" text="Job Title" textFill="#f5f5f5" />
                         <TextField fx:id="email" disable="true" layoutX="30.0" layoutY="17.0" prefHeight="36.0" prefWidth="337.0" style="-fx-background-color: #11111100; -fx-border-color: #eeeeee55; -fx-border-radius: 5; -fx-border-width: 2; -fx-text-fill: #eee;">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </TextField>
-                        <Label alignment="CENTER_RIGHT" layoutX="38.0" layoutY="8.0" prefHeight="19.0" prefWidth="31.0" style="-fx-background-color: #1d1b29;" text="Email" textFill="#fcf7f7" />
-                        <Pane layoutX="59.0" layoutY="287.0" prefHeight="43.0" prefWidth="309.0" style="-fx-background-color: #1d1b29;">
+                        <Label alignment="CENTER_RIGHT" layoutX="38.0" layoutY="8.0" prefHeight="19.0" prefWidth="31.0" style="-fx-background-color: #343434;" text="Email" textFill="#fcf7f7" />
+                        <Pane layoutX="59.0" layoutY="287.0" prefHeight="43.0" prefWidth="309.0" style="-fx-background-color: #232323;">
                            <children>
                               <Button layoutX="16.0" layoutY="7.0" mnemonicParsing="false" onAction="#update_info" prefHeight="29.0" prefWidth="116.0" style="-fx-background-color: #43e84c; -fx-background-radius: 10;" text="Update Profile" />
                               <Button layoutX="181.0" layoutY="7.0" mnemonicParsing="false" onAction="#Goback" prefHeight="29.0" prefWidth="116.0" style="-fx-background-color: #5599ee; -fx-background-radius: 10;" text="Cancel" />

@@ -39,6 +39,7 @@ public class Home implements Initializable{
     @FXML
     private Pane parent_pane;
     @FXML private ImageView icon1;
+    @FXML private Circle Scanner;
     // Switch To Waiting Courier
     @FXML
     private void SwitchToWaitingCourier() {
@@ -80,15 +81,159 @@ public class Home implements Initializable{
         
     }
     @FXML
+    private void ShowEmployeeDeliveryLine(){
+        if(!connection.getUser_account().getjobclass().equals("A")){
+            App.CurrentNotification = "You are not allowed to access this page";
+            return;
+        }
+        Pane ToolWindow = new Pane();
+        ToolWindow.setPrefSize(800, 460);
+        ToolWindow.setLayoutX(0);
+        ToolWindow.setLayoutY(40);
+        Pane Exitter = new Pane();
+        Exitter.setPrefSize(800, 420);
+        Exitter.setOnMouseClicked(arg0->{
+            App.BaseWindow.getChildren().remove(ToolWindow);          
+            parent_pane.setEffect(null);
+        });
+        GaussianBlur blur =  new GaussianBlur();
+        blur.setRadius(4);
+        parent_pane.setEffect(blur);
+        String style_ = "-fx-background-color: #11111199;-fx-border-raduis:0;-fx-text-fill: white;-fx-font-size: 10px;-fx-font-family: 'Segoe UI';-fx-border-radius:0;";
+        Pane search = new Pane();
+        search.setPrefSize(280, 113);
+        search.setLayoutX(260);
+        search.setLayoutY(200);
+        search.setStyle("-fx-background-color:#575656;-fx-background-radius:25");
+        search.setOnMouseClicked(e->{});
+        TextField search_text = new TextField();
+        search_text.setPrefSize(200, 35);
+        search_text.setLayoutX(45);
+        search_text.setLayoutY(20);
+        search_text.setPromptText("Enter Employee ID");
+        search_text.setStyle(style_);
+        search_text.setAlignment(Pos.CENTER);
+        JFXButton search_button = new JFXButton("Search");
+        search_button.setPrefSize(93, 32);
+        search_button.setLayoutX(96);
+        search_button.setLayoutY(70);
+        search_button.setRipplerFill(new Color(0.4353, 0.1451, 0.051, 1.0));
+        search_button.setStyle("-fx-border-color:#919191;-fx-border-raduis:5;");
+        search_button.setOnAction(e->{
+            if(search_text.getText().equals("")){
+                return;
+            }
+            try {
+                FXMLLoader loder = new FXMLLoader(getClass().getResource("/Resources/VIEW/Employer/DeliveryLine.fxml"));
+                Pane root=new Pane();
+                root = loder.load();
+                DeliveryLine controller = loder.getController();
+                controller.setConnection(connection);
+                controller.SetData(search_text.getText());
+                ToolWindow.getChildren().clear();
+                ToolWindow.getChildren().add(root);
+                controller.closebutton.setOnAction(e1->{
+                    App.BaseWindow.getChildren().remove(ToolWindow);
+                    parent_pane.setEffect(null);
+                });
+                root.getChildren().get(0).setOnMouseClicked(arg0->{
+                    App.BaseWindow.getChildren().remove(ToolWindow);
+                    parent_pane.setEffect(null);
+                });
+            } catch (IOException e1) {
+                // notifiy that it couldn't switch
+                e1.printStackTrace();
+            } 
+        });
+        search.getChildren().addAll(search_text,search_button);
+        ToolWindow.getChildren().addAll(Exitter,search);
+        App.BaseWindow.getChildren().add(ToolWindow);
+    }
+    @FXML 
+    private void ShowClientPaymentForm(){
+        if(!connection.getUser_account().getjobclass().equals("A")){
+            App.CurrentNotification = "You are not allowed to access this page";
+            return;
+        }
+        Pane ToolWindow = new Pane();
+        ToolWindow.setPrefSize(800, 460);
+        ToolWindow.setLayoutX(0);
+        ToolWindow.setLayoutY(40);
+        Pane Exitter = new Pane();
+        Exitter.setPrefSize(800, 420);
+        Exitter.setOnMouseClicked(arg0->{
+            App.BaseWindow.getChildren().remove(ToolWindow);          
+            parent_pane.setEffect(null);
+        });
+        GaussianBlur blur =  new GaussianBlur();
+        blur.setRadius(4);
+        parent_pane.setEffect(blur);
+        String style_ = "-fx-background-color: #11111199;-fx-border-raduis:0;-fx-text-fill: white;-fx-font-size: 10px;-fx-font-family: 'Segoe UI';-fx-border-radius:0;";
+        Pane search = new Pane();
+        search.setPrefSize(280, 113);
+        search.setLayoutX(260);
+        search.setLayoutY(200);
+        search.setStyle("-fx-background-color:#575656;-fx-background-radius:25");
+        search.setOnMouseClicked(e->{});
+        TextField search_text = new TextField();
+        search_text.setPrefSize(200, 35);
+        search_text.setLayoutX(45);
+        search_text.setLayoutY(20);
+        search_text.setPromptText("Enter Client ID");
+        search_text.setStyle(style_);
+        search_text.setAlignment(Pos.CENTER);
+        JFXButton search_button = new JFXButton("Search");
+        search_button.setPrefSize(93, 32);
+        search_button.setLayoutX(96);
+        search_button.setLayoutY(70);
+        search_button.setRipplerFill(new Color(0.4353, 0.1451, 0.051, 1.0));
+        search_button.setStyle("-fx-border-color:#919191;-fx-border-raduis:5;");
+        search_button.setOnAction(e->{
+            if(search_text.getText().equals("")){
+                return;
+            }
+            try {
+                FXMLLoader loder = new FXMLLoader(getClass().getResource("/Resources/VIEW/Employer/Payment.fxml"));
+                Pane root=new Pane();
+                root = loder.load();
+                ClientPayment controller = loder.getController();
+                controller.setConnection(connection);
+                controller.SetData(search_text.getText());
+                ToolWindow.getChildren().clear();
+                ToolWindow.getChildren().add(root);
+                controller.closebutton.setOnAction(e1->{
+                    App.BaseWindow.getChildren().remove(ToolWindow);
+                    parent_pane.setEffect(null);
+                });
+                root.getChildren().get(0).setOnMouseClicked(arg0->{
+                    App.BaseWindow.getChildren().remove(ToolWindow);
+                    parent_pane.setEffect(null);
+                });
+            } catch (IOException e1) {
+                // notifiy that it couldn't switch
+                e1.printStackTrace();
+            } 
+        });
+        search.getChildren().addAll(search_text,search_button);
+        ToolWindow.getChildren().addAll(Exitter,search);
+        App.BaseWindow.getChildren().add(ToolWindow);
+    }
+    @FXML
     private void ShowClientSearchForm(){
         if(!connection.getUser_account().getjobclass().equals("A")){
             App.CurrentNotification = "You are not allowed to access this page";
             return;
         }
         Pane ToolWindow = new Pane();
-        ToolWindow.setPrefSize(800, 420);
+        ToolWindow.setPrefSize(800, 460);
         ToolWindow.setLayoutX(0);
         ToolWindow.setLayoutY(40);
+        Pane Exitter = new Pane();
+        Exitter.setPrefSize(800, 420);
+        Exitter.setOnMouseClicked(arg0->{
+            App.BaseWindow.getChildren().remove(ToolWindow);          
+            parent_pane.setEffect(null);
+        });
         GaussianBlur blur =  new GaussianBlur();
         blur.setRadius(4);
         parent_pane.setEffect(blur);
@@ -126,23 +271,19 @@ public class Home implements Initializable{
                     App.BaseWindow.getChildren().remove(ToolWindow);
                     parent_pane.setEffect(null);
                 });
-                root.setOnMouseClicked(arg0->{
+                root.getChildren().get(0).setOnMouseClicked(arg0->{
                     App.BaseWindow.getChildren().remove(ToolWindow);
                     parent_pane.setEffect(null);
                 });
                 ToolWindow.getChildren().clear();
-                ToolWindow.getChildren().add(root);
+                ToolWindow.getChildren().addAll(Exitter,root);
             } catch (IOException e1) {
                 e1.printStackTrace();
                 App.CurrentNotification = "Couldn't load the page, please report essue";
             }
         });
-        ToolWindow.setOnMouseClicked(arg0->{
-            parent_pane.setEffect(null);
-            App.BaseWindow.getChildren().remove(ToolWindow);
-        });
         search.getChildren().addAll(search_text,search_button);
-        ToolWindow.getChildren().add(search);
+        ToolWindow.getChildren().addAll(Exitter,search);
         App.BaseWindow.getChildren().add(ToolWindow);
     }
     @FXML
@@ -152,9 +293,15 @@ public class Home implements Initializable{
             return;
         }
         Pane ToolWindow = new Pane();
-        ToolWindow.setPrefSize(800, 420);
+        ToolWindow.setPrefSize(800, 460);
         ToolWindow.setLayoutX(0);
         ToolWindow.setLayoutY(40);
+        Pane Exitter = new Pane();
+        Exitter.setPrefSize(800, 420);
+        Exitter.setOnMouseClicked(arg0->{
+            App.BaseWindow.getChildren().remove(ToolWindow);          
+            parent_pane.setEffect(null);
+        });
         GaussianBlur blur =  new GaussianBlur();
         blur.setRadius(4);
         parent_pane.setEffect(blur);
@@ -164,6 +311,7 @@ public class Home implements Initializable{
         search.setLayoutX(260);
         search.setLayoutY(200);
         search.setStyle("-fx-background-color:#575656;-fx-background-radius:25");
+        search.setOnMouseClicked(e->{});
         TextField search_text = new TextField();
         search_text.setPrefSize(200, 35);
         search_text.setLayoutX(45);
@@ -197,6 +345,8 @@ public class Home implements Initializable{
             FXMLLoader loder = new FXMLLoader(getClass().getResource("/Resources/VIEW/Employer/courierinfo.fxml"));
             try {
                 Pane root = loder.load();
+                root.setLayoutX(137);
+                root.setLayoutY(37);
                 CourierInfoForm controller = loder.getController();
                 Label status = new Label("Status");
                 status.setPrefSize(60 , 25);
@@ -221,31 +371,23 @@ public class Home implements Initializable{
                     App.BaseWindow.getChildren().remove(ToolWindow);
                     parent_pane.setEffect(null);
                 });
-                root.getChildren().addAll(status,status_menu,validate);
                 controller.setConnection(connection); 
                 controller.closebutton.setOnAction(e1->{
                     App.BaseWindow.getChildren().remove(ToolWindow);
                     parent_pane.setEffect(null);
-                });
-                root.setOnMouseClicked(arg0->{
-                    App.BaseWindow.getChildren().remove(ToolWindow);
-                    parent_pane.setEffect(null);
-                });  
+                }); 
                 controller.Fillinfo("RR"+search_text.getText()+"MA",false);
-                
-                ToolWindow.getChildren().add(root);
+                ToolWindow.getChildren().clear();
+                ToolWindow.getChildren().addAll(Exitter,root,status,status_menu,validate);
                 
             } catch (IOException e1) {
                 e1.printStackTrace();
                 App.CurrentNotification = "Couldn't load the page, please report essue";
             }
             });
-        ToolWindow.setOnMouseClicked(arg0->{
-            App.BaseWindow.getChildren().remove(ToolWindow);          
-            parent_pane.setEffect(null);
-        });
+        
         search.getChildren().addAll(search_text,search_button,RR,MA);
-        ToolWindow.getChildren().add(search);
+        ToolWindow.getChildren().addAll(Exitter,search);
         App.BaseWindow.getChildren().add(ToolWindow);
     }
     // create a setter for Data Base Connection
@@ -254,13 +396,23 @@ public class Home implements Initializable{
     }
     @FXML
     private void StartAnimation1() {
-        Timeline timeline = App.GetButtonAnimtation(Pane1_button_animation, Pane1_circle_animation,100,53);
+        Timeline timeline = App.GetButtonAnimtation(Pane1_button_animation, Pane1_circle_animation,100,53,0.5);
         timeline.play();
     }
     @FXML
     private void EndAnimation1(){
-        Timeline timeline = App.GetButtonAnimtation(Pane1_button_animation, Pane1_circle_animation,0,50);
+        Timeline timeline = App.GetButtonAnimtation(Pane1_button_animation, Pane1_circle_animation,0,50,0.5);
         timeline.play();
+    }
+    @FXML 
+    private void Scan(){
+        Scanner.setFill(Color.web("#f0af13"));
+        Timeline timeline = App.GetButtonAnimtation(Pane1_button_animation, Pane1_circle_animation,360,50,2.0);
+        timeline.play();
+        timeline.setOnFinished(e->{
+            Pane1_button_animation.setRotate(0);
+            timeline.play();
+        });
     }
     private void showlabel(){
         msglabel.setEffect(null);
@@ -294,7 +446,7 @@ public class Home implements Initializable{
     }
     @FXML   
     private void set_text_4(){
-        msglabel.setText("Somthing Wrong");
+        msglabel.setText("Change Delivery Line");
         showlabel();
     }
     @FXML

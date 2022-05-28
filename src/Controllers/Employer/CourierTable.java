@@ -61,7 +61,7 @@ public class CourierTable {
                 Status.setPrefSize(183, 25);
                 Status.setTextAlignment(TextAlignment.CENTER);
                 Status.setAlignment(Pos.CENTER);
-                Status.setStyle("-fx-background-color:#c39797");
+                Status.setStyle("-fx-text-fill:#fff");
                 controller.PlaceToShowStatus.getChildren().add(Status);
             }
             else if(Confirmed){

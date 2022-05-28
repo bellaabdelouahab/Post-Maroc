@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Employer.ClientPayment">
+   <children>
+      <Pane prefHeight="400.0" prefWidth="800.0">
+         <children>
+            <Button fx:id="closebutton" layoutX="506.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" style="-fx-background-radius: 50; -fx-background-color: #00000000;" />
+         </children>
+      </Pane>
+      <Label alignment="CENTER" layoutX="476.0" layoutY="326.0" prefHeight="25.0" prefWidth="31.0" style="-fx-background-color: #a8b2c5;" text=" DH" />
+      <Label fx:id="pandingpayment" alignment="CENTER" layoutX="420.0" layoutY="326.0" prefHeight="25.0" prefWidth="56.0" style="-fx-background-color: #a8b2c5;" text=" 0 " />
+      <Button layoutX="443.0" layoutY="350.0" mnemonicParsing="false" onAction="#PayAmount" prefHeight="25.0" prefWidth="64.0" style="-fx-background-color: #343434; -fx-background-radius: 0; -fx-border-color: black;" text="Pay" textFill="#eee7e7">
+         <font>
+            <Font name="Britannic Bold" size="12.0" />
+         </font>
+      </Button>
+      <Pane layoutX="304.0" layoutY="21.0" prefHeight="306.0" prefWidth="200.0" style="-fx-background-color: #999;">
+         <children>
+            <ScrollPane hbarPolicy="NEVER" prefHeight="308.0" prefWidth="203.0" stylesheets="@../../CSS/Employer.css" vbarPolicy="ALWAYS">
+               <content>
+                  <VBox fx:id="vcontainer" prefHeight="0.0" prefWidth="200.0" style="-fx-background-color: #00000000;" />
+               </content>
+               <styleClass>
+                  <String fx:value="column_sd" />
+                  <String fx:value="scroll-pane" />
+                  <String fx:value="scrollpane" />
+               </styleClass>
+            </ScrollPane>
+         </children>
+      </Pane>
+      <TextField fx:id="Amount" layoutX="304.0" layoutY="350.0" promptText="Enter amount" style="-fx-background-color: #232323; -fx-background-radius: 0;" />
+      <Button layoutX="304.0" layoutY="374.0" mnemonicParsing="false" onAction="#PayAll" prefHeight="25.0" prefWidth="203.0" style="-fx-background-color: #343434; -fx-border-color: black; -fx-background-radius: 0;" text="Pay All" textFill="#f5eded">
+         <font>
+            <Font name="Britannic Bold" size="12.0" />
+         </font>
+      </Button>
+      <Label layoutX="306.0" layoutY="327.0" prefHeight="25.0" prefWidth="108.0" style="-fx-background-color: #00000000;" text="Panding Payment" textFill="#dad3d3" />
+   </children>
+</Pane>

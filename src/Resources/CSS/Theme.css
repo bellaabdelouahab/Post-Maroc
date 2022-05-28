@@ -170,16 +170,22 @@
 }
 
 .table-view .filler {
-    -fx-border-insets: 10 
-}
-
-.table-view .filler{
+    -fx-border-insets: 10 ;
     -fx-background-color: transparent;
 }
+
 
 .table-view .column-header-background
 {
     -fx-background-color: transparent;
+}
+
+.table-view *.scroll-bar:horizontal *.increment-button,
+.table-view *.scroll-bar:horizontal *.decrement-button {
+  -fx-background-color: null;
+  -fx-background-radius: 0;
+  -fx-background-insets: 0;
+  -fx-padding: 0;
 }
 
 .combo-box1 .arrow-button

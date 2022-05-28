@@ -5,8 +5,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import Controllers.Courier;
+import Controllers.Payment;
 import Controllers.Receiver;
 import javafx.scene.control.Button;
 import javafx.stage.DirectoryChooser;
@@ -78,6 +80,7 @@ public class Client_Connection extends DataBaseConnection{
         } catch (IOException e1) {
             e1.printStackTrace();
             App.CurrentNotification = "Failed to get sources from exe.";
+            return;
         }
         try {
             System.out.println(selectedDirectory.getAbsolutePath()+"\\"+"RR"+String.format("%09d", mail_id)+"MA.docx");
@@ -89,6 +92,7 @@ public class Client_Connection extends DataBaseConnection{
             e1.printStackTrace();
             App.CurrentNotification = "Failed to copy file go to \n"+
             System.getProperty("user.dir")+"\\src\\Resources\\OutputCourierForm\\DocxForm\\result.docx";
+            return;
         }
         App.CurrentNotification =   "Courier saved successfully ";
     }
@@ -102,10 +106,10 @@ public class Client_Connection extends DataBaseConnection{
         return 0;
     }
     private int getnextCourierId() throws SQLException {
-        String qry1 = "SELECT COUNT(*) FROM POSTCOURIER";
+        String qry1 = "SELECT SUBSTR(MAX(id),3,9) FROM POSTCOURIER";
         result = statement.executeQuery(qry1);
         while (result.next()) {
-            return result.getInt(1);
+            return result.getInt(1)+1;
         }
         return 0;
     }
@@ -170,5 +174,47 @@ public class Client_Connection extends DataBaseConnection{
             System.out.println(qry);
         }
         return 0;
+    }
+    public ArrayList<Payment> GetPayment() {
+        String qry = "select * from POSTPAYMENT where client_id='"+user_account.getid()+"'";
+        ArrayList<Payment> payments = new ArrayList<Payment>();
+        try {
+            result = statement.executeQuery(qry);
+            while (result.next()) {
+                payments.add(new Payment(result.getInt(1),result.getString(2),result.getString(3),result.getString(4)));
+            }
+            return payments;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            App.CurrentNotification = "Failed to get sources.";
+        }
+        return null;
+    }
+    public String CountCourierPayment(int paid) {
+        String qry = "select count(*) from POSTCOURIER where Paid="+paid+" and Client_id='"+user_account.getid()+"'";
+        System.out.println(qry);
+        try {
+            result = statement.executeQuery(qry);
+            while (result.next()) {
+                return result.getString(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            App.CurrentNotification = "Failed to get sources.";
+        }
+        return null;
+    }
+    public String CountCourierPaymentAmount() {
+        String qry = "select sum(price) from POSTCOURIER where Paid=0 and status='Delivered' and Client_id='"+user_account.getid()+"'";
+        try {
+            result = statement.executeQuery(qry);
+            while (result.next()) {
+                return result.getString(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            App.CurrentNotification = "Failed to get sources.";
+        }
+        return null;
     }
 }

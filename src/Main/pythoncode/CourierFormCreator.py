@@ -3,12 +3,10 @@ from lib2to3.pgen2.token import SLASH
 from docx import Document
 import os
 
-
-
 # get working directory
 working_directory = os.getcwd()
 # replace SLASH with BACKSLASH
-working_directory = working_directory.replace('\\', '/')
+working_directory = "C:/Git-hub/Post-Maroc/"#working_directory.replace('\\', '/')
 
 class DocxCreator ():
     variables = {
@@ -42,6 +40,7 @@ class DocxCreator ():
             self.variables[list(self.variables.keys())[i]] = readed_info[i]
         self.template_document = Document(self.template_file_path)
     def FillDocx(self):
+        print(dir(self.template_document))
         for variable_key, variable_value in self.variables.items():
             for paragraph in self.template_document.paragraphs:
                 self.replace_text_in_paragraph(paragraph, variable_key, variable_value)
@@ -51,9 +50,11 @@ class DocxCreator ():
                         for paragraph in cell.paragraphs:
                             self.replace_text_in_paragraph(paragraph, variable_key, variable_value)
     def save(self):
+        self.template_document.add_picture("my_ean13_barcode.png")
         self.template_document.save(self.output_file_path)
 
     def replace_text_in_paragraph(self,paragraph, key, value):
+        # print(dir(paragraph))
         if key in paragraph.text:
             inline = paragraph.runs
             for item in inline:

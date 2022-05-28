@@ -62,7 +62,7 @@ public class Login{
     @FXML
     private void StartConnection() {
         login_animation = new ProgressIndicator();
-        login_animation.setLayoutX(550);
+        login_animation.setLayoutX(600);
         login_animation.setLayoutY(523);
         login_animation.setProgress(-1);
         rightpane.getChildren().add(login_animation);

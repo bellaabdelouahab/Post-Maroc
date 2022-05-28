@@ -55,7 +55,7 @@
             <ComboBox fx:id="combominutes" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: #444444;" styleClass="combo-box1" stylesheets="@../../CSS/Theme.css" />
          </children>
       </HBox>
-      <TextArea layoutX="234.0" fx:id="discription" layoutY="249.0" prefHeight="72.0" prefWidth="353.0" style="-fx-background-color: #444444;" />
+      <TextArea fx:id="discription" layoutX="234.0" layoutY="249.0" prefHeight="72.0" prefWidth="353.0" style="-fx-control-inner-background: #34343499; -fx-border-width: 0;" />
       <Label layoutX="236.0" layoutY="220.0" prefHeight="25.0" prefWidth="90.0" text="Discription" />
    </children>
 </Pane>

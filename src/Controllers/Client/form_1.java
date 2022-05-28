@@ -56,7 +56,7 @@ public class form_1 {
             isvalid = false;
         }
         // check if the address is valid
-        if(receiveraddress_.isEmpty()  || !receiveraddress_.matches("[a-zA-Z0-9]+")){
+        if(receiveraddress_.isEmpty()){
             show_error(receiveraddress);
             isvalid = false;
         }

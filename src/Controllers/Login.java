@@ -58,7 +58,6 @@ public class Login{
     ProgressIndicator login_animation;
     
     Task<Void> task;
-    // TODO : Task
 
     @FXML
     private void StartConnection() {

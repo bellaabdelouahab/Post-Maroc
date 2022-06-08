@@ -47,7 +47,6 @@ public class Form_2 implements Initializable{
             Pricefield.setText(price_);
         }catch(Exception E){
             App.CurrentNotification = "Please enter a valid weight, It should be a numirecal value between 0 and 10";
-            // TODO : add error message
             return;
         }
     }

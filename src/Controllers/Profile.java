@@ -9,8 +9,6 @@ import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import Controllers.Client.Client_home;
-import Controllers.Employer.Home;
 import Main.App;
 import Main.DataBaseConnection;
 import Main.UserAccount;

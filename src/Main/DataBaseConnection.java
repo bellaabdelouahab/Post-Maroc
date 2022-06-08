@@ -116,7 +116,6 @@ public class DataBaseConnection {
             try {
                 Setupconnection();
             } catch (SQLException e1) {
-                // TODO Auto-generated catch block
                 App.CurrentNotification = "Failed to get sources. check you internet connection";
             }
 

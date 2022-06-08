@@ -12,7 +12,6 @@ public class Employer_Connection extends DataBaseConnection {
         super(parent);
     }
     public ArrayList<Courier> getCourier(String status) {
-        // TODO: please fix this
         System.out.println(getUser_account().getdeliveryline());
         String qry1 = "select * from POSTCOURIER where status in("+status+") and deliveryLine="+getUser_account().getdeliveryline()+"  ORDER BY id ";
         try {
@@ -42,7 +41,6 @@ public class Employer_Connection extends DataBaseConnection {
         return null;
     }
     public Courier getCourierbyid(String CourierId,Boolean DeliveryLine) {
-        // TODO: please fix this
         System.out.println(getUser_account().getdeliveryline());
         String qry1 = "select * from POSTCOURIER where id='"+CourierId+"' and deliveryLine="+getUser_account().getdeliveryline()+"  ORDER BY id ";
         if(!DeliveryLine)

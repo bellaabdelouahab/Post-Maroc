@@ -1,5 +1,6 @@
 package Controllers.Employer;
 
+import Main.App;
 import Main.ClientAccount;
 import Main.Employer_Connection;
 import javafx.fxml.FXML;
@@ -33,11 +34,19 @@ public class ClientInfoForm {
     }
     @FXML
     private void DeleteClient(){
+        if(!connection.getUser_account().getjobclass().equals("A")){
+            App.CurrentNotification = "You are not allowed to preform this action";
+            return;
+        }
         connection.deleteClient(clientid);
         closebutton.fire();
     }
     @FXML
     private void UpdateClientinfo(){
+        if(!connection.getUser_account().getjobclass().equals("A")){
+            App.CurrentNotification = "You are not allowed to preform this action";
+            return;
+        }
         connection.updateClientinfo(clientid,email.getText(),firstname.getText(),lastname.getText(),
                                 nationnality.getText(),gender.getText(),address.getText(),
                                 jobtitle.getText(),phonenbr.getText());

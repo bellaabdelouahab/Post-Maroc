@@ -52,6 +52,7 @@ public class CourierTable {
             controller.courier = courier;
             controller.PrentController = this;
             controller.Courier_id.setText(courier.getCourierId());
+            controller.clientname.setText(connection.getclientFullname(courier.getClientId()));
             controller.Courier_Address.setText(courier.getAddress());
             controller.Courier_Price.setText(courier.getPrice().toString());
             controller.Courier_Collect_Date.setText(courier.getCollectDate());
@@ -93,6 +94,8 @@ public class CourierTable {
                 App.BaseWindow.getChildren().remove(root);
                 ChildPaneXS.setEffect(null);
             });
+            root.setLayoutX(137);
+            root.setLayoutY(77);
             App.BaseWindow.getChildren().add(root);
             GaussianBlur blur =  new GaussianBlur();
             blur.setRadius(4);
@@ -113,7 +116,7 @@ public class CourierTable {
             Pane root = loader.load();
             Home controller = loader.getController();
             controller.setConnection(connection);
-            // get window parentstage
+            controller.init();
             App.changeStage(root);
         }
         catch (Exception e) {

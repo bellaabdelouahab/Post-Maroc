@@ -100,9 +100,8 @@ public class UserAccount {
     }
     public Image getImage() {
         Image profilepic;
-        // System.out.println(path+"/src/Resources/IMAGES/ProfilePictures/" + this.id + ".png");
         try{
-            profilepic = new Image("/Resources/IMAGES/ProfilePictures/" + this.id + ".png");
+            profilepic = new Image(App.path_to_dependencies+"\\assets\\ProfilePictures\\" + this.id + ".png");
         }
         catch(Exception e){
             System.out.println("no image ==> using default image");

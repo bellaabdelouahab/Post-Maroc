@@ -17,7 +17,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
-public class form_2 implements Initializable{
+public class Form_2 implements Initializable{
 
     private Client_Connection connection;
     @FXML

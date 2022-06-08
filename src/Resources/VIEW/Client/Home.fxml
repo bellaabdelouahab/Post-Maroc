@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #444444; -fx-background-radius: 25;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Client.client_home">
+<Pane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #444444; -fx-background-radius: 25;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Client.Client_home">
    <children>
       <Pane layoutX="157.0">
          <children>
@@ -35,7 +35,7 @@
             </CubicCurve>
          </children>
       </Pane>
-      <GNAvatarView layoutX="7.0" layoutY="6.0" onMouseClicked="#showProfile" prefHeight="30.0" prefWidth="30.0" stroke="#ffffff18" type="CIRCLE">
+      <GNAvatarView fx:id="profileimage" layoutX="7.0" layoutY="6.0" onMouseClicked="#showProfile" prefHeight="30.0" prefWidth="30.0" stroke="#ffffff18" type="CIRCLE">
          <image>
             <Image url="@../../IMAGES/ProfilePictures/Default.png" />
          </image>
@@ -73,7 +73,7 @@
             <Circle fx:id="Pane1_circle_animation" layoutX="75.0" layoutY="75.0" radius="50.0" stroke="#f54a4a" strokeType="INSIDE" strokeWidth="0.0" />
          </children>
       </Pane>
-      <Button layoutX="325.0" layoutY="150.0" mnemonicParsing="false" onAction="#SwitchToAddMailForm" onMouseEntered="#StartAnimation1" onMouseExited="#EndAnimation1" prefHeight="150.0" prefWidth="150.0" style="-fx-background-radius: 80; -fx-background-color: #00000000;" text="ADD COURIER" textFill="WHITE">
+      <Button layoutX="325.0" layoutY="150.0" mnemonicParsing="false" onAction="#SwitchToAddMailForm" onMouseEntered="#StartAnimation1" onMouseExited="#EndAnimation1" prefHeight="150.0" prefWidth="150.0" style="-fx-background-radius: 80; -fx-background-color: #00000000;" text="ADD COURIER" textFill="#d7cece">
          <font>
             <Font name="Consolas Bold" size="13.0" />
          </font></Button>
@@ -103,7 +103,7 @@
             <Button mnemonicParsing="false" onAction="#SwitchMailLog" prefHeight="100.0" prefWidth="100.0" style="-fx-background-radius: 80; -fx-background-color: #00000000;" textAlignment="CENTER" wrapText="true" />
          </children>
       </Pane>
-      <Label layoutX="557.0" layoutY="330.0" text="VIEW COURIERS" />
-      <Label layoutX="172.0" layoutY="330.0" text="PAYMENT" />
+      <Label layoutX="557.0" layoutY="330.0" text="VIEW COURIERS" textFill="WHITE" />
+      <Label layoutX="172.0" layoutY="330.0" text="PAYMENT" textFill="WHITE" />
    </children>
 </Pane>

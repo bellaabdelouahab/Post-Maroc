@@ -9,6 +9,7 @@ import javafx.scene.layout.Pane;
 public class CourierForm {
     private Employer_Connection connection;
     @FXML Label Courier_id;
+    @FXML Label clientname;
     @FXML Label Courier_Address;
     @FXML Label Courier_Price;
     @FXML Label Courier_Collect_Date;

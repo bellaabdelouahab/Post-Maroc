@@ -21,9 +21,9 @@
          </children></Pane>
       <Pane layoutX="188.0" layoutY="133.0" prefHeight="158.0" prefWidth="470.0" style="-fx-background-color: #2b2f35; -fx-background-radius: 25; -fx-border-radius: 25;">
          <children>
-            <TextField fx:id="Name" alignment="CENTER" layoutX="35.0" layoutY="14.0" prefHeight="45.0" prefWidth="400.0" promptText="--No Data--" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
-            <ComboBox fx:id="deliverFrom" layoutX="95.0" layoutY="83.0" prefHeight="25.0" prefWidth="110.0" style="-fx-background-color: #444444;" styleClass="combo-box1" stylesheets="@../../CSS/Theme.css" />
-            <ComboBox fx:id="deliverTo" layoutX="265.0" layoutY="85.0" prefHeight="25.0" prefWidth="113.0" style="-fx-background-color: #444444;" styleClass="combo-box1" stylesheets="@../../CSS/Theme.css" />
+            <TextField fx:id="Name" alignment="CENTER" disable="true" layoutX="35.0" layoutY="14.0" prefHeight="45.0" prefWidth="400.0" promptText="--No Data--" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
+            <ComboBox fx:id="deliverFrom" layoutX="95.0" layoutY="83.0" prefHeight="25.0" prefWidth="110.0" style="-fx-background-color: #444444; -fx-text-fill: white;" styleClass="combo-box1" stylesheets="@../../CSS/Theme.css" />
+            <ComboBox fx:id="deliverTo" layoutX="265.0" layoutY="85.0" prefHeight="25.0" prefWidth="113.0" style="-fx-background-color: #444444; -fx-text-fill: white;" styleClass="combo-box1" stylesheets="@../../CSS/Theme.css" />
             <Label layoutX="127.0" layoutY="61.0" text="FROM" textFill="#9e9e9e">
                <font>
                   <Font name="Century" size="14.0" />

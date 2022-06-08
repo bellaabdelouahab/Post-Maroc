@@ -71,27 +71,25 @@ public class Client_Connection extends DataBaseConnection{
             receiver.getReceiverAddress(),
             receiver.getReceiverPhonenbr()
         );
-        //  open an exe 
         try {
             System.out.println();
-            Runtime.getRuntime().exec(
-                System.getProperty("user.dir")+"\\src\\Main\\pythoncode\\CourierFormCreator.exe"
-                );
-        } catch (IOException e1) {
+            Runtime.getRuntime().exec(App.path_to_dependencies+"\\assets\\CourierFormCreator.exe --dir="+App.path_to_dependencies+"\\assets"
+                ).waitFor();
+        } catch (Exception e1) {
             e1.printStackTrace();
             App.CurrentNotification = "Failed to get sources from exe.";
             return;
         }
         try {
             System.out.println(selectedDirectory.getAbsolutePath()+"\\"+"RR"+String.format("%09d", mail_id)+"MA.docx");
-            tools_.copyDirectory(
-                new File(System.getProperty("user.dir")+"\\src\\Resources\\OutputCourierForm\\DocxForm\\result.docx"),
+            Tools_.copyDirectory(
+                new File(App.path_to_dependencies+"\\assets\\result.docx"),
                 new File(selectedDirectory.getAbsolutePath()+"\\"+"RR"+String.format("%09d", mail_id)+"MA.docx")
                 );
         } catch (IOException e1) {
             e1.printStackTrace();
             App.CurrentNotification = "Failed to copy file go to \n"+
-            System.getProperty("user.dir")+"\\src\\Resources\\OutputCourierForm\\DocxForm\\result.docx";
+            App.path_to_dependencies+"/result.docx";
             return;
         }
         App.CurrentNotification =   "Courier saved successfully ";
@@ -115,7 +113,7 @@ public class Client_Connection extends DataBaseConnection{
     }
     private boolean WriteToFile(String CourierId, String user_FN, String user_LN, String user_address, String user_Phone, String FirstName, String LastName, String address, String phonenbr) {
         try {
-            FileWriter myWriter = new FileWriter(System.getProperty("user.dir")+"\\src\\Resources\\OutputCourierForm\\prototype\\CurrentCourierInfo.txt");
+            FileWriter myWriter = new FileWriter(App.path_to_dependencies+"\\assets\\CurrentCourierInfo.txt");
             // whrite to file
             myWriter.write(CourierId+"\n");
             myWriter.write(user_LN + "\n");
@@ -215,6 +213,6 @@ public class Client_Connection extends DataBaseConnection{
             e.printStackTrace();
             App.CurrentNotification = "Failed to get sources.";
         }
-        return null;
+        return "0";
     }
 }

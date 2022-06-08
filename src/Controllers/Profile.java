@@ -9,6 +9,8 @@ import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import Controllers.Client.Client_home;
+import Controllers.Employer.Home;
 import Main.App;
 import Main.DataBaseConnection;
 import Main.UserAccount;
@@ -21,6 +23,7 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
@@ -33,7 +36,8 @@ public class Profile implements Initializable {
     @FXML
     private GNAvatarView ProfilePicture;
     @FXML
-    private TextField FullName, Sex, email, Adress, jobtitle, Cin, Nationnality, Phonenumber;
+    private TextField FullName, email, Adress, Data1, Data2, Cin, Nationnality, Phonenumber;
+    @FXML private Label Data1label,Data2label;
     @FXML
     private GridPane PasswordForm;
     private DataBaseConnection connection;
@@ -88,8 +92,16 @@ public class Profile implements Initializable {
         FullName.setText(useraccount.getfirstname()+" "+useraccount.getlastname());
         email.setText(useraccount.getemail());
         Adress.setText(useraccount.getaddress());
-        Sex.setText(useraccount.getgender());
-        jobtitle.setText(useraccount.getjobtitle());
+        if(connection.getUser_account().getaccounttype().equals("client")){
+            Data1.setText(useraccount.getgender());
+            Data2.setText(useraccount.getjobtitle());
+        }
+        else{
+            Data1label.setText("From");
+            Data2label.setText("To");
+            Data1.setText(connection.getDeliveryline(useraccount.getdeliveryline(),"From"));
+            Data2.setText(connection.getDeliveryline(useraccount.getdeliveryline(),"To"));
+        }
         Cin.setText(useraccount.getid());
         Nationnality.setText(useraccount.getnationnality());
         Phonenumber.setText(useraccount.getphone());
@@ -111,7 +123,6 @@ public class Profile implements Initializable {
         useraccount.setlastname(LastName);
         useraccount.setaddress(Adress.getText());
         useraccount.setphone(Phonenumber.getText());
-        useraccount.setjobtitle(jobtitle.getText());
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -121,7 +132,7 @@ public class Profile implements Initializable {
         // connection.updateUser_account(useraccount);
         try{
         user_id = connection.getUser_account().getid();
-        File file = new File(System.getProperty("user.dir")+ "/src/Resources/IMAGES/ProfilePictures/"+user_id+".png");
+        File file = new File(App.path_to_dependencies+ "/assets/ProfilePictures/"+user_id+".png");
         ImageIO.write(ImagebBufferedImage, "png", file);
         }
         catch (Exception e) {

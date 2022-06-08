@@ -2,15 +2,14 @@ package Main;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Properties;
+import java.sql.SQLException;
 import java.util.prefs.Preferences;
 
 import com.jfoenix.controls.JFXButton;
 
 import Controllers.Login;
 import Controllers.Profile;
+import Controllers.Setup;
 import animatefx.animation.FadeIn;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
@@ -29,7 +28,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.TextAlignment;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
@@ -42,9 +40,8 @@ public class App extends Application {
     public static String CurrentNotification;
     public static Button ExtraButton;
     private static Pane CurrentNotificationPane;
-    static String path_to_wallet="C:\\Users\\Abdelouahab\\Downloads\\Wallet";
+    public static String path_to_dependencies;
     public void Main(String[] args) throws Exception {
-        System.out.println("working i think");
         launch(args);
         
     }
@@ -58,48 +55,11 @@ public class App extends Application {
     // connect to database
     @Override
     public void start(Stage primaryStage) throws IOException  {
-        Preferences preferences = Preferences.userRoot().node("Init");
-        if(preferences.get("Path_To_File",null)==null){
-            DirectoryChooser directoryChooser = new DirectoryChooser();
-            File selectedDirectory = directoryChooser.showDialog(null);
-            new File(selectedDirectory.getPath()+"\\Wallet").mkdirs();
-            ArrayList<String> files = new ArrayList<String>();
-            files.add("cwallet.sso");
-            files.add("ewallet.p12");
-            files.add("ewallet.pem");
-            files.add("keystore.jks");
-            files.add("ojdbc.properties");
-            files.add("sqlnet.ora");
-            files.add("tnsnames.ora");
-            files.add("truststore.jks");
-            for (String file : files) {
-                tools_.copyInputStreamToFile(App.class.getResourceAsStream("/Resources/Wallet_NFS315/"+file), new File(selectedDirectory.getPath()+"\\Wallet\\"+file));
-            }
-            preferences.put("Path_To_File", selectedDirectory.getPath()+"\\Wallet");
-        }
-        path_to_wallet = preferences.get("Path_To_File",null);
 
-
-        
-        FXMLLoader loader = new FXMLLoader(App.class.getResource("/Resources/VIEW/LogIn.fxml"));
-        Pane root = loader.load();
-        Login controller = loader.getController();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    connection = new DataBaseConnection(true);
-                    controller.setConnection(connection);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-        controller.setConnection(connection);
-        controller.initializ();
-        connection = controller.getConnection();
+        NotificationUpdater();
+        boolean isvalid = false;
         BaseWindow = new AnchorPane();
-        BaseWindow.getChildren().add(root);
+        BaseWindow.setPrefSize(800, 500);
         BaseWindow.setStyle("-fx-border-radius:25;-fx-background-radius:25;-fx-background-color:#00000000");
         Scene scene = new Scene(BaseWindow);
         scene.setFill(Color.TRANSPARENT);
@@ -108,10 +68,67 @@ public class App extends Application {
         primaryStage.setScene(scene);
         primaryStage.centerOnScreen();
         primaryStage.setResizable(false);
-        primaryStage.show();
-        new FadeIn(root).play();
+        Preferences preferences = Preferences.userRoot().node("Init");
+//         preferences.remove("Path_To_Resources");
+//         preferences = Preferences.userRoot().node("Login");
+//         preferences.remove("email");
+//         preferences.remove("password");
+        if(preferences.get("Path_To_Resources",null)==null){
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("/Resources/VIEW/setup.fxml"));
+            Pane root = loader.load();
+            Setup controller = loader.getController();
+            controller.setprimaryStage(primaryStage);
+            BaseWindow.getChildren().add(root);
+            
+            new FadeIn(root).play();
+        }
+        else{
+            path_to_dependencies = preferences.get("Path_To_Resources",null);
+            isvalid = true;
+            ShowLogin(primaryStage);
+        }
         setprimaryStage(primaryStage);
-        NotificationUpdater();
+
+        primaryStage.show();
+        File pathToUploads;
+        if(isvalid){
+            try{
+                pathToUploads = new File(path_to_dependencies);
+            }catch(Exception e){
+                App.CurrentNotification = "Could not find dependencies, restart app";
+                preferences.remove("Path_To_Resources");
+                return;
+            }
+            if (!pathToUploads.exists() || !pathToUploads.isDirectory()) {
+                preferences.remove("Path_To_Resources");
+                App.CurrentNotification = "Could not find dependencies, restart app";
+                return; 
+            }
+        }
+    }
+
+    public static void ShowLogin(Stage primaryStage) throws IOException {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                    connection = new DataBaseConnection(true);
+                }
+            });
+        thread.start();
+        try {
+            thread.join();
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("/Resources/VIEW/LogIn.fxml"));
+            Pane root = loader.load();
+            Login controller = loader.getController();
+            controller.setConnection(connection);
+            controller.initializ();
+            BaseWindow.getChildren().clear();
+            connection.Setupconnection();
+            BaseWindow.getChildren().add(root);
+            new FadeIn(root).play();
+        } catch (InterruptedException | SQLException e) {
+        e.printStackTrace();
+    }
     }
     private void NotificationUpdater() {
         Timeline Updater = new Timeline();
@@ -243,6 +260,7 @@ public class App extends Application {
             CurrentNotification =  "Could not load page close app and try again";
         }
     }
+
     
 }
 

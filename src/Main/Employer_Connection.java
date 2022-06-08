@@ -122,6 +122,13 @@ public class Employer_Connection extends DataBaseConnection {
         return null;
     }
     public void deleteClient(String clientid) {
+        // delete all related courier
+        String qry = "delete from POSTCOURIER where client_id='"+clientid+"'";
+        try {
+            statement.executeUpdate(qry);
+        } catch (SQLException e) {
+            App.CurrentNotification = "Failed to delete couriers";
+        }
         String qry1 = "delete from POSTCLIENT where id='"+clientid+"'";
         try {
             statement.executeUpdate(qry1);

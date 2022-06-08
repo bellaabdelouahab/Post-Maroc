@@ -195,7 +195,24 @@
     -fx-background-radius: 0;
     -fx-padding: 0.0em 0em 0.0em 0.0em; /* 0 3 0 0 */
 }
+.combo-box1 > .list-view > .list-cell{
+    -fx-text-fill: #e7af18;
+}
+.combo-box1 .label {
+	-fx-background-color:  WHITE;
+	-fx-text-fill: RED;
+}
+.jfx-combo-box {
+	-fx-background-color:  PINK;
+}
 
+.jfx-combo-box .label {
+	-fx-background-color:  WHITE;
+	-fx-text-fill: RED;
+}
+.combo-box1 .list-view .list-cell:hover {
+    -fx-text-fill: rgb(14, 91, 191);
+}
 .combo-box1 .arrow-button .arrow
 {
     -fx-background-color: -fx-mark-highlight-color, -fx-mark-color;

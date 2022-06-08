@@ -8,6 +8,7 @@ import com.jfoenix.controls.JFXButton;
 
 import Main.App;
 import Main.Employer_Connection;
+import io.github.gleidson28.GNAvatarView;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -29,7 +30,7 @@ import javafx.util.Duration;
 
 public class Home implements Initializable{
     private Employer_Connection connection;
-
+    private Pane ToolWindow;
     @FXML
     private Pane Pane1_button_animation;
     @FXML
@@ -40,7 +41,7 @@ public class Home implements Initializable{
     private Pane parent_pane;
     @FXML private ImageView icon1;
     @FXML private Circle Scanner;
-    // Switch To Waiting Courier
+    @FXML private GNAvatarView profileimage;
     @FXML
     private void SwitchToWaitingCourier() {
         SwitchTo(true,false,false);
@@ -61,13 +62,10 @@ public class Home implements Initializable{
         try {
             FXMLLoader loder = new FXMLLoader(getClass().getResource("/Resources/VIEW/Employer/Courier.fxml"));
             Pane root=new Pane();
-
-
             try{
                 root = loder.load();
             }
             catch (Exception e) {
-                System.out.println(System.getProperty("user.dir")+"/../Resources/VIEW/Employer/Courier.fxml");
                 System.exit(0);
             }
             CourierTable controller = loder.getController();
@@ -86,39 +84,9 @@ public class Home implements Initializable{
             App.CurrentNotification = "You are not allowed to access this page";
             return;
         }
-        Pane ToolWindow = new Pane();
-        ToolWindow.setPrefSize(800, 460);
-        ToolWindow.setLayoutX(0);
-        ToolWindow.setLayoutY(40);
-        Pane Exitter = new Pane();
-        Exitter.setPrefSize(800, 420);
-        Exitter.setOnMouseClicked(arg0->{
-            App.BaseWindow.getChildren().remove(ToolWindow);          
-            parent_pane.setEffect(null);
-        });
-        GaussianBlur blur =  new GaussianBlur();
-        blur.setRadius(4);
-        parent_pane.setEffect(blur);
-        String style_ = "-fx-background-color: #11111199;-fx-border-raduis:0;-fx-text-fill: white;-fx-font-size: 10px;-fx-font-family: 'Segoe UI';-fx-border-radius:0;";
-        Pane search = new Pane();
-        search.setPrefSize(280, 113);
-        search.setLayoutX(260);
-        search.setLayoutY(200);
-        search.setStyle("-fx-background-color:#575656;-fx-background-radius:25");
-        search.setOnMouseClicked(e->{});
-        TextField search_text = new TextField();
-        search_text.setPrefSize(200, 35);
-        search_text.setLayoutX(45);
-        search_text.setLayoutY(20);
-        search_text.setPromptText("Enter Employee ID");
-        search_text.setStyle(style_);
-        search_text.setAlignment(Pos.CENTER);
-        JFXButton search_button = new JFXButton("Search");
-        search_button.setPrefSize(93, 32);
-        search_button.setLayoutX(96);
-        search_button.setLayoutY(70);
-        search_button.setRipplerFill(new Color(0.4353, 0.1451, 0.051, 1.0));
-        search_button.setStyle("-fx-border-color:#919191;-fx-border-raduis:5;");
+        SetSearchForm("Enter Employee ID");
+        Button search_button = (Button) ((Pane)ToolWindow.getChildren().get(1)).getChildren().get(1);
+        TextField search_text = (TextField) ((Pane)ToolWindow.getChildren().get(1)).getChildren().get(0);
         search_button.setOnAction(e->{
             if(search_text.getText().equals("")){
                 return;
@@ -130,8 +98,6 @@ public class Home implements Initializable{
                 DeliveryLine controller = loder.getController();
                 controller.setConnection(connection);
                 controller.SetData(search_text.getText());
-                ToolWindow.getChildren().clear();
-                ToolWindow.getChildren().add(root);
                 controller.closebutton.setOnAction(e1->{
                     App.BaseWindow.getChildren().remove(ToolWindow);
                     parent_pane.setEffect(null);
@@ -140,54 +106,19 @@ public class Home implements Initializable{
                     App.BaseWindow.getChildren().remove(ToolWindow);
                     parent_pane.setEffect(null);
                 });
+                ToolWindow.getChildren().remove(1);
+                ToolWindow.getChildren().addAll(root);
             } catch (IOException e1) {
                 // notifiy that it couldn't switch
                 e1.printStackTrace();
-            } 
+            }
         });
-        search.getChildren().addAll(search_text,search_button);
-        ToolWindow.getChildren().addAll(Exitter,search);
-        App.BaseWindow.getChildren().add(ToolWindow);
     }
     @FXML 
     private void ShowClientPaymentForm(){
-        if(!connection.getUser_account().getjobclass().equals("A")){
-            App.CurrentNotification = "You are not allowed to access this page";
-            return;
-        }
-        Pane ToolWindow = new Pane();
-        ToolWindow.setPrefSize(800, 460);
-        ToolWindow.setLayoutX(0);
-        ToolWindow.setLayoutY(40);
-        Pane Exitter = new Pane();
-        Exitter.setPrefSize(800, 420);
-        Exitter.setOnMouseClicked(arg0->{
-            App.BaseWindow.getChildren().remove(ToolWindow);          
-            parent_pane.setEffect(null);
-        });
-        GaussianBlur blur =  new GaussianBlur();
-        blur.setRadius(4);
-        parent_pane.setEffect(blur);
-        String style_ = "-fx-background-color: #11111199;-fx-border-raduis:0;-fx-text-fill: white;-fx-font-size: 10px;-fx-font-family: 'Segoe UI';-fx-border-radius:0;";
-        Pane search = new Pane();
-        search.setPrefSize(280, 113);
-        search.setLayoutX(260);
-        search.setLayoutY(200);
-        search.setStyle("-fx-background-color:#575656;-fx-background-radius:25");
-        search.setOnMouseClicked(e->{});
-        TextField search_text = new TextField();
-        search_text.setPrefSize(200, 35);
-        search_text.setLayoutX(45);
-        search_text.setLayoutY(20);
-        search_text.setPromptText("Enter Client ID");
-        search_text.setStyle(style_);
-        search_text.setAlignment(Pos.CENTER);
-        JFXButton search_button = new JFXButton("Search");
-        search_button.setPrefSize(93, 32);
-        search_button.setLayoutX(96);
-        search_button.setLayoutY(70);
-        search_button.setRipplerFill(new Color(0.4353, 0.1451, 0.051, 1.0));
-        search_button.setStyle("-fx-border-color:#919191;-fx-border-raduis:5;");
+        SetSearchForm("Enter Client ID");
+        Button search_button = (Button) ((Pane)ToolWindow.getChildren().get(1)).getChildren().get(1);
+        TextField search_text = (TextField) ((Pane)ToolWindow.getChildren().get(1)).getChildren().get(0);
         search_button.setOnAction(e->{
             if(search_text.getText().equals("")){
                 return;
@@ -199,8 +130,6 @@ public class Home implements Initializable{
                 ClientPayment controller = loder.getController();
                 controller.setConnection(connection);
                 controller.SetData(search_text.getText());
-                ToolWindow.getChildren().clear();
-                ToolWindow.getChildren().add(root);
                 controller.closebutton.setOnAction(e1->{
                     App.BaseWindow.getChildren().remove(ToolWindow);
                     parent_pane.setEffect(null);
@@ -209,58 +138,20 @@ public class Home implements Initializable{
                     App.BaseWindow.getChildren().remove(ToolWindow);
                     parent_pane.setEffect(null);
                 });
+                ToolWindow.getChildren().remove(1);
+                ToolWindow.getChildren().addAll(root);
             } catch (IOException e1) {
                 // notifiy that it couldn't switch
                 e1.printStackTrace();
             } 
         });
-        search.getChildren().addAll(search_text,search_button);
-        ToolWindow.getChildren().addAll(Exitter,search);
-        App.BaseWindow.getChildren().add(ToolWindow);
     }
     @FXML
     private void ShowClientSearchForm(){
-        if(!connection.getUser_account().getjobclass().equals("A")){
-            App.CurrentNotification = "You are not allowed to access this page";
-            return;
-        }
-        Pane ToolWindow = new Pane();
-        ToolWindow.setPrefSize(800, 460);
-        ToolWindow.setLayoutX(0);
-        ToolWindow.setLayoutY(40);
-        Pane Exitter = new Pane();
-        Exitter.setPrefSize(800, 420);
-        Exitter.setOnMouseClicked(arg0->{
-            App.BaseWindow.getChildren().remove(ToolWindow);          
-            parent_pane.setEffect(null);
-        });
-        GaussianBlur blur =  new GaussianBlur();
-        blur.setRadius(4);
-        parent_pane.setEffect(blur);
-        String style_ = "-fx-background-color: #11111199;-fx-border-raduis:0;-fx-text-fill: white;-fx-font-size: 10px;-fx-font-family: 'Segoe UI';-fx-border-radius:0;";
-        Pane search = new Pane();
-        search.setPrefSize(280, 113);
-        search.setLayoutX(260);
-        search.setLayoutY(200);
-        search.setStyle("-fx-background-color:#575656;-fx-background-radius:25");
-        TextField search_text = new TextField();
-        search_text.setPrefSize(200, 35);
-        search_text.setLayoutX(45);
-        search_text.setLayoutY(20);
-        search_text.setPromptText("Enter Client ID");
-        search_text.setStyle(style_);
-        search_text.setAlignment(Pos.CENTER);
-        JFXButton search_button = new JFXButton("Search");
-        search_button.setPrefSize(93, 32);
-        search_button.setLayoutX(96);
-        search_button.setLayoutY(70);
-        search_button.setRipplerFill(new Color(0.4353, 0.1451, 0.051, 1.0));
-        search_button.setStyle("-fx-border-color:#919191;-fx-border-raduis:5;");
+        SetSearchForm("Enter Client ID");
+        Button search_button = (Button) ((Pane)ToolWindow.getChildren().get(1)).getChildren().get(1);
+        TextField search_text = (TextField) ((Pane)ToolWindow.getChildren().get(1)).getChildren().get(0);
         search_button.setOnAction(e->{
-            if(search_text.getText().equals("")){
-                return;
-            }
-            // App.BaseWindow.getChildren().remove(ToolWindow);
             FXMLLoader loder = new FXMLLoader(getClass().getResource("/Resources/VIEW/Employer/ClientInfo.fxml"));
             try {
                 Pane root = loder.load();
@@ -275,16 +166,13 @@ public class Home implements Initializable{
                     App.BaseWindow.getChildren().remove(ToolWindow);
                     parent_pane.setEffect(null);
                 });
-                ToolWindow.getChildren().clear();
-                ToolWindow.getChildren().addAll(Exitter,root);
+                ToolWindow.getChildren().remove(1);
+                ToolWindow.getChildren().addAll(root);
             } catch (IOException e1) {
                 e1.printStackTrace();
                 App.CurrentNotification = "Couldn't load the page, please report essue";
             }
         });
-        search.getChildren().addAll(search_text,search_button);
-        ToolWindow.getChildren().addAll(Exitter,search);
-        App.BaseWindow.getChildren().add(ToolWindow);
     }
     @FXML
     private void ShowCourierSearchForm(){
@@ -292,33 +180,11 @@ public class Home implements Initializable{
             App.CurrentNotification = "You are not allowed to access this page";
             return;
         }
-        Pane ToolWindow = new Pane();
-        ToolWindow.setPrefSize(800, 460);
-        ToolWindow.setLayoutX(0);
-        ToolWindow.setLayoutY(40);
-        Pane Exitter = new Pane();
-        Exitter.setPrefSize(800, 420);
-        Exitter.setOnMouseClicked(arg0->{
-            App.BaseWindow.getChildren().remove(ToolWindow);          
-            parent_pane.setEffect(null);
-        });
-        GaussianBlur blur =  new GaussianBlur();
-        blur.setRadius(4);
-        parent_pane.setEffect(blur);
+        SetSearchForm("Enter Employee ID");
         String style_ = "-fx-background-color: #11111199;-fx-border-raduis:0;-fx-text-fill: white;-fx-font-size: 10px;-fx-font-family: 'Segoe UI';-fx-border-radius:0;";
-        Pane search = new Pane();
-        search.setPrefSize(280, 113);
-        search.setLayoutX(260);
-        search.setLayoutY(200);
-        search.setStyle("-fx-background-color:#575656;-fx-background-radius:25");
-        search.setOnMouseClicked(e->{});
-        TextField search_text = new TextField();
-        search_text.setPrefSize(200, 35);
-        search_text.setLayoutX(45);
-        search_text.setLayoutY(20);
-        search_text.setPromptText("Enter Courier ID");
-        search_text.setStyle(style_);
-        search_text.setAlignment(Pos.CENTER);
+        Button search_button = (Button) ((Pane)ToolWindow.getChildren().get(1)).getChildren().get(1);
+        TextField search_text = (TextField) ((Pane)ToolWindow.getChildren().get(1)).getChildren().get(0);
+        Pane search_pane = (Pane)ToolWindow.getChildren().get(1);
         Label RR = new Label("RR");
         RR.setPrefSize(30, 35);
         RR.setLayoutX(15);
@@ -331,23 +197,20 @@ public class Home implements Initializable{
         MA.setLayoutY(20);
         MA.setStyle(style_);   
         MA.setAlignment(Pos.CENTER);
-        JFXButton search_button = new JFXButton("Search");
-        search_button.setPrefSize(93, 32);
-        search_button.setLayoutX(96);
-        search_button.setLayoutY(70);
-        search_button.setRipplerFill(new Color(0.4353, 0.1451, 0.051, 1.0));
-        search_button.setStyle("-fx-border-color:#919191;-fx-border-raduis:5;");
+        search_pane.getChildren().addAll(RR,MA);
+
         search_button.setOnAction(e->{
-            System.out.println("saving");
             if(search_text.getText().equals("")){
                 return;
             }
-            FXMLLoader loder = new FXMLLoader(getClass().getResource("/Resources/VIEW/Employer/courierinfo.fxml"));
+            FXMLLoader loder = new FXMLLoader(getClass().getResource("/Resources/VIEW/Employer/CourierInfo.fxml"));
             try {
                 Pane root = loder.load();
                 root.setLayoutX(137);
                 root.setLayoutY(37);
                 CourierInfoForm controller = loder.getController();
+
+                
                 Label status = new Label("Status");
                 status.setPrefSize(60 , 25);
                 status.setLayoutX(205);
@@ -377,26 +240,59 @@ public class Home implements Initializable{
                     parent_pane.setEffect(null);
                 }); 
                 controller.Fillinfo("RR"+search_text.getText()+"MA",false);
-                ToolWindow.getChildren().clear();
-                ToolWindow.getChildren().addAll(Exitter,root,status,status_menu,validate);
+                ToolWindow.getChildren().remove(1);
+                ToolWindow.getChildren().addAll(root,status,status_menu,validate);
                 
             } catch (IOException e1) {
                 e1.printStackTrace();
                 App.CurrentNotification = "Couldn't load the page, please report essue";
             }
-            });
+        });
         
-        search.getChildren().addAll(search_text,search_button,RR,MA);
+    }
+    
+    private void SetSearchForm(String label_) {
+        Pane Exitter = new Pane();
+        Exitter.setPrefSize(800, 420);
+        Exitter.setOnMouseClicked(arg0->{
+            App.BaseWindow.getChildren().remove(ToolWindow);          
+            parent_pane.setEffect(null);
+        });
+        GaussianBlur blur =  new GaussianBlur();
+        blur.setRadius(4);
+        parent_pane.setEffect(blur);
+        String style_ = "-fx-background-color: #11111199;-fx-border-raduis:0;-fx-text-fill: white;-fx-font-size: 10px;-fx-font-family: 'Segoe UI';-fx-border-radius:0;";
+        Pane search = new Pane();
+        search.setPrefSize(280, 113);
+        search.setLayoutX(260);
+        search.setLayoutY(200);
+        search.setStyle("-fx-background-color:#575656;-fx-background-radius:25");
+        search.setOnMouseClicked(e->{});
+        TextField search_text = new TextField();
+        search_text.setPrefSize(200, 35);
+        search_text.setLayoutX(45);
+        search_text.setLayoutY(20);
+        search_text.setPromptText(label_);
+        search_text.setStyle(style_);
+        search_text.setAlignment(Pos.CENTER);
+        JFXButton search_button = new JFXButton("Search");
+        search_button.setPrefSize(93, 32);
+        search_button.setLayoutX(96);
+        search_button.setLayoutY(70);
+        search_button.setRipplerFill(new Color(0.4353, 0.1451, 0.051, 1.0));
+        search_button.setStyle("-fx-border-color:#919191;-fx-border-raduis:5;");
+        search.getChildren().addAll(search_text,search_button);
+        ToolWindow.getChildren().clear();
         ToolWindow.getChildren().addAll(Exitter,search);
         App.BaseWindow.getChildren().add(ToolWindow);
     }
-    // create a setter for Data Base Connection
+    
     public void setConnection(Employer_Connection connection){
         this.connection = connection;
     }
     @FXML
     private void StartAnimation1() {
-        Timeline timeline = App.GetButtonAnimtation(Pane1_button_animation, Pane1_circle_animation,100,53,0.5);
+        Timeline timeline = App.GetButtonAnimtation(Pane1_button_animation, Pane1_circle_animation,90,53,0.5);
         timeline.play();
     }
     @FXML
@@ -474,6 +370,12 @@ public class Home implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("Employer Dashboard");
+        ToolWindow = new Pane();
+        ToolWindow.setPrefSize(800, 460);
+        ToolWindow.setLayoutX(0);
+        ToolWindow.setLayoutY(40);
     }
-
+    public void init(){
+        profileimage.setImage(connection.getUser_account().getImage());
+    }
 }

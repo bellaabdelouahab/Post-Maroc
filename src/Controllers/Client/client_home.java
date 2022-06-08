@@ -5,12 +5,13 @@ import java.sql.SQLException;
 
 import Main.App;
 import Main.Client_Connection;
+import io.github.gleidson28.GNAvatarView;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
-public class client_home {
+public class Client_home {
     private Client_Connection connection;
     @FXML
     private Pane Pane1_button_animation;
@@ -20,14 +21,14 @@ public class client_home {
     private Circle Pane1_circle_animation;
     @FXML
     private Circle Pane2_circle_animation;
-    
+    @FXML private GNAvatarView profileimage;
     @FXML
     private void SwitchToAddMailForm() {
-        FXMLLoader loder = new FXMLLoader(getClass().getResource("/Resources/VIEW/Client/um.fxml"));
+        FXMLLoader loder = new FXMLLoader(getClass().getResource("/Resources/VIEW/Client/CourierFormContainer.fxml"));
         Pane root;
         try {
             root = loder.load();
-            create_mail controller = loder.getController();
+            Create_mail controller = loder.getController();
             controller.connection=getConnection();
             controller.SwitchToForm1();
             App.changeStage(root);
@@ -65,7 +66,7 @@ public class client_home {
             root = loder.load();
             App.changeStage(root);
             try {
-                mail_log controller = loder.getController();
+                Mail_log controller = loder.getController();
                 controller.connection=getConnection();
                 controller.SetData();
             } catch (SQLException e) {
@@ -104,5 +105,8 @@ public class client_home {
     @FXML
     private void Logout(){
         App.Logout();
+    }
+    public void init(){
+        profileimage.setImage(connection.getUser_account().getImage());
     }
 }

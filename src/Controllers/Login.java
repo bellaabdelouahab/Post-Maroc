@@ -1,11 +1,12 @@
 package Controllers;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.prefs.Preferences;
 
 import com.jfoenix.controls.JFXCheckBox;
 
-import Controllers.Client.client_home;
+import Controllers.Client.Client_home;
 import Controllers.Employer.Home;
 import Main.App;
 import Main.Client_Connection;
@@ -107,6 +108,14 @@ public class Login{
         password_error_circle.setVisible(false);
         password_error_line.setVisible(false);
     }
+    @FXML
+    private void ResetConnection(){
+        try {
+            connection.Setupconnection();
+        } catch (SQLException e) {
+            App.CurrentNotification = "Could Not Connect To Database Please Reset The App";
+        }
+    }
     public void setConnection(DataBaseConnection connection) {
         this.connection = connection;
     }
@@ -135,8 +144,9 @@ public class Login{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/VIEW/Client/Home.fxml"));
             try {
                 root = loader.load();
-                client_home controller = loader.getController();
+                Client_home controller = loader.getController();
                 controller.setConnection(new Client_Connection(false));
+                controller.init();
             } catch (IOException e) {
                 e.printStackTrace();
                 return;
@@ -148,6 +158,7 @@ public class Login{
                 root = loader.load();
                 Home controller = loader.getController();
                 controller.setConnection(new Employer_Connection(false));
+                controller.init();
             } catch (IOException e) {
                 e.printStackTrace();
                 return;

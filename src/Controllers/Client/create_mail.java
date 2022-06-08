@@ -7,14 +7,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 
-public class create_mail{
+public class Create_mail{
     Client_Connection connection;
     static Courier courier = new Courier();
     @FXML Pane forms;
     
     public int currentform=1;
-    private form_1 Form1controller ;
-    private form_2 Form2controller ;
+    private Form_1 Form1controller ;
+    private Form_2 Form2controller ;
     @FXML
     private void ValidateMail(){
         if (currentform==1){
@@ -78,8 +78,9 @@ public class create_mail{
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/VIEW/Client/Home.fxml"));
             Pane root = loader.load();
-            client_home controller = loader.getController();
+            Client_home controller = loader.getController();
             controller.setConnection(connection);
+            controller.init();
             App.changeStage(root);
         }
         catch (Exception e) {

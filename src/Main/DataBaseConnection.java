@@ -33,7 +33,7 @@ public class DataBaseConnection {
         if(!parent) return;
         try{
             // System.out.println(DataBaseConnection.class("\\src\\Resources\\Wallet_NFS315"));
-        System.setProperty("oracle.net.tns_admin",App.path_to_wallet);
+        System.setProperty("oracle.net.tns_admin",App.path_to_dependencies+"\\wallet");
         // System.exit(0);
         pds = PoolDataSourceFactory.getPoolDataSource();
         pds.setConnectionFactoryClassName(CONN_FACTORY_CLASS_NAME);
@@ -53,17 +53,20 @@ public class DataBaseConnection {
         connProps.setProperty("includeSynonyms", "false");
         connProps.setProperty("defaultNChar", "false");
         connProps.setProperty("AccumulateBatchResult", "false");
+        // Setupconnection();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("notification added");
+            App.CurrentNotification="Connection Failed";
+        }
+    }
+    public void Setupconnection() throws SQLException {
         connection = pds.getConnection();
         System.out.println(DB_URL + "    is connected");
         System.out.println("Available connections after checkout: "+ pds.getAvailableConnectionsCount());
         System.out.println("Borrowed  connections after checkout: "+ pds.getBorrowedConnectionsCount());
         statement = connection.createStatement();
         System.out.println("connected successfully");
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("notification added");
-            App.CurrentNotification="Connection Failed";
-        }
     }
     public UserAccount getUser_account() {
         return user_account;
@@ -110,6 +113,12 @@ public class DataBaseConnection {
         catch (Exception e) {
             e.printStackTrace();
             App.CurrentNotification = "Failed to get sources. check you internet connection";
+            try {
+                Setupconnection();
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                App.CurrentNotification = "Failed to get sources. check you internet connection";
+            }
 
         }
         return false;
@@ -152,10 +161,9 @@ public class DataBaseConnection {
         return null;
     }
     public void updateUser_account(UserAccount useraccount) {
-        String qry1 = "update POSTUSER set first_name='"+useraccount.getfirstname()+
+        String qry1 = "update post"+useraccount.getaccounttype()+" set first_name='"+useraccount.getfirstname()+
                       "',last_name='"+useraccount.getlastname()+"',address='"+useraccount.getaddress()+
-                      "',phonenbr='"+useraccount.getphone()+"',JOB_TITLE='"+useraccount.getjobtitle()+
-                      "' where id='"+useraccount.getid()+"'";
+                      "',phonenbr='"+useraccount.getphone()+"' where id='"+useraccount.getid()+"'";
         try {
             statement.executeUpdate(qry1);
             App.CurrentNotification =  "User account successfully updated ";
@@ -164,5 +172,19 @@ public class DataBaseConnection {
             System.out.println("failed to update user account postuser");
             App.CurrentNotification = "Unable to update try later or contact your administrator";
         }
+    }
+    public String getDeliveryline(int deliveryline, String Column) {
+        String qry1 = "select "+Column+"_ from POSTDELIVERY_LINE where id="+deliveryline;
+        try {
+            result = statement.executeQuery(qry1);
+            while (result.next()) {
+                return result.getString(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("failed to get delivery line");
+            App.CurrentNotification = "Unable to get delivery line try later or contact your administrator";
+        }
+        return null;
     }
 }

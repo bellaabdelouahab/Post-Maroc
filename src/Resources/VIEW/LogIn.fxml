@@ -58,7 +58,7 @@
                         </RadialGradient>
                      </fill>
                   </Circle>
-                  <ImageView fitHeight="259.0" fitWidth="450.0" layoutX="402.0" layoutY="285.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="259.0" fitWidth="450.0" layoutX="402.0" layoutY="285.0" onMouseClicked="#ResetConnection" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../IMAGES/Barid_.png" />
                      </image>

@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class tools_ {
+public class Tools_ {
     public static void copyDirectory(File sourceLocation , File targetLocation)
     throws IOException {
 
@@ -36,7 +36,7 @@ public class tools_ {
             out.close();
         }
     }
-    static void copyInputStreamToFile(InputStream inputStream, File file)
+    public static void copyInputStreamToFile(InputStream inputStream, File file)
             throws IOException {
 
         // append = false

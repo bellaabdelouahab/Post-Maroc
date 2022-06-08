@@ -16,7 +16,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 
-public class mail_log {
+public class Mail_log {
 
     Client_Connection connection;
     
@@ -71,9 +71,9 @@ public class mail_log {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/VIEW/Client/Home.fxml"));
             Pane root = loader.load();
-            client_home controller = loader.getController();
+            Client_home controller = loader.getController();
             controller.setConnection(connection);
-            // get window parentstage
+            controller.init();
             App.changeStage(root);
         }
         catch (Exception e) {

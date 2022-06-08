@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #343434;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Setup">
+   <children>
+      <ImageView fitHeight="313.0" fitWidth="572.0" layoutX="119.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../IMAGES/Barid_.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="601.0" layoutY="340.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="44.0" style="-fx-background-color: #342345;" />
+      <Button layoutX="757.0" layoutY="2.0" mnemonicParsing="false" onAction="#CloseWindow" prefHeight="23.0" prefWidth="40.0" style="-fx-background-radius: 50; -fx-background-color: #00000000;">
+         <graphic>
+            <FontAwesomeIconView glyphName="CLOSE" selectionStart="1" size="30" tabSize="6" wrappingWidth="23.571428298950195" />
+         </graphic>
+      </Button>
+      <Label alignment="CENTER" layoutY="1.0" prefHeight="27.0" prefWidth="139.0" text="Set-up" textFill="#e8e0e0">
+         <font>
+            <Font name="Bodoni MT" size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="Path" alignment="CENTER" layoutX="201.0" layoutY="340.0" prefHeight="27.0" prefWidth="400.0" promptText="--No Data--" style="-fx-background-color: #11111199; -fx-text-fill: #fff;" />
+      <JFXButton buttonType="RAISED" layoutX="546.0" layoutY="445.0" onAction="#Cancel" prefHeight="31.0" prefWidth="102.0" ripplerFill="#da9515" style="-fx-background-color: #da9515;" text="Cancel" textFill="#1e1c1c">
+         <font>
+            <Font name="Gill Sans MT Condensed" size="16.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="668.0" layoutY="447.0" onAction="#Finish" prefHeight="31.0" prefWidth="102.0" ripplerFill="#da9515" style="-fx-background-color: #da9515;" text="Finish" textFill="#1e1c1c">
+         <font>
+            <Font name="Gill Sans MT Condensed" size="16.0" />
+         </font>
+      </JFXButton>
+      <ImageView fitHeight="23.0" fitWidth="22.0" layoutX="612.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../IMAGES/folderpick.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="291.0" layoutY="315.0" prefHeight="22.0" prefWidth="228.0" text="Choose Where To Install Dependencies" textFill="#f2931f">
+         <font>
+            <Font name="Gill Sans MT Condensed" size="17.0" />
+         </font>
+      </Label>
+      <Button layoutX="602.0" layoutY="341.0" mnemonicParsing="false" onAction="#SelectFolder" prefHeight="27.0" prefWidth="45.0" style="-fx-background-color: #00000000;" />
+   </children>
+</Pane>

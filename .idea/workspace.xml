@@ -8,13 +8,44 @@
   <component name="ChangeListManager">
     <list default="true" id="c98eb816-f6a8-4eb1-8a9a-e859702ff4e1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/Post_Maroc_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/Post_Maroc_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/UML.mdj" beforeDir="false" afterPath="$PROJECT_DIR$/Models/UML.mdj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/InternshipReport.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/report/InternshipReport.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/Client/Paymentlog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/Client/Paymentlog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/Client/client_home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/Client/client_home.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/Client/create_mail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/Client/create_mail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/Client/form_1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/Client/form_1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/Client/form_2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/Client/form_2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/Client/mail_log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/Client/mail_log.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/Courier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/Courier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/Employer/ClientInfoForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/Employer/ClientInfoForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/Employer/CourierForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/Employer/CourierForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/Employer/CourierTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/Employer/CourierTable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/Employer/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/Employer/Home.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/Profile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/Client_Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Client_Connection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main/DataBaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/DataBaseConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/pythoncode/CourierFormCreator.exe" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/pythoncode/CourierFormCreator.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/UserAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/UserAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/pythoncode/CourierFormCreator.exe" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main/pythoncode/CourierFormCreator.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/pythoncode/CourierFormCreator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Resources/OutputCourierForm/DocxForm/result.docx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/OutputCourierForm/DocxForm/result.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Resources/OutputCourierForm/prototype/CurrentCourierInfo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/OutputCourierForm/prototype/CurrentCourierInfo.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/pythoncode/my_ean13_barcode.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/tools_.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/tools_.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resources/CSS/Theme.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/CSS/Theme.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resources/OutputCourierForm/DocxForm/result.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resources/OutputCourierForm/prototype/CurrentCourierInfo.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resources/VIEW/Client/CourierFillForm_1.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/VIEW/Client/CourierFillForm_1.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resources/VIEW/Client/CourierFillForm_2.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/VIEW/Client/CourierFillForm_2.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resources/VIEW/Client/Home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/VIEW/Client/Home.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resources/VIEW/Client/MailLog.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/VIEW/Client/MailLog.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resources/VIEW/Client/um.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resources/VIEW/Employer/CourierForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/VIEW/Employer/CourierForm.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resources/VIEW/Employer/DeliveryLine.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/VIEW/Employer/DeliveryLine.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resources/VIEW/Employer/Home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/VIEW/Employer/Home.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resources/VIEW/LogIn.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/VIEW/LogIn.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resources/VIEW/Profile.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/VIEW/Profile.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,21 +62,30 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="ProblemsViewState">
+    <hideBySeverity>
+      <option value="15" />
+      <option value="200" />
+    </hideBySeverity>
+  </component>
   <component name="ProjectId" id="284bHTLONDtZ9yflNbhvI3O4sgx" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Program Files/javafx-sdk-17.0.0.1/bin/vcruntime140_1.dll" />
-    <property name="project.structure.last.edited" value="Artifacts" />
-    <property name="project.structure.proportion" value="0.18601583" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/charm-glisten-4.4.1-javadoc.jar" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.1939314" />
     <property name="project.structure.side.proportion" value="0.19967532" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="JAR Application.Post-Maroc.jar">
+  <component name="RunManager" selected="Application.Initializer">
     <configuration name="Initializer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main.Initializer" />
       <module name="Post-Maroc" />
@@ -75,8 +115,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JAR Application.Post-Maroc.jar" />
         <item itemvalue="Application.Initializer" />
+        <item itemvalue="JAR Application.Post-Maroc.jar" />
       </list>
     </recent_temporary>
   </component>
@@ -102,5 +142,8 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

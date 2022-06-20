@@ -11,12 +11,16 @@
       <element id="extracted-dir" path="$PROJECT_DIR$/../../Program Files/javafx-sdk-17.0.0.1/Reference Library/xdb6.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../Program Files/javafx-sdk-17.0.0.1/Reference Library/simplefan.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../Program Files/javafx-sdk-17.0.0.1/Reference Library/javax.mail.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Program Files/javafx-sdk-17.0.0.1/Reference Library/log4j-1.2.17.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Program Files/javafx-sdk-17.0.0.1/Reference Library/commons-io-2.4.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../Program Files/javafx-sdk-17.0.0.1/Reference Library/jfoenix-9.0.10.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../Program Files/javafx-sdk-17.0.0.1/Reference Library/AnimateFX-1.2.1.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../Program Files/javafx-sdk-17.0.0.1/Reference Library/activation-1.1.1.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../Program Files/javafx-sdk-17.0.0.1/Reference Library/controlsfx-11.1.0.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../Program Files/javafx-sdk-17.0.0.1/Reference Library/joda-time-2.10.14.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../Program Files/javafx-sdk-17.0.0.1/Reference Library/GNAvatarView-1.0.5.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Program Files/javafx-sdk-17.0.0.1/Reference Library/jplanets-logging-2.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Program Files/javafx-sdk-17.0.0.1/Reference Library/jplanets-fileutils-1.3.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../Program Files/javafx-sdk-17.0.0.1/Reference Library/fontawesomefx-commons-9.1.2.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../Program Files/javafx-sdk-17.0.0.1/Reference Library/spring-security-crypto-5.6.3.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../Program Files/javafx-sdk-17.0.0.1/Reference Library/fontawesomefx-fontawesome-4.7.0-9.1.2.jar" path-in-jar="/" />
